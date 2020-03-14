@@ -1,3 +1,4 @@
 results*
 doc*
 *egg-info*
+*__pycache__*
