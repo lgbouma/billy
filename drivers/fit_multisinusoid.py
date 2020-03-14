@@ -6,7 +6,7 @@ import numpy as np, matplotlib.pyplot as plt, pandas as pd, pymc3 as pm
 import pickle, os, corner
 from collections import OrderedDict
 from pymc3.backends.tracetab import trace_to_dataframe
-from billy.models import sinusoid_model
+from billy.models import sin_model
 from billy.plotting import plot_test_data
 
 #################
@@ -27,8 +27,8 @@ true_params = [true_d[k] for k in true_d.keys()]
 np.random.seed(42)
 x_obs = np.linspace(0, 10, size)
 y_mod = (
-    sinusoid_model(true_params_0, x_obs) +
-    sinusoid_model(true_params_1, x_obs)
+    sin_model(true_params_0, x_obs) +
+    sin_model(true_params_1, x_obs)
 )
 y_obs = y_mod + np.random.normal(scale=true_sigma, size=size)
 
@@ -54,9 +54,9 @@ if not os.path.exists(pklpath):
 
         # Define likelihood
         mu_model = (
-            sinusoid_model([A_0, omega_0, phi_0], x_obs)
+            sin_model([A_0, omega_0, phi_0], x_obs)
             +
-            sinusoid_model([A_1, omega_1, phi_1], x_obs)
+            sin_model([A_1, omega_1, phi_1], x_obs)
         )
 
         likelihood = pm.Normal('y', mu=mu_model,

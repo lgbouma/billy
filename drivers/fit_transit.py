@@ -9,7 +9,7 @@ import pickle, os, corner
 from collections import OrderedDict
 from pymc3.backends.tracetab import trace_to_dataframe
 import exoplanet as xo
-from billy.models import sinusoid_model
+from billy.models import sin_model
 from billy.plotting import plot_test_data, savefig
 
 # randomly sample some periods and phases and then define the time sampling
