@@ -5,7 +5,7 @@ Errors are treated as an additive free parameter in the model.
 import numpy as np, matplotlib.pyplot as plt, pandas as pd, pymc3 as pm
 import pickle, os, corner
 from pymc3.backends.tracetab import trace_to_dataframe
-from billy.models import sinusoid_model
+from billy.models import sin_model
 from billy.plotting import plot_test_data
 
 #################
@@ -20,7 +20,7 @@ true_sigma = true_d['sigma']
 # make fake data and add noise
 np.random.seed(42)
 x_obs = np.linspace(0, 3, size)
-y_mod = sinusoid_model(true_params, x_obs)
+y_mod = sin_model(true_params, x_obs)
 y_obs = y_mod + np.random.normal(scale=true_sigma, size=size)
 
 plot_test_data(x_obs, y_obs, y_mod, modelid, outdir='../results/test_results/')
@@ -39,7 +39,7 @@ if not os.path.exists(pklpath):
         sigma = pm.HalfCauchy('sigma', beta=2, testval=1.)
 
         # Define likelihood
-        likelihood = pm.Normal('y', mu=sinusoid_model([A, omega, phi0], x_obs),
+        likelihood = pm.Normal('y', mu=sin_model([A, omega, phi0], x_obs),
                                sigma=sigma, observed=y_obs)
 
         # Inference!  draw 3000 posterior samples using NUTS sampling
