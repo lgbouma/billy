@@ -30,10 +30,10 @@ class FakeDataGenerator(bm.ModelParser):
             'r':0.04, 'b':0.5, 'u':[0.3,0.2], 'mean':0})
         """
 
-        P_orb = 1.3
+        P_orb = 4*0.45
         t0_orb = 0.2
 
-        P_rot = 1.5
+        P_rot = 4*0.496
         t0_rot = 0.42
 
         true_d = OrderedDict()
@@ -43,7 +43,7 @@ class FakeDataGenerator(bm.ModelParser):
             if 'transit' in modelcomponent:
                 true_d['period'] = P_orb
                 true_d['t0'] = t0_orb
-                true_d['r'] = 0.08
+                true_d['r'] = 0.15
                 true_d['b'] = 0.5
                 true_d['u'] = [0.3,0.2]
                 true_d['mean'] = 0
@@ -136,6 +136,10 @@ class FakeDataGenerator(bm.ModelParser):
                                      'omega{}'.format(k),
                                      'phi{}'.format(k)]
                     cos_params = [self.true_d[k] for k in cosparamnames]
+
+                    mult = ix + 1
+                    sin_params[1] *= mult
+                    cos_params[1] *= mult
 
                     y_mod += sin_model(sin_params, x_obs)
                     y_mod += cos_model(cos_params, x_obs)

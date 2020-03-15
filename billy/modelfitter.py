@@ -1,5 +1,6 @@
 import numpy as np, matplotlib.pyplot as plt, pandas as pd, pymc3 as pm
 import pickle, os
+from copy import deepcopy
 from collections import OrderedDict
 
 import exoplanet as xo
@@ -39,11 +40,22 @@ class ModelParser:
                 raise ValueError(errmsg)
 
 
+LINEAR_AMPLITUDES = 0
+LOG_AMPLITUDES = 1
+
 class ModelFitter(ModelParser):
     """
     Given a modelid of the form "transit_NsincosPorb_NsincosProt", and observed
     x and y values (typically time and flux), construct and fit the model. In
     other words, run the inference.
+
+    The model implemented is of the form
+
+    Y ~ N(
+    [Mandel-Agol transit] +
+    Σ_n A_n sin(n*ωt + φ) +
+    Σ_n A_n cos(n*ωt + φ),
+    σ^2).
     """
 
     def __init__(self, modelid, x_obs, y_obs, y_err, prior_d,
@@ -58,7 +70,7 @@ class ModelFitter(ModelParser):
         self.y_err = y_err
         self.mstar = mstar
         self.rstar = rstar
-        self.t_exp = np.nanmedian(x_obs)
+        self.t_exp = np.nanmedian(np.diff(x_obs))
 
         self.initialize_model(modelid)
         self.verify_inputdata()
@@ -94,6 +106,7 @@ class ModelFitter(ModelParser):
 
             # Define priors and PyMC3 random variables to sample over.
             A_d, B_d, omega_d, phi_d = {}, {}, {}, {}
+            _A_d, _B_d = {}, {}
             for modelcomponent in self.modelcomponents:
 
                 if 'transit' in modelcomponent:
@@ -102,9 +115,8 @@ class ModelFitter(ModelParser):
                         "mean", mu=0.0, sd=1.0, testval=prior_d['mean']
                     )
 
-                    t0 = pm.Uniform(
-                        "t0", lower=0, upper=prior_d['period'],
-                        testval=prior_d['t0']
+                    t0 = pm.Normal(
+                        "t0", mu=0.0, sd=0.01, testval=prior_d['t0']
                     )
 
                     logP = pm.Normal(
@@ -154,23 +166,55 @@ class ModelFitter(ModelParser):
                                                    upper=prior_d[omegakey]+1e-2,
                                                    testval=prior_d[omegakey])
 
+                    # NOTE: sampling over phi, rather than fixing it, is a bit
+                    # silly. regardless; you can't sample over much of the
+                    # space, because sin and cosine terms are obviously highly
+                    # degenerate
                     phikey = 'phi{}'.format(k)
-                    phi_d[phikey] = pm.Uniform(phikey, lower=0, upper=np.pi,
+                    phi_d[phikey] = pm.Uniform(phikey,
+                                               lower=prior_d[phikey]-1e-2,
+                                               upper=prior_d[phikey]+1e-2,
                                                testval=prior_d[phikey])
 
                     N_harmonics = int(modelcomponent[0])
                     for ix in range(N_harmonics):
 
-                        Akey = 'A{}{}'.format(k,ix)
-                        Bkey = 'B{}{}'.format(k,ix)
+                        if LINEAR_AMPLITUDES:
+                            Akey = 'A{}{}'.format(k,ix)
+                            Bkey = 'B{}{}'.format(k,ix)
 
-                        A_d[Akey] = pm.Uniform(Akey, lower=prior_d[Akey]-1e-4,
-                                                upper=prior_d[Akey]+1e-4,
-                                                testval=prior_d[Akey])
+                            A_d[Akey] = pm.Uniform(Akey, lower=0,
+                                                   upper=2*prior_d[Akey],
+                                                   testval=prior_d[Akey])
 
-                        B_d[Bkey] = pm.Uniform(Bkey, lower=prior_d[Bkey]-1e-4,
-                                               upper=prior_d[Bkey]+1e-4,
-                                               testval=prior_d[Bkey])
+                            B_d[Bkey] = pm.Uniform(Bkey, lower=0,
+                                                   upper=2*prior_d[Bkey],
+                                                   testval=prior_d[Bkey])
+                        if LOG_AMPLITUDES:
+                            Akey = 'A{}{}'.format(k,ix)
+                            Bkey = 'B{}{}'.format(k,ix)
+                            logAkey = 'logA{}{}'.format(k,ix)
+                            logBkey = 'logB{}{}'.format(k,ix)
+
+                            _A_d[logAkey] = pm.Uniform(
+                                logAkey,
+                                lower=np.log(0.1*prior_d[Akey]),
+                                upper=np.log(10*prior_d[Akey]),
+                                testval=np.log(prior_d[Akey])
+                            )
+                            A_d[Akey] = pm.Deterministic(
+                                Akey, pm.math.exp(_A_d[logAkey])
+                            )
+
+                            _B_d[logBkey] = pm.Uniform(
+                                logBkey,
+                                lower=np.log(0.1*prior_d[Bkey]),
+                                upper=np.log(10*prior_d[Bkey]),
+                                testval=np.log(prior_d[Bkey])
+                            )
+                            B_d[Bkey] = pm.Deterministic(
+                                Bkey, pm.math.exp(_B_d[logBkey])
+                            )
 
             harmonic_d = {**A_d, **B_d, **omega_d, **phi_d}
 
@@ -207,6 +251,11 @@ class ModelFitter(ModelParser):
                                          'phi{}'.format(k)]
                         cos_params = [harmonic_d[k] for k in cosparamnames]
 
+                        # harmonic multiplier
+                        mult = ix + 1
+                        sin_params[1] = pm.math.dot(sin_params[1], mult)
+                        cos_params[1] = pm.math.dot(cos_params[1], mult)
+
                         mu_model += sin_model(sin_params, self.x_obs)
                         mu_model += cos_model(cos_params, self.x_obs)
 
@@ -232,11 +281,15 @@ class ModelFitter(ModelParser):
                         sinparamnames = ['A{}{}'.format(k,ix),
                                          'omega{}'.format(k),
                                          'phi{}'.format(k)]
-                        sin_params = [map_estimate[k] for k in sinparamnames]
+                        sin_params = [deepcopy(map_estimate[k]) for k in sinparamnames]
                         cosparamnames = ['B{}{}'.format(k,ix),
                                          'omega{}'.format(k),
                                          'phi{}'.format(k)]
-                        cos_params = [map_estimate[k] for k in cosparamnames]
+                        cos_params = [deepcopy(map_estimate[k]) for k in cosparamnames]
+
+                        mult = ix + 1
+                        sin_params[1] = deepcopy(sin_params[1])*mult
+                        cos_params[1] = deepcopy(cos_params[1])*mult
                         y_MAP += sin_model(sin_params, self.x_obs)
                         y_MAP += cos_model(cos_params, self.x_obs)
 
