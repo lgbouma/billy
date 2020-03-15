@@ -21,10 +21,10 @@ np.random.seed(42)
 modelid = 'transit_sinusoid'
 N_samples = 3000
 N_cores, N_chains = 16, 4
-mstar, rstar = 1, 1
 true_sigma = 1e-4
-t_exp = 30/(60*24)
 
+t_exp = 30/(60*24)
+mstar, rstar = 1, 1
 tra_d = OrderedDict({'period':4.3, 't0':0.2, 'r':0.04, 'b':0.5,
                      'u':[0.3,0.2], 'mean':0})
 sin_d = OrderedDict({'A0': 0.01, 'omega0': 0.3, 'phi0': 0.3141})
@@ -93,25 +93,24 @@ if not os.path.exists(pklpath):
         # Get MAP estimate from model.
         map_estimate = pm.find_MAP(model=model)
 
-    # plot the simulated data and the maximum a posteriori model to make sure that
-    # our initialization looks ok.
-    y_MAP = (
-        sin_model(
-            [map_estimate[k] for k in ['A0','omega0','phi0']], x_obs
+        # plot the simulated data and the maximum a posteriori model to make sure that
+        # our initialization looks ok.
+        y_MAP = (
+            sin_model(
+                [map_estimate[k] for k in ['A0','omega0','phi0']], x_obs
+            )
+            +
+            map_estimate["light_curve"].flatten()
         )
-        +
-        map_estimate["light_curve"].flatten()
-    )
-    plt.plot(x_obs, y_obs, ".k", ms=4, label="data")
-    plt.plot(x_obs, y_MAP, lw=1)
-    plt.ylabel("relative flux")
-    plt.xlabel("time [days]")
-    _ = plt.title("map model")
-    fig = plt.gcf()
-    savefig(fig, '../results/test_results/test_{}_MAP.png'.format(modelid), writepdf=0)
+        plt.plot(x_obs, y_obs, ".k", ms=4, label="data")
+        plt.plot(x_obs, y_MAP, lw=1)
+        plt.ylabel("relative flux")
+        plt.xlabel("time [days]")
+        _ = plt.title("map model")
+        fig = plt.gcf()
+        savefig(fig, '../results/test_results/test_{}_MAP.png'.format(modelid), writepdf=0)
 
-    # sample from the posterior defined by this model.
-    with model:
+        # sample from the posterior defined by this model.
         trace = pm.sample(
             tune=N_samples, draws=N_samples, start=map_estimate, cores=N_cores,
             chains=N_chains, step=xo.get_dense_nuts_step(target_accept=0.9),
