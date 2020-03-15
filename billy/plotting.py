@@ -3,7 +3,7 @@ import numpy as np, matplotlib.pyplot as plt
 from datetime import datetime
 
 def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
-    fig = plt.figure(figsize=(7, 7))
+    fig = plt.figure(figsize=(14, 4))
     ax = fig.add_subplot(111, xlabel='x_obs', ylabel='y_obs',
                          title='Generated data and underlying model')
     ax.plot(x_obs, y_obs, 'x', label='sampled data')

@@ -1,11 +1,19 @@
 import numpy as np
 import exoplanet as xo
 
-def sinusoid_model(params, t):
+def sin_model(params, t):
     A = params[0]
     ω = params[1]
     φ = params[2]
     return A * np.sin(ω*t + φ)
+
+
+def cos_model(params, t):
+    B = params[0]
+    ω = params[1]
+    φ = params[2]
+    return B * np.cos(ω*t + φ)
+
 
 def transit_model(params, t, texp=30/(60*24), mstar=1, rstar=1):
     period = params[0]

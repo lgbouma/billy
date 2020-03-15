@@ -1,6 +1,9 @@
 import numpy as np, pandas as pd
 import collections
 
+class args:
+    pass
+
 def chisq(y_mod, y_obs, y_err):
     return np.sum( (y_mod - y_obs )**2 / y_err**2 )
 
