@@ -10,7 +10,8 @@ from billy.fakedata import FakeDataGenerator
 from billy.modelfitter import ModelFitter
 import billy.plotting as bp
 
-modelid = 'transit_2sincosPorb_1sincosProt'
+modelid = 'transit_1sincosProt'
+#modelid = 'transit_2sincosPorb_1sincosProt'
 traceplot = 0
 cornerplot = 1
 

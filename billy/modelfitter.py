@@ -11,6 +11,8 @@ from billy.plotting import plot_test_data, savefig
 from billy.convenience import flatten as bflatten
 
 RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
+LINEAR_AMPLITUDES = 0
+LOG_AMPLITUDES = 1
 
 class ModelParser:
 
@@ -39,9 +41,6 @@ class ModelParser:
                 )
                 raise ValueError(errmsg)
 
-
-LINEAR_AMPLITUDES = 0
-LOG_AMPLITUDES = 1
 
 class ModelFitter(ModelParser):
     """
@@ -149,7 +148,6 @@ class ModelFitter(ModelParser):
                             orbit=orbit, r=r, t=self.x_obs, texp=self.t_exp
                         )
                     )
-                    pm.Deterministic("light_curve", light_curve)
 
                 if 'sincos' in modelcomponent:
                     if 'Porb' in modelcomponent:
@@ -259,6 +257,9 @@ class ModelFitter(ModelParser):
                         mu_model += sin_model(sin_params, self.x_obs)
                         mu_model += cos_model(cos_params, self.x_obs)
 
+            # track the model to plot it
+            pm.Deterministic("mu_model", mu_model)
+
             likelihood = pm.Normal('obs', mu=mu_model, sigma=sigma,
                                    observed=self.y_obs)
 
@@ -267,33 +268,7 @@ class ModelFitter(ModelParser):
 
             # Plot the simulated data and the maximum a posteriori model to
             # make sure that our initialization looks ok.
-            y_MAP = np.zeros_like(self.x_obs)
-            for modelcomponent in self.modelcomponents:
-                if 'transit' in modelcomponent:
-                    y_MAP += map_estimate["light_curve"].flatten()
-                if 'sincos' in modelcomponent:
-                    if 'Porb' in modelcomponent:
-                        k = 'orb'
-                    elif 'Prot' in modelcomponent:
-                        k = 'rot'
-                    N_harmonics = int(modelcomponent[0])
-                    for ix in range(N_harmonics):
-                        sinparamnames = ['A{}{}'.format(k,ix),
-                                         'omega{}'.format(k),
-                                         'phi{}'.format(k)]
-                        sin_params = [deepcopy(map_estimate[k]) for k in sinparamnames]
-                        cosparamnames = ['B{}{}'.format(k,ix),
-                                         'omega{}'.format(k),
-                                         'phi{}'.format(k)]
-                        cos_params = [deepcopy(map_estimate[k]) for k in cosparamnames]
-
-                        mult = ix + 1
-                        sin_params[1] = deepcopy(sin_params[1])*mult
-                        cos_params[1] = deepcopy(cos_params[1])*mult
-                        y_MAP += sin_model(sin_params, self.x_obs)
-                        y_MAP += cos_model(cos_params, self.x_obs)
-
-            self.y_MAP = y_MAP
+            self.y_MAP = map_estimate['mu_model'].flatten()
 
             plt.figure(figsize=(14, 4))
             plt.plot(self.x_obs, self.y_obs, ".k", ms=4, label="data")
