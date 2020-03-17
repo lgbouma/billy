@@ -95,7 +95,7 @@ class FakeDataGenerator(bm.ModelParser):
 
         np.random.seed(42)
         t_exp = 30/(60*24)
-        y_err = 2e-4
+        y_err = 2e-3
         mstar, rstar = 1, 1
 
         x_obs = np.arange(0, 28, t_exp)

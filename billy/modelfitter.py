@@ -7,7 +7,7 @@ import exoplanet as xo
 
 from billy import __path__
 from billy.models import sin_model, cos_model, transit_model
-from billy.plotting import plot_test_data, savefig
+from billy.plotting import plot_test_data, savefig, plot_MAP_data
 from billy.convenience import flatten as bflatten
 
 RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
@@ -270,16 +270,9 @@ class ModelFitter(ModelParser):
             # make sure that our initialization looks ok.
             self.y_MAP = map_estimate['mu_model'].flatten()
 
-            plt.figure(figsize=(14, 4))
-            plt.plot(self.x_obs, self.y_obs, ".k", ms=4, label="data")
-            plt.plot(self.x_obs, self.y_MAP, lw=1)
-            plt.ylabel("relative flux")
-            plt.xlabel("time [days]")
-            _ = plt.title("map model")
-            fig = plt.gcf()
             outpath = os.path.join(RESULTSDIR, 'driver_results',
                                    'test_{}_MAP.png'.format(self.modelid))
-            savefig(fig, outpath, writepdf=0)
+            plot_MAP_data(self.x_obs, self.y_obs, self.y_MAP, outpath)
 
             # sample from the posterior defined by this model.
             trace = pm.sample(

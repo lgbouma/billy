@@ -17,6 +17,47 @@ def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
     savefig(fig, outpath, writepdf=0)
 
 
+def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
+    plt.figure(figsize=(14, 4))
+    plt.plot(x_obs, y_obs, ".k", ms=4, label="data")
+    plt.plot(x_obs, y_MAP, lw=1)
+    plt.ylabel("relative flux")
+    plt.xlabel("time [days]")
+    _ = plt.title("MAP model")
+    fig = plt.gcf()
+    savefig(fig, outpath, writepdf=0)
+
+
+def plot_sampleplot(m, outpath, N_samples=100):
+    fig, ax = plt.subplots(figsize=(14, 4))
+    ax.plot(m.x_obs, m.y_obs, ".k", ms=4, label="data", zorder=N_samples+1)
+    ax.plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
+            zorder=N_samples+2, color='C1', alpha=1)
+
+    np.random.seed(42)
+    y_mod_samples = (
+        m.trace.mu_model[np.random.choice(m.trace.mu_model.shape[0], N_samples,
+                                          replace=False), :]
+    )
+    # np.random.choice(
+    #     m.trace.mu_model, size=(N_samples, len(m.x_obs)), replace=True
+    # )
+
+    for i in range(N_samples):
+        if i % 10 == 0:
+            print(i)
+        ax.plot(m.x_obs, y_mod_samples[i,:], color='C0', alpha=0.3,
+                rasterized=True, lw=0.5)
+
+    ax.set_ylabel("relative flux")
+    ax.set_xlabel("time [days]")
+    ax.legend(loc='best')
+    savefig(fig, outpath, writepdf=0)
+
+
+
+
+
 def plot_traceplot(m):
     # trace plot from PyMC3
     outpath = '../results/driver_results/test_{}_traceplot.png'.format(m.modelid)
@@ -29,14 +70,14 @@ def plot_traceplot(m):
 
 
 def plot_cornerplot(f,m):
-
+    # corner plot of posterior samples
     trace_df = trace_to_dataframe(m.trace, varnames=list(f.true_d.keys()))
     truths = [f.true_d[k] for k in f.true_d.keys()]
     truths = list(bflatten(truths))
     fig = corner.corner(trace_df, quantiles=[0.16, 0.5, 0.84],
                         show_titles=True, title_kwargs={"fontsize": 12},
-                        truths=truths)
-    fig.savefig('../results/driver_results/test_{}_corner.png'.format(modelid))
+                        truths=truths, title_fmt='.2g')
+    fig.savefig('../results/driver_results/test_{}_corner.png'.format(m.modelid))
 
 
 def savefig(fig, figpath, writepdf=True):
