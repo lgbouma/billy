@@ -55,9 +55,6 @@ def plot_sampleplot(m, outpath, N_samples=100):
     savefig(fig, outpath, writepdf=0)
 
 
-
-
-
 def plot_traceplot(m):
     # trace plot from PyMC3
     outpath = '../results/driver_results/test_{}_traceplot.png'.format(m.modelid)
@@ -77,7 +74,8 @@ def plot_cornerplot(f,m):
     fig = corner.corner(trace_df, quantiles=[0.16, 0.5, 0.84],
                         show_titles=True, title_kwargs={"fontsize": 12},
                         truths=truths, title_fmt='.2g')
-    fig.savefig('../results/driver_results/test_{}_corner.png'.format(m.modelid))
+    outpath = '../results/driver_results/test_{}_corner.png'.format(m.modelid)
+    savefig(fig, outpath, writepdf=0)
 
 
 def savefig(fig, figpath, writepdf=True):

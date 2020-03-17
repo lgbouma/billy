@@ -30,4 +30,5 @@ if sampleplot:
     outpath = '../results/driver_results/test_{}_sampleplot.png'.format(modelid)
     bp.plot_sampleplot(m, outpath)
 if cornerplot:
+    f.true_d.pop('omegaorb', None) # not sampled; only used in data generation
     bp.plot_cornerplot(f, m)

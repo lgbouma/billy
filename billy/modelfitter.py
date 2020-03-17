@@ -159,10 +159,17 @@ class ModelFitter(ModelParser):
                         raise NotImplementedError(msg)
 
                     omegakey = 'omega{}'.format(k)
-                    omega_d[omegakey] = pm.Uniform(omegakey,
-                                                   lower=prior_d[omegakey]-1e-2,
-                                                   upper=prior_d[omegakey]+1e-2,
-                                                   testval=prior_d[omegakey])
+                    if k == 'rot':
+                        omega_d[omegakey] = pm.Uniform(omegakey,
+                                                       lower=prior_d[omegakey]-1e-2,
+                                                       upper=prior_d[omegakey]+1e-2,
+                                                       testval=prior_d[omegakey])
+                    elif k == 'orb':
+                        # For the orbital frequency, you do not need to declare
+                        # a new variable!
+                        omega_d[omegakey] = pm.Deterministic(
+                            omegakey, pm.math.dot(1/period, 2*np.pi)
+                        )
 
                     # NOTE: sampling over phi, rather than fixing it, is a bit
                     # silly. regardless; you can't sample over much of the
