@@ -10,8 +10,7 @@ from billy.fakedata import FakeDataGenerator
 from billy.modelfitter import ModelFitter
 import billy.plotting as bp
 
-modelid = 'transit_1sincosPorb'
-#modelid = 'transit_2sincosPorb_1sincosProt'
+modelid = 'transit_1sincosPorb_1sincosProt'
 
 traceplot = 0
 sampleplot = 1
@@ -31,4 +30,5 @@ if sampleplot:
     bp.plot_sampleplot(m, outpath)
 if cornerplot:
     f.true_d.pop('omegaorb', None) # not sampled; only used in data generation
+    f.true_d.pop('phiorb', None) # not sampled; only used in data generation
     bp.plot_cornerplot(f, m)

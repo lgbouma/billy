@@ -165,21 +165,25 @@ class ModelFitter(ModelParser):
                                                        upper=prior_d[omegakey]+1e-2,
                                                        testval=prior_d[omegakey])
                     elif k == 'orb':
-                        # For the orbital frequency, you do not need to declare
-                        # a new variable!
+                        # For orbital frequency, no need to declare new
+                        # random variable!
                         omega_d[omegakey] = pm.Deterministic(
                             omegakey, pm.math.dot(1/period, 2*np.pi)
                         )
 
-                    # NOTE: sampling over phi, rather than fixing it, is a bit
-                    # silly. regardless; you can't sample over much of the
-                    # space, because sin and cosine terms are obviously highly
-                    # degenerate
+                    # sin and cosine terms are highly degenerate...
                     phikey = 'phi{}'.format(k)
-                    phi_d[phikey] = pm.Uniform(phikey,
-                                               lower=prior_d[phikey]-1e-2,
-                                               upper=prior_d[phikey]+1e-2,
-                                               testval=prior_d[phikey])
+                    if k == 'rot':
+                        phi_d[phikey] = pm.Uniform(phikey,
+                                                   lower=0,
+                                                   upper=np.pi,
+                                                   testval=prior_d[phikey])
+                    elif k == 'orb':
+                        # For orbital phase, no need to declare new
+                        # random variable!
+                        phi_d[phikey] = pm.Deterministic(
+                            phikey, pm.math.dot(t0/period, 2*np.pi)
+                        )
 
                     N_harmonics = int(modelcomponent[0])
                     for ix in range(N_harmonics):
