@@ -68,6 +68,7 @@ def plot_splitsignal(m, outpath):
     axs[0].plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
                 color='C0', alpha=1, zorder=5)
 
+    y_tra = m.map_estimate['mu_transit']
     for ix, f in enumerate(['rot', 'orb']):
         N_harmonics = int([c for c in m.modelcomponents if f in c][0][0])
         yval = np.zeros_like(m.x_obs)
@@ -76,17 +77,18 @@ def plot_splitsignal(m, outpath):
             k1 = "mu_{}cos{}".format(f,n)
             yval += m.map_estimate[k0]
             yval += m.map_estimate[k1]
-        axs[0].plot(m.x_obs, yval, lw=0.5, label='model '+f, color='C{}'.format(ix+1),
-                    alpha=1, zorder=ix+3)
         if f == 'rot':
             y_rot = yval
+            axs[0].plot(m.x_obs, y_rot, lw=0.5, label='model '+f,
+                        color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
         if f == 'orb':
-            y_orb = yval
-    y_tra = m.map_estimate['mu_transit']
+            y_orb = yval + y_tra
+            axs[0].plot(m.x_obs, y_orb, lw=0.5, label='model '+f,
+                        color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
 
     axs[1].set_ylabel('flux-orb (rot)')
-    axs[1].plot(m.x_obs, m.y_obs-y_orb-y_tra, ".k", ms=4, label="data-orb")
-    axs[1].plot(m.x_obs, m.map_estimate['mu_model']-y_orb-y_tra, lw=0.5,
+    axs[1].plot(m.x_obs, m.y_obs-y_orb, ".k", ms=4, label="data-orb")
+    axs[1].plot(m.x_obs, m.map_estimate['mu_model']-y_orb, lw=0.5,
                 label='model-orb', color='C0', alpha=1, zorder=5)
 
     axs[2].set_ylabel('flux-rot (orb)')

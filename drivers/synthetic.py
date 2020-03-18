@@ -18,13 +18,13 @@ PLOTDIR = os.path.join(RESULTSDIR, 'synthetic_results')
 if not os.path.exists(PLOTDIR):
     os.mkdir(PLOTDIR)
 
-modelid = 'transit_1sincosPorb_1sincosProt'
+modelid = 'transit_2sincosPorb_1sincosProt'
 traceplot = 0
 sampleplot = 1
 cornerplot = 1
-splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
 np.random.seed(42)
+splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
 f = FakeDataGenerator(modelid, PLOTDIR)
 m = ModelFitter(modelid, f.x_obs, f.y_obs, f.y_err, f.true_d, plotdir=PLOTDIR)

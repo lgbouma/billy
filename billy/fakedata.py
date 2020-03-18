@@ -63,17 +63,22 @@ class FakeDataGenerator(bm.ModelParser):
 
                     if k == 'orb':
                         true_d['A{}{}'.format(k,ix)] = (
-                            np.random.uniform(low=0.005, high=0.009)
+                            np.random.uniform(low=1e-5, high=2e-5)
                         )
-                        true_d['B{}{}'.format(k,ix)] = (
-                            np.random.uniform(low=0.005, high=0.009)
-                        )
+                        if ix == 1:
+                            true_d['B{}{}'.format(k,ix)] = (
+                                np.random.uniform(low=0.005, high=0.009)
+                            )
+                        else:
+                            true_d['B{}{}'.format(k,ix)] = (
+                                np.random.uniform(low=1e-5, high=2e-5)
+                            )
                     elif k == 'rot':
                         true_d['A{}{}'.format(k,ix)] = (
                             np.random.uniform(low=0.05, high=0.06)
                         )
                         true_d['B{}{}'.format(k,ix)] = (
-                            np.random.uniform(low=0.0001, high=0.0003)
+                            np.random.uniform(low=1e-5, high=2e-5)
                         )
 
                     if 'Porb' in modelcomponent:
@@ -127,15 +132,13 @@ class FakeDataGenerator(bm.ModelParser):
                         msg = 'expected Porb or Prot for freq specification'
                         raise NotImplementedError(msg)
 
-                    sinparamnames = ['A{}{}'.format(k,ix),
-                                     'omega{}'.format(k),
-                                     'phi{}'.format(k)]
-                    sin_params = [self.true_d[k] for k in sinparamnames]
+                    spnames = ['A{}{}'.format(k,ix), 'omega{}'.format(k),
+                               'phi{}'.format(k)]
+                    sin_params = [self.true_d[k] for k in spnames]
 
-                    cosparamnames = ['B{}{}'.format(k,ix),
-                                     'omega{}'.format(k),
-                                     'phi{}'.format(k)]
-                    cos_params = [self.true_d[k] for k in cosparamnames]
+                    cpnames = ['B{}{}'.format(k,ix), 'omega{}'.format(k),
+                               'phi{}'.format(k)]
+                    cos_params = [self.true_d[k] for k in cpnames]
 
                     mult = ix + 1
                     sin_params[1] *= mult
