@@ -11,14 +11,14 @@ RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
 
 class FakeDataGenerator(bm.ModelParser):
 
-    def __init__(self, modelid):
+    def __init__(self, modelid, plotdir):
 
         self.initialize_model(modelid)
         self.make_true_params()
         self.make_fake_data()
 
         plot_test_data(self.x_obs, self.y_obs, self.y_mod, self.modelid,
-                       outdir=os.path.join(RESULTSDIR, 'driver_results'))
+                       outdir=plotdir)
 
 
     def make_true_params(self):
@@ -30,10 +30,10 @@ class FakeDataGenerator(bm.ModelParser):
             'r':0.04, 'b':0.5, 'u':[0.3,0.2], 'mean':0})
         """
 
-        P_orb = 4*0.45
-        t0_orb = 0.2
+        P_orb = 3*0.45
+        t0_orb = 0.  # non-zero means phase offset.
 
-        P_rot = 4*0.496
+        P_rot = 3*0.496
         t0_rot = 0.42
 
         true_d = OrderedDict()
@@ -70,7 +70,7 @@ class FakeDataGenerator(bm.ModelParser):
                         )
                     elif k == 'rot':
                         true_d['A{}{}'.format(k,ix)] = (
-                            np.random.uniform(low=0.01, high=0.02)
+                            np.random.uniform(low=0.05, high=0.06)
                         )
                         true_d['B{}{}'.format(k,ix)] = (
                             np.random.uniform(low=0.0001, high=0.0003)

@@ -36,12 +36,12 @@ def plot_sampleplot(m, outpath, N_samples=100):
 
     np.random.seed(42)
     y_mod_samples = (
-        m.trace.mu_model[np.random.choice(m.trace.mu_model.shape[0], N_samples,
-                                          replace=False), :]
+        m.trace.mu_model[
+            np.random.choice(
+                m.trace.mu_model.shape[0], N_samples, replace=False
+            ), :
+        ]
     )
-    # np.random.choice(
-    #     m.trace.mu_model, size=(N_samples, len(m.x_obs)), replace=True
-    # )
 
     for i in range(N_samples):
         if i % 10 == 0:
@@ -55,9 +55,55 @@ def plot_sampleplot(m, outpath, N_samples=100):
     savefig(fig, outpath, writepdf=0)
 
 
-def plot_traceplot(m):
+def plot_splitsignal(m, outpath):
+    """
+    y_obs + y_MAP + y_rot + y_orb
+    things at rotation frequency
+    things at orbital frequency
+    """
+    fig, axs = plt.subplots(nrows=3, figsize=(14, 12), sharex=True)
+
+    axs[0].set_ylabel('flux')
+    axs[0].plot(m.x_obs, m.y_obs, ".k", ms=4, label="data")
+    axs[0].plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
+                color='C0', alpha=1, zorder=5)
+
+    for ix, f in enumerate(['rot', 'orb']):
+        N_harmonics = int([c for c in m.modelcomponents if f in c][0][0])
+        yval = np.zeros_like(m.x_obs)
+        for n in range(N_harmonics):
+            k0 = "mu_{}sin{}".format(f,n)
+            k1 = "mu_{}cos{}".format(f,n)
+            yval += m.map_estimate[k0]
+            yval += m.map_estimate[k1]
+        axs[0].plot(m.x_obs, yval, lw=0.5, label='model '+f, color='C{}'.format(ix+1),
+                    alpha=1, zorder=ix+3)
+        if f == 'rot':
+            y_rot = yval
+        if f == 'orb':
+            y_orb = yval
+    y_tra = m.map_estimate['mu_transit']
+
+    axs[1].set_ylabel('flux-orb (rot)')
+    axs[1].plot(m.x_obs, m.y_obs-y_orb-y_tra, ".k", ms=4, label="data-orb")
+    axs[1].plot(m.x_obs, m.map_estimate['mu_model']-y_orb-y_tra, lw=0.5,
+                label='model-orb', color='C0', alpha=1, zorder=5)
+
+    axs[2].set_ylabel('flux-rot (orb)')
+    axs[2].plot(m.x_obs, m.y_obs-y_rot, ".k", ms=4, label="data-rot")
+    axs[2].plot(m.x_obs, m.map_estimate['mu_model']-y_rot, lw=0.5,
+                label='model-rot', color='C0', alpha=1, zorder=5)
+
+    axs[-1].set_xlabel("time [days]")
+    for a in axs:
+        a.legend()
+        format_ax(a)
+    fig.tight_layout()
+    savefig(fig, outpath, writepdf=0)
+
+
+def plot_traceplot(m, outpath):
     # trace plot from PyMC3
-    outpath = '../results/driver_results/test_{}_traceplot.png'.format(m.modelid)
     if not os.path.exists(outpath):
         plt.figure(figsize=(7, 7))
         pm.traceplot(m.trace[100:])
@@ -66,7 +112,7 @@ def plot_traceplot(m):
         plt.close('all')
 
 
-def plot_cornerplot(f,m):
+def plot_cornerplot(f, m, outpath):
     # corner plot of posterior samples
     trace_df = trace_to_dataframe(m.trace, varnames=list(f.true_d.keys()))
     truths = [f.true_d[k] for k in f.true_d.keys()]
@@ -74,7 +120,6 @@ def plot_cornerplot(f,m):
     fig = corner.corner(trace_df, quantiles=[0.16, 0.5, 0.84],
                         show_titles=True, title_kwargs={"fontsize": 12},
                         truths=truths, title_fmt='.2g')
-    outpath = '../results/driver_results/test_{}_corner.png'.format(m.modelid)
     savefig(fig, outpath, writepdf=0)
 
 

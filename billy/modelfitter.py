@@ -58,12 +58,13 @@ class ModelFitter(ModelParser):
     """
 
     def __init__(self, modelid, x_obs, y_obs, y_err, prior_d,
-                 mstar=1, rstar=1, N_samples=1000, N_cores=16, N_chains=4):
+                 mstar=1, rstar=1, N_samples=1000, N_cores=16, N_chains=4,
+                 plotdir=None):
 
         self.N_samples = N_samples
         self.N_cores = N_cores
         self.N_chains = N_chains
-
+        self.PLOTDIR = plotdir
         self.x_obs = x_obs
         self.y_obs = y_obs
         self.y_err = y_err
@@ -241,6 +242,7 @@ class ModelFitter(ModelParser):
 
                 if 'transit' in modelcomponent:
                     mu_model = light_curve.flatten()
+                    pm.Deterministic("mu_transit", light_curve.flatten())
 
                 if 'sincos' in modelcomponent:
                     if 'Porb' in modelcomponent:
@@ -251,24 +253,33 @@ class ModelFitter(ModelParser):
                     N_harmonics = int(modelcomponent[0])
                     for ix in range(N_harmonics):
 
-                        sinparamnames = ['A{}{}'.format(k,ix),
-                                         'omega{}'.format(k),
-                                         'phi{}'.format(k)]
-                        sin_params = [harmonic_d[k] for k in sinparamnames]
-                        cosparamnames = ['B{}{}'.format(k,ix),
-                                         'omega{}'.format(k),
-                                         'phi{}'.format(k)]
-                        cos_params = [harmonic_d[k] for k in cosparamnames]
+                        spnames = ['A{}{}'.format(k,ix), 'omega{}'.format(k),
+                                   'phi{}'.format(k)]
+                        cpnames = ['B{}{}'.format(k,ix), 'omega{}'.format(k),
+                                   'phi{}'.format(k)]
+                        sin_params = [harmonic_d[k] for k in spnames]
+                        cos_params = [harmonic_d[k] for k in cpnames]
 
                         # harmonic multiplier
                         mult = ix + 1
                         sin_params[1] = pm.math.dot(sin_params[1], mult)
                         cos_params[1] = pm.math.dot(cos_params[1], mult)
 
-                        mu_model += sin_model(sin_params, self.x_obs)
-                        mu_model += cos_model(cos_params, self.x_obs)
+                        s_mod = sin_model(sin_params, self.x_obs)
+                        c_mod = cos_model(cos_params, self.x_obs)
 
-            # track the model to plot it
+                        mu_model += s_mod
+                        mu_model += c_mod
+
+                        # save model components (rot and orb) for plotting
+                        pm.Deterministic(
+                            "mu_{}sin{}".format(k,ix), s_mod
+                        )
+                        pm.Deterministic(
+                            "mu_{}cos{}".format(k,ix), c_mod
+                        )
+
+            # track the total model to plot it
             pm.Deterministic("mu_model", mu_model)
 
             likelihood = pm.Normal('obs', mu=mu_model, sigma=sigma,
@@ -281,7 +292,9 @@ class ModelFitter(ModelParser):
             # make sure that our initialization looks ok.
             self.y_MAP = map_estimate['mu_model'].flatten()
 
-            outpath = os.path.join(RESULTSDIR, 'driver_results',
+            if self.PLOTDIR is None:
+                raise NotImplementedError
+            outpath = os.path.join(self.PLOTDIR,
                                    'test_{}_MAP.png'.format(self.modelid))
             plot_MAP_data(self.x_obs, self.y_obs, self.y_MAP, outpath)
 
