@@ -5,6 +5,8 @@ from pymc3.backends.tracetab import trace_to_dataframe
 
 from billy.convenience import flatten as bflatten
 
+from astrobase.lcmath import phase_magseries, phase_bin_magseries
+
 def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
     fig = plt.figure(figsize=(14, 4))
     ax = fig.add_subplot(111, xlabel='x_obs', ylabel='y_obs',
@@ -99,6 +101,81 @@ def plot_splitsignal(m, outpath):
     axs[-1].set_xlabel("time [days]")
     for a in axs:
         a.legend()
+        format_ax(a)
+    fig.tight_layout()
+    savefig(fig, outpath, writepdf=0)
+
+    ydict = {
+        'x_obs': m.x_obs,
+        'y_obs': m.y_obs,
+        'y_orb': m.y_obs-y_rot,
+        'y_rot': m.y_obs-y_orb,
+        'y_mod_tra': y_tra,
+        'y_mod_rot': y_orb,
+        'y_mod_orb': y_rot
+    }
+    return ydict
+
+
+def plot_phasefold(m, d, outpath):
+
+    # recover periods and epochs.
+    P_rot = 2*np.pi/float(m.map_estimate['omegarot'])
+    t0_rot = float(m.map_estimate['phirot']) * P_rot / (2*np.pi)
+    P_orb = float(m.map_estimate['period'])
+    t0_orb = float(m.map_estimate['t0'])
+
+    # phase and bin them.
+    orb_d = phase_magseries(
+        d['x_obs'], d['y_orb'], P_orb, t0_orb, wrap=True, sort=True
+    )
+    orb_bd = phase_bin_magseries(
+        orb_d['phase'], orb_d['mags'], binsize=0.01
+    )
+    rot_d = phase_magseries(
+        d['x_obs'], d['y_rot'], P_rot, t0_rot, wrap=True, sort=True
+    )
+    rot_bd = phase_bin_magseries(
+        rot_d['phase'], rot_d['mags'], binsize=0.01
+    )
+
+    # make tha plot
+    plt.close('all')
+    fig, axs = plt.subplots(nrows=2, figsize=(6, 8), sharex=True)
+
+    axs[0].scatter(rot_d['phase'], rot_d['mags'], color='gray', s=2, alpha=0.8,
+                   zorder=4, linewidths=0)
+    axs[0].scatter(rot_bd['binnedphases'], rot_bd['binnedmags'], color='black',
+                   s=8, alpha=1, zorder=5, linewidths=0)
+    txt0 = 'Prot {:.5}d'.format(P_rot)
+    axs[0].text(0.98, 0.98, txt0, ha='right', va='top',
+                transform=axs[0].transAxes)
+    axs[0].set_ylabel('flux-orb (rot)')
+
+    axs[1].scatter(orb_d['phase'], orb_d['mags'], color='gray', s=2, alpha=0.8,
+                   zorder=4, linewidths=0)
+    axs[1].scatter(orb_bd['binnedphases'], orb_bd['binnedmags'], color='black',
+                   s=8, alpha=1, zorder=5, linewidths=0)
+    txt1 = 'Porb {:.5}d'.format(P_orb)
+    axs[1].text(0.98, 0.98, txt1, ha='right', va='top',
+                transform=axs[1].transAxes)
+    axs[1].set_ylabel('flux-rot (orb)')
+    axs[1].set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
+
+    axs[-1].set_xlabel('phase')
+
+    for a in axs:
+        a.grid(which='major', axis='both', linestyle='--', zorder=-3,
+                 alpha=0.5, color='gray')
+
+    # pct_80 = np.percentile(results.model_folded_model, 80)
+    # pct_20 = np.percentile(results.model_folded_model, 20)
+    # center = np.nanmedian(results.model_folded_model)
+    # delta_y = (10/6)*np.abs(pct_80 - pct_20)
+    # plt.ylim(( center-0.7*delta_y, center+0.7*delta_y ))
+
+    for a in axs:
+        a.set_xlim((-0.1-0.5, 1.1-0.5))
         format_ax(a)
     fig.tight_layout()
     savefig(fig, outpath, writepdf=0)

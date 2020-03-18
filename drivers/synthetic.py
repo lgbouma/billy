@@ -36,7 +36,9 @@ if traceplot:
     bp.plot_traceplot(m, outpath)
 if splitsignalplot:
     outpath = join(PLOTDIR, 'synthetic_{}_splitsignal.png'.format(modelid))
-    bp.plot_splitsignal(m, outpath)
+    ydict = bp.plot_splitsignal(m, outpath)
+    outpath = join(PLOTDIR, 'synthetic_{}_phasefold.png'.format(modelid))
+    bp.plot_phasefold(m, ydict, outpath)
 if sampleplot:
     outpath = join(PLOTDIR, 'synthetic_{}_sampleplot.png'.format(modelid))
     bp.plot_sampleplot(m, outpath, N_samples=100)
