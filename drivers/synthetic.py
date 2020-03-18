@@ -22,12 +22,17 @@ modelid = 'transit_2sincosPorb_1sincosProt'
 traceplot = 0
 sampleplot = 1
 cornerplot = 1
+pklpath = os.path.join(
+    os.path.expanduser('~'), 'local', 'billy',
+    'synthetic_model_{}.pkl'.format(modelid)
+)
 
 np.random.seed(42)
 splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
 f = FakeDataGenerator(modelid, PLOTDIR)
-m = ModelFitter(modelid, f.x_obs, f.y_obs, f.y_err, f.true_d, plotdir=PLOTDIR)
+m = ModelFitter(modelid, f.x_obs, f.y_obs, f.y_err, f.true_d, plotdir=PLOTDIR,
+                pklpath=pklpath)
 
 print(pm.summary(m.trace, varnames=list(f.true_d.keys())))
 
@@ -36,9 +41,9 @@ if traceplot:
     bp.plot_traceplot(m, outpath)
 if splitsignalplot:
     outpath = join(PLOTDIR, 'synthetic_{}_splitsignal.png'.format(modelid))
-    ydict = bp.plot_splitsignal(m, outpath)
+    ydict = bp.plot_splitsignal_map(m, outpath)
     outpath = join(PLOTDIR, 'synthetic_{}_phasefold.png'.format(modelid))
-    bp.plot_phasefold(m, ydict, outpath)
+    bp.plot_phasefold_map(m, ydict, outpath)
 if sampleplot:
     outpath = join(PLOTDIR, 'synthetic_{}_sampleplot.png'.format(modelid))
     bp.plot_sampleplot(m, outpath, N_samples=100)
@@ -46,4 +51,4 @@ if cornerplot:
     f.true_d.pop('omegaorb', None) # not sampled; only used in data generation
     f.true_d.pop('phiorb', None) # not sampled; only used in data generation
     outpath = join(PLOTDIR, 'synthetic_{}_cornerplot.png'.format(modelid))
-    bp.plot_cornerplot(f, m, outpath)
+    bp.plot_cornerplot(f.true_d, m, outpath)

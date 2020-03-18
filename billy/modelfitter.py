@@ -17,7 +17,7 @@ LOG_AMPLITUDES = 1
 class ModelParser:
 
     def __init__(self, modelid):
-        self.initialize_model(self.modelid)
+        self.initialize_model(modelid)
 
     def initialize_model(self, modelid):
         self.modelid = modelid
@@ -59,7 +59,7 @@ class ModelFitter(ModelParser):
 
     def __init__(self, modelid, x_obs, y_obs, y_err, prior_d,
                  mstar=1, rstar=1, N_samples=1000, N_cores=16, N_chains=4,
-                 plotdir=None):
+                 plotdir=None, pklpath=None):
 
         self.N_samples = N_samples
         self.N_cores = N_cores
@@ -74,7 +74,7 @@ class ModelFitter(ModelParser):
 
         self.initialize_model(modelid)
         self.verify_inputdata()
-        self.run_inference(prior_d)
+        self.run_inference(prior_d, pklpath)
 
 
     def verify_inputdata(self):
@@ -83,12 +83,7 @@ class ModelFitter(ModelParser):
         assert isinstance(self.y_obs, np.ndarray)
 
 
-    def run_inference(self, prior_d):
-
-        pklpath = os.path.join(
-            os.path.expanduser('~'), 'local', 'billy',
-            'model_{}.pkl'.format(self.modelid)
-        )
+    def run_inference(self, prior_d, pklpath):
 
         # if the model has already been run, pull the result from the
         # pickle. otherwise, run it.
@@ -111,16 +106,21 @@ class ModelFitter(ModelParser):
 
                 if 'transit' in modelcomponent:
 
-                    mean = pm.Normal(
-                        "mean", mu=0.0, sd=1.0, testval=prior_d['mean']
+                    # mean = pm.Normal(
+                    #     "mean", mu=prior_d['mean'], sd=0.02, testval=prior_d['mean']
+                    # )
+                    mean = pm.Uniform(
+                        "mean", lower=prior_d['mean']-1e-2,
+                        upper=prior_d['mean']+1e-2, testval=prior_d['mean']
                     )
 
                     t0 = pm.Normal(
-                        "t0", mu=0.0, sd=0.01, testval=prior_d['t0']
+                        "t0", mu=prior_d['t0'], sd=0.002, testval=prior_d['t0']
                     )
 
                     logP = pm.Normal(
-                        "logP", mu=np.log(prior_d['period']), sd=0.1,
+                        "logP", mu=np.log(prior_d['period']),
+                        sd=0.01*np.abs(np.log(prior_d['period'])),
                         testval=np.log(prior_d['period'])
                     )
                     period = pm.Deterministic("period", pm.math.exp(logP))
@@ -129,11 +129,14 @@ class ModelFitter(ModelParser):
                         "u", testval=prior_d['u']
                     )
 
-                    r = pm.Uniform(
-                        "r", lower=prior_d['r']-1e-2, upper=prior_d['r']+1e-2,
+                    r = pm.Normal(
+                        "r", mu=prior_d['r'], sd=0.03*prior_d['r'],
                         testval=prior_d['r']
-
                     )
+                    # r = pm.Uniform(
+                    #     "r", lower=prior_d['r']-1e-2,
+                    #     upper=prior_d['r']+1e-2, testval=prior_d['r']
+                    # )
 
                     b = xo.distributions.ImpactParameter(
                         "b", ror=r, testval=prior_d['b']
@@ -161,10 +164,18 @@ class ModelFitter(ModelParser):
 
                     omegakey = 'omega{}'.format(k)
                     if k == 'rot':
-                        omega_d[omegakey] = pm.Uniform(omegakey,
-                                                       lower=prior_d[omegakey]-1e-2,
-                                                       upper=prior_d[omegakey]+1e-2,
-                                                       testval=prior_d[omegakey])
+                        omega_d[omegakey] = pm.Normal(omegakey,
+                                                      mu=prior_d[omegakey],
+                                                      sd=0.01*prior_d[omegakey],
+                                                      testval=prior_d[omegakey])
+                        P_rot = pm.Deterministic(
+                            'P_rot', pm.math.dot(1/omega_d[omegakey], 2*np.pi)
+                        )
+
+                        #omega_d[omegakey] = pm.Uniform(omegakey,
+                        #                               lower=prior_d[omegakey]-1e-2,
+                        #                               upper=prior_d[omegakey]+1e-2,
+                        #                               testval=prior_d[omegakey])
                     elif k == 'orb':
                         # For orbital frequency, no need to declare new
                         # random variable!
@@ -206,10 +217,11 @@ class ModelFitter(ModelParser):
                             logAkey = 'logA{}{}'.format(k,ix)
                             logBkey = 'logB{}{}'.format(k,ix)
 
+                            mfact = 5
                             _A_d[logAkey] = pm.Uniform(
                                 logAkey,
-                                lower=np.log(0.1*prior_d[Akey]),
-                                upper=np.log(10*prior_d[Akey]),
+                                lower=np.log(prior_d[Akey]/mfact),
+                                upper=np.log(mfact*prior_d[Akey]),
                                 testval=np.log(prior_d[Akey])
                             )
                             A_d[Akey] = pm.Deterministic(
@@ -218,8 +230,8 @@ class ModelFitter(ModelParser):
 
                             _B_d[logBkey] = pm.Uniform(
                                 logBkey,
-                                lower=np.log(0.1*prior_d[Bkey]),
-                                upper=np.log(10*prior_d[Bkey]),
+                                lower=np.log(prior_d[Bkey]/mfact),
+                                upper=np.log(mfact*prior_d[Bkey]),
                                 testval=np.log(prior_d[Bkey])
                             )
                             B_d[Bkey] = pm.Deterministic(

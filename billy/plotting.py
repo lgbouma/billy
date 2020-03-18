@@ -57,7 +57,7 @@ def plot_sampleplot(m, outpath, N_samples=100):
     savefig(fig, outpath, writepdf=0)
 
 
-def plot_splitsignal(m, outpath):
+def plot_splitsignal_map(m, outpath):
     """
     y_obs + y_MAP + y_rot + y_orb
     things at rotation frequency
@@ -117,7 +117,7 @@ def plot_splitsignal(m, outpath):
     return ydict
 
 
-def plot_phasefold(m, d, outpath):
+def plot_phasefold_map(m, d, outpath):
 
     # recover periods and epochs.
     P_rot = 2*np.pi/float(m.map_estimate['omegarot'])
@@ -191,10 +191,10 @@ def plot_traceplot(m, outpath):
         plt.close('all')
 
 
-def plot_cornerplot(f, m, outpath):
+def plot_cornerplot(true_d, m, outpath):
     # corner plot of posterior samples
-    trace_df = trace_to_dataframe(m.trace, varnames=list(f.true_d.keys()))
-    truths = [f.true_d[k] for k in f.true_d.keys()]
+    trace_df = trace_to_dataframe(m.trace, varnames=list(true_d.keys()))
+    truths = [true_d[k] for k in true_d.keys()]
     truths = list(bflatten(truths))
     fig = corner.corner(trace_df, quantiles=[0.16, 0.5, 0.84],
                         show_titles=True, title_kwargs={"fontsize": 12},
