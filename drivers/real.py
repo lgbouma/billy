@@ -7,7 +7,9 @@ from os.path import join
 
 from billy.modelfitter import ModelFitter, ModelParser
 import billy.plotting as bp
-from billy.convenience import get_ptfo_data, initialize_ptfo_prior_d
+from billy.convenience import (
+    get_ptfo_data, initialize_ptfo_prior_d, get_bic
+)
 from billy import __path__
 
 from astrobase.lcmath import time_bin_magseries_with_errs
@@ -76,11 +78,14 @@ def main(modelid):
             ydict = bp.plot_splitsignal_map(m, outpath)
             outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
             bp.plot_phasefold_map(m, ydict, outpath)
+            get_bic(m, ydict)
+
     if cornerplot:
         prior_d.pop('omegaorb', None) # not sampled; only used in data generation
         prior_d.pop('phiorb', None) # not sampled; only used in data generation
         outpath = join(PLOTDIR, '{}_{}_cornerplot.png'.format(REALID, modelid))
         bp.plot_cornerplot(prior_d, m, outpath)
+
 
 if __name__ == "__main__":
     main('transit_2sincosPorb_1sincosProt')

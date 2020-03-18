@@ -13,6 +13,37 @@ def bic(chisq, k, n):
     """
     return chisq + k*np.log(n)
 
+def get_bic(m, ydict):
+
+    y_obs = ydict['y_obs']
+    y_err = m.y_err
+    y_mod = ydict['y_mod_tra'] + ydict['y_mod_orb'] + ydict['y_mod_rot']
+
+    χ2 = chisq(y_mod, y_obs, y_err)
+
+    if m.modelid == 'transit_2sincosPorb_1sincosProt':
+        k = 15
+    elif m.modelid == 'transit_2sincosPorb_2sincosProt':
+        k = 17
+    else:
+        raise NotImplementedError
+
+    n = len(y_obs)
+    BIC = bic( χ2, k, n )
+
+    dof = n-k
+
+    msg = (
+        '{}: χ2 = {:.1f}, redχ2 = {:.2f}, BIC = {:.1f}'.
+        format(m.modelid, χ2, χ2/dof, BIC)
+    )
+    print(42*'=')
+    print(msg)
+    print(42*'=')
+
+
+
+
 def flatten(l):
     for el in l:
         if (
