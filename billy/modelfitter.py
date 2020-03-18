@@ -187,9 +187,13 @@ class ModelFitter(ModelParser):
                     phikey = 'phi{}'.format(k)
                     if k == 'rot':
                         phi_d[phikey] = pm.Uniform(phikey,
-                                                   lower=0,
-                                                   upper=np.pi,
+                                                   lower=prior_d[phikey]-np.pi/8,
+                                                   upper=prior_d[phikey]+np.pi/8,
                                                    testval=prior_d[phikey])
+                        #phi_d[phikey] = pm.Uniform(phikey,
+                        #                           lower=0,
+                        #                           upper=np.pi,
+                        #                           testval=prior_d[phikey])
                     elif k == 'orb':
                         # For orbital phase, no need to declare new
                         # random variable!
@@ -217,7 +221,10 @@ class ModelFitter(ModelParser):
                             logAkey = 'logA{}{}'.format(k,ix)
                             logBkey = 'logB{}{}'.format(k,ix)
 
-                            mfact = 5
+                            if k == 'rot':
+                                mfact = 3
+                            elif k == 'orb':
+                                mfact = 10
                             _A_d[logAkey] = pm.Uniform(
                                 logAkey,
                                 lower=np.log(prior_d[Akey]/mfact),
