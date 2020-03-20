@@ -6,12 +6,14 @@ from astropy.io import fits
 def chisq(y_mod, y_obs, y_err):
     return np.sum( (y_mod - y_obs )**2 / y_err**2 )
 
+
 def bic(chisq, k, n):
     """
     BIC = χ^2 + k log n, for k the number of free parameters, and n the
     number of data points.
     """
     return chisq + k*np.log(n)
+
 
 def get_bic(m, ydict):
 
@@ -21,11 +23,16 @@ def get_bic(m, ydict):
 
     χ2 = chisq(y_mod, y_obs, y_err)
 
+    k = None
+    if m.modelid == 'transit_1sincosPorb_1sincosProt':
+        k = 13
     if m.modelid == 'transit_2sincosPorb_1sincosProt':
         k = 15
-    elif m.modelid == 'transit_2sincosPorb_2sincosProt':
+    if m.modelid == 'transit_1sincosPorb_2sincosProt':
+        k = 15
+    if m.modelid == 'transit_2sincosPorb_2sincosProt':
         k = 17
-    else:
+    if k is None:
         raise NotImplementedError
 
     n = len(y_obs)
@@ -42,8 +49,6 @@ def get_bic(m, ydict):
     print(42*'=')
 
 
-
-
 def flatten(l):
     for el in l:
         if (
@@ -53,6 +58,7 @@ def flatten(l):
             yield from flatten(el)
         else:
             yield el
+
 
 def get_ptfo_data(cdips=1, spoc=0):
 
@@ -76,6 +82,7 @@ def get_ptfo_data(cdips=1, spoc=0):
         data.append(hdul[1].data)
 
     return data
+
 
 def initialize_ptfo_prior_d(x_obs, modelcomponents):
 
@@ -115,18 +122,18 @@ def initialize_ptfo_prior_d(x_obs, modelcomponents):
                         prior_d['A{}{}'.format(k,ix)] = 3e-2
                         prior_d['B{}{}'.format(k,ix)] = 3e-2
                     elif ix == 1:
-                        prior_d['A{}{}'.format(k,ix)] = 1e-3
-                        prior_d['B{}{}'.format(k,ix)] = 1e-3
+                        prior_d['A{}{}'.format(k,ix)] = 1e-2
+                        prior_d['B{}{}'.format(k,ix)] = 1e-2
                     else:
                         raise NotImplementedError
 
                 if k == 'orb':
                     if ix == 0:
-                        prior_d['A{}{}'.format(k,ix)] = 5e-3
-                        prior_d['B{}{}'.format(k,ix)] = 5e-3
+                        prior_d['A{}{}'.format(k,ix)] = 1e-2
+                        prior_d['B{}{}'.format(k,ix)] = 1e-2
                     elif ix == 1:
-                        prior_d['A{}{}'.format(k,ix)] = 1e-3
-                        prior_d['B{}{}'.format(k,ix)] = 1e-3
+                        prior_d['A{}{}'.format(k,ix)] = 1e-2
+                        prior_d['B{}{}'.format(k,ix)] = -1e-2
                     else:
                         raise NotImplementedError
 

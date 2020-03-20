@@ -67,7 +67,7 @@ class FakeDataGenerator(bm.ModelParser):
                         )
                         if ix == 1:
                             true_d['B{}{}'.format(k,ix)] = (
-                                np.random.uniform(low=0.005, high=0.009)
+                                np.random.uniform(low=-0.01, high=-0.009)
                             )
                         else:
                             true_d['B{}{}'.format(k,ix)] = (

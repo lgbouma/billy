@@ -88,5 +88,8 @@ def main(modelid):
 
 
 if __name__ == "__main__":
+    main('transit_1sincosPorb_1sincosProt')
+    main('transit_1sincosPorb_2sincosProt')
+
     main('transit_2sincosPorb_1sincosProt')
     main('transit_2sincosPorb_2sincosProt')

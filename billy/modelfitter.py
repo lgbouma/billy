@@ -11,8 +11,9 @@ from billy.plotting import plot_test_data, savefig, plot_MAP_data
 from billy.convenience import flatten as bflatten
 
 RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
-LINEAR_AMPLITUDES = 0
-LOG_AMPLITUDES = 1
+
+LINEAR_AMPLITUDES = 1
+LOG_AMPLITUDES = 0
 
 class ModelParser:
 
@@ -118,12 +119,16 @@ class ModelFitter(ModelParser):
                         "t0", mu=prior_d['t0'], sd=0.002, testval=prior_d['t0']
                     )
 
-                    logP = pm.Normal(
-                        "logP", mu=np.log(prior_d['period']),
-                        sd=0.01*np.abs(np.log(prior_d['period'])),
-                        testval=np.log(prior_d['period'])
+                    # logP = pm.Normal(
+                    #     "logP", mu=np.log(prior_d['period']),
+                    #     sd=0.001*np.abs(np.log(prior_d['period'])),
+                    #     testval=np.log(prior_d['period'])
+                    # )
+                    # period = pm.Deterministic("period", pm.math.exp(logP))
+                    period = pm.Normal(
+                        'period', mu=prior_d['period'], sd=1e-3,
+                        testval=prior_d['period']
                     )
-                    period = pm.Deterministic("period", pm.math.exp(logP))
 
                     u = xo.distributions.QuadLimbDark(
                         "u", testval=prior_d['u']
@@ -208,13 +213,18 @@ class ModelFitter(ModelParser):
                             Akey = 'A{}{}'.format(k,ix)
                             Bkey = 'B{}{}'.format(k,ix)
 
-                            A_d[Akey] = pm.Uniform(Akey, lower=0,
-                                                   upper=2*prior_d[Akey],
-                                                   testval=prior_d[Akey])
+                            A_d[Akey] = pm.Uniform(
+                                Akey,
+                                lower=-2*np.abs(prior_d[Akey]),
+                                upper=2*np.abs(prior_d[Akey]),
+                                testval=np.abs(prior_d[Akey]))
 
-                            B_d[Bkey] = pm.Uniform(Bkey, lower=0,
-                                                   upper=2*prior_d[Bkey],
-                                                   testval=prior_d[Bkey])
+                            B_d[Bkey] = pm.Uniform(
+                                Bkey,
+                                lower=-2*np.abs(prior_d[Bkey]),
+                                upper=2*np.abs(prior_d[Bkey]),
+                                testval=np.abs(prior_d[Bkey]))
+
                         if LOG_AMPLITUDES:
                             Akey = 'A{}{}'.format(k,ix)
                             Bkey = 'B{}{}'.format(k,ix)

@@ -16,7 +16,7 @@ def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
     plt.legend(loc=0)
     outpath = os.path.join(outdir, 'test_{}_data.png'.format(modelid))
     format_ax(ax)
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
 
 def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
@@ -27,7 +27,7 @@ def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
     plt.xlabel("time [days]")
     _ = plt.title("MAP model")
     fig = plt.gcf()
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
 
 def plot_sampleplot(m, outpath, N_samples=100):
@@ -54,7 +54,7 @@ def plot_sampleplot(m, outpath, N_samples=100):
     ax.set_ylabel("relative flux")
     ax.set_xlabel("time [days]")
     ax.legend(loc='best')
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
 
 def plot_splitsignal_map(m, outpath):
@@ -109,7 +109,7 @@ def plot_splitsignal_map(m, outpath):
         a.legend()
         format_ax(a)
     fig.tight_layout()
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
     ydict = {
         'x_obs': m.x_obs,
@@ -184,7 +184,7 @@ def plot_phasefold_map(m, d, outpath):
         a.set_xlim((-0.1-0.5, 1.1-0.5))
         format_ax(a)
     fig.tight_layout()
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
 
 def plot_splitsignal_post(m, outpath):
@@ -251,7 +251,7 @@ def plot_splitsignal_post(m, outpath):
         a.legend()
         format_ax(a)
     fig.tight_layout()
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
     ydict = {
         'x_obs': m.x_obs,
@@ -326,7 +326,7 @@ def plot_phasefold_post(m, d, outpath):
         a.set_xlim((-0.1-0.5, 1.1-0.5))
         format_ax(a)
     fig.tight_layout()
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
 
 
@@ -351,13 +351,13 @@ def plot_cornerplot(true_d, m, outpath):
     savefig(fig, outpath, writepdf=0)
 
 
-def savefig(fig, figpath, writepdf=True):
-    fig.savefig(figpath, dpi=450, bbox_inches='tight')
+def savefig(fig, figpath, writepdf=True, dpi=450):
+    fig.savefig(figpath, dpi=dpi, bbox_inches='tight')
     print('{}: made {}'.format(datetime.utcnow().isoformat(), figpath))
 
     if writepdf:
         pdffigpath = figpath.replace('.png','.pdf')
-        fig.savefig(pdffigpath, bbox_inches='tight', rasterized=True, dpi=450)
+        fig.savefig(pdffigpath, bbox_inches='tight', rasterized=True, dpi=dpi)
         print('{}: made {}'.format(datetime.utcnow().isoformat(), pdffigpath))
 
     plt.close('all')
