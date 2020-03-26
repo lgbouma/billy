@@ -1,0 +1,356 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,twocolumn,tighten]{aastex62}
+%\documentclass[12pt,twocolumn,tighten,trackchanges]{aastex62}
+\usepackage{amsmath,amstext,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{apjfonts}
+\usepackage[figure,figure*]{hypcap}
+\usepackage{graphics,graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\renewcommand*{\sectionautorefname}{Section} %for \autoref
+\renewcommand*{\subsectionautorefname}{Section} %for \autoref
+
+%% Reintroduced the \received and \accepted commands from AASTeX v5.2.
+%% Add "Submitted to " argument.
+\received{\today}
+\revised{---}
+\accepted{---}
+\submitjournal{AAS journals.}
+\shorttitle{Against PTFO$\,$8-8695b}
+
+\begin{document}
+
+\defcitealias{bouma_wasp4b_2019}{B19}
+
+\title{Against the Planetary Interpretation of PTFO$\,$8-8695b}
+% ", Explaining its Decreasing Orbital Period"
+% ": A Cautionary Tale in the Search for Tidal Orbital Decay"
+% "An Explanation for WASP-4's Decreasing Orbital Period".
+% "WASP-4's Decreasing Orbital Period: Solved."
+
+\correspondingauthor{L. G. Bouma}
+\email{luke@astro.princeton.edu}
+
+%
+% key authors:
+%
+\author[0000-0002-0514-5538]{L. G. Bouma}
+\affiliation{ Department of Astrophysical Sciences, Princeton
+University, 4 Ivy Lane, Princeton, NJ 08540, USA}
+%
+\author[0000-0002-4265-047X]{J. N. Winn}
+\affiliation{ Department of Astrophysical Sciences, Princeton
+University, 4 Ivy Lane, Princeton, NJ 08540, USA}
+
+%
+% contributing authors: alphabetical
+%
+% \author[0000-0001-8638-0320]{A. W. Howard}
+% \affiliation{Cahill Center for Astrophysics, California Institute of
+% Technology, Pasadena, CA 91125, USA}
+% %
+% \author[0000-0002-2532-2853]{S. B. Howell}
+% \affiliation{NASA Ames Research Center, Moffett Field, CA 94035, USA}
+% %
+% \author[0000-0002-0531-1073]{H. Isaacson}
+% \affiliation{Astronomy Department, University of California, Berkeley,
+% CA 94720, USA}
+% %
+% \author{H. Knutson}
+% \affiliation{Division of Geological and Planetary Sciences, California
+% Institute of Technology, Pasadena, CA 91125, USA}
+% %
+% \author[0000-0001-7233-7508]{R. A. Matson}
+% \affiliation{U.S. Naval Observatory, Washington, DC 20392, USA}
+% %
+
+\begin{abstract}
+  PTFO$\,$8-8695b could be the youngest, shortest-period 
+  hot Jupiter known.  However it has not been shown to be a planet.
+  TESS recently observed PTFO$\,$8-8695 for one month.
+  The TESS light-curve shows that the dominant variability in this
+  system is a sinusoidal modulation with period 11.96 hours, likely
+  caused by stellar rotation.
+  Also present is a complex signal, previously identified as the
+  planet candidate, that repeats every 10.74 hours.
+  The ``rotation'' and ``orbit'' have different frequencies,
+  and show the expected beat every 4.48 days.
+  There is a dip in the complex, shorter-period signal.
+  However the orbital phase of the dip has changed over the past
+  decade, in agreement with recent observations by Tanimoto et al.
+  Planets do not change their orbital phase.
+  PTFO$\,$8-8695 therefore seems broadly consistent with the
+  ``transient dipping'' phenomenology observed in many young M dwarfs,
+  and seems unlikely to be a planet.
+\end{abstract}
+
+%TODO
+\keywords{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+If it were a planet, PTFO$\,$8-8695b would be exceptional.
+A transiting hot Jupiter, orbiting a $\approx$3$\,$Myr old M dwarf
+in ORION would make it the youngest hot Jupiter known.
+Its orbital period of only 12 HOURS would also make it the shortest
+period hot Jupiter known.
+
+% Section~\ref{sec:observations} of this paper presents all of the
+% available transit data as well as the new radial velocity and speckle
+% imaging observations.  Section~\ref{sec:analysis} describes our
+% analysis of the data, and our interpretation that WASP-4 is being
+% pulled around by a brown dwarf or low-mass star.
+% Section~\ref{sec:discussion} places this result within the context of
+% orbital decay searches, and points out that line-of-sight
+% accelerations will be a relatively common type of ``false positive.''
+% Section~\ref{sec:conclusions} offers concluding remarks.
+
+\section{Observations}
+\label{sec:observations}
+
+% \begin{figure*}[t]
+% 	\begin{center}
+% 		\leavevmode
+% 		\includegraphics[width=0.7\textwidth]{f1.pdf}
+% 	\end{center}
+% 	\vspace{-0.7cm}
+% 	\caption{ {\bf Timing residuals and best-fit models for WASP-4b.}
+% 		The vertical axis shows the observed transit times minus the
+% 		calculated times, assuming a constant orbital period.  More opaque
+% 		points correspond to more precise data.  The $\pm1\sigma$
+% 		uncertainties of the quadratic ephemeris are shown in blue.  The
+% 		yellow star represents the weighted average of 18 data points
+% 		obtained with TESS. The TESS data were averaged here for display
+% 		purposes only; our analysis used the 18 individual transit times.
+% 		\label{fig:times}
+% 	}
+% \end{figure*}
+
+
+\section{Analysis}
+\label{sec:analysis}
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.95\textwidth]{f1.png}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf foo.}
+    bar
+		\label{fig:lc_map}
+	}
+\end{figure*}
+
+\begin{figure*}[t]
+	% \begin{center}
+	% 	\leavevmode
+	% 	\includegraphics[width=0.95\textwidth]{f1.png}
+	% \end{center}
+  \gridline{
+    \fig{f2a.png}{0.8\textwidth}{}
+    \fig{f2b.png}{0.2\textwidth}{}
+  }
+	\vspace{-0.7cm}
+	\caption{ {\bf foo.}
+    bar
+		\label{fig:splitsignal}
+	}
+\end{figure*}
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.8\textwidth]{f3.png}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf foo.}
+    bar
+		\label{fig:phasefold}
+	}
+\end{figure*}
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.9\textwidth]{f4.png}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf foo.}
+    bar
+		\label{fig:corner}
+	}
+\end{figure*}
+
+
+\subsection{Visual Inspection}
+
+% TODO:
+% Figure: CDIPS LC + SPOC LC (left two panels). Right panel:
+% periodogram.
+% 
+
+\subsection{Model Fitting}
+
+% I fitted some models of the form "transit + N harmonics of sines and
+% cosines at the orbital frequency + M harmonics of sines and cosines at
+% the rotation frequency". For example, if N=2 and M=1, then I fit for
+% [logBrot0, logArot0, phirot, omegarot, logBorb1, logAorb1, logBorb0,
+% logAorb0, b, r, u, logP, t0, meanflux]. A_N is the amplitude of the
+% Nth harmonic sine function A_N * sin(N(ωt+φ)), B_N of the cosine. I
+% went with quadratic limb darkening.
+% 
+% On fake data, I got the right parameters provided I didn't turn up the
+% noise too high.
+% 
+% I gave it a pass on the PTFO data, binning from 2->10 minute sampling
+% to speed up the execution time. Results from two models are below.
+% Case 1 is N=2,M=1. Case 2 is N=2,M=2. Both fits are fine, and I get
+% decent convergence with a few minutes each. The rotation parameters
+% (phase + amplitudes) are quite correlated, so I set a reasonably
+% strong prior on the rotation phase.
+% 
+% The main result that both models agree on: the extra power at the
+% orbital frequency seems to not be ellipsoidal. Both of these models
+% prefer to put the power at 1x the orbital frequency, not 2x the
+% orbital frequency! This gives both Aorb0 and Borb0 non-zero, while
+% Aorb1 and Borb1 seem to be more consistent with zero.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \acknowledgements
+% %
+% This paper includes data collected by the TESS mission, which are
+% publicly available from the Mikulski Archive for Space Telescopes
+% (MAST).
+% %
+% Funding for the TESS mission is provided by NASA's Science Mission
+% directorate.
+% %
+% This work made use of NASA's Astrophysics Data System Bibliographic
+% Services.
+% %
+% Based on observations obtained at the Gemini Observatory, which is
+% operated by the Association of Universities for Research in Astronomy,
+% Inc., under a cooperative agreement with the NSF on behalf of the
+% Gemini partnership: the National Science Foundation (United States),
+% National Research Council (Canada), CONICYT (Chile), Ministerio de
+% Ciencia, Tecnolog\'{i}a e Innovaci\'{o}n Productiva (Argentina),
+% Minist\'{e}rio da Ci\^{e}ncia, Tecnologia e Inova\c{c}\~{a}o (Brazil),
+% and Korea Astronomy and Space Science Institute (Republic of Korea).
+% %
+% Observations in the paper made use of the High-Resolution Imaging
+% instrument Zorro at Gemini-South. Zorro was funded by the NASA
+% Exoplanet Exploration Program and built at the NASA Ames Research
+% Center by Steve B. Howell, Nic Scott, Elliott P. Horch, and Emmett
+% Quigley.
+% %
+% This research has made use of the VizieR catalogue access tool, CDS,
+% Strasbourg, France. The original description of the VizieR service was
+% published in A\&AS 143, 23.
+% %
+% This work has made use of data from the European Space Agency (ESA)
+% mission {\it Gaia} (\url{https://www.cosmos.esa.int/gaia}), processed
+% by the {\it Gaia} Data Processing and Analysis Consortium (DPAC,
+% \url{https://www.cosmos.esa.int/web/gaia/dpac/consortium}). Funding
+% for the DPAC has been provided by national institutions, in particular
+% the institutions participating in the {\it Gaia} Multilateral
+% Agreement.
+%
+% (Some of) The data presented herein were obtained at the W. M. Keck
+% Observatory, which is operated as a scientific partnership among the
+% California Institute of Technology, the University of California and
+% the National Aeronautics and Space Administration. The Observatory was
+% made possible by the generous financial support of the W. M. Keck
+% Foundation.
+% The authors wish to recognize and acknowledge the very significant
+% cultural role and reverence that the summit of Maunakea has always had
+% within the indigenous Hawaiian community.  We are most fortunate to
+% have the opportunity to conduct observations from this mountain.
+%
+% \newline
+%
+
+\software{
+  \texttt{astrobase} \citep{bhatti_astrobase_2018},
+  % \texttt{astroplan} \citep{astroplan2018},
+  \texttt{astropy} \citep{astropy_2018},
+  \texttt{astroquery} \citep{astroquery_2018},
+  % \texttt{BATMAN} \citep{kreidberg_batman_2015},
+  \texttt{corner} \citep{corner_2016},
+  \texttt{emcee} \citep{foreman-mackey_emcee_2013},
+  \texttt{IPython} \citep{perez_2007},
+  \texttt{matplotlib} \citep{hunter_matplotlib_2007}, 
+  \texttt{MESA} \citep{paxton_modules_2011,paxton_modules_2013,paxton_modules_2015}
+  \texttt{numpy} \citep{walt_numpy_2011}, 
+  \texttt{pandas} \citep{mckinney-proc-scipy-2010},
+  \texttt{radvel} \citep{fulton_radvel_2018},
+  % \texttt{scikit-learn} \citep{scikit-learn},
+  \texttt{scipy} \citep{jones_scipy_2001}.
+}
+
+
+% \facilities{
+% 	{\it Astrometry}:
+% 	Gaia \citep{gaia_collaboration_gaia_2016,gaia_collaboration_gaia_2018}.
+% 	{\it Imaging}:
+% 	Gemini:South~(Zorro; \citealt{scott_nessi_2018}.
+% 	{\it Spectroscopy}:
+% 	Keck:I~(HIRES; \citealt{vogt_hires_1994}),
+% 	Euler1.2m~(CORALIE),
+% 	ESO:3.6m~(HARPS; \citealt{mayor_setting_2003}).
+% 	{\it Photometry}:
+% 	CTIO:1.0m (Y4KCam),
+% 	Danish 1.54m Telescope,
+% 	El Sauce:0.356m,
+% 	Elizabeth 1.0m at SAAO,
+% 	Euler1.2m (EulerCam),
+% 	Magellan:Baade (MagIC),
+% 	Max Planck:2.2m	(GROND; \citealt{greiner_grond7-channel_2008})
+% 	NTT,
+% 	SOAR (SOI),
+% 	TESS \citep{ricker_transiting_2015},
+% 	TRAPPIST \citep{jehin_trappist_2011},
+% 	VLT:Antu (FORS2).
+% }
+
+%
+% The following are entries from Table 1 that are not otherwise cited
+% in the text
+%
+% \nocite{wilson_wasp-4b_2008}
+% \nocite{gillon_improved_2009}
+% \nocite{winn_transit_2009}
+% \nocite{hoyer_tramos_2013}
+% \nocite{dragomir_terms_2011}
+% \nocite{sanchis-ojeda_starspots_2011}
+% \nocite{nikolov_wasp-4b_2012}
+% \nocite{ranjan_atmospheric_2014}
+% \nocite{huitson_gemini_2017}
+
+% \input{WASP-4b_transit_time_table.tex}
+% \input{WASP-4b_rv_table.tex}
+% \input{model_fit_table.tex}
+% \input{rv_model_posterior_table.tex}
+% \input{pdot_table.tex}
+
+%\clearpage
+\bibliographystyle{yahapj}                            
+\bibliography{bibliography} 
+
+
+\listofchanges
+
+\end{document}

@@ -4,3 +4,7 @@ doc*
 *__pycache__*
 data*
 *logs*
+*aux
+*bbl
+*blg
+*log
