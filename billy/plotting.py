@@ -1,11 +1,70 @@
+"""
+Plots:
+    plot_periodogram
+    plot_test_data
+    plot_MAP_data
+    plot_sampleplot
+    plot_splitsignal_map
+    plot_phasefold_map
+    plot_splitsignal_post
+    plot_phasefold_post
+    plot_traceplot
+    plot_cornerplot
+
+Convenience:
+    savefig
+    format_ax
+"""
 import os, corner
 import numpy as np, matplotlib.pyplot as plt
 from datetime import datetime
 from pymc3.backends.tracetab import trace_to_dataframe
 
 from billy.convenience import flatten as bflatten
+from billy.convenience import get_clean_ptfo_data
 
 from astrobase.lcmath import phase_magseries, phase_bin_magseries
+from astropy.stats import LombScargle
+
+def plot_periodogram(outdir, islinear=True):
+
+    x_obs, y_obs, y_err = get_clean_ptfo_data(binsize=None)
+
+    period_min, period_max, N_freqs = 0.3, 0.7, int(3e3)
+    frequency = np.linspace(1/period_max, 1/period_min, N_freqs)
+    ls = LombScargle(x_obs, y_obs, y_err, normalization='standard')
+    power = ls.power(frequency)
+    period = 1/frequency
+
+    P_rot, P_orb = 0.49914, 0.4485
+
+    f, ax = plt.subplots(figsize=(4,3))
+    ax.plot(
+        period, power, lw=0.5, c='k'
+    )
+
+    if not islinear:
+        ax.set_yscale('log')
+
+    ylim = ax.get_ylim()
+    for P,c in zip([P_rot, P_orb],['C0','C1']):
+        for m in [1]:
+            ax.vlines(
+                m*P, min(ylim), max(ylim), colors=c, alpha=0.5,
+                linestyles='--', zorder=-2, linewidths=0.5
+            )
+
+    #ax.set_xlabel('Frequency [1/days]')
+    ax.set_xlabel('Period [days]')
+    ax.set_ylabel('Lomb-Scargle Power')
+    if not islinear:
+        ax.set_ylim([1e-4, 1.2])
+    ax.set_xlim([period_min, period_max])
+
+    format_ax(ax)
+    outpath = os.path.join(outdir, 'periodogram.png')
+    savefig(f, outpath)
+
 
 def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
     fig = plt.figure(figsize=(14, 4))
@@ -116,11 +175,64 @@ def plot_splitsignal_map(m, outpath):
         'y_obs': m.y_obs,
         'y_orb': m.y_obs-y_rot,
         'y_rot': m.y_obs-y_orb,
+        'y_resid': m.y_obs-m.map_estimate['mu_model'],
         'y_mod_tra': y_tra,
         'y_mod_rot': y_orb,
-        'y_mod_orb': y_rot
+        'y_mod_orb': y_rot,
+        'y_mod': m.map_estimate['mu_model'],
+        'y_err': m.y_err
     }
     return ydict
+
+
+def plot_splitsignal_map_periodogram(ydict, outpath):
+    """
+    y_obs + y_MAP + y_rot + y_orb
+    things at rotation frequency
+    things at orbital frequency
+    """
+
+    P_rot, P_orb = 0.49914, 0.4485
+
+    period_min, period_max, N_freqs = 0.3, 0.7, int(3e3)
+    frequency = np.linspace(1/period_max, 1/period_min, N_freqs)
+    period = 1/frequency
+
+    ytypes = ['y_obs', 'y_rot', 'y_orb', 'y_resid']
+    ylabels = ['power (raw)', 'power (rot)', 'power (orb)', 'power (resid)']
+
+    ls_d = {}
+    for k in ytypes:
+        ls = LombScargle(ydict['x_obs'], ydict[k], ydict['y_err'],
+                         normalization='standard')
+        power = ls.power(frequency)
+        ls_d[k] = power
+
+    fig, axs = plt.subplots(nrows=4, figsize=(4, 12), sharex=True)
+
+    for ax, k, l in zip(axs, ytypes, ylabels):
+
+        ax.plot(period, ls_d[k], lw=0.5, c='k')
+
+        ylim = ax.get_ylim()
+        for P,c in zip([P_rot, P_orb],['C0','C1']):
+            for m in [1]:
+                ax.vlines(
+                    m*P, min(ylim), max(ylim), colors=c, alpha=0.5,
+                    linestyles='--', zorder=-2, linewidths=0.5
+                )
+        ax.set_ylim(ylim)
+        ax.set_ylabel(l)
+        ax.set_xlim([period_min, period_max])
+
+    axs[-1].set_xlabel('Period [days]')
+
+    for a in axs:
+        # a.legend()
+        format_ax(a)
+
+    fig.tight_layout()
+    savefig(fig, outpath, writepdf=0, dpi=300)
 
 
 def plot_phasefold_map(m, d, outpath):

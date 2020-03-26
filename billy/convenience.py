@@ -3,6 +3,9 @@ import collections
 from collections import OrderedDict
 from astropy.io import fits
 
+from astrobase.lcmath import time_bin_magseries_with_errs
+
+
 def chisq(y_mod, y_obs, y_err):
     return np.sum( (y_mod - y_obs )**2 / y_err**2 )
 
@@ -82,6 +85,34 @@ def get_ptfo_data(cdips=1, spoc=0):
         data.append(hdul[1].data)
 
     return data
+
+
+def get_clean_ptfo_data(binsize=120*5):
+    """
+    get data. quality cut and remove weird end points. bin to 10 minutes, to
+    speed fitting (which is linear in time).
+    """
+
+    d = get_ptfo_data(cdips=0, spoc=1)[0]
+    quality = d.QUALITY
+    x_obs = d.TIME - 1468.2
+    sel = (quality == 0) & (x_obs < 20.1)
+    x_obs = d.TIME[sel] - 1468.2
+    y_obs = (d.PDCSAP_FLUX[sel] / np.nanmedian(d.PDCSAP_FLUX[sel])) - 1
+    y_err = d.PDCSAP_FLUX_ERR[sel] / np.nanmedian(d.PDCSAP_FLUX[sel])
+
+    if isinstance(binsize, int):
+        bd = time_bin_magseries_with_errs(x_obs, y_obs, y_err, binsize=binsize,
+                                          minbinelems=5)
+        x_obs = bd['binnedtimes']
+        y_obs = bd['binnedmags']
+        y_err = bd['binnederrs']
+
+    return (
+        x_obs.astype(np.float64),
+        y_obs.astype(np.float64),
+        y_err.astype(np.float64)
+    )
 
 
 def initialize_ptfo_prior_d(x_obs, modelcomponents):

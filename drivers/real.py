@@ -8,21 +8,18 @@ from os.path import join
 from billy.modelfitter import ModelFitter, ModelParser
 import billy.plotting as bp
 from billy.convenience import (
-    get_ptfo_data, initialize_ptfo_prior_d, get_bic
+    get_clean_ptfo_data, get_ptfo_data, initialize_ptfo_prior_d, get_bic
 )
 from billy import __path__
 
-from astrobase.lcmath import time_bin_magseries_with_errs
-
 def main(modelid):
 
-    REALID = 'PTFO_8-8695'
-
     traceplot = 0
-    sampleplot = 1
-    cornerplot = 1
+    sampleplot = 0
+    cornerplot = 0
     splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
+    REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID))
     if not os.path.exists(PLOTDIR):
@@ -34,26 +31,11 @@ def main(modelid):
 
     np.random.seed(42)
 
-    # get data. quality cut and remove weird end points. bin to 10 minutes, to
-    # speed fitting (which is linear in time).
-    d = get_ptfo_data(cdips=0, spoc=1)[0]
-    quality = d.QUALITY
-    x_obs = d.TIME - 1468.2
-    sel = (quality == 0) & (x_obs < 20.1)
-    x_obs = d.TIME[sel] - 1468.2
-    y_obs = (d.PDCSAP_FLUX[sel] / np.nanmedian(d.PDCSAP_FLUX[sel])) - 1
-    y_err = d.PDCSAP_FLUX_ERR[sel] / np.nanmedian(d.PDCSAP_FLUX[sel])
-    binsize = 120*5 # 10 minutes
-    bd = time_bin_magseries_with_errs(x_obs, y_obs, y_err, binsize=binsize,
-                                      minbinelems=5)
-    x_obs = bd['binnedtimes']
-    y_obs = bd['binnedmags']
-    y_err = bd['binnederrs']
+    x_obs, y_obs, y_err = get_clean_ptfo_data()
 
     mp = ModelParser(modelid)
     prior_d = initialize_ptfo_prior_d(x_obs, mp.modelcomponents)
-    m = ModelFitter(modelid, x_obs.astype(np.float64), y_obs.astype(np.float64),
-                    y_err.astype(np.float64), prior_d, plotdir=PLOTDIR,
+    m = ModelFitter(modelid, x_obs, y_obs, y_err, prior_d, plotdir=PLOTDIR,
                     pklpath=pklpath)
 
     print(pm.summary(m.trace, varnames=list(prior_d.keys())))
@@ -61,12 +43,13 @@ def main(modelid):
     if traceplot:
         outpath = join(PLOTDIR, '{}_{}_traceplot.png'.format(REALID, modelid))
         bp.plot_traceplot(m, outpath)
+
     if sampleplot:
         outpath = join(PLOTDIR, '{}_{}_sampleplot.png'.format(REALID, modelid))
         bp.plot_sampleplot(m, outpath, N_samples=100)
 
     if splitsignalplot:
-        do_post = 1
+        do_post = 0
         do_map = 1
         if do_post:
             outpath = join(PLOTDIR, '{}_{}_splitsignalpost.png'.format(REALID, modelid))
@@ -76,6 +59,8 @@ def main(modelid):
         if do_map:
             outpath = join(PLOTDIR, '{}_{}_splitsignalmap.png'.format(REALID, modelid))
             ydict = bp.plot_splitsignal_map(m, outpath)
+            outpath = join(PLOTDIR, '{}_{}_splitsignalmap_periodogram.png'.format(REALID, modelid))
+            bp.plot_splitsignal_map_periodogram(ydict, outpath)
             outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
             bp.plot_phasefold_map(m, ydict, outpath)
             get_bic(m, ydict)
@@ -88,8 +73,7 @@ def main(modelid):
 
 
 if __name__ == "__main__":
-    main('transit_1sincosPorb_1sincosProt')
-    main('transit_1sincosPorb_2sincosProt')
-
-    main('transit_2sincosPorb_1sincosProt')
     main('transit_2sincosPorb_2sincosProt')
+    # main('transit_1sincosPorb_1sincosProt')
+    # main('transit_1sincosPorb_2sincosProt')
+    # main('transit_2sincosPorb_1sincosProt')
