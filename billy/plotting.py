@@ -460,7 +460,7 @@ def plot_cornerplot(true_d, m, outpath):
     fig = corner.corner(trace_df, quantiles=[0.16, 0.5, 0.84],
                         show_titles=True, title_kwargs={"fontsize": 12},
                         truths=truths, title_fmt='.2g')
-    savefig(fig, outpath, writepdf=0)
+    savefig(fig, outpath, writepdf=0, dpi=100)
 
 
 def savefig(fig, figpath, writepdf=True, dpi=450):

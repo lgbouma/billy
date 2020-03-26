@@ -16,8 +16,8 @@ def main(modelid):
 
     traceplot = 0
     sampleplot = 0
-    cornerplot = 0
-    splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
+    cornerplot = 1
+    splitsignalplot = 0 if 'Porb' in modelid and 'Prot' in modelid else 0
 
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
