@@ -16,19 +16,22 @@ def main(modelid):
 
     traceplot = 0
     sampleplot = 0
-    cornerplot = 1
-    splitsignalplot = 0 if 'Porb' in modelid and 'Prot' in modelid else 0
+    cornerplot = 0
+    splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
-    PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID))
+    PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
+                           '20200320_linear_amplitude_prior')
+
+    ##########
+
     if not os.path.exists(PLOTDIR):
         os.mkdir(PLOTDIR)
     pklpath = os.path.join(
         os.path.expanduser('~'), 'local', 'billy',
         '{}_model_{}.pkl'.format(REALID, modelid)
     )
-
     np.random.seed(42)
 
     x_obs, y_obs, y_err = get_clean_ptfo_data()

@@ -126,12 +126,14 @@ def plot_splitsignal_map(m, outpath):
     things at rotation frequency
     things at orbital frequency
     """
-    fig, axs = plt.subplots(nrows=4, figsize=(14, 12), sharex=True)
 
-    axs[0].set_ylabel('flux')
-    axs[0].plot(m.x_obs, m.y_obs, ".k", ms=4, label="data")
+    # 8.5x11 is letter paper. x10 allows space for caption.
+    fig, axs = plt.subplots(nrows=4, figsize=(8.5, 10), sharex=True)
+
+    axs[0].set_ylabel('f', fontsize='x-large')
+    axs[0].plot(m.x_obs, m.y_obs, ".k", ms=4, label="data", zorder=2, rasterized=True)
     axs[0].plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
-                color='C0', alpha=1, zorder=5)
+                color='C0', alpha=1, zorder=1)
 
     y_tra = m.map_estimate['mu_transit']
     for ix, f in enumerate(['rot', 'orb']):
@@ -144,35 +146,40 @@ def plot_splitsignal_map(m, outpath):
             yval += m.map_estimate[k1]
         if f == 'rot':
             y_rot = yval
-            axs[0].plot(m.x_obs, y_rot, lw=0.5, label='model '+f,
-                        color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
+            # axs[0].plot(m.x_obs, y_rot, lw=0.5, label='model '+f,
+            #             color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
         if f == 'orb':
             y_orb = yval + y_tra
-            axs[0].plot(m.x_obs, y_orb, lw=0.5, label='model '+f,
-                        color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
+            # axs[0].plot(m.x_obs, y_orb, lw=0.5, label='model '+f,
+            #             color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
 
-    axs[1].set_ylabel('flux-orb (rot)')
-    axs[1].plot(m.x_obs, m.y_obs-y_orb, ".k", ms=4, label="data-orb")
+    #axs[1].set_ylabel('flux-orb (rot)')
+    axs[1].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$', fontsize='x-large')
+    axs[1].plot(m.x_obs, m.y_obs-y_orb, ".k", ms=4, label="data-orb", zorder=2, rasterized=True)
     axs[1].plot(m.x_obs, m.map_estimate['mu_model']-y_orb, lw=0.5,
-                label='model-orb', color='C0', alpha=1, zorder=5)
+                label='model-orb', color='C0', alpha=1, zorder=1)
 
-    axs[2].set_ylabel('flux-rot (orb)')
-    axs[2].plot(m.x_obs, m.y_obs-y_rot, ".k", ms=4, label="data-rot")
+    #axs[2].set_ylabel('flux-rot (orb)')
+    axs[2].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$', fontsize='x-large')
+    axs[2].plot(m.x_obs, m.y_obs-y_rot, ".k", ms=4, label="data-rot", zorder=2, rasterized=True)
     axs[2].plot(m.x_obs, m.map_estimate['mu_model']-y_rot, lw=0.5,
-                label='model-rot', color='C0', alpha=1, zorder=5)
+                label='model-rot', color='C0', alpha=1, zorder=1)
 
-    axs[3].set_ylabel('flux-model')
-    axs[3].plot(m.x_obs, m.y_obs-m.map_estimate['mu_model'], ".k", ms=4, label="data")
+    axs[3].set_ylabel('$f - f_{{\mathrm{{s}}}} - f_{{\mathrm{{\ell}}}}$', fontsize='x-large')
+    axs[3].plot(m.x_obs, m.y_obs-m.map_estimate['mu_model'], ".k", ms=4, label="data", zorder=2, rasterized=True)
     axs[3].plot(m.x_obs, m.map_estimate['mu_model']-m.map_estimate['mu_model'],
-                lw=0.5, label='model', color='C0', alpha=1, zorder=5)
+                lw=0.5, label='model', color='C0', alpha=1, zorder=1)
 
 
-    axs[-1].set_xlabel("time [days]")
+    axs[-1].set_xlabel("Time [days]", fontsize='x-large')
     for a in axs:
-        a.legend()
+        #a.legend()
         format_ax(a)
-    fig.tight_layout()
-    savefig(fig, outpath, writepdf=0, dpi=300)
+        a.set_ylim((-.075, .075))
+        a.set_xlim((0, 9))
+
+    fig.tight_layout(h_pad=0., w_pad=0.)
+    savefig(fig, outpath, writepdf=1, dpi=300)
 
     ydict = {
         'x_obs': m.x_obs,
@@ -209,14 +216,27 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
     for k in ytypes:
         ls = LombScargle(ydict['x_obs'], ydict[k], ydict['y_err'],
                          normalization='standard')
-        power = ls.power(frequency)
-        ls_d[k] = power
+        if not k == 'y_resid':
+            power = ls.power(frequency)
+        else:
+            _period_min, _period_max, _N_freqs = 1, 20, int(2e4)
+            _frequency = np.linspace(1/_period_max, 1/_period_min, _N_freqs)
+            _period = 1/_frequency
+            power = ls.power(_frequency)
 
-    fig, axs = plt.subplots(nrows=4, figsize=(4, 12), sharex=True)
+        ls_d[k] = power
+        ls_fap = ls.false_alarm_probability(power.max())
+        msg = '{}: FAP = {:.2e}'.format(k, ls_fap)
+        print(msg)
+
+    fig, axs = plt.subplots(nrows=4, figsize=(4, 12), sharex=False)
 
     for ax, k, l in zip(axs, ytypes, ylabels):
 
-        ax.plot(period, ls_d[k], lw=0.5, c='k')
+        if not k == 'y_resid':
+            ax.plot(period, ls_d[k], lw=0.5, c='k')
+        else:
+            ax.plot(_period, ls_d[k], lw=0.5, c='k')
 
         ylim = ax.get_ylim()
         for P,c in zip([P_rot, P_orb],['C0','C1']):
@@ -227,7 +247,10 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
                 )
         ax.set_ylim(ylim)
         ax.set_ylabel(l)
-        ax.set_xlim([period_min, period_max])
+        if not k == 'y_resid':
+            ax.set_xlim([period_min, period_max])
+        else:
+            ax.set_xlim([_period_min, _period_max])
 
     axs[-1].set_xlabel('Period [days]')
 
@@ -263,32 +286,42 @@ def plot_phasefold_map(m, d, outpath):
 
     # make tha plot
     plt.close('all')
-    fig, axs = plt.subplots(nrows=2, figsize=(6, 8), sharex=True)
+    fig, axs = plt.subplots(nrows=2, figsize=(6, 6), sharex=True)
 
     axs[0].scatter(rot_d['phase'], rot_d['mags'], color='gray', s=2, alpha=0.8,
-                   zorder=4, linewidths=0)
+                   zorder=4, linewidths=0, rasterized=True)
     axs[0].scatter(rot_bd['binnedphases'], rot_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
-    txt0 = 'Prot {:.5f}d, t0 {:.5f}'.format(P_rot, t0_rot)
+
+    txt0 = '$P_{{\mathrm{{\ell}}}}$ = {:.5f}$\,$d'.format(P_rot)
+    props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
+                 linewidth=0)
+
     axs[0].text(0.98, 0.98, txt0, ha='right', va='top',
-                transform=axs[0].transAxes)
-    axs[0].set_ylabel('flux-orb (rot)')
+                transform=axs[0].transAxes, bbox=props, zorder=3)
+    axs[0].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
+                      fontsize='large')
 
     axs[1].scatter(orb_d['phase'], orb_d['mags'], color='gray', s=2, alpha=0.8,
-                   zorder=4, linewidths=0)
+                   zorder=4, linewidths=0, rasterized=True)
     axs[1].scatter(orb_bd['binnedphases'], orb_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
-    txt1 = 'Porb {:.5f}d, t0 {:.5f}'.format(P_orb, t0_orb)
-    axs[1].text(0.98, 0.98, txt1, ha='right', va='top',
-                transform=axs[1].transAxes)
-    axs[1].set_ylabel('flux-rot (orb)')
-    axs[1].set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
 
-    axs[-1].set_xlabel('phase')
+    txt1 = '$P_{{\mathrm{{s}}}}$ = {:.5f}$\,$d'.format(P_orb)
+    axs[1].text(0.98, 0.98, txt1, ha='right', va='top',
+                transform=axs[1].transAxes, bbox=props, zorder=3)
+
+    axs[1].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
+                      fontsize='large')
+
+    axs[1].set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
+    axs[1].set_yticks([-0.04, -0.02, 0, 0.02, 0.04])
+
+    axs[-1].set_xlabel('Phase', fontsize='large')
 
     for a in axs:
         a.grid(which='major', axis='both', linestyle='--', zorder=-3,
-                 alpha=0.5, color='gray')
+               alpha=0.5, color='gray', linewidth=0.5)
 
     # pct_80 = np.percentile(results.model_folded_model, 80)
     # pct_20 = np.percentile(results.model_folded_model, 20)
@@ -297,10 +330,12 @@ def plot_phasefold_map(m, d, outpath):
     # plt.ylim(( center-0.7*delta_y, center+0.7*delta_y ))
 
     for a in axs:
-        a.set_xlim((-0.1-0.5, 1.1-0.5))
+        a.set_xlim((-1, 1))
         format_ax(a)
+    axs[0].set_ylim((-0.075, 0.075))
+    axs[1].set_ylim((-0.045, 0.045))
     fig.tight_layout()
-    savefig(fig, outpath, writepdf=0, dpi=300)
+    savefig(fig, outpath, writepdf=1, dpi=300)
 
 
 def plot_splitsignal_post(m, outpath):
