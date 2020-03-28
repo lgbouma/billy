@@ -178,8 +178,14 @@ conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTF
 		\includegraphics[width=0.98\textwidth]{f1.png}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf foo.}
-    bar
+	\caption{ {\bf TESS light-curve of PTFO 8-8695 (Sector 6, Orbit 1).}
+	{\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux versus time. The beat period of 4.48 days is visible by eye.
+	The model plotted underneath the data includes 2 harmonics at the long
+	period $P_{\rm \ell}$, plus 2 harmonics and a transit at the short period $P_{\rm s}$.
+	{\it Upper middle}: Long-period signal, equal to the raw signal minus the short-period signal.
+	{\it Lower middle}: Short-period signal, equal to the raw signal minus the long-period signal.
+	{\it Bottom}: residual.
+	The data are binned from 2 to 10 minute cadence as a convenience for plotting and fitting.
 		\label{fig:splitsignal}
 	}
 \end{figure*}
@@ -187,12 +193,15 @@ conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTF
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.8\textwidth]{f2.png}
+		\includegraphics[width=0.95\textwidth]{f2.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf foo.}
-    bar
-		\label{fig:phasefold}
+	\caption{ {\bf Phase-folded long and short-period signals.}
+	{\it Top}: Long-period signal, as in Figure~\ref{fig:splitsignal}.
+	{\it Bottom}: Short-period signal. The reference phase is set to the most ``planetary'' dip.
+	Gray points are the 10 minute cadence \texttt{PDCSAP} flux.
+	Black points are binned to 100 points per period.
+	\label{fig:phasefold}
 	}
 \end{figure*}
 
