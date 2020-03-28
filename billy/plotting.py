@@ -1,5 +1,6 @@
 """
 Plots:
+
     plot_periodogram
     plot_test_data
     plot_MAP_data
@@ -11,6 +12,8 @@ Plots:
     plot_traceplot
     plot_cornerplot
 
+    plot_scene
+
 Convenience:
     savefig
     format_ax
@@ -19,6 +22,7 @@ import os, corner
 import numpy as np, matplotlib.pyplot as plt
 from datetime import datetime
 from pymc3.backends.tracetab import trace_to_dataframe
+from itertools import product
 
 from billy.convenience import flatten as bflatten
 from billy.convenience import get_clean_ptfo_data
@@ -484,3 +488,183 @@ def format_ax(ax):
         tick.label.set_fontsize('small')
     for tick in ax.yaxis.get_major_ticks():
         tick.label.set_fontsize('small')
+
+
+def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
+               ap_mask=0, bkgd_mask=0):
+
+    from astrobase.plotbase import skyview_stamp
+    from astropy import units as u, constants as const
+    from astropy.wcs import WCS
+    from astroquery.mast import Catalogs
+    import astropy.visualization as vis
+    import matplotlib as mpl
+    from matplotlib import patches
+
+    # standard tick formatting fails for these images.
+    mpl.rcParams['xtick.direction'] = 'in'
+    mpl.rcParams['ytick.direction'] = 'in'
+
+    #
+    # wcs information parsing
+    # follow Clara Brasseur's https://github.com/ceb8/tessworkshop_wcs_hack
+    # (this is from the CDIPS vetting reports...)
+    #
+    radius = 5.0*u.arcminute
+
+    nbhr_stars = Catalogs.query_region(
+        "{} {}".format(float(c_obj.ra.value), float(c_obj.dec.value)),
+        catalog="TIC",
+        radius=radius
+    )
+
+    try:
+        px,py = img_wcs.all_world2pix(
+            nbhr_stars[nbhr_stars['Tmag'] < Tmag_cutoff]['ra'],
+            nbhr_stars[nbhr_stars['Tmag'] < Tmag_cutoff]['dec'],
+            0
+        )
+    except Exception as e:
+        print('ERR! wcs all_world2pix got {}'.format(repr(e)))
+        raise(e)
+
+    ticids = nbhr_stars[nbhr_stars['Tmag'] < Tmag_cutoff]['ID']
+    tmags = nbhr_stars[nbhr_stars['Tmag'] < Tmag_cutoff]['Tmag']
+
+    sel = (px > 0) & (px < 10) & (py > 0) & (py < 10)
+    px,py = px[sel], py[sel]
+    ticids, tmags = ticids[sel], tmags[sel]
+
+    ra, dec = float(c_obj.ra.value), float(c_obj.dec.value)
+    target_x, target_y = img_wcs.all_world2pix(ra,dec,0)
+
+    # geometry: there are TWO coordinate axes. (x,y) and (ra,dec). To get their
+    # relative orientations, the WCS and ignoring curvature will usually work.
+    shiftra_x, shiftra_y = img_wcs.all_world2pix(ra+1e-4,dec,0)
+    shiftdec_x, shiftdec_y = img_wcs.all_world2pix(ra,dec+1e-4,0)
+
+    ###########
+    # get DSS #
+    ###########
+    ra = c_obj.ra.value
+    dec = c_obj.dec.value
+    sizepix = 220
+    try:
+        dss, dss_hdr = skyview_stamp(ra, dec, survey='DSS2 Red',
+                                     scaling='Linear', convolvewith=None,
+                                     sizepix=sizepix, flip=False,
+                                     cachedir='~/.astrobase/stamp-cache',
+                                     verbose=True, savewcsheader=True)
+    except (OSError, IndexError, TypeError) as e:
+        print('downloaded FITS appears to be corrupt, retrying...')
+        try:
+            dss, dss_hdr = skyview_stamp(ra, dec, survey='DSS2 Red',
+                                         scaling='Linear', convolvewith=None,
+                                         sizepix=sizepix, flip=False,
+                                         cachedir='~/.astrobase/stamp-cache',
+                                         verbose=True, savewcsheader=True,
+                                         forcefetch=True)
+
+        except Exception as e:
+            print('failed to get DSS stamp ra {} dec {}, error was {}'.
+                  format(ra, dec, repr(e)))
+            return None, None
+
+
+    ##########################################
+
+    plt.close('all')
+    fig = plt.figure(figsize=(4,9))
+
+    # ax0: TESS
+    # ax1: DSS
+    ax0 = plt.subplot2grid((2, 1), (0, 0), projection=img_wcs)
+    ax1 = plt.subplot2grid((2, 1), (1, 0), projection=WCS(dss_hdr))
+
+    ##########################################
+
+    #
+    # ax0: img
+    #
+
+    #interval = vis.PercentileInterval(99.99)
+    interval = vis.AsymmetricPercentileInterval(20,99)
+    vmin,vmax = interval.get_limits(img)
+    norm = vis.ImageNormalize(
+        vmin=vmin, vmax=vmax, stretch=vis.LogStretch(1000))
+
+    cset0 = ax0.imshow(img, cmap=plt.cm.gray_r, origin='lower', zorder=1,
+                       norm=norm)
+
+    if isinstance(ap_mask, np.ndarray):
+        for x,y in product(range(10),range(10)):
+            if ap_mask[y,x]:
+                ax0.add_patch(
+                    patches.Rectangle(
+                        (x-.5, y-.5), 1, 1, hatch='//', fill=False, snap=False,
+                        linewidth=0., zorder=2, alpha=0.7, rasterized=True
+                    )
+                )
+
+    if isinstance(bkgd_mask, np.ndarray):
+        for x,y in product(range(10),range(10)):
+            if bkgd_mask[y,x]:
+                ax0.add_patch(
+                    patches.Rectangle(
+                        (x-.5, y-.5), 1, 1, hatch='x', fill=False, snap=False,
+                        linewidth=0., zorder=2, alpha=0.7, rasterized=True
+                    )
+                )
+
+    ax0.scatter(px, py, marker='x', c='C1', s=20, rasterized=True, zorder=3,
+                linewidths=0.8)
+    ax0.plot(target_x, target_y, mew=0.5, zorder=5, markerfacecolor='yellow',
+             markersize=15, marker='*', color='k', lw=0)
+
+    ax0.text(3.2, 5, 'A', fontsize=16, color='C1', zorder=6, style='italic')
+
+    ax0.set_title('TESS (log)', fontsize='xx-large')
+
+    if showcolorbar:
+        cb0 = fig.colorbar(cset0, ax=ax0, extend='neither', fraction=0.046, pad=0.04)
+
+    #
+    # ax1: DSS
+    #
+    cset1 = ax1.imshow(dss, origin='lower', cmap=plt.cm.gray_r)
+
+    ax1.grid(ls='--', alpha=0.5)
+    ax1.set_title('DSS2 Red (linear)', fontsize='xx-large')
+    if showcolorbar:
+        cb1 = fig.colorbar(cset1, ax=ax1, extend='neither', fraction=0.046,
+                           pad=0.04)
+
+    # DSS is ~1 arcsecond per pixel. overplot apertures on axes 6,7
+    for ix, radius_px in enumerate([21,21*1.5,21*2.25]):
+        circle = plt.Circle((sizepix/2, sizepix/2), radius_px,
+                            color='C{}'.format(ix), fill=False, zorder=5+ix)
+        ax1.add_artist(circle)
+
+    #
+    # ITNERMEDIATE SINCE TESS IMAGES NOW PLOTTED
+    #
+    for ax in [ax0]:
+        ax.grid(ls='--', alpha=0.5)
+        if shiftra_x - target_x > 0:
+            # want RA to increase to the left (almost E)
+            ax.invert_xaxis()
+        if shiftdec_y - target_y < 0:
+            # want DEC to increase up (almost N)
+            ax.invert_yaxis()
+
+    for ax in [ax0,ax1]:
+        format_ax(ax)
+        ax.set_xlabel(r'$\alpha_{2000}$')
+        ax.set_ylabel(r'$\delta_{2000}$')
+
+    if showcolorbar:
+        fig.tight_layout(h_pad=-8, w_pad=-8)
+    else:
+        fig.tight_layout(h_pad=1, w_pad=1)
+
+    savefig(fig, outpath, dpi=300)
