@@ -79,7 +79,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
   There is a dip in the complex, short-period signal.
   However ground-based photometry from the past decade shows that the
   orbital phase of the dip seems to have instantaneously jumped, at
-  least twice.
+  least once, and maybe twice.
   The TESS epoch of the dip is consistent with recent observations by
   Tanimoto et al., and differs from the discovery epoch by 5.14 hours.
   Planets do not ``jump'' in orbital phase.
@@ -113,61 +113,6 @@ period hot Jupiter known.
 \section{Observations}
 \label{sec:observations}
 
-\subsection{Blend considerations}
-\label{subsec:blend}
-
-The TESS pixels are $\approx21$'' per side, and so we need to consider
-whether light from neighboring stars could affect the photometry.  The
-scene is shown in Figure~\ref{fig:scene}.  
-The pixels used to
-measure the background level are indicated with an `\texttt{X}' hatch,
-and the pixels used for the final light-curve are shown with the
-`\texttt{/}' hatch.
-
-The target star, PTFO
-8-8605 (TIC 264461976), has a $T$-band magnitude of 14.0, and its position is shown with a
-star.  
-The other (unlabeled) star inside the target aperture, TIC 264461979, has $T=16.8$ and so cannot
-contribute a signal with relative amplitude 10\%.
-The only neighbor that is sufficiently close and bright that
-its light might contaminate the target star is TIC 264461980, with
-$T=14.8$, which we denote ``Star A''.  Star A is 23.6'' NW of our
-target, and based on the magnitude difference could contribute up to
-48\% the flux of our target star, PTFO 8-8695.  
-
-Because PTFO 8-8695 has previously been identified to have periodicity
-consistent with our measurement of $P_{\rm s}$, our main concern
-regarding blending is the degree to which we can be certain that the
-long-period signal at $P_{\rm \ell}$ also originates from PTFO 8-8695.
-We took two approaches towards determining the source of the long-period signal.
-
-First, we examined the CDIPS full frame image light-curves of the
-target, which are available on MAST \citep{bouma_cluster_2019}.
-The maximal peak-to-peak beat amplitude is consistently $\approx$10\%
-across apertures of radii 1, 1.5, and 2.25 pixels.
-If Star A were the source of the long-period variability, we would expect the
-peak variability amplitude to be smallest in the 1 pixel aperture, based on the
-separation of the sources (Figure~\ref{fig:scene}, bottom).
-From this test alone, it seems unlikely that Star A is the source of
-the long-period signal.
-
-Second, we examined the light-curve of each pixel in the scene
-individually.  We opted to use the
-interactive tools implemented in
-\texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
-source of the long-period variability, we would expect the pixels
-nearest to Star A to show a sinusoidal signal with
-amplitude exceeding $10\%$.  We find no evidence for
-this being the case.  The pixel directly below Star A does not
-clearly show the sinusoidal variability, and the peak-to-peak 
-variability in that pixel is $\lesssim 8\%$.  In contrast, the
-south-easternmost pixel within PTFO 8-8695's aperture (the pixel 
-furthest from Star A that was used in the optimal aperture) shows the $P_{\rm \ell}$ sinusoidal
-variability signal at $\approx 10\%$ amplitude.
-
-As there is no evidence in favor of a blend scenario, we
-conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTFO 8-8695.
-
 
 \section{Analysis}
 \label{sec:analysis}
@@ -198,7 +143,7 @@ conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTF
 	\vspace{-0.7cm}
 	\caption{ {\bf Phase-folded long and short-period signals.}
 	{\it Top}: Long-period signal, as in Figure~\ref{fig:splitsignal}.
-	{\it Bottom}: Short-period signal. The reference phase is set to the most ``planetary'' dip.
+	{\it Bottom}: Short-period signal. The reference phase is set to the ``planetary'' dip.
 	Gray points are the 10 minute cadence \texttt{PDCSAP} flux.
 	Black points are binned to 100 points per period.
 	\label{fig:phasefold}
@@ -215,10 +160,10 @@ conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTF
 	\caption{ {\bf Scene used for blend analysis.}
 		{\it Top:} Mean TESS image of PTFO 8-8695 over Sector~6, with a log-stretch.
 		The position of PTFO 8-8695 is shown with a yellow star.
-		Neighbors with $T<17$ are shown with red crosses.
+		Neighbors with $T<17$ are shown with orange crosses.
 		The apertures used to measure the background and target star flux
 		are shown with \texttt{X} and \texttt{/} hatches, respectively.
-		{\it Bottom:} DDS2 $R$-band image of the same field, with a linear stretch. The circles show
+		{\it Bottom:} Digitized Sky Survey $R$-band image of the same field, with a linear stretch. The circles show
 		apertures of radii 1, 1.5, and 2.25 pixels used in part of our blend
 		analysis.
 		The pixel level TESS data show that ``Star A''  does not contribute variability at either of the two observed periods (see Section~\ref{subsec:blend}).
@@ -284,8 +229,83 @@ conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTF
 % orbital frequency! This gives both Aorb0 and Borb0 non-zero, while
 % Aorb1 and Borb1 seem to be more consistent with zero.
 
+
+\paragraph{Fourier analysis}
+Figure~\ref{fig:splitsignal} could also be given in the frequency
+domain, rather than the time domain.
+The largest peaks in 
+the Lomb-Scargle periodogram (CITE) of the raw light-curve are
+at $P_\rm {s}$ and $P_{\rm \ell}$.
+Both peaks of course have aliases.
+The $P_\rm {\ell}$ peak has larger ampitude.
+Subtracting out the long-period signal, the short-period signal
+dominates the periodogram, and vice-versa.
+The periodogram of the final residual (Figure~\ref{fig:splitsignal}
+bottom row) shows a weakly significant, poorly resolved peak at
+$\approx$8 days, consistent with the visual impression in the time
+domain that there could be a weak long-period signal present.
+
+
+\subsection{Blend considerations}
+\label{subsec:blend}
+
+The TESS pixels are $\approx21$'' per side, and so we need to consider
+whether light from neighboring stars could affect the photometry.  The
+scene is shown in Figure~\ref{fig:scene}.  
+The pixels used to
+measure the background level are indicated with an `\texttt{X}' hatch,
+and the pixels used for the final light-curve are shown with the
+`\texttt{/}' hatch.
+
+The target star, PTFO
+8-8605 (TIC 264461976), has a $T$-band magnitude of 14.0, and its position is shown with a
+star.  
+The other (unlabeled) star inside the target aperture, TIC 264461979, has $T=16.8$ and so cannot
+contribute a signal with relative amplitude 10\%.
+The only neighbor that is sufficiently close and bright that
+its light might contaminate the target star is TIC 264461980, with
+$T=14.8$, which we denote ``Star A''.  Star A is 23.6'' NW of our
+target, and based on the magnitude difference could contribute up to
+48\% the flux of our target star, PTFO 8-8695.  
+
+Because PTFO 8-8695 has previously been identified to have periodicity
+consistent with our measurement of $P_{\rm s}$, our main concern
+regarding blending is the degree to which we can be certain that the
+long-period signal at $P_{\rm \ell}$ also originates from PTFO 8-8695.
+We took two approaches towards determining the source of the long-period signal.
+
+First, we examined the CDIPS full frame image light-curves of the
+target, which are available on MAST \citep{bouma_cluster_2019}.
+The maximal peak-to-peak beat amplitude is consistently $\approx$10\%
+across apertures of radii 1, 1.5, and 2.25 pixels.
+If Star A were the source of the long-period variability, we would expect the
+peak variability amplitude to be smallest in the 1 pixel aperture, based on the
+separation of the sources (Figure~\ref{fig:scene}, bottom).
+From this test alone, it seems unlikely that Star A is the source of
+the long-period signal.
+
+Second, we examined the light-curve of each pixel in the scene
+individually.  We opted to use the
+interactive tools implemented in
+\texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
+source of the long-period variability, we would expect the pixels
+nearest to Star A to show a sinusoidal signal with
+amplitude exceeding $10\%$.  We find no evidence for
+this being the case.  The pixel directly below Star A does not
+clearly show the sinusoidal variability, and the peak-to-peak 
+variability in that pixel is $\lesssim 8\%$.  In contrast, the
+south-easternmost pixel within PTFO 8-8695's aperture (the pixel 
+furthest from Star A that was used in the optimal aperture) shows the $P_{\rm \ell}$ sinusoidal
+variability signal at $\approx 10\%$ amplitude.
+
+As there is no evidence in favor of a blend scenario, we
+conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTFO 8-8695.
+
 \section{Discussion}
 \label{sec:discussion}
+
+The TESS dip does not phase up where it is supposed to...
+\label{fig:o_minus_c}
 
 \section{Conclusions}
 \label{sec:conclusions}

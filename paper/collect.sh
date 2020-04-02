@@ -9,7 +9,7 @@ cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_phasefoldmap.pdf f2.pdf
 
 cp ../results/PTFO_8-8695_results/scene.pdf f3.pdf
 
-cp ../results/PTFO_8-8695_literature_and_TESS_times_O-C_vs_epoch_all_tanimoto2020_ephem.png f4.png
+cp ../results/ephemeris/O_minus_C.pdf f4.pdf
 
 cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_cornerplot.png f5.png
 pngquant f5.png --output f5_comp.png
