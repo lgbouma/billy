@@ -14,6 +14,8 @@ Plots:
 
     plot_scene
 
+    plot_O_minus_C
+
 Convenience:
     savefig
     format_ax
@@ -26,9 +28,14 @@ from itertools import product
 
 from billy.convenience import flatten as bflatten
 from billy.convenience import get_clean_ptfo_data
+from billy.models import linear_model
 
 from astrobase.lcmath import phase_magseries, phase_bin_magseries
 from astropy.stats import LombScargle
+from astropy import units as u, constants as const
+
+from numpy import array as nparr
+from astropy.time import Time
 
 def plot_periodogram(outdir, islinear=True):
 
@@ -251,6 +258,7 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
             ax.set_xlim([period_min, period_max])
         else:
             ax.set_xlim([_period_min, _period_max])
+            ax.set_xscale('log')
 
     axs[-1].set_xlabel('Period [days]')
 
@@ -529,7 +537,6 @@ def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
                ap_mask=0, bkgd_mask=0):
 
     from astrobase.plotbase import skyview_stamp
-    from astropy import units as u, constants as const
     from astropy.wcs import WCS
     from astroquery.mast import Catalogs
     import astropy.visualization as vis
@@ -703,3 +710,137 @@ def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
         fig.tight_layout(h_pad=1, w_pad=1)
 
     savefig(fig, outpath, dpi=300)
+
+
+
+def plot_O_minus_C(
+    x, y, sigma_y, theta_linear, refs, savpath=None, xlabel='Epoch',
+    ylabel='Deviation from constant period [min]', xlim=None, ylim=None,
+    ylim1=None, include_all_points=False, onlytransits=False):
+
+    xfit = np.linspace(10*np.min(x), 10*np.max(x), 10000)
+
+    if not onlytransits:
+        raise NotImplementedError
+
+    fig, a0 = plt.subplots(nrows=1, ncols=1, figsize=(4*1.3,3*1.3))
+
+    refs = refs.astype(str)
+    istess = ( np.core.defchararray.find(refs, 'tess')!=-1 )
+
+    O_m_C = (y - linear_model(theta_linear, x)) / theta_linear[1]
+
+    a0.errorbar(x, O_m_C, sigma_y, fmt='.k', ecolor='black', zorder=10, mew=0,
+                ms=5, elinewidth=1, alpha=1)
+
+    a0.plot(x[istess], O_m_C[istess], alpha=1, mew=0.5,
+            zorder=8, label='binned TESS', markerfacecolor='yellow',
+            markersize=9, marker='*', color='black', lw=0)
+
+    a0.hlines(
+        1/9, min(xlim), max(xlim), colors='gray', alpha=0.5,
+        linestyles='--', zorder=-2, linewidths=0.5
+    )
+    a0.hlines(
+        -1/9, min(xlim), max(xlim), colors='gray', alpha=0.5,
+        linestyles='--', zorder=-2, linewidths=0.5
+    )
+    a0.hlines(
+        0, min(xlim), max(xlim), colors='gray', alpha=0.5,
+        linestyles='-', zorder=-2, linewidths=0.5
+    )
+
+
+    props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
+                 linewidth=0)
+    txt = (
+        '$t_{{\mathrm{{s}}}}$ = {:.6f}\n$P_{{\mathrm{{s}}}}$ = {:.6f}$\,$d'.
+        format(theta_linear[0], theta_linear[1])
+    )
+    a0.text(0.03, 0.03, txt, ha='left', va='bottom', transform=a0.transAxes,
+            bbox=props, zorder=3)
+
+
+    # # transit axis
+    # for e, tm, err in zip(x[~istess],y[~istess],sigma_y[~istess]):
+    #     a0.errorbar(e,
+    #                 nparr(tm-linear_model(theta_linear, e)),
+    #                 err,
+    #                 fmt='.k', ecolor='black', zorder=10, mew=0,
+    #                 ms=7,
+    #                 elinewidth=1,
+    #                 alpha= 1-(err/np.max(sigma_y))**(1/2) + 0.1
+    #                )
+
+    # # for legend
+    # a0.errorbar(9001, 9001, np.mean(err),
+    #             fmt='.k', ecolor='black', zorder=9, alpha=1, mew=1, ms=3,
+    #             elinewidth=1, label='pre-TESS')
+
+
+    # # bin TESS points
+    # tess_x = x[istess]
+    # tess_y = y[istess]
+    # tess_sigma_y = sigma_y[istess]
+
+    # bin_tess_y = np.average(nparr(tess_y-linear_model(theta_linear, tess_x)),
+    #                         weights=1/tess_sigma_y**2)
+    # bin_tess_sigma_y = np.mean(tess_sigma_y)/len(tess_y)**(1/2)
+    # bin_tess_x = np.median(tess_x)
+
+    # print('\n----- error on binned tess measurement -----\n')
+    # print('{:.2f} seconds'.format(bin_tess_sigma_y*60))
+
+    # a0.plot(bin_tess_x, bin_tess_y, alpha=1, mew=0.5,
+    #         zorder=42, label='binned TESS', markerfacecolor='yellow',
+    #         markersize=9, marker='*', color='black', lw=0)
+    # a0.errorbar(bin_tess_x, bin_tess_y, bin_tess_sigma_y,
+    #             alpha=1, zorder=11, label='binned TESS',
+    #             fmt='s', mfc='firebrick', elinewidth=1,
+    #             ms=0,
+    #             mec='black',mew=1,
+    #             ecolor='black')
+
+
+    if include_all_points:
+        raise NotImplementedError
+
+    # add "time" axis on top
+    # make twin axis to show year on top
+
+    period = theta_linear[1]*u.day
+    t0 = theta_linear[0]*u.day
+    transittimes = np.linspace(xlim[0], xlim[1], 100)*period + t0
+    times = Time(transittimes, format='jd', scale='tdb')
+    a_top = a0.twiny()
+    a_top.scatter(times.decimalyear, np.zeros_like(times), s=0)
+    a_top.set_xlabel('Year', fontsize='large')
+
+    # hidden point for a1 legend
+    #a1.plot(1500, 3, alpha=1, mew=0.5,
+    #        zorder=-3, label='binned TESS time', markerfacecolor='yellow',
+    #        markersize=9, marker='*', color='black', lw=0)
+
+    #if not include_all_points:
+    #    a0.legend(loc='upper right', fontsize='x-small', framealpha=1)
+    #else:
+    #    a0.legend(loc='upper right', fontsize='x-small', framealpha=1)
+
+    # for a in [a0,a_top]:
+    #     format_ax(a)
+
+    a0.set_xlim(xlim)
+    # a0.set_ylim((-1.6, 1.6))
+
+    a0.get_yaxis().set_tick_params(which='both', direction='in')
+    a0.get_xaxis().set_tick_params(which='both', direction='in')
+    a0.tick_params(right=True, which='both', direction='in')
+    a_top.get_yaxis().set_tick_params(which='both', direction='in')
+    a_top.get_xaxis().set_tick_params(which='both', direction='in')
+
+    fig.text(0.5,0, xlabel, ha='center', fontsize='large')
+    fig.text(-0.02,0.5, '"Dip" obs. - calc. [$P_\mathrm{{s}}$]', va='center', rotation=90, fontsize='large')
+
+    fig.tight_layout(h_pad=0, w_pad=0)
+
+    savefig(fig, savpath, dpi=350)

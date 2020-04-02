@@ -32,3 +32,37 @@ def transit_model(params, t, texp=30/(60*24), mstar=1, rstar=1):
         .get_light_curve(orbit=orbit, r=r, t=t, texp=texp)
         .eval().flatten()
     )
+
+
+def linear_model(params, x, x_occ=None):
+    """
+    Linear model. Parameters (t0, P).
+    Must pass transit times.
+
+    If x_occ is none, returns model t_tra array.
+    If x_occ is a numpy array, returns tuple of model t_tra and t_occ arrays.
+    """
+    t0, period = params
+    if not isinstance(x_occ,np.ndarray):
+        return t0 + period*x
+    else:
+        return t0 + period*x, t0 + period/2 + period*x_occ
+
+
+def quadratic_model(params, x, x_occ=None):
+    """
+    Quadratic model. Parameters (t0, P, 0.5dP/dE).
+    Must pass transit times.
+
+    If x_occ is none, returns model t_tra array.
+    If x_occ is a numpy array, returns tuple of model t_tra and t_occ arrays.
+    """
+    t0, period, half_dP_dE = params
+    if not isinstance(x_occ,np.ndarray):
+        return t0 + period*x + half_dP_dE*x**2
+    else:
+        return (t0 + period*x + half_dP_dE*x**2,
+                t0 + period/2 + period*x_occ + half_dP_dE*x_occ**2
+               )
+
+
