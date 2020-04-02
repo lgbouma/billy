@@ -174,11 +174,27 @@ period hot Jupiter known.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f4.png}
+		\includegraphics[width=0.9\textwidth]{f4.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf foo.}
-		bar
+	\caption{
+    {\bf Timing residuals for PTFO 8-8695b from a decade of monitoring.}
+		Black points are times of ``dips'', minus the indicated linear ephemeris.
+    The $y$-axis is given in units of phase for the
+    short-period signal.
+    The star shows the binned TESS ephemeris.
+		``Dips'' have been observed by
+		\citet{van_eyken_ptf_2012}, \citet{ciardi_follow-up_2015},
+		\citet{yu_tests_2015}, \citet{raetz_yeti_2016},
+		\citet{onitsuka_multi-color_2017}, and \citet{tanimoto_evidence_2020}.
+    Certain dips ({\it e.g.}, the one at phase 0 in mid-2019) are
+    consistent with noise, and were likely reported because
+    something was {\it expected}, rather than convincingly {\it
+    observed}.
+    Horizontal dashed lines are drawn at $\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$,
+    highlighting what could be either a numerical coincidence or an observational
+    bias.
+    The orbital phase observed by TESS is consistent with that of \citet{tanimoto_evidence_2020}, and quite different from the original phase.
 		\label{fig:o_minus_c}
 	}
 \end{figure*}
@@ -235,9 +251,9 @@ Figure~\ref{fig:splitsignal} could also be given in the frequency
 domain, rather than the time domain.
 The largest peaks in 
 the Lomb-Scargle periodogram (CITE) of the raw light-curve are
-at $P_\rm {s}$ and $P_{\rm \ell}$.
+at $P_{\rm s}$ and $P_{\rm \ell}$.
 Both peaks of course have aliases.
-The $P_\rm {\ell}$ peak has larger ampitude.
+The $P_{\rm \ell}$ peak has larger ampitude.
 Subtracting out the long-period signal, the short-period signal
 dominates the periodogram, and vice-versa.
 The periodogram of the final residual (Figure~\ref{fig:splitsignal}

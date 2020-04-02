@@ -737,12 +737,15 @@ def plot_O_minus_C(
             zorder=8, label='binned TESS', markerfacecolor='yellow',
             markersize=9, marker='*', color='black', lw=0)
 
+    P_short = 0.44854
+    P_long = 0.49914
+    phase_diff = np.abs(P_long - P_short) / P_short
     a0.hlines(
-        1/9, min(xlim), max(xlim), colors='gray', alpha=0.5,
+        phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
         linestyles='--', zorder=-2, linewidths=0.5
     )
     a0.hlines(
-        -1/9, min(xlim), max(xlim), colors='gray', alpha=0.5,
+        -phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
         linestyles='--', zorder=-2, linewidths=0.5
     )
     a0.hlines(
