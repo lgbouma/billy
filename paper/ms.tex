@@ -110,68 +110,90 @@ period hot Jupiter known.
 % accelerations will be a relatively common type of ``false positive.''
 % Section~\ref{sec:conclusions} offers concluding remarks.
 
-\section{Observations}
+\section{The Data}
 \label{sec:observations}
 
-% \subsection{Observations}
+\subsection{Observations}
 
 PTFO 8-8695 was observed by TESS with Camera 1, CCD 1, from December
 15, 2018 to January 6, 2019, during the sixth sector of science
 operations.  The star is designated TIC 264461976 in the TESS Input
-Catalog \citep{stassun_TIC_2018}.  The pixel data for an $11\times11$
+Catalog \citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data for an $11\times11$
 array surrounding PTFO 8-8695 were averaged into 2-minute stacks by
 the onboard computer. 
-Each 2048$\times$2048 image was also averaged into 30-minute stacks,
-and saved as a ``full frame image'' (FFI).
+Each 2048$\times$2048 image from the CCD was also averaged into
+30-minute stacks, and saved as a ``full frame image'' (FFI).
 
-%FIXME these paragraphs are directly copied from WASP-4 paperI
-%FIXME these paragraphs are directly copied from WASP-4 paperI
-The data were downlinked via the Deep Space
-Network\footnote{\url{deepspace.jpl.nasa.gov}}, and the
-spacecraft timestamps were calibrated against the ground-station
-clocks.  The spacecraft clock times were then transformed by the
-Payload Operations Center into the {\it Temps Dynamique Barycentrique}
-(TDB) reference system.  The images were then reduced to lightcurves
+The 2-minute stacks for PTFO 8-8695 were then reduced to lightcurves
 by the Science Processing Operations Center (SPOC) at NASA
-Ames~\citep{jenkins_tess_2016}. 
+Ames~\citep{jenkins_tess_2016}.  Our main analysis used the resulting
+Presearch Data Conditioning (PDC) lightcurve, which had
+non-astrophysical variability removed through the methods discussed by
+\citet{smith_kepler_apertures_2017} and \citet{smith_kepler_PDC_2017}.
 
-%FIXME these paragraphs are directly copied from WASP-4 paperI
-%FIXME these paragraphs are directly copied from WASP-4 paperI
-We began our analysis with the Presearch Data Conditioning (PDC)
-lightcurve, which has had non-astrophysical variability removed
-through the methods discussed by \citet{smith_kepler_apertures_2017}
-and \citet{smith_kepler_PDC_2017}.  We then processed the lightcurve
-as follows.  First, we removed all points with non-zero quality flags.
-This removed data that might have been adversely affected by
-``momentum dumps,'' the firing of thrusters and resetting of reaction
-wheels\footnote{The spacecraft pointing and momentum dumps are
-described in the data release notes:
-\url{archive.stsci.edu/missions/tess/doc/tess_drn/tess_sector_07_drn09_v03.pdf}}
-that took place every 2.5 days during sector 2.  The data during these
-events were assigned quality flags corresponding to ``Reaction Wheel
-Desaturation Event'' and ``Manual Exclude'' \citep[][Table
-28]{tess_data_product_description_2018}.  For WASP-4, these flags were
-simultaneously set for 54 distinct cadences, and there were 10
-momentum dumps, averaging about 10 minutes of flagged data per dump.
-Out of caution, we clipped out an additional 10 minutes before and
-after every momentum dump.  We also removed the data within the first
-and last hours of both orbits, because of correlated red noise that
-appears during those time ranges. 
+We also processed the 30-minute image stacks separately, as part of
+the Cluster Difference Imaging
+Photometric Survey (CDIPS; \citep{bouma_cluster_2019}).
+The raw CDIPS light-curve shows identical features as the 2-minute
+light-curve, though at 30-minute cadence.
 
-%FIXME these paragraphs are directly copied from WASP-4 paperI
-%FIXME these paragraphs are directly copied from WASP-4 paperI
-All told, we removed 8\% of the original data points, and were left
-with 18{,}165 measurements of the relative flux of WASP-4.  We
-normalized the data by dividing out the median flux.  We converted the
-timestamps from BTJD$_{\rm TDB}$ into BJD$_{\rm TDB}$ by adding the
-appropriate 2{,}457{,}000 day offset
-\citep{tess_data_product_description_2018}.  Many of these and
+%FIXME: these numbers
+%FIXME: gotta mask orbit edges too...
+Both light-curves showed a clear discontinuous ``jump'' in the last
+few days, which seemed likely to be an instrumental systematic.
+We masked out HOW MUCH DATA(?).
+As an added precaution, we masked out the first and last N hours
+of each orbit, since there is often
+systematic red noise during those times.
+Finally, we removed all points with non-zero quality flags \citep[see][]{tess_data_product_description_2018}.
+
+%FIXME: these numbers
+All told, we removed N\% of the original data points, and were left
+with NN{,}NNN measurements of the relative flux of PTFO 8-8695.  We
+normalized the data by dividing out the median flux, and then
+subtracted out the mean.  Many of these and
 subsequent processing steps were performed using
-\texttt{astrobase}~\citep{bhatti_astrobase_2018}. We did not
-``flatten'' the lightcurves, as is often done with splines,
-polynomials, or Gaussian processes.  Instead, we modeled the
-out-of-transit flux variations simultaneously with the transit
-parameters, as described below.
+\texttt{astrobase}~\citep{bhatti_astrobase_2018}. 
+
+
+\subsection{Visual Inspection}
+
+Our initial inspection of the light-curve, in both its 2-minute PDCSAP
+and 30-minute FFI forms, revealed an obvious beat signal
+(Figure~\ref{fig:splitsignal}, top panel).
+
+As a precursor to more detailed analysis, we calculated generalized
+Lomb-Scargle periodograms using \texttt{astrobase}
+\citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
+The two largest peaks in the Lomb-Scargle periodogram of the
+light-curve were clearly separated at $P_{\rm s} \approx 0.448\,{\rm
+days}$ and $P_{\rm \ell} \approx 0.499\,{\rm days}$.  The $P_{\rm
+\ell}$ peak had the greater power of the two.  Smaller harmonics from
+each of these dominant two signals were also present.
+
+% 0.14 = A1+A2
+% 0.06 = A1-A2
+% 2A1 = 0.20
+% -> A1 = 0.1
+% 2A2 = 0.08
+% -> A2 = 0.04
+
+The beat peak-to-peak amplitude at maximum, when the two signals
+constructively interfere, is about 14\%.  At minimum, the peak-to-peak
+amplitude is about 6\%.  Assuming the signals are just two sinusoids,
+algebra tells us that the peak-to-peak amplitudes should therefore be
+10\% for the long-period signal, and 4\% for the short-period signal.
+These numbers will turn out to be over-estimates, but only slightly.
+
+Initial signal-processing experiments fitting out splines or sinusoids
+showed that after subtracting out the long-period signal, the short-period
+signal dominated the periodogram, and vice-versa.
+However it quickly became clear that it would be beneficial to simultaneously
+model the signals separately, in order to
+preserve the power at each frequency.
+
+
+
 
 % \subsection{Star and planet parameters}
 % \label{sec:system_parameters}
@@ -267,7 +289,7 @@ parameters, as described below.
 
 
 
-\section{Analysis}
+\section{The Model}
 \label{sec:analysis}
 
 \begin{figure*}[t]
@@ -365,72 +387,57 @@ parameters, as described below.
 \end{figure*}
 
 
-\subsection{Visual Inspection}
-
-Our initial inspection of the light-curve, in both its 2-minute PDCSAP
-and 30-minute FFI forms, revealed an obvious beat signal
-(Figure~\ref{fig:splitsignal}, top panel).
-
-As a precursor to more detailed analysis, we calculated generalized
-Lomb-Scargle periodograms using \texttt{astrobase}
-\citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}. 
-The two largest peaks in the Lomb-Scargle periodogram of the
-light-curve were clearly separated at $P_{\rm s} \approx 0.448\,{\rm
-days}$ and $P_{\rm \ell} \approx 0.499\,{\rm days}$.
-The $P_{\rm \ell}$ peak had the larger ampitude of the two.
-Smaller harmonics from each of these dominant two signals were also
-present.
-
-Initial fitting experiments with splines showed that subtracting out
-the long-period signal, the short-period signal dominated the
-periodogram, and vice-versa.
-However it quickly became clear that a mroe careful modelling approach
-than ``flattening'' the light-curve with splines or Gaussian proceses
-would be preferable, in order to preserve the power at each frequency.
-
-
 \subsection{Model Fitting}
 
 We opted to model the light-curve as a linear combination of Fourier
-harmonics at the short and long periods, plus a transit at the
-short period.
-Symbolically,
+harmonics at the short and long periods, plus a transit at the short
+period.  Symbolically,
 \begin{equation}
-  f = f_{\rm s} + f_{\rm \ell} = f_{\rm transit,s} + f_{\rm Fourier,s} + f_{\rm Fourier,\ell},
+  f = f_{\rm s} + f_{\rm \ell}
+  = f_{\rm transit,s} + f_{\rm Fourier,s} + f_{\rm Fourier,\ell},
 \end{equation}
 where $f_{\rm s}$ is the relative flux at the short period, and
-$f_{\rm \ell}$ is the flux at the long period.
-Decomposing each term,
+$f_{\rm \ell}$ is the flux at the long period.  Writing out the
+Fourier terms,
 \begin{align}
   f = &f_{\rm transit,s} + \sum_{n=1}^{n=N} A_n \sin(n\omega_{\rm s}t)
   + \sum_{n=1}^{n=N} B_n \cos(n\omega_{\rm s}t)\\
   &+ \sum_{m=1}^{m=M} A_m \sin(m[\omega_{\rm \ell}t+\phi_{\rm \ell}])
   + \sum_{m=1}^{m=M} B_m \cos([m\omega_{\rm \ell}t+\phi_{\rm \ell}]), \nonumber
 \end{align}
-for $N$ and $M$ the total number of harmonics at the short and long period, respective,
-$A_i$ and $B_i$ for each harmonic term, and $\omega_i = 2\pi / P_i$ the angular
-frequency for $i$ the short or long period index. 
-We fixed the ``phase-offset'' for the short period signal to be zero,
-and let the reference time of the long period signal float by introducing
-$\phi_{\rm \ell}$. 
-Since we did not a priori know how many harmonics would be
-appropriate, we let the number of harmonics vary, and
-used the Bayesian information criterion to choose the
-appropriate model.
+for $N$ and $M$ the total number of harmonics at the short and long
+period, respective, $A_i$ and $B_i$ for each harmonic term, and
+$\omega_i = 2\pi / P_i$ the angular frequency for $i$ the short or
+long period index.  We fixed the ``phase-offset'' for the short period
+signal to be zero, and let the reference time for the long period
+signal float by introducing $\phi_{\rm \ell}$.  Since we did not a
+priori know how many harmonics would be appropriate, we considered a
+number of different choices for $N$ and $M$, and used the Bayesian
+information criterion to choose the appropriate model.
 
-For example, one possible model could be a transit, plus $N=2$ harmonics
-of sines and cosines at the short period, plus $M=1$  harmonics at the long
-period.
-In this case, the free parameters would be as follows.
-For the transit, we would fit for
-the impact parameter, the planet-to-star radius ratio, two quadratic limb darkening parameters,
-the planet orbital period (equal to the short period), the reference time
-for the transit, and the mean flux.
-There would be 4 additional Fourier amplitudes at the short period,
-plus 2 Fourier amplitudes at the long period, and well as the long period itself
-and its phase.
-For this case, we therefore fitted 14 free parameters.
+As an example, one possible model could be a transit, plus $N=2$
+harmonics of sines and cosines at the short period, plus $M=1$
+harmonics at the long period.  In this case, the free parameters would
+be as follows.  For the transit, we would fit for the impact
+parameter, the planet-to-star radius ratio, two quadratic limb
+darkening parameters, the planet orbital period (equal to the short
+period), the reference time for the transit, and the mean flux.  There
+would be 4 additional Fourier amplitudes at the short period, plus 2
+Fourier amplitudes at the long period, and well as the long period
+itself and its phase.  For this case, we therefore fitted 14 free
+parameters.
 
+We implemented the models using \texttt{PyMC3}, which is built on \texttt{theano} \citep{salvatier_2016_PyMC3,exoplanet:theano}.
+For the Fourier terms, we used the default math operators.
+For the exoplanet transit, we used the model and derivatives implemented in
+\texttt{exoplanet} \citep{exoplanet:exoplanet}.
+
+Our priors were as follows.
+%FIXME
+
+We initialized to the maximum a posteriori (MAP) solution.
+We then sampled using \texttt{PyMC3}'s gradient-based No-U-Turns Sampler, 
+and used R-hat as our convergence diagnostic.
 
 
 % 
@@ -602,7 +609,7 @@ variability signal at $\approx 10\%$ amplitude.
 As there is no evidence in favor of a blend scenario, we
 conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTFO 8-8695.
 
-\section{Discussion}
+\section{Interpretation}
 \label{sec:discussion}
 
 The TESS dip does not phase up where it is supposed to...
@@ -675,13 +682,18 @@ The TESS dip does not phase up where it is supposed to...
   \texttt{astroquery} \citep{astroquery_2018},
   % \texttt{BATMAN} \citep{kreidberg_batman_2015},
   \texttt{corner} \citep{corner_2016},
-  \texttt{emcee} \citep{foreman-mackey_emcee_2013},
+  %\texttt{emcee} \citep{foreman-mackey_emcee_2013},
+  \texttt{exoplanet} \citep{exoplanet:agol19}
+  \texttt{exoplanet} \citep{exoplanet:exoplanet}, and its
+  dependencies \citep{exoplanet:agol19, exoplanet:kipping13, exoplanet:luger18,
+  	exoplanet:theano}.
   \texttt{IPython} \citep{perez_2007},
 	\texttt{lightkurve} \citep{lightkurve_2018},
   \texttt{matplotlib} \citep{hunter_matplotlib_2007}, 
   \texttt{MESA} \citep{paxton_modules_2011,paxton_modules_2013,paxton_modules_2015}
   \texttt{numpy} \citep{walt_numpy_2011}, 
   \texttt{pandas} \citep{mckinney-proc-scipy-2010},
+  \texttt{PyMC3} \citep{salvatier_2016_PyMC3},
   \texttt{radvel} \citep{fulton_radvel_2018},
   % \texttt{scikit-learn} \citep{scikit-learn},
   \texttt{scipy} \citep{jones_scipy_2001}.
