@@ -67,7 +67,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
   PTFO$\,$8-8695b could be the youngest, shortest-period 
   hot Jupiter known.  However it has not been shown to be a planet.
   TESS recently observed PTFO$\,$8-8695 for one month.
-  The TESS light-curve shows that the dominant variability in this
+  The TESS lightcurve shows that the dominant variability in this
   system is a sinusoidal modulation with a ``long'' period $P_{\rm
   \ell}$
   of 11.96 hours, likely caused by stellar rotation.
@@ -83,9 +83,10 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
   The TESS epoch of the dip is consistent with recent observations by
   Tanimoto et al., and differs from the discovery epoch by 5.14 hours.
   Planets do not ``jump'' in orbital phase.
-  PTFO$\,$8-8695 therefore seems broadly consistent with the
-  ``transient dipping'' phenomenology observed in many young M dwarfs,
-  and seems unlikely to be a planet.
+  Given the available evidence,
+  PTFO$\,$8-8695 seems consistent with the
+  ``transient dipping'' phenomenology observed in many young M dwarfs.
+  It seems rather unlikely to be a planet.
 \end{abstract}
 
 %TODO
@@ -94,7 +95,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
-If it were a planet, PTFO$\,$8-8695b would be exceptional.
+If PTFO$\,$8-8695b were a planet, it would be exceptional.
 A transiting hot Jupiter, orbiting a $\approx$3$\,$Myr old M dwarf
 in ORION would make it the youngest hot Jupiter known.
 Its orbital period of only 12 HOURS would also make it the shortest
@@ -118,47 +119,48 @@ period hot Jupiter known.
 PTFO 8-8695 was observed by TESS with Camera 1, CCD 1, from December
 15, 2018 to January 6, 2019, during the sixth sector of science
 operations.  The star is designated TIC 264461976 in the TESS Input
-Catalog \citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data for an $11\times11$
-array surrounding PTFO 8-8695 were averaged into 2-minute stacks by
-the onboard computer. 
-Each 2048$\times$2048 image from the CCD was also averaged into
-30-minute stacks, and saved as a ``full frame image'' (FFI).
+Catalog \citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data
+for an $11\times11$ array surrounding PTFO 8-8695 were averaged into
+2-minute stacks by the onboard computer.  Each 2048$\times$2048 image
+from the CCD was also averaged into 30-minute stacks, and saved as a
+``full frame image'' (FFI).
 
 The 2-minute stacks for PTFO 8-8695 were then reduced to lightcurves
 by the Science Processing Operations Center (SPOC) at NASA
 Ames~\citep{jenkins_tess_2016}.  Our main analysis used the resulting
-Presearch Data Conditioning (PDC) lightcurve, which had
-non-astrophysical variability removed through the methods discussed by
-\citet{smith_kepler_apertures_2017} and \citet{smith_kepler_PDC_2017}.
+Presearch Data Conditioning (PDC) lightcurve.  The PDC lightcurve
+aperture used pixels chosen to maximize the SNR of the total flux of
+the target \citep{smith_kepler_apertures_2017}.  Non-astrophysical
+variability was removed through the methods discussed by
+\citet{smith_kepler_PDC_2017}.
 
-We also processed the 30-minute image stacks separately, as part of
-the Cluster Difference Imaging
-Photometric Survey (CDIPS; \citep{bouma_cluster_2019}).
-The raw CDIPS light-curve shows identical features as the 2-minute
-light-curve, though at 30-minute cadence.
+As an independent check on the shorter cadence SPOC light-curve, we
+separately processed the 30-minute image stacks as part of the Cluster
+Difference Imaging Photometric Survey (CDIPS;
+\citep{bouma_cluster_2019}).  The CDIPS lightcurve used a circular
+aperture with radius 1 pixel.
 
-%FIXME: these numbers
-%FIXME: gotta mask orbit edges too...
-Both light-curves showed a clear discontinuous ``jump'' in the last
-few days, which seemed likely to be an instrumental systematic.
-We masked out HOW MUCH DATA(?).
-As an added precaution, we masked out the first and last N hours
-of each orbit, since there is often
-systematic red noise during those times.
-Finally, we removed all points with non-zero quality flags \citep[see][]{tess_data_product_description_2018}.
+For data cleaning, we removed all points with non-zero quality flags
+\citep[{\it e.g.},][]{tess_data_product_description_2018}.  We also
+masked out the first and last 6 hours of each orbit, since there is
+often systematic red noise during those times.  Both the CDIPS and PDC
+lightcurves showed a clear discontinuous ``jump'' in the last few days
+of orbit 20, which seemed likely to be an instrumental systematic.  We
+correspondingly masked out times from BJD 2458488.3 until the end of
+the orbit.  The PDC lightcurve initially had 15{,}678 points.  The
+quality cut removed 854, masking the orbit edges removed 716, and
+removing the final few days of orbit 20 removed 1079.  83\% of the
+highest-quality data remained.
 
-%FIXME: these numbers
-All told, we removed N\% of the original data points, and were left
-with NN{,}NNN measurements of the relative flux of PTFO 8-8695.  We
-normalized the data by dividing out the median flux, and then
-subtracted out the mean.  Many of these and
-subsequent processing steps were performed using
+We normalized these points by dividing out the median flux. We then
+subtracted by unity to simplify subsequent analysis.  Many of these
+and subsequent processing steps were performed using
 \texttt{astrobase}~\citep{bhatti_astrobase_2018}. 
 
 
 \subsection{Visual Inspection}
 
-Our initial inspection of the light-curve, in both its 2-minute PDCSAP
+Our initial inspection of the lightcurve, in both its 2-minute PDCSAP
 and 30-minute FFI forms, revealed an obvious beat signal
 (Figure~\ref{fig:splitsignal}, top panel).
 
@@ -166,7 +168,7 @@ As a precursor to more detailed analysis, we calculated generalized
 Lomb-Scargle periodograms using \texttt{astrobase}
 \citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
 The two largest peaks in the Lomb-Scargle periodogram of the
-light-curve were clearly separated at $P_{\rm s} \approx 0.448\,{\rm
+lightcurve were clearly separated at $P_{\rm s} \approx 0.448\,{\rm
 days}$ and $P_{\rm \ell} \approx 0.499\,{\rm days}$.  The $P_{\rm
 \ell}$ peak had the greater power of the two.  Smaller harmonics from
 each of these dominant two signals were also present.
@@ -183,14 +185,14 @@ constructively interfere, is about 14\%.  At minimum, the peak-to-peak
 amplitude is about 6\%.  Assuming the signals are just two sinusoids,
 algebra tells us that the peak-to-peak amplitudes should therefore be
 10\% for the long-period signal, and 4\% for the short-period signal.
-These numbers will turn out to be over-estimates, but only slightly.
+These order-of-magnitude numbers will turn out to be roughly correct.
 
 Initial signal-processing experiments fitting out splines or sinusoids
-showed that after subtracting out the long-period signal, the short-period
-signal dominated the periodogram, and vice-versa.
-However it quickly became clear that it would be beneficial to simultaneously
-model the signals separately, in order to
-preserve the power at each frequency.
+showed that after subtracting out the long-period signal, the
+short-period signal dominated the periodogram, and vice-versa.
+However it quickly became clear that it would be beneficial to
+simultaneously model the signals separately, in order to preserve the
+power at each frequency.
 
 
 
@@ -298,7 +300,7 @@ preserve the power at each frequency.
 		\includegraphics[width=0.98\textwidth]{f1.png}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf TESS light-curve of PTFO 8-8695 (Sector 6, Orbit 1).}
+	\caption{ {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 1).}
 	{\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux versus time. The beat period of 4.48 days is visible by eye.
 	The model plotted underneath the data includes 2 harmonics at the long
 	period $P_{\rm \ell}$, plus 2 harmonics and a transit at the short period $P_{\rm s}$.
@@ -389,7 +391,7 @@ preserve the power at each frequency.
 
 \subsection{Model Fitting}
 
-We opted to model the light-curve as a linear combination of Fourier
+We opted to model the lightcurve as a linear combination of Fourier
 harmonics at the short and long periods, plus a transit at the short
 period.  Symbolically,
 \begin{equation}
@@ -403,7 +405,7 @@ Fourier terms,
   f = &f_{\rm transit,s} + \sum_{n=1}^{n=N} A_n \sin(n\omega_{\rm s}t)
   + \sum_{n=1}^{n=N} B_n \cos(n\omega_{\rm s}t)\\
   &+ \sum_{m=1}^{m=M} A_m \sin(m[\omega_{\rm \ell}t+\phi_{\rm \ell}])
-  + \sum_{m=1}^{m=M} B_m \cos([m\omega_{\rm \ell}t+\phi_{\rm \ell}]), \nonumber
+  + \sum_{m=1}^{m=M} B_m \cos(m[\omega_{\rm \ell}t+\phi_{\rm \ell}]), \nonumber
 \end{align}
 for $N$ and $M$ the total number of harmonics at the short and long
 period, respective, $A_i$ and $B_i$ for each harmonic term, and
@@ -562,7 +564,7 @@ whether light from neighboring stars could affect the photometry.  The
 scene is shown in Figure~\ref{fig:scene}.  
 The pixels used to
 measure the background level are indicated with an `\texttt{X}' hatch,
-and the pixels used for the final light-curve are shown with the
+and the pixels used for the final lightcurve are shown with the
 `\texttt{/}' hatch.
 
 The target star, PTFO
@@ -582,7 +584,7 @@ regarding blending is the degree to which we can be certain that the
 long-period signal at $P_{\rm \ell}$ also originates from PTFO 8-8695.
 We took two approaches towards determining the source of the long-period signal.
 
-First, we examined the CDIPS full frame image light-curves of the
+First, we examined the CDIPS full frame image lightcurves of the
 target, which are available on MAST \citep{bouma_cluster_2019}.
 The maximal peak-to-peak beat amplitude is consistently $\approx$10\%
 across apertures of radii 1, 1.5, and 2.25 pixels.
@@ -592,7 +594,7 @@ separation of the sources (Figure~\ref{fig:scene}, bottom).
 From this test alone, it seems unlikely that Star A is the source of
 the long-period signal.
 
-Second, we examined the light-curve of each pixel in the scene
+Second, we examined the lightcurve of each pixel in the scene
 individually.  We opted to use the
 interactive tools implemented in
 \texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
