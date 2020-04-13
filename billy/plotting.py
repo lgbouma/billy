@@ -127,7 +127,7 @@ def plot_sampleplot(m, outpath, N_samples=100):
     savefig(fig, outpath, writepdf=0, dpi=300)
 
 
-def plot_splitsignal_map(m, outpath):
+def plot_splitsignal_map(m, outpath, part='i'):
     """
     y_obs + y_MAP + y_rot + y_orb
     things at rotation frequency
@@ -183,7 +183,21 @@ def plot_splitsignal_map(m, outpath):
         #a.legend()
         format_ax(a)
         a.set_ylim((-.075, .075))
-        a.set_xlim((0, 9))
+        if part == 'i':
+            a.set_xlim((0, 9))
+        else:
+            a.set_xlim((10, 20.3))
+
+    props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
+                 linewidth=0)
+    if part == 'i':
+        axs[3].text(0.97, 0.03, 'Orbit 19', ha='right', va='bottom',
+                    transform=axs[3].transAxes, bbox=props, zorder=3,
+                    fontsize='x-large')
+    else:
+        axs[3].text(0.97, 0.03, 'Orbit 20', ha='right', va='bottom',
+                    transform=axs[3].transAxes, bbox=props, zorder=3,
+                    fontsize='x-large')
 
     fig.tight_layout(h_pad=0., w_pad=0.)
     savefig(fig, outpath, writepdf=1, dpi=300)

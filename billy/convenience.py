@@ -124,6 +124,7 @@ def get_clean_ptfo_data(binsize=120*5):
 
     time_offset = 1468.2
     x_obs -= time_offset
+    # reverse offset: 2457000 + 1468.2 = 2458468.2
 
     N_iv = len(x_obs) # after dropping end of orbit 20
 
@@ -143,6 +144,8 @@ def get_clean_ptfo_data(binsize=120*5):
         x_obs = bd['binnedtimes']
         y_obs = bd['binnedmags']
         y_err = bd['binnederrs']
+
+    assert len(x_obs) == len(y_obs) == len(y_err)
 
     return (
         x_obs.astype(np.float64),
