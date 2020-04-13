@@ -4,6 +4,7 @@ Fit data for "transit_NsincosPorb_NsincosProt" model.
 import os
 import numpy as np, pandas as pd, matplotlib.pyplot as plt, pymc3 as pm
 from os.path import join
+from itertools import product
 
 from billy.modelfitter import ModelFitter, ModelParser
 import billy.plotting as bp
@@ -15,14 +16,14 @@ from billy import __path__
 def main(modelid):
 
     traceplot = 0
-    sampleplot = 0
-    cornerplot = 0
+    sampleplot = 1
+    cornerplot = 1
     splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
-                           '20200320_linear_amplitude_prior')
+                           '20200413_v0')
 
     ##########
 
@@ -60,8 +61,10 @@ def main(modelid):
             outpath = join(PLOTDIR, '{}_{}_phasefoldpost.png'.format(REALID, modelid))
             bp.plot_phasefold_post(m, ydict, outpath)
         if do_map:
-            outpath = join(PLOTDIR, '{}_{}_splitsignalmap.png'.format(REALID, modelid))
-            ydict = bp.plot_splitsignal_map(m, outpath)
+            outpath = join(PLOTDIR, '{}_{}_splitsignalmap_i.png'.format(REALID, modelid))
+            ydict = bp.plot_splitsignal_map(m, outpath, part='i')
+            outpath = join(PLOTDIR, '{}_{}_splitsignalmap_ii.png'.format(REALID, modelid))
+            ydict = bp.plot_splitsignal_map(m, outpath, part='ii')
             outpath = join(PLOTDIR, '{}_{}_splitsignalmap_periodogram.png'.format(REALID, modelid))
             bp.plot_splitsignal_map_periodogram(ydict, outpath)
             outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
@@ -76,7 +79,13 @@ def main(modelid):
 
 
 if __name__ == "__main__":
-    main('transit_2sincosPorb_2sincosProt')
     # main('transit_1sincosPorb_1sincosProt')
+
+    # TODO:
+    for N, M in product(range(1,4), range(1,4)):
+        main('transit_{}sincosPorb_{}sincosProt'.format(N,M))
+
+    # NOTE: DEPRECATED
+    # main('transit_2sincosPorb_2sincosProt')
     # main('transit_1sincosPorb_2sincosProt')
     # main('transit_2sincosPorb_1sincosProt')
