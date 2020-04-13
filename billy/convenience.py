@@ -118,9 +118,9 @@ def get_clean_ptfo_data(binsize=120*5):
     N_iii = len(time) # after orbit edge masking
 
     # 2457000 + 1488.3 = 2458488.3
-    sel = (x_obs < 1488.3)
+    sel = (time < 1488.3)
 
-    x_obs = x_obs[sel]
+    x_obs = time[sel]
 
     time_offset = 1468.2
     x_obs -= time_offset
