@@ -4,7 +4,7 @@ from collections import OrderedDict
 from astropy.io import fits
 
 from astrobase.lcmath import time_bin_magseries_with_errs
-
+from cdips.lcproc.mask_orbit_edges import mask_orbit_start_and_end
 
 def chisq(y_mod, y_obs, y_err):
     return np.sum( (y_mod - y_obs )**2 / y_err**2 )
@@ -89,17 +89,53 @@ def get_ptfo_data(cdips=1, spoc=0):
 
 def get_clean_ptfo_data(binsize=120*5):
     """
-    get data. quality cut and remove weird end points. bin to 10 minutes, to
+    get data. mask orbit edges... quality cut and remove weird end points. bin to 10 minutes, to
     speed fitting (which is linear in time).
     """
 
     d = get_ptfo_data(cdips=0, spoc=1)[0]
+
+    time = d.TIME
+    flux = d.PDCSAP_FLUX
+    flux_err = d.PDCSAP_FLUX_ERR
+
+    N_i = len(time) # initial
+
     quality = d.QUALITY
-    x_obs = d.TIME - 1468.2
-    sel = (quality == 0) & (x_obs < 20.1)
-    x_obs = d.TIME[sel] - 1468.2
-    y_obs = (d.PDCSAP_FLUX[sel] / np.nanmedian(d.PDCSAP_FLUX[sel])) - 1
-    y_err = d.PDCSAP_FLUX_ERR[sel] / np.nanmedian(d.PDCSAP_FLUX[sel])
+    time, flux, flux_err = (
+        time[quality == 0], flux[quality == 0], flux_err[quality == 0]
+    )
+
+    N_ii = len(time) # after quality cut
+
+    time, flux, sel = mask_orbit_start_and_end(time, flux, orbitgap=0.5,
+                                               expected_norbits=2,
+                                               orbitpadding=6/(24),
+                                               raise_expectation_error=True,
+                                               return_inds=True)
+    flux_err = flux_err[sel]
+
+    N_iii = len(time) # after orbit edge masking
+
+    # 2457000 + 1488.3 = 2458488.3
+    sel = (x_obs < 1488.3)
+
+    x_obs = x_obs[sel]
+
+    time_offset = 1468.2
+    x_obs -= time_offset
+
+    N_iv = len(x_obs) # after dropping end of orbit 20
+
+    y_obs = (flux[sel] / np.nanmedian(flux[sel])) - 1
+    y_err = flux_err[sel] / np.nanmedian(flux[sel])
+
+    print(42*'-')
+    print('N initial: {}'.format(N_i))
+    print('N after quality cut: {}'.format(N_ii))
+    print('N after quality cut + orbit edge masking: {}'.format(N_iii))
+    print('N after quality cut + orbit edge masking + dropping end of orbit 20: {}'.format(N_iv))
+    print(42*'-')
 
     if isinstance(binsize, int):
         bd = time_bin_magseries_with_errs(x_obs, y_obs, y_err, binsize=binsize,
