@@ -27,16 +27,13 @@ def get_bic(m, ydict):
     χ2 = chisq(y_mod, y_obs, y_err)
 
     k = None
-    if m.modelid == 'transit_1sincosPorb_1sincosProt':
-        k = 13
-    if m.modelid == 'transit_2sincosPorb_1sincosProt':
-        k = 15
-    if m.modelid == 'transit_1sincosPorb_2sincosProt':
-        k = 15
-    if m.modelid == 'transit_2sincosPorb_2sincosProt':
-        k = 17
-    if k is None:
-        raise NotImplementedError
+    _N = int(m.modelid.split('_')[1][0])
+    _M = int(m.modelid.split('_')[2][0])
+
+    k_tra = 7
+    k_Porb = 2*_N # amplitudes
+    k_Prot = 2*_M + 2 # amplitudes, plus period and phase
+    k = k_tra + k_Porb + k_Prot
 
     n = len(y_obs)
     BIC = bic( χ2, k, n )
@@ -194,6 +191,9 @@ def initialize_ptfo_prior_d(x_obs, modelcomponents):
                     elif ix == 1:
                         prior_d['A{}{}'.format(k,ix)] = 1e-2
                         prior_d['B{}{}'.format(k,ix)] = 1e-2
+                    elif ix == 2:
+                        prior_d['A{}{}'.format(k,ix)] = 1e-2
+                        prior_d['B{}{}'.format(k,ix)] = 1e-2
                     else:
                         raise NotImplementedError
 
@@ -204,6 +204,9 @@ def initialize_ptfo_prior_d(x_obs, modelcomponents):
                     elif ix == 1:
                         prior_d['A{}{}'.format(k,ix)] = 1e-2
                         prior_d['B{}{}'.format(k,ix)] = -1e-2
+                    elif ix == 2:
+                        prior_d['A{}{}'.format(k,ix)] = 1e-2
+                        prior_d['B{}{}'.format(k,ix)] = 1e-2
                     else:
                         raise NotImplementedError
 
