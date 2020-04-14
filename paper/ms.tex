@@ -114,6 +114,123 @@ period hot Jupiter known.
 \section{The Data}
 \label{sec:observations}
 
+\begin{figure*}[t!]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=1\textwidth]{f1.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{
+		{\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 19).}
+		{\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux
+		versus time. The beat period of 4.48 days is visible by eye.  The
+		model plotted underneath the data includes 2 harmonics at the long
+		period $P_{\rm \ell}$, plus 2 harmonics and a transit at the short
+		period $P_{\rm s}$.
+		{\it Upper middle}: Long-period signal, equal to the raw signal
+		minus the short-period signal.
+		{\it Lower middle}: Short-period signal, equal to the raw signal
+		minus the long-period signal.
+		{\it Bottom}: residual.  The data are binned from 2 to 10 minute
+		cadence as a convenience for plotting and fitting.
+		\label{fig:splitsignal}
+	}
+\end{figure*}
+
+%\newpage
+\begin{figure*}[hbtp]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=1\textwidth]{f2.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 20).}
+		Panels are as in Figure~\ref{fig:splitsignal}.
+		\label{fig:splitsignalii}
+	}
+\end{figure*}
+%\newpage
+
+
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.95\textwidth]{f3.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf Phase-folded long and short-period signals.}
+		{\it Top}: Long-period signal, as in Figure~\ref{fig:splitsignal}.
+		{\it Bottom}: Short-period signal. The reference phase is set to the
+		``planetary'' dip.  Gray points are the 10 minute cadence
+		\texttt{PDCSAP} flux.  Black points are binned to 100 points per
+		period.
+		\label{fig:phasefold}
+	}
+\end{figure*}
+
+
+\begin{figure}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.48\textwidth]{f4.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf Scene used for blend analysis.}
+		{\it Top:} Mean TESS image of PTFO 8-8695 over Sector~6, with a
+		log-stretch.  The position of PTFO 8-8695 is shown with a yellow
+		star.  Neighbors with $T<17$ are shown with orange crosses.  The
+		apertures used to measure the background and target star flux are
+		shown with \texttt{X} and \texttt{/} hatches, respectively.
+		{\it Bottom:} Digitized Sky Survey $R$-band image of the same
+		field, with a linear stretch. The circles show apertures of radii
+		1, 1.5, and 2.25 pixels used in part of our blend analysis.  The
+		pixel level TESS data show that ``Star A''  does not contribute
+		variability at either of the two observed periods (see
+		Section~\ref{subsec:blend}).
+		\label{fig:scene}
+	}
+\end{figure}
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.9\textwidth]{f5.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{
+		{\bf Timing residuals for PTFO 8-8695b from a decade of monitoring.}
+		Black points are times of ``dips'', minus the indicated linear
+		ephemeris.  The $y$-axis is given in units of phase for the
+		short-period signal.  The star shows the binned TESS ephemeris.
+		``Dips'' have been observed by \citet{van_eyken_ptf_2012},
+		\citet{ciardi_follow-up_2015}, \citet{yu_tests_2015},
+		\citet{raetz_yeti_2016}, \citet{onitsuka_multi-color_2017}, and
+		\citet{tanimoto_evidence_2020}.  Certain dips ({\it e.g.}, the one
+		at phase 0 in mid-2019) are consistent with noise, and were likely
+		reported because something was {\it expected}, rather than
+		convincingly {\it observed}.  Horizontal dashed lines are drawn at
+		$\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$, highlighting what
+		could be either a numerical coincidence or an observational bias.
+		The orbital phase observed by TESS is consistent with that of
+		\citet{tanimoto_evidence_2020}, and quite different from the
+		original phase.
+		\label{fig:o_minus_c}
+	}
+\end{figure*}
+
+\begin{figure*}[t!]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.9\textwidth]{f6_comp.png}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf foo.}
+		bar
+		\label{fig:corner}
+	}
+\end{figure*}
+
 \subsection{Observations}
 
 PTFO 8-8695 was observed by TESS with Camera 1, CCD 1, from December
@@ -201,122 +318,6 @@ power at each frequency.
 \section{The Model}
 \label{sec:analysis}
 
-\begin{figure*}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.98\textwidth]{f1.pdf}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{
-  {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 19).}
-  {\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux
-  versus time. The beat period of 4.48 days is visible by eye.  The
-  model plotted underneath the data includes 2 harmonics at the long
-  period $P_{\rm \ell}$, plus 2 harmonics and a transit at the short
-  period $P_{\rm s}$.
-  {\it Upper middle}: Long-period signal, equal to the raw signal
-  minus the short-period signal.
-  {\it Lower middle}: Short-period signal, equal to the raw signal
-  minus the long-period signal.
-  {\it Bottom}: residual.  The data are binned from 2 to 10 minute
-  cadence as a convenience for plotting and fitting.
-  \label{fig:splitsignal}
-	}
-\end{figure*}
-
-\begin{figure*}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.98\textwidth]{f2.pdf}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{ {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 20).}
-  Panels are as in Figure~\ref{fig:splitsignal}.
-  \label{fig:splitsignalii}
-	}
-\end{figure*}
-
-
-
-\begin{figure*}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.95\textwidth]{f3.pdf}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{ {\bf Phase-folded long and short-period signals.}
-	{\it Top}: Long-period signal, as in Figure~\ref{fig:splitsignal}.
-  {\it Bottom}: Short-period signal. The reference phase is set to the
-  ``planetary'' dip.  Gray points are the 10 minute cadence
-  \texttt{PDCSAP} flux.  Black points are binned to 100 points per
-  period.
-	\label{fig:phasefold}
-	}
-\end{figure*}
-
-
-\begin{figure}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.48\textwidth]{f4.pdf}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{ {\bf Scene used for blend analysis.}
-    {\it Top:} Mean TESS image of PTFO 8-8695 over Sector~6, with a
-    log-stretch.  The position of PTFO 8-8695 is shown with a yellow
-    star.  Neighbors with $T<17$ are shown with orange crosses.  The
-    apertures used to measure the background and target star flux are
-    shown with \texttt{X} and \texttt{/} hatches, respectively.
-    {\it Bottom:} Digitized Sky Survey $R$-band image of the same
-    field, with a linear stretch. The circles show apertures of radii
-    1, 1.5, and 2.25 pixels used in part of our blend analysis.  The
-    pixel level TESS data show that ``Star A''  does not contribute
-    variability at either of the two observed periods (see
-    Section~\ref{subsec:blend}).
-		\label{fig:scene}
-	}
-\end{figure}
-
-\begin{figure*}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f5.pdf}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{
-    {\bf Timing residuals for PTFO 8-8695b from a decade of monitoring.}
-    Black points are times of ``dips'', minus the indicated linear
-    ephemeris.  The $y$-axis is given in units of phase for the
-    short-period signal.  The star shows the binned TESS ephemeris.
-    ``Dips'' have been observed by \citet{van_eyken_ptf_2012},
-    \citet{ciardi_follow-up_2015}, \citet{yu_tests_2015},
-    \citet{raetz_yeti_2016}, \citet{onitsuka_multi-color_2017}, and
-    \citet{tanimoto_evidence_2020}.  Certain dips ({\it e.g.}, the one
-    at phase 0 in mid-2019) are consistent with noise, and were likely
-    reported because something was {\it expected}, rather than
-    convincingly {\it observed}.  Horizontal dashed lines are drawn at
-    $\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$, highlighting what
-    could be either a numerical coincidence or an observational bias.
-    The orbital phase observed by TESS is consistent with that of
-    \citet{tanimoto_evidence_2020}, and quite different from the
-    original phase.
-		\label{fig:o_minus_c}
-	}
-\end{figure*}
-
-\begin{figure*}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f6_comp.png}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{ {\bf foo.}
-    bar
-		\label{fig:corner}
-	}
-\end{figure*}
-
-
 \subsection{Model Description}
 
 We opted to model the lightcurve as a linear combination of Fourier
@@ -380,13 +381,13 @@ lightcurves.
 \subsection{Fitting Results}
 
 \input{model_comparison_table.tex}
-\input{model_posterior_table.tex}
+%\input{model_posterior_table.tex}
 
 We considered nine models, with the number of harmonics per frequency
 $N$ and $M$ ranging from one to three.  To select our preferred model,
 we used the Bayesian information criterion
 (Table~\ref{tab:modelcompare}).  The model with the lowest BIC had
-$N=2$ harmonics at the short 11.74$\,$hr period, and $M=2$ harmonics
+two harmonics at the short 11.74$\,$hr period, and two harmonics
 at the long 11.96$\,$hr period.  All of the models have reduced
 $\chi^2$ ranging between 1.37 and 1.51, which suggests a plausible,
 though not perfect agreement between the data and models.
@@ -488,7 +489,7 @@ conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTF
 \label{sec:discussion}
 
 The TESS dip does not phase up where it is supposed to...
-\label{fig:o_minus_c}
+Figure~\ref{fig:o_minus_c}
 
 \section{Conclusions}
 \label{sec:conclusions}
