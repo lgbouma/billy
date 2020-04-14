@@ -20,6 +20,7 @@ def main(modelid):
     cornerplot = 1
     splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
+    OVERWRITE = 0
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
@@ -40,7 +41,7 @@ def main(modelid):
     mp = ModelParser(modelid)
     prior_d = initialize_ptfo_prior_d(x_obs, mp.modelcomponents)
     m = ModelFitter(modelid, x_obs, y_obs, y_err, prior_d, plotdir=PLOTDIR,
-                    pklpath=pklpath)
+                    pklpath=pklpath, overwrite=OVERWRITE)
 
     print(pm.summary(m.trace, varnames=list(prior_d.keys())))
 
@@ -66,7 +67,8 @@ def main(modelid):
             outpath = join(PLOTDIR, '{}_{}_splitsignalmap_ii.png'.format(REALID, modelid))
             ydict = bp.plot_splitsignal_map(m, outpath, part='ii')
             outpath = join(PLOTDIR, '{}_{}_splitsignalmap_periodogram.png'.format(REALID, modelid))
-            bp.plot_splitsignal_map_periodogram(ydict, outpath)
+            if not os.path.exists(outpath) or m.OVERWRITE:
+                bp.plot_splitsignal_map_periodogram(ydict, outpath)
             outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
             bp.plot_phasefold_map(m, ydict, outpath)
             get_bic(m, ydict)
@@ -79,11 +81,12 @@ def main(modelid):
 
 
 if __name__ == "__main__":
-    # main('transit_1sincosPorb_1sincosProt')
 
-    # TODO:
     for N, M in product(range(1,4), range(1,4)):
         main('transit_{}sincosPorb_{}sincosProt'.format(N,M))
+
+    # NOTE: DEBUG
+    # main('transit_1sincosPorb_1sincosProt')
 
     # NOTE: DEPRECATED
     # main('transit_2sincosPorb_2sincosProt')
