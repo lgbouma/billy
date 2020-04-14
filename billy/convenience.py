@@ -1,5 +1,5 @@
 import numpy as np, pandas as pd
-import collections
+import collections, pickle, os
 from collections import OrderedDict
 from astropy.io import fits
 
@@ -18,7 +18,7 @@ def bic(chisq, k, n):
     return chisq + k*np.log(n)
 
 
-def get_bic(m, ydict):
+def get_bic(m, ydict, outdir):
 
     y_obs = ydict['y_obs']
     y_err = m.y_err
@@ -41,12 +41,27 @@ def get_bic(m, ydict):
     dof = n-k
 
     msg = (
-        '{}: χ2 = {:.1f}, redχ2 = {:.2f}, BIC = {:.1f}'.
-        format(m.modelid, χ2, χ2/dof, BIC)
+        '{}: Ndata = {:d}, Nparam = {:d}, χ2 = {:.1f}, redχ2 = {:.2f}, BIC = {:.1f}'.
+        format(m.modelid, n, k, χ2, χ2/dof, BIC)
     )
     print(42*'=')
     print(msg)
     print(42*'=')
+
+    bicdict = {
+        'modelid': m.modelid,
+        'N': _N,
+        'M': _M,
+        'Ndata': n,
+        'Nparam': k,
+        'chisq': χ2,
+        'redchisq': χ2/dof,
+        'BIC': BIC
+    }
+    pklpath = os.path.join(outdir, m.modelid+'_bicdict.pkl')
+    with open(pklpath, 'wb') as buff:
+        pickle.dump(bicdict, buff)
+    print('Wrote {}'.format(pklpath))
 
 
 def flatten(l):
@@ -140,7 +155,10 @@ def get_clean_ptfo_data(binsize=120*5):
                                           minbinelems=5)
         x_obs = bd['binnedtimes']
         y_obs = bd['binnedmags']
-        y_err = bd['binnederrs']
+
+        # assume errors scale as sqrt(N)
+        original_cadence = 120
+        y_err = bd['binnederrs'] / (binsize/original_cadence)**(1/2)
 
     assert len(x_obs) == len(y_obs) == len(y_err)
 
