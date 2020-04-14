@@ -118,7 +118,7 @@ period hot Jupiter known.
 
 PTFO 8-8695 was observed by TESS with Camera 1, CCD 1, from December
 15, 2018 to January 6, 2019, during the sixth sector of science
-operations.  The star is designated TIC 264461976 in the TESS Input
+operations.  The star was designated TIC 264461976 in the TESS Input
 Catalog \citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data
 for an $11\times11$ array surrounding PTFO 8-8695 were averaged into
 2-minute stacks by the onboard computer.  Each 2048$\times$2048 image
@@ -140,7 +140,7 @@ Difference Imaging Photometric Survey (CDIPS;
 \citep{bouma_cluster_2019}).  The CDIPS lightcurve used a circular
 aperture with radius 1 pixel.
 
-For data cleaning, we removed all points with non-zero quality flags
+To clean the data, we removed all points with non-zero quality flags
 \citep[{\it e.g.},][]{tess_data_product_description_2018}.  We also
 masked out the first and last 6 hours of each orbit, since there is
 often systematic red noise during those times.  Both the CDIPS and PDC
@@ -148,9 +148,10 @@ lightcurves showed a clear discontinuous ``jump'' in the last few days
 of orbit 20, which seemed likely to be an instrumental systematic.  We
 correspondingly masked out times from BJD 2458488.3 until the end of
 the orbit.  The PDC lightcurve initially had 15{,}678 points.  The
-quality cut removed 854, masking the orbit edges removed 716, and
-removing the final few days of orbit 20 removed 1079.  83\% of the
-highest-quality data remained.
+quality cut removed 854 points, masking the orbit edges removed an
+additional 716, and removing the final few days of orbit 20 removed an
+additional 1079.  After cleaning, 83\% of the initial flux
+measurements remained.
 
 We normalized these points by dividing out the median flux. We then
 subtracted by unity to simplify subsequent analysis.  Many of these
@@ -161,17 +162,18 @@ and subsequent processing steps were performed using
 \subsection{Visual Inspection}
 
 Our initial inspection of the lightcurve, in both its 2-minute PDCSAP
-and 30-minute FFI forms, revealed an obvious beat signal
+and 30-minute FFI forms, showed a strong sinusoidal beat signal
 (Figure~\ref{fig:splitsignal}, top panel).
 
 As a precursor to more detailed analysis, we calculated generalized
 Lomb-Scargle periodograms using \texttt{astrobase}
 \citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
 The two largest peaks in the Lomb-Scargle periodogram of the
-lightcurve were clearly separated at $P_{\rm s} \approx 0.448\,{\rm
-days}$ and $P_{\rm \ell} \approx 0.499\,{\rm days}$.  The $P_{\rm
-\ell}$ peak had the greater power of the two.  Smaller harmonics from
-each of these dominant two signals were also present.
+lightcurve were clearly separated at a ``short'' period $P_{\rm s}
+\approx 0.448\,{\rm days}$ and a ``long'' period $P_{\rm \ell} \approx
+0.499\,{\rm days}$.  The $P_{\rm \ell}$ peak had the greater power of
+the two.  Smaller harmonics from each of these two dominants peaks
+were also present.
 
 % 0.14 = A1+A2
 % 0.06 = A1-A2
@@ -180,7 +182,7 @@ each of these dominant two signals were also present.
 % 2A2 = 0.08
 % -> A2 = 0.04
 
-The beat peak-to-peak amplitude at maximum, when the two signals
+The peak-to-peak amplitude at maximum, when the two signals
 constructively interfere, is about 14\%.  At minimum, the peak-to-peak
 amplitude is about 6\%.  Assuming the signals are just two sinusoids,
 algebra tells us that the peak-to-peak amplitudes should therefore be
@@ -196,133 +198,58 @@ power at each frequency.
 
 
 
-
-% \subsection{Star and planet parameters}
-% \label{sec:system_parameters}
-% 
-% \begin{deluxetable}{lccc}
-% \tabletypesize{\scriptsize}
-% \tablecaption{Selected system parameters of WASP-4b\label{tbl:params}}
-% \tablenum{1}
-% 
-% \tablehead{
-% \colhead{Parameter} & \colhead{Value} & \colhead{68\% Confidence Interval} & \colhead{Comment}
-% }
-% 
-% \startdata
-% {\it Transit/RV parameters:} & & & \\
-%   $R_{\rm p}/R_\star$                        & $0.15201$              & $+0.00040$, $-0.00033$      & A \\
-%   $i$~[deg]                                  & $89.06$                & $+0.65$, $-0.84$            & A \\
-%   $a/R_\star$                                & $5.451$                & $+0.023$, $-0.052$          & A \\
-%   $u_{\rm linear}$                           & $0.382$                & ---                         & A \\
-%   $u_{\rm quad}$                             & $0.210$                & ---                         & A \\
-%   $K$~[m~s$^{-1}$]                           & $241.1$                & $+2.8$, $-3.1$              & B \\
-% {\it Stellar parameters:} & & & \\
-%   $T_{\rm eff}$~[K]                          & $5400$                 & $\pm 90$                    & C \\
-%   $\log g_\star$~[cgs]                       & $4.47$                 & $\pm 0.11$                  & C \\
-%   $[{\rm Fe/H}]$                             & $-0.07$                & $\pm 0.19$                  & C \\
-%   $F_{\rm bol}$~[erg~cm$^{-2}$~s$^{-1}$]     & $2.802\times10^{-10}$  & $\pm 0.076\times10^{-10}$   & D \\
-%   $A_V$~[mag]                                & $0.03$                 & $+0.02, -0.01$              & D \\
-%   $\pi$~[mas]                                & $3.7145$               & $0.0517$                    & F \\
-%   $R_\star$~[R$_{\odot}$]                    & $0.893$                & $\pm 0.034$                 & E \\
-%   $\rho_\star$~[g~cm$^{-3}$]                 & $1.711$                & $+0.022$, $-0.048$          & E \\
-%   $M_\star$~[M$_{\odot}$]                    & $0.864$                & $+0.084$, $-0.090$          & E \\
-%   $T$ magnitude                              & $11.778$               & $\pm 0.018$                 & G \\
-% {\it Planetary parameters:} & & & \\
-%   $a$~[AU]                                   & $0.0226$               & $+0.0007$, $-0.0008$        & E \\
-%   $M_p$~[M$_{\rm Jup}$]                      & $1.186$                & $+0.090$, $-0.098$          & E \\
-%   $R_p$~[R$_{\rm Jup}$]                      & $1.321$                & $\pm 0.039$                 & E \\
-% \enddata
-% 
-% \tablecomments{
-%   (A) From phase-folded TESS lightcurve (\S~\ref{sec:measurement}).
-%   Orbital periods are in Table~4. The limb darkening parameters were
-%   allowed to float around the \citet{claret_limb_2017} prediction, but
-%   were unconstrained.
-%   (B) \citet{triaud_spin-orbit_2010}.
-%   (C) From HARPS spectra \citep{doyle_accurate_2013}.
-%   (D) \citet{stassun_accurate_2017}.
-%   (E) This work, see \S~\ref{sec:system_parameters}.
-%   (F) \citet{gaia_collaboration_gaia_2018}.
-%   (G) \citet{stassun_TIC_2018}.
-% }
-% 
-% \vspace{-1cm}
-% \end{deluxetable}
-% 
-% We calculated the stellar and planetary parameters in the following
-% way.  We computed the star's spectral energy distribution based on the
-% {\it Gaia} DR2 parallax (after making the small correction advocated
-% by \citealt{stassun_evidence_2018}) and the broadband magnitudes from
-% the available all-sky catalogs: $G$ from {\it Gaia\/} DR2, $B_T$ and
-% $V_T$ from {\it Tycho-2}, $BVgri$ from {\it APASS}, $JHK_S$ from {\it
-% 2MASS}, and the {\it WISE}~1--4 passbands, thus spanning the
-% wavelength range 0.4--22~$\mu$m.
-% We adopted the effective temperature
-% from the work by \citet{doyle_accurate_2013}, who determined the
-% spectroscopic parameters of WASP-4 using high-signal-to-noise
-% observations with the High Accuracy Radial-velocity Planet Searcher
-% (HARPS).  Then, we determined the stellar radius through the
-% combination of the bolometric luminosity and the effective
-% temperature, using the Stefan-Boltzmann law.  To determine the stellar
-% mass, we first computed the mean stellar density based on the value of
-% $a/R_\star$ that gave the best fit to the phase-folded TESS lightcurve
-% (for the relevant equation, see \citealt{seager_unique_2003} or
-% \citealt{winn_exoplanet_2010}).  The mass was calculated from the
-% radius and density, and the orbital distance was also calculated from
-% the radius and $a/R_\star$.  The planetary radius was calculated as
-% the product of $R_\star$ and $R_{\rm p}/R_\star$.  Finally, the planet
-% mass was calculated based on the stellar mass, the radial-velocity
-% amplitude observed by \citet{triaud_spin-orbit_2010}, and the orbital
-% inclination.
-% 
-% Table~1 gives the resulting parameters, which we adopted for the
-% remaining analysis.  \added{The uncertainties in our derived stellar
-% and planetary parameters are propagated according to standard analytic
-% formulae, under the assumption that the variables are uncorrelated and
-% normally distributed.} Our \added{system} parameters are in agreement
-% with those of previous investigators, but have the benefit of
-% incorporating the {\it Gaia} parallax
-% \citep{wilson_wasp-4b_2008,gillon_discovery_2009,winn_transit_2009,southworth_homogeneous_2011,petrucci_no_2013,huitson_gemini_2017}.
-% By comparing the star's luminosity and spectroscopic parameters with
-% the outputs of the Yonsei-Yale stellar-evolutionary models, we found
-% that WASP-4 is a main-sequence star with an age of approximately
-% $7\,{\rm Gyr}$ \added{\citep{demarque_y2_2004}}.
-
-
-
 \section{The Model}
 \label{sec:analysis}
 
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.98\textwidth]{f1.png}
+		\includegraphics[width=0.98\textwidth]{f1.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 1).}
-	{\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux versus time. The beat period of 4.48 days is visible by eye.
-	The model plotted underneath the data includes 2 harmonics at the long
-	period $P_{\rm \ell}$, plus 2 harmonics and a transit at the short period $P_{\rm s}$.
-	{\it Upper middle}: Long-period signal, equal to the raw signal minus the short-period signal.
-	{\it Lower middle}: Short-period signal, equal to the raw signal minus the long-period signal.
-	{\it Bottom}: residual.
-	The data are binned from 2 to 10 minute cadence as a convenience for plotting and fitting.
-		\label{fig:splitsignal}
+	\caption{
+  {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 19).}
+  {\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux
+  versus time. The beat period of 4.48 days is visible by eye.  The
+  model plotted underneath the data includes 2 harmonics at the long
+  period $P_{\rm \ell}$, plus 2 harmonics and a transit at the short
+  period $P_{\rm s}$.
+  {\it Upper middle}: Long-period signal, equal to the raw signal
+  minus the short-period signal.
+  {\it Lower middle}: Short-period signal, equal to the raw signal
+  minus the long-period signal.
+  {\it Bottom}: residual.  The data are binned from 2 to 10 minute
+  cadence as a convenience for plotting and fitting.
+  \label{fig:splitsignal}
 	}
 \end{figure*}
 
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.95\textwidth]{f2.pdf}
+		\includegraphics[width=0.98\textwidth]{f2.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 20).}
+  Panels are as in Figure~\ref{fig:splitsignal}.
+  \label{fig:splitsignalii}
+	}
+\end{figure*}
+
+
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.95\textwidth]{f3.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Phase-folded long and short-period signals.}
 	{\it Top}: Long-period signal, as in Figure~\ref{fig:splitsignal}.
-	{\it Bottom}: Short-period signal. The reference phase is set to the ``planetary'' dip.
-	Gray points are the 10 minute cadence \texttt{PDCSAP} flux.
-	Black points are binned to 100 points per period.
+  {\it Bottom}: Short-period signal. The reference phase is set to the
+  ``planetary'' dip.  Gray points are the 10 minute cadence
+  \texttt{PDCSAP} flux.  Black points are binned to 100 points per
+  period.
 	\label{fig:phasefold}
 	}
 \end{figure*}
@@ -331,19 +258,21 @@ power at each frequency.
 \begin{figure}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.48\textwidth]{f3.pdf}
+		\includegraphics[width=0.48\textwidth]{f4.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Scene used for blend analysis.}
-		{\it Top:} Mean TESS image of PTFO 8-8695 over Sector~6, with a log-stretch.
-		The position of PTFO 8-8695 is shown with a yellow star.
-		Neighbors with $T<17$ are shown with orange crosses.
-		The apertures used to measure the background and target star flux
-		are shown with \texttt{X} and \texttt{/} hatches, respectively.
-		{\it Bottom:} Digitized Sky Survey $R$-band image of the same field, with a linear stretch. The circles show
-		apertures of radii 1, 1.5, and 2.25 pixels used in part of our blend
-		analysis.
-		The pixel level TESS data show that ``Star A''  does not contribute variability at either of the two observed periods (see Section~\ref{subsec:blend}).
+    {\it Top:} Mean TESS image of PTFO 8-8695 over Sector~6, with a
+    log-stretch.  The position of PTFO 8-8695 is shown with a yellow
+    star.  Neighbors with $T<17$ are shown with orange crosses.  The
+    apertures used to measure the background and target star flux are
+    shown with \texttt{X} and \texttt{/} hatches, respectively.
+    {\it Bottom:} Digitized Sky Survey $R$-band image of the same
+    field, with a linear stretch. The circles show apertures of radii
+    1, 1.5, and 2.25 pixels used in part of our blend analysis.  The
+    pixel level TESS data show that ``Star A''  does not contribute
+    variability at either of the two observed periods (see
+    Section~\ref{subsec:blend}).
 		\label{fig:scene}
 	}
 \end{figure}
@@ -351,27 +280,26 @@ power at each frequency.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f4.pdf}
+		\includegraphics[width=0.9\textwidth]{f5.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{
     {\bf Timing residuals for PTFO 8-8695b from a decade of monitoring.}
-		Black points are times of ``dips'', minus the indicated linear ephemeris.
-    The $y$-axis is given in units of phase for the
-    short-period signal.
-    The star shows the binned TESS ephemeris.
-		``Dips'' have been observed by
-		\citet{van_eyken_ptf_2012}, \citet{ciardi_follow-up_2015},
-		\citet{yu_tests_2015}, \citet{raetz_yeti_2016},
-		\citet{onitsuka_multi-color_2017}, and \citet{tanimoto_evidence_2020}.
-    Certain dips ({\it e.g.}, the one at phase 0 in mid-2019) are
-    consistent with noise, and were likely reported because
-    something was {\it expected}, rather than convincingly {\it
-    observed}.
-    Horizontal dashed lines are drawn at $\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$,
-    highlighting what could be either a numerical coincidence or an observational
-    bias.
-    The orbital phase observed by TESS is consistent with that of \citet{tanimoto_evidence_2020}, and quite different from the original phase.
+    Black points are times of ``dips'', minus the indicated linear
+    ephemeris.  The $y$-axis is given in units of phase for the
+    short-period signal.  The star shows the binned TESS ephemeris.
+    ``Dips'' have been observed by \citet{van_eyken_ptf_2012},
+    \citet{ciardi_follow-up_2015}, \citet{yu_tests_2015},
+    \citet{raetz_yeti_2016}, \citet{onitsuka_multi-color_2017}, and
+    \citet{tanimoto_evidence_2020}.  Certain dips ({\it e.g.}, the one
+    at phase 0 in mid-2019) are consistent with noise, and were likely
+    reported because something was {\it expected}, rather than
+    convincingly {\it observed}.  Horizontal dashed lines are drawn at
+    $\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$, highlighting what
+    could be either a numerical coincidence or an observational bias.
+    The orbital phase observed by TESS is consistent with that of
+    \citet{tanimoto_evidence_2020}, and quite different from the
+    original phase.
 		\label{fig:o_minus_c}
 	}
 \end{figure*}
@@ -379,7 +307,7 @@ power at each frequency.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f5_comp.png}
+		\includegraphics[width=0.9\textwidth]{f6_comp.png}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf foo.}
@@ -389,11 +317,11 @@ power at each frequency.
 \end{figure*}
 
 
-\subsection{Model Fitting}
+\subsection{Model Description}
 
 We opted to model the lightcurve as a linear combination of Fourier
 harmonics at the short and long periods, plus a transit at the short
-period.  Symbolically,
+period.  Symbolically, the total flux $f$ is given as
 \begin{equation}
   f = f_{\rm s} + f_{\rm \ell}
   = f_{\rm transit,s} + f_{\rm Fourier,s} + f_{\rm Fourier,\ell},
@@ -402,20 +330,21 @@ where $f_{\rm s}$ is the relative flux at the short period, and
 $f_{\rm \ell}$ is the flux at the long period.  Writing out the
 Fourier terms,
 \begin{align}
-  f = &f_{\rm transit,s} + \sum_{n=1}^{n=N} A_n \sin(n\omega_{\rm s}t)
-  + \sum_{n=1}^{n=N} B_n \cos(n\omega_{\rm s}t)\\
-  &+ \sum_{m=1}^{m=M} A_m \sin(m[\omega_{\rm \ell}t+\phi_{\rm \ell}])
-  + \sum_{m=1}^{m=M} B_m \cos(m[\omega_{\rm \ell}t+\phi_{\rm \ell}]), \nonumber
+  f = &f_{\rm transit,s} + \sum_{n=1}^{N} A_n \sin(n\omega_{\rm s}t)
+  + \sum_{n=1}^{N} B_n \cos(n\omega_{\rm s}t)\\
+  &+ \sum_{m=1}^{M} A_m \sin(m[\omega_{\rm \ell}t+\phi_{\rm \ell}])
+  + \sum_{m=1}^{M} B_m \cos(m[\omega_{\rm \ell}t+\phi_{\rm \ell}]), \nonumber
 \end{align}
 for $N$ and $M$ the total number of harmonics at the short and long
-period, respective, $A_i$ and $B_i$ for each harmonic term, and
-$\omega_i = 2\pi / P_i$ the angular frequency for $i$ the short or
-long period index.  We fixed the ``phase-offset'' for the short period
-signal to be zero, and let the reference time for the long period
-signal float by introducing $\phi_{\rm \ell}$.  Since we did not a
-priori know how many harmonics would be appropriate, we considered a
-number of different choices for $N$ and $M$, and used the Bayesian
-information criterion to choose the appropriate model.
+periods, respectively, $A_i$ and $B_i$ the amplitudes for each
+harmonic term (potentially negative), and $\omega_i = 2\pi / P_i$ the
+angular frequency for $i$ the short or long period index.  We fixed
+the ``phase-offset'' for the short period signal to be zero, and let
+the reference time for the long period signal float by introducing
+$\phi_{\rm \ell}$.  Since we did not a priori know how many harmonics
+would be appropriate, we considered a number of different choices for
+$N$ and $M$, and used the Bayesian information criterion to choose the
+appropriate model (Table~\ref{tab:modelcompare}).
 
 As an example, one possible model could be a transit, plus $N=2$
 harmonics of sines and cosines at the short period, plus $M=1$
@@ -424,32 +353,67 @@ be as follows.  For the transit, we would fit for the impact
 parameter, the planet-to-star radius ratio, two quadratic limb
 darkening parameters, the planet orbital period (equal to the short
 period), the reference time for the transit, and the mean flux.  There
-would be 4 additional Fourier amplitudes at the short period, plus 2
-Fourier amplitudes at the long period, and well as the long period
-itself and its phase.  For this case, we therefore fitted 14 free
-parameters.
+would be $2N=4$ additional Fourier amplitudes at the short period,
+plus $2M=2$ Fourier amplitudes at the long period, and well as the
+long period itself and its phase.  For this case, we therefore fitted
+14 free parameters.
 
-We implemented the models using \texttt{PyMC3}, which is built on \texttt{theano} \citep{salvatier_2016_PyMC3,exoplanet:theano}.
-For the Fourier terms, we used the default math operators.
-For the exoplanet transit, we used the model and derivatives implemented in
-\texttt{exoplanet} \citep{exoplanet:exoplanet}.
+We implemented and fitted the models using \texttt{PyMC3}, which is
+built on \texttt{theano}
+\citep{salvatier_2016_PyMC3,exoplanet:theano}.  For the Fourier terms,
+we used the default math operators.  For the exoplanet transit, we
+used the model and derivatives implemented in \texttt{exoplanet}
+\citep{exoplanet:exoplanet}.  Our priors are listed in
+Table~\ref{tab:posterior}.  To speed up the fitting, we binned the
+cleaned 2 minute lightcurves to 10 minute bins.  We correspondingly
+scaled the uncertainties in the flux measurements by a factor of
+$\sqrt{5}$.  Before sampling, we initialized each model to the maximum
+a posteriori (MAP) solution.  We then sampled using \texttt{PyMC3}'s
+gradient-based No-U-Turn Sampler \citep{hoffman_no-u-turn_2014}, and
+used $\hat{R}$ as our convergence diagnostic
+\citep{gelman_inference_1992}.
+We tested our ability to successfully recover injected parameters
+using synthetic data, before switching to the actual PTFO 8-8695
+lightcurves.
 
-Our priors were as follows.
-%FIXME
 
-We initialized to the maximum a posteriori (MAP) solution.
-We then sampled using \texttt{PyMC3}'s gradient-based No-U-Turns Sampler, 
-and used R-hat as our convergence diagnostic.
+\subsection{Fitting Results}
+
+\input{model_comparison_table.tex}
+\input{model_posterior_table.tex}
+
+We considered nine models, with the number of harmonics per frequency
+$N$ and $M$ ranging from one to three.  To select our preferred model,
+we used the Bayesian information criterion
+(Table~\ref{tab:modelcompare}).  The model with the lowest BIC had
+$N=2$ harmonics at the short 11.74$\,$hr period, and $M=2$ harmonics
+at the long 11.96$\,$hr period.  All of the models have reduced
+$\chi^2$ ranging between 1.37 and 1.51, which suggests a plausible,
+though not perfect agreement between the data and models.
+
+To explore where each model succeeded and failed, we split the raw
+signal into its respective components (Figures~\ref{fig:splitsignal}
+and~\ref{fig:splitsignalii}).  We also examined the phase-folded
+signals (Figure~\ref{fig:phasefold}).  
+
+In every model, the variability at the long period is a simple
+sinusoid with peak-to-peak amplitude $\approx$10\%
+(Figure~\ref{fig:phasefold}, top).  The variability at the short
+period is always more complex.  A dip of depth $\approx$1.2\%, fit in
+our model as a transit, lasts $\approx$0.75 hours.  Superposed on the
+dip is a complex signal with peak-to-peak amplitude of about 4\%,
+which peaks near phase 0.25, and reaches minimum brightness between
+phases -0.5 and -0.25.
+
+Outside of the primary dip, the short-period signal is relatively
+smooth, at least from phases 0 to 0.5.  However the short-period
+signal is asymmetric.  The flux from phases -0.5 to 0 shows what could
+be a discontinuous jump, shortly after reaching minimum.  This jump
+was visible in each of the nine models we considered, with different
+choices for the number of harmonics.
 
 
-% 
-% I gave it a pass on the PTFO data, binning from 2->10 minute sampling
-% to speed up the execution time. Results from two models are below.
-% Case 1 is N=2,M=1. Case 2 is N=2,M=2. Both fits are fine, and I get
-% decent convergence with a few minutes each. The rotation parameters
-% (phase + amplitudes) are quite correlated, so I set a reasonably
-% strong prior on the rotation phase.
-% 
+ 
 % The main result that both models agree on: the extra power at the
 % orbital frequency seems to not be ellipsoidal. Both of these models
 % prefer to put the power at 1x the orbital frequency, not 2x the
@@ -458,102 +422,11 @@ and used R-hat as our convergence diagnostic.
 
 
 
-% Using the cleaned PDC lightcurve, we applied the Box Least Squares
-% algorithm \citep{kovacs_box-fitting_2002} to estimate the orbital
-% period, transit duration, and a reference epoch using the TESS data
-% alone.  Based on the results, we isolated the data within 4 transit
-% durations of each transit midpoint.  To find the transit parameters
-% that best fit the data, we first fitted a line to the out-of-transit
-% flux measurements surrounding each transit, and divided it out.  We
-% then created a phase-folded lightcurve \added{from all 18 transits}
-% and fitted a standard transit model using the analytic formulae given
-% by \citet{mandel_analytic_2002} and implemented by
-% \replaced{\citet{kreidberg_batman_2015}}{\citet[][\texttt{BATMAN}]{kreidberg_batman_2015}}
-% We assumed the orbit to be circular, consistent with the limits from
-% radial velocities and occultation timing
-% \citep{beerer_secondary_2011,knutson_friends_2014,bonomo_gaps_2017}.
-% The free parameters were the reference epoch, the planet to star
-% radius ratio $R_{\rm p}/R_\star$, the orbital distance to stellar
-% radius ratio $a/R_\star$, the inclination $i$, two quadratic
-% limb-darkening coefficients $(u_{\rm linear}, u_{\rm quad})$, and the
-% orbital period $P$.
-% 
-% We sampled the posterior probability distribution for all the
-% parameters using the algorithm proposed by
-% \citet{goodman_ensemble_2010} and implemented by
-% \replaced{\citet{foreman-mackey_emcee_2013}}{\citet[][\texttt{emcee}]{foreman-mackey_emcee_2013}}.
-% Table~1 gives the results, which are in reasonable agreement with the
-% parameters reported by {\it e.g.},
-% \citet{southworth_high-precision_2009} and
-% \citet{huitson_gemini_2017}.  Figure~\ref{fig:phasefold} shows the
-% phase-folded lightcurve.
-% 
-% To measure the transit times, we returned to the `cleaned' PDC time
-% series and fitted the data within four transit durations of each
-% transit separately. We used four free parameters: the time of
-% mid-transit $t_{\rm tra}$, the planet-to-star radius ratio, and the
-% slope and intercept of a linear trend to account for any slow
-% variations unrelated to the transit.  We fixed the remaining
-% parameters at the values that had been determined from the
-% phase-folded TESS lightcurve.  The uncertainty in each
-% \added{photometric} data point was set equal to the root-mean-square
-% (rms) level of the out-of-transit data.
-% 
-% To verify that the measured uncertainties are estimated accurately, we
-% computed the \deleted{reduced }$\chi^2$\added{ value} for a linear
-% ephemeris fit to the measured TESS mid-transit times.  We found that
-% $\chi^2 = 9.2$, with $n=16$ degrees of freedom.  The variance of the
-% $\chi^2$ distribution is $2n$, so we would expect $\chi^2 = 16 \pm
-% 5.7$.  Visually inspecting the residuals showed that the error
-% variance had been overestimated, so we multiplied the measured TESS
-% errors by a factor $f=0.76$, forcing a reduced $\chi^2$ of unity.
-% This lowered the mean uncertainty of the transit midtimes from $29.8$
-% to $22.6$ seconds.  We verified that omitting this step did not
-% appreciably alter any of our conclusions.
-% 
-% Figure~\ref{fig:lightcurves} shows the lightcurve of each individual
-% transit, the best-fit models, and the residuals.  Table~2 reports the
-% mid-transit times and their uncertainties.  After binning the
-% residuals to 1-hour windows, the lightcurves have an rms scatter of
-% 586\,{\rm ppm}.  The pre-launch TESS noise
-% model\footnote{\url{github.com/lgbouma/tnm}, commit \texttt{be06f09}}
-% (\citealt{winn_photonflux_2013}, \citealt{Sullivan_2015} Section 6.4)
-% would have predicted an error budget consisting of the following terms
-% added in quadrature: 410\,{\rm ppm} from photon-counting noise,
-% 202\,{\rm ppm} from detector read noise, and 673\,{\rm ppm} from the
-% zodiacal background light.  The level of background light appears to
-% have been overestimated in the model.
 
-
-
-% I fitted some models of the form "transit + N harmonics of sines and
-% cosines at the orbital frequency + M harmonics of sines and cosines at
-% the rotation frequency". For example, if N=2 and M=1, then I fit for
-% [logBrot0, logArot0, phirot, omegarot, logBorb1, logAorb1, logBorb0,
-% logAorb0, b, r, u, logP, t0, meanflux]. A_N is the amplitude of the
-% Nth harmonic sine function A_N * sin(N(ωt+φ)), B_N of the cosine. I
-% went with quadratic limb darkening.
-% 
-% On fake data, I got the right parameters provided I didn't turn up the
-% noise too high.
-% 
-% I gave it a pass on the PTFO data, binning from 2->10 minute sampling
-% to speed up the execution time. Results from two models are below.
-% Case 1 is N=2,M=1. Case 2 is N=2,M=2. Both fits are fine, and I get
-% decent convergence with a few minutes each. The rotation parameters
-% (phase + amplitudes) are quite correlated, so I set a reasonably
-% strong prior on the rotation phase.
-% 
-% The main result that both models agree on: the extra power at the
-% orbital frequency seems to not be ellipsoidal. Both of these models
-% prefer to put the power at 1x the orbital frequency, not 2x the
-% orbital frequency! This gives both Aorb0 and Borb0 non-zero, while
-% Aorb1 and Borb1 seem to be more consistent with zero.
-
-The periodogram of the final residual (Figure~\ref{fig:splitsignal}
-bottom row) shows a weakly significant, poorly resolved peak at
-$\approx$8 days, consistent with the visual impression in the time
-domain that there could be a weak long-period signal present.
+% The periodogram of the final residual (Figure~\ref{fig:splitsignal}
+% bottom row) shows a weakly significant, poorly resolved peak at
+% $\approx$8 days, consistent with the visual impression in the time
+% domain that there could be a weak long-period signal present.
 
 
 \subsection{Blend considerations}
