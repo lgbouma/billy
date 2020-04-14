@@ -49,6 +49,7 @@ def plot_periodogram(outdir, islinear=True):
 
     P_rot, P_orb = 0.49914, 0.4485
 
+    plt.close('all')
     f, ax = plt.subplots(figsize=(4,3))
     ax.plot(
         period, power, lw=0.5, c='k'
@@ -78,6 +79,7 @@ def plot_periodogram(outdir, islinear=True):
 
 
 def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
+    plt.close('all')
     fig = plt.figure(figsize=(14, 4))
     ax = fig.add_subplot(111, xlabel='x_obs', ylabel='y_obs',
                          title='Generated data and underlying model')
@@ -90,6 +92,7 @@ def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
 
 
 def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
+    plt.close('all')
     plt.figure(figsize=(14, 4))
     plt.plot(x_obs, y_obs, ".k", ms=4, label="data")
     plt.plot(x_obs, y_MAP, lw=1)
@@ -101,6 +104,11 @@ def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
 
 
 def plot_sampleplot(m, outpath, N_samples=100):
+
+    if os.path.exists(outpath) and not m.OVERWRITE:
+        return
+
+    plt.close('all')
     fig, ax = plt.subplots(figsize=(14, 4))
     ax.plot(m.x_obs, m.y_obs, ".k", ms=4, label="data", zorder=N_samples+1)
     ax.plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
@@ -134,6 +142,7 @@ def plot_splitsignal_map(m, outpath, part='i'):
     things at orbital frequency
     """
 
+    plt.close('all')
     # 8.5x11 is letter paper. x10 allows space for caption.
     fig, axs = plt.subplots(nrows=4, figsize=(8.5, 10), sharex=True)
 
@@ -200,7 +209,9 @@ def plot_splitsignal_map(m, outpath, part='i'):
                     fontsize='x-large')
 
     fig.tight_layout(h_pad=0., w_pad=0.)
-    savefig(fig, outpath, writepdf=1, dpi=300)
+
+    if not os.path.exists(outpath) or m.OVERWRITE:
+        savefig(fig, outpath, writepdf=1, dpi=300)
 
     ydict = {
         'x_obs': m.x_obs,
@@ -250,6 +261,7 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
         msg = '{}: FAP = {:.2e}'.format(k, ls_fap)
         print(msg)
 
+    plt.close('all')
     fig, axs = plt.subplots(nrows=4, figsize=(4, 12), sharex=False)
 
     for ax, k, l in zip(axs, ytypes, ylabels):
@@ -285,6 +297,9 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
 
 
 def plot_phasefold_map(m, d, outpath):
+
+    if os.path.exists(outpath) and not m.OVERWRITE:
+        return
 
     # recover periods and epochs.
     P_rot = 2*np.pi/float(m.map_estimate['omegarot'])
@@ -389,6 +404,7 @@ def plot_splitsignal_post(m, outpath):
                 y_orb += m.trace['mu_orbcos{}'.format(ix)][sel, :].flatten()
 
     # make the plot!
+    plt.close('all')
     fig, axs = plt.subplots(nrows=4, figsize=(14, 12), sharex=True)
 
     axs[0].set_ylabel('flux')
@@ -514,7 +530,12 @@ def plot_traceplot(m, outpath):
 
 
 def plot_cornerplot(true_d, m, outpath):
+
+    if os.path.exists(outpath) and not m.OVERWRITE:
+        return
+
     # corner plot of posterior samples
+    plt.close('all')
     trace_df = trace_to_dataframe(m.trace, varnames=list(true_d.keys()))
     truths = [true_d[k] for k in true_d.keys()]
     truths = list(bflatten(truths))
@@ -556,6 +577,8 @@ def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
     import astropy.visualization as vis
     import matplotlib as mpl
     from matplotlib import patches
+
+    plt.close('all')
 
     # standard tick formatting fails for these images.
     mpl.rcParams['xtick.direction'] = 'in'
