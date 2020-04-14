@@ -71,7 +71,7 @@ def main(modelid):
                 bp.plot_splitsignal_map_periodogram(ydict, outpath)
             outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
             bp.plot_phasefold_map(m, ydict, outpath)
-            get_bic(m, ydict)
+            get_bic(m, ydict, PLOTDIR)
 
     if cornerplot:
         prior_d.pop('omegaorb', None) # not sampled; only used in data generation
@@ -82,13 +82,15 @@ def main(modelid):
 
 if __name__ == "__main__":
 
-    for N, M in product(range(1,4), range(1,4)):
-        main('transit_{}sincosPorb_{}sincosProt'.format(N,M))
+    DEBUG = 0
 
-    # NOTE: DEBUG
-    # main('transit_1sincosPorb_1sincosProt')
+    if DEBUG:
+        main('transit_1sincosPorb_1sincosProt')
 
-    # NOTE: DEPRECATED
-    # main('transit_2sincosPorb_2sincosProt')
-    # main('transit_1sincosPorb_2sincosProt')
-    # main('transit_2sincosPorb_1sincosProt')
+    else:
+        for N, M in product(range(1,4), range(1,4)):
+            main('transit_{}sincosPorb_{}sincosProt'.format(N,M))
+        # DEPRECATED
+        # main('transit_2sincosPorb_2sincosProt')
+        # main('transit_1sincosPorb_2sincosProt')
+        # main('transit_2sincosPorb_1sincosProt')
