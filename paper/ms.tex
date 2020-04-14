@@ -389,8 +389,8 @@ we used the Bayesian information criterion
 (Table~\ref{tab:modelcompare}).  The model with the lowest BIC had
 two harmonics at the short 11.74$\,$hr period, and two harmonics
 at the long 11.96$\,$hr period.  All of the models have reduced
-$\chi^2$ ranging between 1.37 and 1.51, which suggests a plausible,
-though not perfect agreement between the data and models.
+$\chi^2$ ranging between 1.37 and 1.51, which suggests a plausible
+though imperfect agreement between the data and models.
 
 To explore where each model succeeded and failed, we split the raw
 signal into its respective components (Figures~\ref{fig:splitsignal}
@@ -398,23 +398,124 @@ and~\ref{fig:splitsignalii}).  We also examined the phase-folded
 signals (Figure~\ref{fig:phasefold}).  
 
 In every model, the variability at the long period is a simple
-sinusoid with peak-to-peak amplitude $\approx$10\%
-(Figure~\ref{fig:phasefold}, top).  The variability at the short
-period is always more complex.  A dip of depth $\approx$1.2\%, fit in
-our model as a transit, lasts $\approx$0.75 hours.  Superposed on the
-dip is a complex signal with peak-to-peak amplitude of about 4\%,
-which peaks near phase 0.25, and reaches minimum brightness between
-phases -0.5 and -0.25.
+sinusoid with peak-to-peak amplitude $\approx$10\%.  The variability
+at the short period is always more complex.  A dip of depth
+$\approx$1.2\%, fit in our model as a transit, lasts $\approx$0.75
+hours.  Superposed on the dip is a complex signal with peak-to-peak
+amplitude of about 4\%, which peaks near phase 0.25, and reaches
+minimum brightness between phases -0.5 and -0.25.
 
 Outside of the primary dip, the short-period signal is relatively
 smooth, at least from phases 0 to 0.5.  However the short-period
 signal is asymmetric.  The flux from phases -0.5 to 0 shows what could
 be a discontinuous jump, shortly after reaching minimum.  This jump
-was visible in each of the nine models we considered, with different
-choices for the number of harmonics.
+was visible in each of the nine models we considered.
+
+The periodogram of the final residual (Figure~\ref{fig:splitsignal}
+bottom row) shows a weakly significant, poorly resolved peak at
+$\approx$8 days, consistent with the visual impression in the time
+domain that there could be a weak long-period signal present.
 
 
- 
+\subsection{Blend considerations}
+\label{subsec:blend}
+
+The TESS pixels are $\approx21$'' per side, and so before making an
+interptations, we need to consider whether light from neighboring
+stars could have affected the photometry.  The scene is shown in
+Figure~\ref{fig:scene}.  The pixels used to measure the background
+level in the SPOC lightcuirve are indicated with an `\texttt{X}'
+hatch, and the pixels used in the final lightcurve aperture are shown
+with the `\texttt{/}' hatch.
+
+The target star, PTFO 8-8605 (TIC 264461976), has a $T$-band magnitude
+of 14.0, and its position is shown with a star.  The other (unlabeled)
+star inside the target aperture, TIC 264461979, has $T=16.8$ and so
+cannot contribute a signal with relative amplitude 10\%.  The only
+neighbor that is sufficiently close and bright that its light might
+contaminate the target star is TIC 264461980, with $T=14.8$, which we
+denote ``Star A''.  Star A is 23.6'' NW of our target, and based on
+the magnitude difference could contribute up to 48\% the flux of our
+target star, PTFO 8-8695.  
+
+Because PTFO 8-8695 has previously been identified to have periodicity
+consistent with our measurement of $P_{\rm s}$, our main concern
+regarding blending is the degree to which we can be certain that the
+long-period signal at $P_{\rm \ell}$ also originates from PTFO 8-8695.
+We took two approaches towards determining the source of the
+long-period signal.
+
+First, we examined the CDIPS full frame image lightcurves of the
+target, which are available on MAST \citep{bouma_cluster_2019}.  The
+maximal peak-to-peak beat amplitude is consistently $\approx$10\%
+across apertures of radii 1, 1.5, and 2.25 pixels.  If Star A were the
+source of the long-period variability, we would expect the peak
+variability amplitude to be smallest in the 1 pixel aperture, based on
+the separation of the sources (Figure~\ref{fig:scene}, bottom).  From
+this test alone, it seems unlikely that Star A is the source of the
+long-period signal.
+
+Second, we examined the lightcurve of each pixel in the scene
+individually.  We opted to use the interactive tools implemented in
+\texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
+source of the long-period variability, we would expect the pixels
+nearest to Star A to show a sinusoidal signal with amplitude exceeding
+$10\%$.  We find no evidence for this being the case.  The pixel
+directly below Star A does not clearly show the sinusoidal
+variability, and the peak-to-peak variability in that pixel is
+$\lesssim 8\%$.  In contrast, the south-easternmost pixel within PTFO
+8-8695's aperture (the pixel furthest from Star A that was used in the
+optimal aperture) shows the $P_{\rm \ell}$ sinusoidal variability
+signal at $\approx 10\%$ amplitude.
+
+As there is no evidence in favor of a blend scenario, we conclude that
+both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTFO
+8-8695.
+
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Long period sinusoid}
+The standard interpretation of sinusoidal modulations for a
+pre-main-sequence M dwarf is that we are observing a rotation period.
+There is no evidence to suggest that we are seeing anything different.
+
+\subsection{Short period dip}
+The dip lasts about 45 minutes, and seems to re-occur every 11.74
+hours
+(Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
+The dip duration is roughly the same as that observed by previous
+investigators \citep{van_eyken_ptf_2012,yu_tests_2015,}
+The dip depth is comparable to what has been observed in red visual
+bands...
+%TODO: and how does it compare to IR? bigger or smaller? cite relevant
+%studies.
+
+\paragraph{Epoch}
+The TESS dip does not phase up where it is supposed to...
+Figure~\ref{fig:o_minus_c}
+
+\subsection{Short period out-of-dip modulation}
+If there were a giant planet transiting PTFO 8-8695, it would tidally
+distort the host star, and cause ellipsoidal photometric modulations.
+The amplitude of the ellipsoidal distortion for a $1\,M_{\rm Jup}$
+companion would be about 1400$\,$ppm
+\citep{shporer_astrophysics_2017}.  This is significantly larger than
+the typical ellipsopidal modulation induced by close-in giant planets
+because the host star is puffy, and still on the pre-main-sequence.
+For our estimate, we assumed $R_\star = 1.39 R_\odot$, and $M_\star =
+0.39 M_\odot$ \citep{van_eyken_ptf_2012}. 
+
+Our preferred model does detect a significant ellipsoidal signal,
+parametrized as the ``$B_1$'' component.  The amplitude of the signal
+is $0.53 \pm 0.06\%$.  Interpreted as being caused by a planet, it
+would imply a minimum planet mass $M_{\rm p} \sin i$ of $3.8\,M_{\rm
+Jup}$.
+
+
+
+
 % The main result that both models agree on: the extra power at the
 % orbital frequency seems to not be ellipsoidal. Both of these models
 % prefer to put the power at 1x the orbital frequency, not 2x the
@@ -423,76 +524,50 @@ choices for the number of harmonics.
 
 
 
-
-% The periodogram of the final residual (Figure~\ref{fig:splitsignal}
-% bottom row) shows a weakly significant, poorly resolved peak at
-% $\approx$8 days, consistent with the visual impression in the time
-% domain that there could be a weak long-period signal present.
+\section{Plausible Physical Interpretations}
 
 
-\subsection{Blend considerations}
-\label{subsec:blend}
 
-The TESS pixels are $\approx21$'' per side, and so we need to consider
-whether light from neighboring stars could affect the photometry.  The
-scene is shown in Figure~\ref{fig:scene}.  
-The pixels used to
-measure the background level are indicated with an `\texttt{X}' hatch,
-and the pixels used for the final lightcurve are shown with the
-`\texttt{/}' hatch.
 
-The target star, PTFO
-8-8605 (TIC 264461976), has a $T$-band magnitude of 14.0, and its position is shown with a
-star.  
-The other (unlabeled) star inside the target aperture, TIC 264461979, has $T=16.8$ and so cannot
-contribute a signal with relative amplitude 10\%.
-The only neighbor that is sufficiently close and bright that
-its light might contaminate the target star is TIC 264461980, with
-$T=14.8$, which we denote ``Star A''.  Star A is 23.6'' NW of our
-target, and based on the magnitude difference could contribute up to
-48\% the flux of our target star, PTFO 8-8695.  
-
-Because PTFO 8-8695 has previously been identified to have periodicity
-consistent with our measurement of $P_{\rm s}$, our main concern
-regarding blending is the degree to which we can be certain that the
-long-period signal at $P_{\rm \ell}$ also originates from PTFO 8-8695.
-We took two approaches towards determining the source of the long-period signal.
-
-First, we examined the CDIPS full frame image lightcurves of the
-target, which are available on MAST \citep{bouma_cluster_2019}.
-The maximal peak-to-peak beat amplitude is consistently $\approx$10\%
-across apertures of radii 1, 1.5, and 2.25 pixels.
-If Star A were the source of the long-period variability, we would expect the
-peak variability amplitude to be smallest in the 1 pixel aperture, based on the
-separation of the sources (Figure~\ref{fig:scene}, bottom).
-From this test alone, it seems unlikely that Star A is the source of
-the long-period signal.
-
-Second, we examined the lightcurve of each pixel in the scene
-individually.  We opted to use the
-interactive tools implemented in
-\texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
-source of the long-period variability, we would expect the pixels
-nearest to Star A to show a sinusoidal signal with
-amplitude exceeding $10\%$.  We find no evidence for
-this being the case.  The pixel directly below Star A does not
-clearly show the sinusoidal variability, and the peak-to-peak 
-variability in that pixel is $\lesssim 8\%$.  In contrast, the
-south-easternmost pixel within PTFO 8-8695's aperture (the pixel 
-furthest from Star A that was used in the optimal aperture) shows the $P_{\rm \ell}$ sinusoidal
-variability signal at $\approx 10\%$ amplitude.
-
-As there is no evidence in favor of a blend scenario, we
-conclude that both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTFO 8-8695.
-
-\section{Interpretation}
-\label{sec:discussion}
-
-The TESS dip does not phase up where it is supposed to...
-Figure~\ref{fig:o_minus_c}
 
 \section{Conclusions}
 \label{sec:conclusions}
+
+PTFO 8-8695 was previously thought to potentially host a hot Jupiter.
+The TESS lightcurve of PTFO 8-8695 showed a number of new features,
+many of which seem to disfavor the hot Jupiter interpretatation.
+The TESS data showed two key pieces of evidence.
+\begin{enumerate}
+  \item {\it Two periodic signals.} The ``long'' signal is a 10\%
+      peak-to-peak sinusoidal modulation repeating every 11.96 hours.
+      The ``short'' signal is a 4\% peak-to-peak complex modulation
+      repeating every 10.74 hours. It is composed of a dip, plus at
+      least two harmonics. The signals beat, and therefore cannot be
+      an artifact linked to data processing.
+  \item {\it A dip at the wrong orbital phase.} The clearest dip in
+    the ``short'' signal was consistent with recent observations by
+    \citet{tanimoto_evidence_2020}, and differed from the discovery
+    epoch by 5.14 hours.
+\end{enumerate}
+
+The physical mechanism responsible for all these features remains a
+matter of speculation.
+With that said, the TESS data support new arguments against the planetary
+interpretation of PTFO 8-8695.
+First, if the long signal is caused by starspot modulation, and the
+short signal by a transiting planet, what causes the additional
+complex modulations seen at the short, ``orbital'', period?
+
+Similarly, if the planet truly orbits every 10.74 hours, while the
+star's equator spins every 11.96 hours, the situation is clearly
+Darwin unstable. 
+
+
+
+  Given the available evidence,
+  PTFO$\,$8-8695 seems consistent with the
+  ``transient dipping'' phenomenology observed in many young M dwarfs.
+  It seems rather unlikely to be a planet.
 
 
 
