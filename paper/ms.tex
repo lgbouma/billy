@@ -67,8 +67,8 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 % %
 
 \begin{abstract}
-  PTFO$\,$8-8695b, a candidate hot Jupiter in the 7--10$,$Myr old
-  Orion-OB1a cluster, might be the youngest hot Jupiter known.
+  PTFO$\,$8-8695b is a candidate hot Jupiter in the 7--10$,$Myr old
+  Orion-OB1a cluster. It might be the youngest hot Jupiter known.
   We inspected data from TESS and Gaia to clarify whether it is
   actually a planet.
   The TESS lightcurve shows that the dominant variability in this
@@ -82,9 +82,9 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
   dip seems to have instantaneously jumped, at least once, and perhaps
   twice.
   Planets do not ``jump'' in orbital phase.
-  Furthermore, the Gaia data show that PTFO$\,$8-8695 is probably
-  a photometric binary (the comparison is made relative to the
-  kinematic subgroup of 25-Ori for which PTFO$\,$8-8695 is a member).
+  Furthermore, the Gaia data show that PTFO$\,$8-8695 is probably a
+  photometric binary, relative to the subgroup of Orion for which
+  PTFO$\,$8-8695 is a member.
   Given the available evidence, we believe that PTFO$\,$8-8695 is a
   binary M dwarf system in which one star is showing the ``long''
   rotation signal, and the other star is showing ``transient dipping''
@@ -288,6 +288,7 @@ The star was assigned a Gaia DR2 identifier of 3222255959210123904
 (CITE).
 In addition, measurements of the stellar proper motion between
 observation epochs were made.
+%FIXME sentence is bad
 
 One point of note:
 Gaia DR2 measured a significant ``astrometric excess'', at a level of
@@ -305,15 +306,14 @@ Its relation to the broader Orion complex has been further explored by
 CITEX, CITEY, and CITEZ (Briceno 05, 08, 18, whomever Van Eyken cites,
 and Kounkel 18).
 
-In describing the cluster membership of \ptfo, we
-follow the notation and results of \citet{kounkel_apogee2_2018}.
+In describing the cluster membership of \ptfo, we follow the notation
+and results of \citet{kounkel_apogee2_2018}.
 \citet{kounkel_apogee2_2018} combined astrometric data from Gaia DR2
-with spectroscopic data from APOGEE-2 (CITE).
-They then performed a hierarchical clustering on the six dimensional
-position and velocity information to identify subgroups within the
-Orion complex.
-From smallest to largest groups, \ptfo\ was identified as being a
-member of the following subgroups:
+with spectroscopic data from APOGEE-2 (CITE).  They then performed a
+hierarchical clustering on the six dimensional position and velocity
+information to identify subgroups within the Orion complex.  From
+smallest to largest groups, \ptfo\ was identified as being a member of
+the following subgroups:
 \begin{equation}
   {\rm PTFO\,8\text{-}8695}
   \in {\rm 25\,Ori\text{-}1}
@@ -323,17 +323,17 @@ member of the following subgroups:
 \end{equation}
 where from set-notation, `$\subset$' denotes ``is a proper subset of''.
 
-While all members of the Orion complex are young relative to the field, the internal
-age dispersion between different subgroups is measurable.
-The Orion Nebula Cluster (M42) is a site of ongoing star-formation, and its
-stars are 1-3$\,$Myr old (CITE).
-25$\,$Ori\-1, by contrast, is XX-XX$\,$Myr old (CITE).
-These details are essential when assessing any evidence for photometric binarity
-in \ptfo, because there is a degeneracy between stellar luminosity
-and age for stars on the pre-main-sequence.
-Having a clean sample of tightly spatially and kinematically associated stars
-is essential to minimize contamination not just from the field, but from older and younger
-members of the Orion complex itself.
+While all members of the Orion complex are young relative to the
+field, the internal age dispersion between different subgroups is
+measurable.  The Orion Nebula Cluster (M42) is a site of ongoing
+star-formation, and its stars are 1-3$\,$Myr old (CITE).
+25$\,$Ori\-1, by contrast, is XX-XX$\,$Myr old (CITE).  These details
+are essential when assessing any evidence for photometric binarity in
+\ptfo, because there is a degeneracy between stellar luminosity and
+age for stars on the pre-main-sequence.  Having a clean sample of
+tightly spatially and kinematically associated stars is essential to
+minimize contamination not just from the field, but from older and
+younger members of the Orion complex itself.
 
 
 \section{TESS Analysis}
@@ -379,7 +379,7 @@ power at each frequency.
 
 
 
-\subsection{ Model}
+\subsection{Lightcurve Model}
 
 We opted to model the lightcurve as a linear combination of Fourier
 harmonics at the short and long periods, plus a transit at the short
@@ -439,7 +439,7 @@ using synthetic data, before switching to the actual \ptfo\
 lightcurves.
 
 
-\subsection{ Fitting Results}
+\subsection{Fitting Results}
 
 \input{model_comparison_table.tex}
 %\input{model_posterior_table.tex}
@@ -524,42 +524,107 @@ nearest to Star A to show a sinusoidal signal with amplitude exceeding
 $10\%$.  We find no evidence for this being the case.  The pixel
 directly below Star A does not clearly show the sinusoidal
 variability, and the peak-to-peak variability in that pixel is
-$\lesssim 8\%$.  In contrast, the south-easternmost pixel within \ptfo's aperture (the pixel furthest from Star A that was used in the
+$\lesssim 8\%$.  In contrast, the south-easternmost pixel within
+\ptfo's aperture (the pixel furthest from Star A that was used in the
 optimal aperture) shows the $P_{\rm \ell}$ sinusoidal variability
 signal at $\approx 10\%$ amplitude.
 
 As there is no evidence in favor of a blend scenario, we conclude that
-both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from \ptfo.
+both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from \ptfo,
+at least within the resolution of the Gaia-DR2 source catalog.
+However, as we shall see, \ptfo itself could still be a binary.
 
 
-\section{Gaia Analysis}
+\section{Gaia Analysis \& Photometric Binarity}
 \label{sec:gaia}
 
+% \begin{figure*}[t]
+% 	\begin{center}
+% 		\leavevmode
+% 		\includegraphics[width=0.9\textwidth]{f6.png}
+% 	\end{center}
+% 	\vspace{-0.7cm}
+% 	\caption{ {\bf Positions, kinematics, and HR diagram of \ptfo.}
+%   Members of the 25$\,$Ori-1 subgroup are shown with black circles,
+%   and were identified by \citet{kounkel_apogee2_2018} through
+%   clustering on Gaia-DR2 and APOGEE data.  The ``neighborhood'' (gray
+%   circles) is defined as the group of at most $10^4$ randomly selected
+%   non-member stars within 5 standard deviations of the mean right
+%   ascension, declination, and parallax.
+% 	\label{fig:gaia}
+% 	}
+% \end{figure*}
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f6.png}
+		\includegraphics[width=0.9\textwidth]{f6.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf Positions, kinematics, and HR diagram of \ptfo.}
-	Members of the 25$\,$Ori-1 subgroup are shown with black circles, and were identified by \citet{kounkel_apogee2_2018} through clustering on Gaia-DR2 and APOGEE data.
-	The ``neighborhood'' (gray circles) is defined as the group of at most $10^4$ randomly selected non-member stars within 5 standard deviations of the mean right ascension, declination, and parallax.
+	\caption{ {\bf HR diagram of \ptfo and members of 25$\,$Ori-1.}
+  Members of the 25$\,$Ori-1 group (black circles) were identified by
+  \citet{kounkel_apogee2_2018} by clustering on six-dimensional
+  Gaia-DR2 and APOGEE-2 data.  We defined the reference
+  ``neighborhood'' (gray circles) as the group of at most $10^4$
+  randomly selected non-member stars within 5 standard deviations of
+  the mean 25$\,$Ori-1 right ascension, declination, and parallax.
 	\label{fig:gaia}
 	}
 \end{figure*}
 
-We did an analysis.
-The result was
-Figure~\ref{fig:gaia}.
+To assess the cluster membership, stellar mass, age, and potential
+binarity of \ptfo, we need to identify stars with which it is and is
+not coeval.  The simplest way to do this---clustering based on
+six-dimensional position and kinematic information---has already been
+done by \citet{kounkel_apogee2_2018}.  For simplicity, we considered
+the members they identified brighter than $G_{\rm Rp}$ of 16.  This
+yielded 149 members of 25$\,$Ori-1.
+
+To define a set of non-associated stars with comparable selection
+functions, we defined a reference ``neighborhood'' as the group of at
+most $10^4$ randomly selected non-member stars within 5 standard
+deviations of the mean 25$\,$Ori-1 right ascension, declination, and
+parallax.  We queried these stars using the \texttt{astroquery}
+package, which provides a convenient interface to the Gaia archive
+(CITE, CITE).  This yielded 1{,}819 neighbor stars.  While some of
+these stars may indeed be members of the Orion complex, or even of
+25$\,$Ori-1, enforcing this cut on positions and parallaxes ensures
+that we are querying stars with comparable amounts of interstellar
+reddening.
+
+We examined the resulting five-dimensional right ascension,
+declination, proper motions, and parallaxes.  The first point we noted
+was that 25$\,$Ori-1 was a clearly defined over-density in each
+dimension---the cluster definitely exists, and is different from the
+neighborhood.  \ptfo\ was also clearly a member in each of these
+projected dimensions.
+
+Given our detection of two separate signals, the issue of whether
+\ptfo\ could be a photometric binary was of relatively high concern.
+Figure~\ref{fig:gaia} shows the HR diagram from which we can assess
+this question.
 
 
 \section{Discussion}
 \label{sec:discussion}
 
 \subsection{Long period sinusoid}
+
 The standard interpretation of sinusoidal modulations for a
 pre-main-sequence M dwarf is that we are observing a rotation period.
 There is no evidence to suggest that we are seeing anything different.
+
+This is the dominant signal in the system with 10\% amplitude.
+Previous analyses, including the discovery study by
+\citet{van_eyken_ptf_2012}, saw the same signal ({\it e.g.}, their
+Figure~7).  However it was not previously thought to be astrophysical.
+\citet{van_eyken_ptf_2012} identified it as a periodogram peak at
+$0.9985 \pm 0.0061\,$days, and ascribed it to the observing cadence,
+because of its close correspondence to the sidereal day.  While the
+TESS data can show significant reflected light from the Earth
+\citep[{\it e.g.},][]{luger_tess_2019}, our pixel-level analysis
+showed that the signal is specific to only pixels near \ptfo, and no
+other pixels.  We therefore conclude that the signal is astrophysical.
+
 
 \subsection{Short period dip}
 The dip lasts about 45 minutes, and seems to re-occur every 11.74
