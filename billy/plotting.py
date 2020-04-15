@@ -14,13 +14,15 @@ Plots:
 
     plot_scene
 
+    plot_hr
+
     plot_O_minus_C
 
 Convenience:
     savefig
     format_ax
 """
-import os, corner
+import os, corner, pickle
 import numpy as np, matplotlib.pyplot as plt
 from datetime import datetime
 from pymc3.backends.tracetab import trace_to_dataframe
@@ -747,6 +749,66 @@ def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
         fig.tight_layout(h_pad=1, w_pad=1)
 
     savefig(fig, outpath, dpi=300)
+
+
+def plot_hr(outdir):
+
+    pklpath = '/Users/luke/Dropbox/proj/billy/results/cluster_membership/nbhd_info_3222255959210123904.pkl'
+    info = pickle.load(open(pklpath, 'rb'))
+    (targetname, groupname, group_df_dr2, target_df, nbhd_df,
+     cutoff_probability, pmdec_min, pmdec_max, pmra_min, pmra_max,
+     group_in_k13, group_in_cg18, group_in_kc19, group_in_k18
+    ) = info
+
+    ##########
+
+    plt.close('all')
+
+    f, ax = plt.subplots(figsize=(4,3))
+
+    nbhd_yval = np.array([nbhd_df['phot_g_mean_mag'] +
+                          5*np.log10(nbhd_df['parallax']/1e3) + 5])
+    ax.scatter(
+        nbhd_df['phot_bp_mean_mag']-nbhd_df['phot_rp_mean_mag'], nbhd_yval,
+        c='gray', alpha=1., zorder=2, s=7, rasterized=True, linewidths=0,
+        label='Neighborhood'
+    )
+
+    yval = group_df_dr2['phot_g_mean_mag'] + 5*np.log10(group_df_dr2['parallax']/1e3) + 5
+    ax.scatter(
+        group_df_dr2['phot_bp_mean_mag']-group_df_dr2['phot_rp_mean_mag'],
+        yval,
+        c='k', alpha=1., zorder=3, s=9, rasterized=True, linewidths=0,
+        label='K+18 members'
+    )
+
+    target_yval = np.array([target_df['phot_g_mean_mag'] +
+                            5*np.log10(target_df['parallax']/1e3) + 5])
+    ax.plot(
+        target_df['phot_bp_mean_mag']-target_df['phot_rp_mean_mag'],
+        target_yval,
+        alpha=1, mew=0.5, zorder=8, label='PTFO 8-8695', markerfacecolor='yellow',
+        markersize=12, marker='*', color='black', lw=0
+    )
+
+    ax.legend(loc='best', handletextpad=0.1, fontsize='small')
+    ax.set_ylabel('$G + 5\log_{10}(\omega_{\mathrm{as}}) + 5$', fontsize='large')
+    ax.set_xlabel('$Bp-Rp$', fontsize='large')
+
+    ylim = ax.get_ylim()
+    ax.set_ylim((max(ylim),min(ylim)))
+    # ax.set_xlim((-0.5, 3.0))
+
+    # # set M_omega y limits
+    # min_y = np.nanmin(np.array([np.nanpercentile(nbhd_yval, 2), target_yval]))
+    # max_y = np.nanmax(np.array([np.nanpercentile(nbhd_yval, 98), target_yval]))
+    # edge_y = 0.01*(max_y - min_y)
+    # momega_ylim = [max_y+edge_y, min_y-edge_y]
+    # ax.set_ylim(momega_ylim)
+
+    format_ax(ax)
+    outpath = os.path.join(outdir, 'hr.png')
+    savefig(f, outpath)
 
 
 
