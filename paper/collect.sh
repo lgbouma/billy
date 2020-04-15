@@ -11,5 +11,7 @@ cp ../results/PTFO_8-8695_results/scene.pdf f4.pdf
 
 cp ../results/ephemeris/O_minus_C.pdf f5.pdf
 
-cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_cornerplot.png f6.png
-pngquant f6.png --output f6_comp.png
+cp ../results/cluster_membership/3222255959210123904_nbhd_plot.png f6.png
+
+# cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_cornerplot.png f6.png
+# pngquant f6.png --output f6_comp.png

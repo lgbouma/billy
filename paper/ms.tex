@@ -13,6 +13,9 @@
 \renewcommand*{\sectionautorefname}{Section} %for \autoref
 \renewcommand*{\subsectionautorefname}{Section} %for \autoref
 
+\newcommand{\ptfo}{PTFO$\,$8-8695}
+\newcommand{\ptfob}{PTFO$\,$8-8695b}
+
 %% Reintroduced the \received and \accepted commands from AASTeX v5.2.
 %% Add "Submitted to " argument.
 \received{\today}
@@ -64,29 +67,29 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 % %
 
 \begin{abstract}
-  PTFO$\,$8-8695b could be the youngest, shortest-period 
-  hot Jupiter known.  However it has not been shown to be a planet.
-  TESS recently observed PTFO$\,$8-8695 for one month.
+  PTFO$\,$8-8695b, a candidate hot Jupiter in the 7--10$,$Myr old
+  Orion-OB1a cluster, might be the youngest hot Jupiter known.
+  We inspected data from TESS and Gaia to clarify whether it is
+  actually a planet.
   The TESS lightcurve shows that the dominant variability in this
   system is a sinusoidal modulation with a ``long'' period $P_{\rm
-  \ell}$
-  of 11.96 hours, likely caused by stellar rotation.
-  Also present is a complex signal, previously identified as the
-  planet candidate, that repeats with a ``short'' period $P_{\rm s}$ of
-  10.74 hours.
-  The ``long'' and ``short'' signals show the expected beat every 4.48
-  days.
-  There is a dip in the complex, short-period signal.
-  However ground-based photometry from the past decade shows that the
-  orbital phase of the dip seems to have instantaneously jumped, at
-  least once, and maybe twice.
-  The TESS epoch of the dip is consistent with recent observations by
-  Tanimoto et al., and differs from the discovery epoch by 5.14 hours.
+  \ell}=11.96\,$hr, likely caused by stellar rotation.  Also present
+  is a complex signal, previously identified as the planet candidate,
+  that repeats with a ``short'' period $P_{\rm s}= 10.74\,$hr.
+  The ``long'' and ``short'' signals beat every 4.48 days.
+  Although there is a dip in the short-period signal, ground-based
+  photometry from the past decade shows that the orbital phase of the
+  dip seems to have instantaneously jumped, at least once, and perhaps
+  twice.
   Planets do not ``jump'' in orbital phase.
-  Given the available evidence,
-  PTFO$\,$8-8695 seems consistent with the
-  ``transient dipping'' phenomenology observed in many young M dwarfs.
-  It seems rather unlikely to be a planet.
+  Furthermore, the Gaia data show that PTFO$\,$8-8695 is probably
+  a photometric binary (the comparison is made relative to the
+  kinematic subgroup of 25-Ori for which PTFO$\,$8-8695 is a member).
+  Given the available evidence, we believe that PTFO$\,$8-8695 is a
+  binary M dwarf system in which one star is showing the ``long''
+  rotation signal, and the other star is showing ``transient dipping''
+  that has been observed in many young M dwarfs.
+  The planetary interpretation seems highly unlikely.
 \end{abstract}
 
 %TODO
@@ -95,7 +98,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
-If PTFO$\,$8-8695b were a planet, it would be exceptional.
+If \ptfob\ were a planet, it would be exceptional.
 A transiting hot Jupiter, orbiting a $\approx$3$\,$Myr old M dwarf
 in ORION would make it the youngest hot Jupiter known.
 Its orbital period of only 12 HOURS would also make it the shortest
@@ -121,7 +124,7 @@ period hot Jupiter known.
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{
-		{\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 19).}
+		{\bf TESS lightcurve of \ptfo\ (Sector 6, Orbit 19).}
 		{\it Top}: ``Raw'' \texttt{PDCSAP} mean-subtracted relative flux
 		versus time. The beat period of 4.48 days is visible by eye.  The
 		model plotted underneath the data includes 2 harmonics at the long
@@ -137,21 +140,17 @@ period hot Jupiter known.
 	}
 \end{figure*}
 
-%\newpage
 \begin{figure*}[hbtp]
 	\begin{center}
 		\leavevmode
 		\includegraphics[width=1\textwidth]{f2.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-	\caption{ {\bf TESS lightcurve of PTFO 8-8695 (Sector 6, Orbit 20).}
+  \caption{ {\bf TESS lightcurve of \ptfo\ (Sector 6, Orbit 20).}
 		Panels are as in Figure~\ref{fig:splitsignal}.
 		\label{fig:splitsignalii}
 	}
 \end{figure*}
-%\newpage
-
-
 
 \begin{figure*}[t]
 	\begin{center}
@@ -169,16 +168,15 @@ period hot Jupiter known.
 	}
 \end{figure*}
 
-
 \begin{figure}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.48\textwidth]{f4.pdf}
+		\includegraphics[width=0.45\textwidth]{f4.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Scene used for blend analysis.}
-		{\it Top:} Mean TESS image of PTFO 8-8695 over Sector~6, with a
-		log-stretch.  The position of PTFO 8-8695 is shown with a yellow
+		{\it Top:} Mean TESS image of \ptfo\ over Sector~6, with a
+		log-stretch.  The position of \ptfo\ is shown with a yellow
 		star.  Neighbors with $T<17$ are shown with orange crosses.  The
 		apertures used to measure the background and target star flux are
 		shown with \texttt{X} and \texttt{/} hatches, respectively.
@@ -192,14 +190,14 @@ period hot Jupiter known.
 	}
 \end{figure}
 
-\begin{figure*}[t]
+\begin{figure}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f5.pdf}
+		\includegraphics[width=0.5\textwidth]{f5.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{
-		{\bf Timing residuals for PTFO 8-8695b from a decade of monitoring.}
+		{\bf Timing residuals for \ptfob\ from a decade of monitoring.}
 		Black points are times of ``dips'', minus the indicated linear
 		ephemeris.  The $y$-axis is given in units of phase for the
 		short-period signal.  The star shows the binned TESS ephemeris.
@@ -217,32 +215,33 @@ period hot Jupiter known.
 		original phase.
 		\label{fig:o_minus_c}
 	}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}[t!]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.9\textwidth]{f6_comp.png}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{ {\bf foo.}
-		bar
-		\label{fig:corner}
-	}
-\end{figure*}
+%\begin{figure*}[t!]
+%	\begin{center}
+%		\leavevmode
+%		\includegraphics[width=0.9\textwidth]{f6_comp.png}
+%	\end{center}
+%	\vspace{-0.7cm}
+%	\caption{ {\bf foo.}
+%	bar
+%		\label{fig:corner}
+%	}
+%\end{figure*}
 
-\subsection{Observations}
+\subsection{TESS Observations}
 
-PTFO 8-8695 was observed by TESS with Camera 1, CCD 1, from December
+\ptfo\ was observed by TESS with Camera 1, CCD 1, from December
 15, 2018 to January 6, 2019, during the sixth sector of science
-operations.  The star was designated TIC 264461976 in the TESS Input
-Catalog \citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data
-for an $11\times11$ array surrounding PTFO 8-8695 were averaged into
-2-minute stacks by the onboard computer.  Each 2048$\times$2048 image
-from the CCD was also averaged into 30-minute stacks, and saved as a
-``full frame image'' (FFI).
+operations \citep{ricker_transiting_2015}.  The star was designated
+TIC 264461976 in the TESS Input Catalog
+\citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data for an
+$11\times11$ array surrounding \ptfo\ were averaged into 2-minute
+stacks by the onboard computer.  Each 2048$\times$2048 image from the
+CCD was also averaged into 30-minute stacks, and saved as a ``full
+frame image'' (FFI).
 
-The 2-minute stacks for PTFO 8-8695 were then reduced to lightcurves
+The 2-minute stacks for \ptfo\ were then reduced to lightcurves
 by the Science Processing Operations Center (SPOC) at NASA
 Ames~\citep{jenkins_tess_2016}.  Our main analysis used the resulting
 Presearch Data Conditioning (PDC) lightcurve.  The PDC lightcurve
@@ -254,7 +253,7 @@ variability was removed through the methods discussed by
 As an independent check on the shorter cadence SPOC light-curve, we
 separately processed the 30-minute image stacks as part of the Cluster
 Difference Imaging Photometric Survey (CDIPS;
-\citep{bouma_cluster_2019}).  The CDIPS lightcurve used a circular
+\citealt{bouma_cluster_2019}).  The CDIPS lightcurve used a circular
 aperture with radius 1 pixel.
 
 To clean the data, we removed all points with non-zero quality flags
@@ -276,7 +275,71 @@ and subsequent processing steps were performed using
 \texttt{astrobase}~\citep{bhatti_astrobase_2018}. 
 
 
-\subsection{Visual Inspection}
+\subsection{Gaia Observations}
+
+Between July 25, 2014 and May 23, 2016, Gaia acquired 121 ``good''
+observations of \ptfo, {\it i.e.}, observations that were not strongly
+downweighted in the astrometric solution of the source (CITE).
+%TODO: give an original explanation of how Gaia works
+The Gaia data processing team at XXXINSTITUTION combined the XXX and
+YYY into a global astrometric solution, from which the parallax of 
+\ptfo\ was derived (CITE).
+The star was assigned a Gaia DR2 identifier of 3222255959210123904
+(CITE).
+In addition, measurements of the stellar proper motion between
+observation epochs were made.
+
+One point of note:
+Gaia DR2 measured a significant ``astrometric excess'', at a level of
+10.3$\sigma$.
+This astrometric excess indicates the degree
+to which a single-source model fails to explain the observed astrometric
+measurements (CITE).
+
+\subsection{Cluster Membership}
+The Orion molecular cloud complex has numerous subgroups, with ages
+spanning 1 to 15$\,$Myr (CITE).
+\ptfo\ has been known to be a member of the Orion OB1a association
+since at least CITE (Briceno 2005).
+Its relation to the broader Orion complex has been further explored by
+CITEX, CITEY, and CITEZ (Briceno 05, 08, 18, whomever Van Eyken cites,
+and Kounkel 18).
+
+In describing the cluster membership of \ptfo, we
+follow the notation and results of \citet{kounkel_apogee2_2018}.
+\citet{kounkel_apogee2_2018} combined astrometric data from Gaia DR2
+with spectroscopic data from APOGEE-2 (CITE).
+They then performed a hierarchical clustering on the six dimensional
+position and velocity information to identify subgroups within the
+Orion complex.
+From smallest to largest groups, \ptfo\ was identified as being a
+member of the following subgroups:
+\begin{equation}
+  {\rm PTFO\,8\text{-}8695}
+  \in {\rm 25\,Ori\text{-}1}
+  \subset {\rm 25\,Ori}
+  \subset {\rm Orion\ OB1a}
+  \subset {\rm Orion\ D},
+\end{equation}
+where from set-notation, `$\subset$' denotes ``is a proper subset of''.
+
+While all members of the Orion complex are young relative to the field, the internal
+age dispersion between different subgroups is measurable.
+The Orion Nebula Cluster (M42) is a site of ongoing star-formation, and its
+stars are 1-3$\,$Myr old (CITE).
+25$\,$Ori\-1, by contrast, is XX-XX$\,$Myr old (CITE).
+These details are essential when assessing any evidence for photometric binarity
+in \ptfo, because there is a degeneracy between stellar luminosity
+and age for stars on the pre-main-sequence.
+Having a clean sample of tightly spatially and kinematically associated stars
+is essential to minimize contamination not just from the field, but from older and younger
+members of the Orion complex itself.
+
+
+\section{TESS Analysis}
+\label{sec:analysis}
+
+\subsection{Inspection}
 
 Our initial inspection of the lightcurve, in both its 2-minute PDCSAP
 and 30-minute FFI forms, showed a strong sinusoidal beat signal
@@ -315,10 +378,8 @@ power at each frequency.
 
 
 
-\section{The Model}
-\label{sec:analysis}
 
-\subsection{Model Description}
+\subsection{ Model}
 
 We opted to model the lightcurve as a linear combination of Fourier
 harmonics at the short and long periods, plus a transit at the short
@@ -374,11 +435,11 @@ gradient-based No-U-Turn Sampler \citep{hoffman_no-u-turn_2014}, and
 used $\hat{R}$ as our convergence diagnostic
 \citep{gelman_inference_1992}.
 We tested our ability to successfully recover injected parameters
-using synthetic data, before switching to the actual PTFO 8-8695
+using synthetic data, before switching to the actual \ptfo\
 lightcurves.
 
 
-\subsection{Fitting Results}
+\subsection{ Fitting Results}
 
 \input{model_comparison_table.tex}
 %\input{model_posterior_table.tex}
@@ -428,7 +489,7 @@ level in the SPOC lightcuirve are indicated with an `\texttt{X}'
 hatch, and the pixels used in the final lightcurve aperture are shown
 with the `\texttt{/}' hatch.
 
-The target star, PTFO 8-8605 (TIC 264461976), has a $T$-band magnitude
+The target star, \ptfo\ (TIC 264461976), has a $T$-band magnitude
 of 14.0, and its position is shown with a star.  The other (unlabeled)
 star inside the target aperture, TIC 264461979, has $T=16.8$ and so
 cannot contribute a signal with relative amplitude 10\%.  The only
@@ -436,12 +497,12 @@ neighbor that is sufficiently close and bright that its light might
 contaminate the target star is TIC 264461980, with $T=14.8$, which we
 denote ``Star A''.  Star A is 23.6'' NW of our target, and based on
 the magnitude difference could contribute up to 48\% the flux of our
-target star, PTFO 8-8695.  
+target star, \ptfo.  
 
-Because PTFO 8-8695 has previously been identified to have periodicity
+Because \ptfo\ has previously been identified to have periodicity
 consistent with our measurement of $P_{\rm s}$, our main concern
 regarding blending is the degree to which we can be certain that the
-long-period signal at $P_{\rm \ell}$ also originates from PTFO 8-8695.
+long-period signal at $P_{\rm \ell}$ also originates from \ptfo.
 We took two approaches towards determining the source of the
 long-period signal.
 
@@ -463,14 +524,33 @@ nearest to Star A to show a sinusoidal signal with amplitude exceeding
 $10\%$.  We find no evidence for this being the case.  The pixel
 directly below Star A does not clearly show the sinusoidal
 variability, and the peak-to-peak variability in that pixel is
-$\lesssim 8\%$.  In contrast, the south-easternmost pixel within PTFO
-8-8695's aperture (the pixel furthest from Star A that was used in the
+$\lesssim 8\%$.  In contrast, the south-easternmost pixel within \ptfo's aperture (the pixel furthest from Star A that was used in the
 optimal aperture) shows the $P_{\rm \ell}$ sinusoidal variability
 signal at $\approx 10\%$ amplitude.
 
 As there is no evidence in favor of a blend scenario, we conclude that
-both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from PTFO
-8-8695.
+both the $P_{\rm s}$ and $P_{\rm \ell}$ signals originate from \ptfo.
+
+
+\section{Gaia Analysis}
+\label{sec:gaia}
+
+\begin{figure*}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.9\textwidth]{f6.png}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{ {\bf Positions, kinematics, and HR diagram of \ptfo.}
+	Members of the 25$\,$Ori-1 subgroup are shown with black circles, and were identified by \citet{kounkel_apogee2_2018} through clustering on Gaia-DR2 and APOGEE data.
+	The ``neighborhood'' (gray circles) is defined as the group of at most $10^4$ randomly selected non-member stars within 5 standard deviations of the mean right ascension, declination, and parallax.
+	\label{fig:gaia}
+	}
+\end{figure*}
+
+We did an analysis.
+The result was
+Figure~\ref{fig:gaia}.
 
 
 \section{Discussion}
@@ -497,7 +577,7 @@ The TESS dip does not phase up where it is supposed to...
 Figure~\ref{fig:o_minus_c}
 
 \subsection{Short period out-of-dip modulation}
-If there were a giant planet transiting PTFO 8-8695, it would tidally
+If there were a giant planet transiting \ptfo, it would tidally
 distort the host star, and cause ellipsoidal photometric modulations.
 The amplitude of the ellipsoidal distortion for a $1\,M_{\rm Jup}$
 companion would be about 1400$\,$ppm
@@ -533,8 +613,8 @@ Jup}$.
 \section{Conclusions}
 \label{sec:conclusions}
 
-PTFO 8-8695 was previously thought to potentially host a hot Jupiter.
-The TESS lightcurve of PTFO 8-8695 showed a number of new features,
+\ptfo\ was previously thought to potentially host a hot Jupiter.
+The TESS lightcurve of \ptfo\ showed a number of new features,
 many of which seem to disfavor the hot Jupiter interpretatation.
 The TESS data showed two key pieces of evidence.
 \begin{enumerate}
@@ -553,7 +633,7 @@ The TESS data showed two key pieces of evidence.
 The physical mechanism responsible for all these features remains a
 matter of speculation.
 With that said, the TESS data support new arguments against the planetary
-interpretation of PTFO 8-8695.
+interpretation of \ptfo.
 First, if the long signal is caused by starspot modulation, and the
 short signal by a transiting planet, what causes the additional
 complex modulations seen at the short, ``orbital'', period?
