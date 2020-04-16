@@ -797,7 +797,9 @@ def plot_hr(outdir):
 
     ylim = ax.get_ylim()
     ax.set_ylim((max(ylim),min(ylim)))
-    # ax.set_xlim((-0.5, 3.0))
+
+    ax.set_xlim((0.9, 3.1))
+    ax.set_ylim((9.5, 4.5))
 
     # # set M_omega y limits
     # min_y = np.nanmin(np.array([np.nanpercentile(nbhd_yval, 2), target_yval]))
