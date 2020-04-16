@@ -569,25 +569,30 @@ However, as we shall see, \ptfo itself could still be a binary.
   randomly selected non-member stars within 5 standard deviations of
   the mean 25$\,$Ori-1 right ascension, declination, and parallax.
   \ptfo\ seems likely to be a photometric binary.
+  ``$G$'' is the Gaia broadband, $Bp$ is Gaia blue, and $Rp$ is Gaia red.
+  $\omega_{\rm as}$ is the parallax in arcseconds.
 	\label{fig:gaia}
 	}
 \end{figure*}
 
-To assess the cluster membership, stellar mass, age, and potential
-binarity of \ptfo, we need to identify stars with which it is and is
+To assess the cluster membership and potential
+binarity of \ptfo, we needed to identify stars with which it was and was
 not coeval.  The simplest way to do this---clustering based on
-six-dimensional position and kinematic information---has already been
+six-dimensional position and kinematic information---had already been
 done by \citet{kounkel_apogee2_2018}.  For simplicity, we considered
 the members they identified brighter than $G_{\rm Rp}$ of 16.  This
-yielded 149 members of 25$\,$Ori-1.
+yielded 149 stars in 25$\,$Ori-1, mostly M dwarfs.
+\citet{kounkel_apogee2_2018} identified seven other smaller
+groups in the Orion complex near the Be star 25$\,$Ori. These groups
+received higher numbers, {\it e.g.}, 25$\,$Ori-2.
 
-To define a set of non-associated stars with comparable selection
+To define a set of non-member stars that nonetheless had comparable selection
 functions, we defined a reference ``neighborhood'' as the group of at
 most $10^4$ randomly selected non-member stars within 5 standard
 deviations of the mean 25$\,$Ori-1 right ascension, declination, and
 parallax.  We queried these stars using the \texttt{astroquery}
 package, which provides a convenient interface to the Gaia archive
-(CITE, CITE).  This yielded 1{,}819 neighbor stars.  While some of
+(CITE, CITE).  This yielded 1{,}819 neighbors.  While some of
 these stars may indeed be members of the Orion complex, or even of
 25$\,$Ori-1, enforcing this cut on positions and parallaxes ensures
 that we are querying stars with comparable amounts of interstellar
@@ -596,14 +601,24 @@ reddening.
 We examined the resulting five-dimensional right ascension,
 declination, proper motions, and parallaxes.  The first point we noted
 was that 25$\,$Ori-1 was a clearly defined over-density in each
-dimension---the cluster definitely exists, and is different from the
+dimension, so the cluster exists, and is different from the
 neighborhood.  \ptfo\ was also clearly a member in each of these
 projected dimensions.
 
-Given our detection of two separate signals, the issue of whether
-\ptfo\ could be a photometric binary was of relatively high concern.
-Figure~\ref{fig:gaia} shows the HR diagram from which we can assess
-this question.
+Given our detection of two separate signals, whether
+\ptfo\ could be a photometric binary was of great interest.
+Figure~\ref{fig:gaia} shows the HR diagram from which we assessed
+this issue.
+The diagram shows that \ptfo\ is $\approx$0.8 magnitudes brighter than the average
+25$\,$Ori-1 star of the same color.
+In other words, it is about twice as bright.
+It also seems to be on the photometric binary track of the cluster, which has a few other stars.
+
+The implication is that either 
+{\it (i)} \ptfo\ is notably younger than the kinematically identical cluster members, or
+{\it (ii)} \ptfo\ is a photometric binary.
+Given the independent presence of two resolved signals,
+we favor the interpretation that \ptfo\ is a binary star system.
 
 
 \section{Discussion}
@@ -633,7 +648,7 @@ The dip lasts about 45 minutes, and seems to re-occur every 11.74
 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
 The dip duration is roughly the same as that observed by previous
-investigators \citep{van_eyken_ptf_2012,yu_tests_2015,}
+investigators \citep{van_eyken_ptf_2012,yu_tests_2015}
 The dip depth is comparable to what has been observed in red visual
 bands...
 %TODO: and how does it compare to IR? bigger or smaller? cite relevant
