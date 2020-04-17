@@ -314,7 +314,7 @@ younger members of the Orion complex itself.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.8\textwidth]{f3.pdf}
+		\includegraphics[width=0.99\textwidth]{f3.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Phase-folded long and short-period signals.}
@@ -429,14 +429,11 @@ lightcurves.
 
 \subsection{Fitting Results}
 
-\input{model_comparison_table.tex}
-%\input{model_posterior_table.tex}
-
 We considered nine models, with the number of harmonics per frequency
 $N$ and $M$ ranging from one to three.  To select our preferred model,
 we used the Bayesian information criterion
 (Table~\ref{tab:modelcompare}).  The model with the lowest BIC had
-two harmonics at the short 11.74$\,$hr period, and two harmonics
+two harmonics at the short 10.74$\,$hr period, and two harmonics
 at the long 11.96$\,$hr period.  All of the models have reduced
 $\chi^2$ ranging between 1.37 and 1.51, which suggests a plausible
 though imperfect agreement between the data and models.
@@ -669,7 +666,7 @@ TESS data strongly support this conclusion.
 
 
 \subsection{Short period dip}
-The dip lasts about 45 minutes, and seems to re-occur every 11.74
+The dip lasts about 45 minutes, and seems to re-occur every 10.74
 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
 The dip duration is roughly the same as that observed by previous
@@ -910,7 +907,11 @@ Darwin unstable.
 % \input{rv_model_posterior_table.tex}
 % \input{pdot_table.tex}
 
-%\clearpage
+\clearpage
+\input{model_comparison_table.tex}
+\input{model_posterior_table.tex}
+\clearpage
+
 \bibliographystyle{yahapj}                            
 \bibliography{bibliography} 
 

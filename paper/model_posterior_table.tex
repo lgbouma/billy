@@ -1,46 +1,47 @@
 % Table of best fit parameters
 \startlongtable
-\begin{deluxetable*}{lrrr}
+\begin{deluxetable*}{llrrrr}
 %
-\tablecaption{ Best-fit radial velocity model parameters. }
+\tablecaption{ Best-fit model priors and posteriors. }
 \label{tab:posterior}
 %
-\tablenum{4}
+%\tabletypesize{\scriptsize}
+%
+\tablenum{2}
 %
 \tablehead{
-  \colhead{Parameter} & 
-  \colhead{Credible Interval} & 
-  \colhead{Maximum Likelihood} & 
-  \colhead{Units}
+  \colhead{Param.} & 
+  \colhead{Prior} & 
+  \colhead{Mean} & 
+  \colhead{Std{.} Dev.} &
+  \colhead{3\%} &
+  \colhead{97\%}
 }
+% /Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200413_v0/posterior_table_clean.tex
 \startdata
-%\sidehead{~~~~~\it{Modified MCMC Step Parameters}}
-%  $P_{b}$ & $1.338231466\pm 2.3e-08$ & $1.338231466$ & day \\
-%  $T\rm{conj}_{b}$ & $2455804.515752^{+2.5e-05}_{-2.4e-05}$ & $2455804.515752$ & BJD$_{\rm TDB}$ \\
-%  $e_{b}$ & $\equiv0.0$ & $\equiv0.0$ &  \\
-%  $\omega_{b}$ & $\equiv0.0$ & $\equiv0.0$ & $^\circ$ \\
-%  $K_{b}$ & $242.6^{+3.6}_{-3.5}$ & $242.6$ & m$\,{\rm s}^{-1}$ \\
-%\hline
-\sidehead{~~~~~\it{Orbital Parameters}}
-  $P_{b}$ & $1.338231466\pm 2.3e-08$ & $1.338231466$ & day \\
-  $T\rm{conj}_{b}$ & $2455804.515752^{+2.5e-05}_{-2.4e-05}$ & $2455804.515752$ & BJD$_{\rm TDB}$ \\
-  $e_{b}$ & $\equiv0.0$ & $\equiv0.0$ &  \\
-  $\omega_{b}$ & $\equiv0.0$ & $\equiv0.0$ & $^\circ$ \\
-  $K_{b}$ & $242.6^{+3.6}_{-3.5}$ & $242.6$ & m$\,{\rm s}^{-1}$ \\
-%\hline
-\sidehead{~~~~~\it{Other Parameters}}
-  $\gamma_{\rm HIRES}$ & $36.4^{+5.8}_{-5.9}$ & $36.4$ & m$\,{\rm s}^{-1}$ \\
-  $\gamma_{\rm HARPS}$ & $-69.9^{+4.2}_{-4.1}$ & $-70.1$ & m$\,{\rm s}^{-1}$ \\
-  $\gamma_{\rm CORALIE}$ & $-39.9^{+5.5}_{-5.2}$ & $-40.1$ & m$\,{\rm s}^{-1}$ \\
-  $\dot{\gamma}$ & $-0.0422^{+0.0028}_{-0.0027}$ & $-0.0424$ & m$\,{\rm s}^{-1}\,{\rm day}^{-1}$ \\
-  $\ddot{\gamma}$ & $\equiv0.0$ & $\equiv0.0$ &  \\
-  $\sigma_{\rm HIRES}$ & $10.8^{+3.7}_{-2.7}$ & $8.2$ & $\rm m\,s^{-1}$ \\
-  $\sigma_{\rm HARPS}$ & $13.0^{+3.7}_{-2.6}$ & $11.5$ & $\rm m\,s^{-1}$ \\
-  $\sigma_{\rm CORALIE}$ & $13.8^{+6.6}_{-6.7}$ & $12.9$ & $\rm m\,s^{-1}$ \\
+$P_{\rm s}$ & $\mathcal{N}(0.4485; 0.0010)$ & 0.4484732 & 0.0000857 & 0.4483170 & 0.4486367 \\
+$t_{\rm s}^{(1)}$ & $\mathcal{N}(0.438096; 0.0020)$ & 0.4384733 & 0.0017440 & 0.4349337 & 0.4415021 \\
+$R_{\rm p}/R_\star$ & $\mathcal{N}(0.1100; 0.0033)$ & 0.11 & 0.00308 & 0.10452 & 0.11599 \\
+$b$ & $\mathcal{U}(0; 1+R_{\mathrm{p}}/R_\star)$ & 0.7736 & 0.0756 & 0.6346 & 0.8993 \\
+$u_1$ & (2) & 0.683 & 0.477 & 0.001 & 1.546 \\
+$u_2$ & (2) & 0.004 & 0.417 & -0.793 & 0.727 \\
+Mean & $\mathcal{U}(-0.01; 0.01)$ & -0.000885 & 0.000440 & -0.001745 & -0.000088 \\
+$\omega_{\rm s}$ & $2\pi/P_{\mathrm{s}}$ & 14.01017 & 0.00268 & 14.00506 & 14.01505 \\
+$A_{\mathrm{s},0}$ & $\mathcal{U}(-0.02; 0.02)$ & 0.008903 & 0.000705 & 0.007569 & 0.010277 \\
+$B_{\mathrm{s},0}$ & $\mathcal{U}(-0.02; 0.02)$ & 0.009985 & 0.000751 & 0.008504 & 0.011289 \\
+$A_{\mathrm{s},1}$ & $\mathcal{U}(-0.02; 0.02)$ & 0.001649 & 0.000696 & 0.000331 & 0.002884 \\
+$B_{\mathrm{s},1}$ & $\mathcal{U}(-0.02; 0.02)$ & -0.005267 & 0.000606 & -0.006491 & -0.004203 \\
+$\phi_{\rm \ell}$ & $\mathcal{U}(1.3721; 2.1575)$ & 1.74324 & 0.22254 & 1.38274 & 2.08874 \\
+$\omega_{\rm \ell}$ & $\mathcal{N}(12.6054; 0.1261)$ & 12.588581 & 0.002040 & 12.584940 & 12.592450 \\
+$A_{\mathrm{\ell},0}$ & $\mathcal{U}(-0.06; 0.06)$ & 0.037785 & 0.005150 & 0.028728 & 0.045214 \\
+$B_{\mathrm{\ell},0}$ & $\mathcal{U}(-0.06; 0.06)$ & 0.022288 & 0.008592 & 0.008066 & 0.0359 \\
+$A_{\mathrm{\ell},1}$ & $\mathcal{U}(-0.02; 0.02)$ & 0.002326 & 0.000756 & 0.000857 & 0.003658 \\
+$B_{\mathrm{\ell},1}$ & $\mathcal{U}(-0.02; 0.02)$ & -0.002197 & 0.000744 & -0.003512 & -0.000743 \\
 \enddata
 %\tablenotetext{}{ 240000 links saved}
 \tablenotetext{}{
-  Reference epoch for $\gamma$,$\dot{\gamma}$,$\ddot{\gamma}$: 2455470 
+  (1) To convert mean TESS mid-transit time to ${\rm BJD}_{\rm TDB}$, add 2458468.2.
+  (2) Quadratic limb-darkening prior from \citet{exoplanet:kipping13}, implemented by \citet{exoplanet:exoplanet}.
 }
-\vspace{-2.5cm}
+\vspace{0cm}
 \end{deluxetable*}
