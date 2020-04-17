@@ -346,6 +346,20 @@ def plot_phasefold_map(m, d, outpath):
     axs[1].scatter(orb_bd['binnedphases'], orb_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
 
+    out_d = {
+        'orb_d': orb_d,
+        'orb_bd': orb_bd,
+        'rot_d': rot_d,
+        'rot_bd': rot_bd
+    }
+    pklpath = os.path.join(
+        os.path.dirname(outpath),
+        os.path.basename(outpath).replace('.png','_points.pkl')
+    )
+    with open(pklpath, 'wb') as buff:
+        pickle.dump(out_d, buff)
+    print('made {}'.format(pklpath))
+
     txt1 = '$P_{{\mathrm{{s}}}}$ = {:.5f}$\,$d'.format(P_orb)
     axs[1].text(0.98, 0.98, txt1, ha='right', va='top',
                 transform=axs[1].transAxes, bbox=props, zorder=3)
