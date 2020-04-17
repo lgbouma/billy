@@ -771,7 +771,7 @@ def plot_hr(outdir):
     ax.scatter(
         nbhd_df['phot_bp_mean_mag']-nbhd_df['phot_rp_mean_mag'], nbhd_yval,
         c='gray', alpha=1., zorder=2, s=7, rasterized=True, linewidths=0,
-        label='Neighborhood'
+        label='Neighborhood', marker='.'
     )
 
     yval = group_df_dr2['phot_g_mean_mag'] + 5*np.log10(group_df_dr2['parallax']/1e3) + 5
