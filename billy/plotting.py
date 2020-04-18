@@ -18,11 +18,14 @@ Plots:
 
     plot_O_minus_C
 
+    plot_brethren
+
 Convenience:
     savefig
     format_ax
 """
 import os, corner, pickle
+from glob import glob
 import numpy as np, matplotlib.pyplot as plt
 from datetime import datetime
 from pymc3.backends.tracetab import trace_to_dataframe
@@ -32,12 +35,17 @@ from billy.convenience import flatten as bflatten
 from billy.convenience import get_clean_ptfo_data
 from billy.models import linear_model
 
-from astrobase.lcmath import phase_magseries, phase_bin_magseries
+from astrobase.lcmath import (
+    phase_magseries, phase_bin_magseries, sigclip_magseries
+)
+from astrobase import periodbase
+
 from astropy.stats import LombScargle
 from astropy import units as u, constants as const
+from astropy.io import fits
+from astropy.time import Time
 
 from numpy import array as nparr
-from astropy.time import Time
 
 def plot_periodogram(outdir, islinear=True):
 
@@ -962,3 +970,202 @@ def plot_O_minus_C(
     fig.tight_layout(h_pad=0, w_pad=0)
 
     savefig(fig, savpath, dpi=350)
+
+
+def plot_brethren(outdir):
+
+    from transitleastsquares import transitleastsquares
+
+    # get campaign 2 upper sco everest light-curves.
+    # NOTE: 204270520 has a C15 LC, but it's the only one.
+    epic_ids = [
+        "204143627",
+        "204270520",
+        "204321142",
+        # "205046529", # kind of messed up, b/c it's a binary
+        "205483258",
+        '204787516',
+    ]
+    lc_dict = {}
+
+    k2pkl = os.path.join(outdir, 'k2data.pkl')
+    if not os.path.exists(k2pkl):
+        for epic_id in epic_ids:
+
+            lc_dict[epic_id] = {}
+
+            lcpath = glob(
+                '/Users/luke/Dropbox/proj/billy/data/analogs/hlsp_everest_k2_llc_{}-c02_kepler_v2.0_lc/*fits'.format(epic_id)
+            )
+            assert len(lcpath)==1
+
+            hdul = fits.open(lcpath[0])
+            time = hdul[1].data['TIME']
+            flux = hdul[1].data['FLUX']
+            qual = hdul[1].data['QUALITY']
+            hdul.close()
+
+            plt.close('all')
+            fig = plt.figure(figsize=(16,4))
+            plt.scatter(time, flux, c='k', s=3)
+            outpath = os.path.join(outdir, epic_id+'_quicklook_lc.png')
+            savefig(fig, outpath, dpi=200, writepdf=0)
+
+            sel = (time > 2065) # & (qual < 20000) # initial part of campaign 2 has some garbage points
+            time, flux = time[sel], flux[sel]
+
+            time, flux, _ = sigclip_magseries(time, flux, None, sigclip=[50,5],
+                                              iterative=True, niterations=2,
+                                              magsarefluxes=True)
+
+            plt.close('all')
+            fig = plt.figure(figsize=(16,4))
+            plt.scatter(time, flux, c='k', s=3)
+            outpath = os.path.join(outdir, epic_id+'_quicklook_lc_clean.png')
+            savefig(fig, outpath, dpi=200, writepdf=0)
+
+            from wotan import flatten
+
+            # 48 cadences per day... 240 = 5 days. 300 = 6 days.
+            window_length = 1201 if epic_id=="205483258" else 401
+            flatten_lc, trend_lc = flatten(time, flux, method='medfilt',
+                                           window_length=window_length,
+                                           return_trend=True,)
+
+            plt.close('all')
+            fig = plt.figure(figsize=(16,4))
+            plt.scatter(time, flatten_lc, c='k', s=3)
+            outpath = os.path.join(outdir, epic_id+'_quicklook_lc_flat.png')
+            savefig(fig, outpath, dpi=200, writepdf=0)
+
+            sel = (time > 2071) & (time < 2129)
+
+            flux = flatten_lc[sel]
+            time = time[sel]
+
+            plt.close('all')
+            fig = plt.figure(figsize=(16,4))
+            plt.scatter(time, flux, c='k', s=3)
+            plt.ylim((np.mean(flux)-4*np.std(flux), np.mean(flux)+4*np.std(flux)))
+            outpath = os.path.join(outdir, epic_id+'_quicklook_lc_final.png')
+            savefig(fig, outpath, dpi=200, writepdf=0)
+
+            plt.close('all')
+
+            lc_dict[epic_id]['time'] = time
+            lc_dict[epic_id]['flux'] = flux
+
+            # now phase-fold it. save and bin.
+            period_min, period_max = 0.2, 6
+            pdm_d = periodbase.stellingwerf_pdm(time, flux, flux*1e-3,
+                                                magsarefluxes=True,
+                                                startp=period_min,
+                                                endp=period_max,
+                                                stepsize=1.0e-4, autofreq=True,
+                                                normalize=False,
+                                                phasebinsize=0.05,
+                                                mindetperbin=9, nbestpeaks=5,
+                                                periodepsilon=0.1,
+                                                sigclip=None, nworkers=16,
+                                                verbose=True)
+            period = pdm_d['bestperiod']
+
+            # NOTE: I tried TLS and BLS. They have this insane multithreading
+            # bug on catalina:
+            # https://github.com/matplotlib/matplotlib/issues/15410
+            percentile_int = 50
+            nearest_index = (
+                abs(flux - np.percentile(flux, percentile_int,
+                                         interpolation='nearest')).argmin()
+            )
+            t0 = time[nearest_index]
+
+            HALFIDS = [
+                '204143627',
+                '204270520',
+                '205483258'
+            ]
+            if np.any(np.in1d(np.array(HALFIDS),np.array(epic_id))):
+                print('hi')
+                t0 += period/2
+            else:
+                pass
+                print('dude')
+            lc_dict[epic_id]['t0'] = t0
+
+            p_d = phase_magseries(
+                time, flux, period, t0, wrap=True, sort=True
+            )
+            pb_d = phase_bin_magseries(
+                p_d['phase'], p_d['mags'], binsize=0.01
+            )
+
+            lc_dict[epic_id]['period'] = period
+
+            lc_dict[epic_id]['phase_d'] = p_d
+            lc_dict[epic_id]['phasebin_d'] = pb_d
+
+        with open(k2pkl, 'wb') as buff:
+            pickle.dump(lc_dict, buff)
+
+    lc_dict = pickle.load(open(k2pkl, 'rb'))
+
+    pklpath = '/Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200413_v0/PTFO_8-8695_transit_2sincosPorb_2sincosProt_phasefoldmap_points.pkl'
+    ptfo_d = pickle.load(open(pklpath, 'rb'))
+
+    ##########
+
+    plt.close('all')
+
+    fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(8.5, 10), sharex=True)
+
+    axs = axs.flatten()
+
+    for ix, ax in enumerate(axs):
+
+        if ix == 0:
+            ident = 'PTFO 8-8695'
+            phase = ptfo_d['orb_d']['phase']
+            flux = ptfo_d['orb_d']['mags']
+            period = ptfo_d['orb_d']['period']
+            binphase = ptfo_d['orb_bd']['binnedphases']
+            binflux = ptfo_d['orb_bd']['binnedmags']
+
+        else:
+            ident = epic_ids[ix-1]
+            phase = lc_dict[ident]['phase_d']['phase']
+            flux = lc_dict[ident]['phase_d']['mags'] - 1
+            period = lc_dict[ident]['phase_d']['period']
+            binphase =  lc_dict[ident]['phasebin_d']['binnedphases']
+            binflux = lc_dict[ident]['phasebin_d']['binnedmags'] - 1
+
+        ax.scatter(phase, flux, color='gray', s=2, alpha=0.8, zorder=4,
+                   linewidths=0, rasterized=True)
+        ax.scatter(binphase, binflux, color='black', s=8, alpha=1, zorder=5,
+                   linewidths=0)
+
+        txt = '$P$ = {:.5f}$\,$d'.format(period)
+        props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
+                     linewidth=0)
+        ax.text(0.98, 0.98, txt, ha='right', va='top', transform=ax.transAxes,
+                bbox=props, zorder=6)
+
+        txt = ident if 'PTFO' in ident else 'EPIC '+ident
+        props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
+                     linewidth=0)
+        ax.text(0.02, 0.98, txt, ha='left', va='top', transform=ax.transAxes,
+                bbox=props, zorder=6)
+
+        ax.set_xlim((-1, 1))
+        ax.set_ylim((np.mean(flux)-3*np.std(flux), np.mean(flux)+3*np.std(flux)))
+
+        format_ax(ax)
+
+    fig.text(0.5,0, 'Phase', ha='center', fontsize='x-large')
+    fig.text(0.,0.5, 'Relative flux', va='center', rotation=90,
+             fontsize='x-large')
+
+    fig.tight_layout(h_pad=0, w_pad=0)
+
+    outpath = os.path.join(outdir, 'brethren.png')
+    savefig(fig, outpath)

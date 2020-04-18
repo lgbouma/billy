@@ -20,7 +20,7 @@ def main(modelid):
     cornerplot = 1
     splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
-    OVERWRITE = 0
+    OVERWRITE = 1
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
@@ -82,10 +82,10 @@ def main(modelid):
 
 if __name__ == "__main__":
 
-    DEBUG = 0
+    DEBUG = 1
 
     if DEBUG:
-        main('transit_1sincosPorb_1sincosProt')
+        main('transit_2sincosPorb_2sincosProt')
 
     else:
         for N, M in product(range(1,4), range(1,4)):
