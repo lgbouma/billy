@@ -35,8 +35,8 @@
 % Planet}
 %\title{Seeing Double: Indications From {\it TESS} and {\it Gaia} That
 %PTFO$\,$8-8695b is Not a Planet}
-\title{Seeing Double: PTFO$\,$8-8695 is a Photometric Binary With One
-Component Showing Transient Dips }
+\title{Seeing Double: Transient Dips and Photometric Binarity in
+PTFO$\,$8-8695}
 
 \correspondingauthor{L. G. Bouma}
 \email{luke@astro.princeton.edu}
@@ -53,31 +53,39 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 
 \begin{abstract}
-  PTFO$\,$8-8695b is a candidate hot Jupiter in the 7--10 million year old
-  Orion-OB1a cluster. We inspected data from TESS and Gaia to clarify whether
-  it is actually a planet.  The TESS lightcurve shows that the dominant
-  variability in this system is a sinusoid with a ``long'' period $P_{\rm
-  \ell}=11.96\,$hr, likely caused by stellar rotation.  Also present is a
-  complex signal, previously identified as the planet candidate, that repeats
-  with a ``short'' period $P_{\rm s}= 10.74\,$hr.  The two signals beat every
-  4.48 days.  Although there is a dip in the short-period signal, ground-based
-  photometry from the past decade shows that the orbital phase of the dip seems
-  to have instantaneously jumped, at least once, and perhaps twice.  Planets do
-  not ``jump'' in orbital phase.  Furthermore, the Gaia data show that
-  PTFO$\,$8-8695 is probably a photometric binary.  Given the evidence, we
-  believe that PTFO$\,$8-8695 is a binary M dwarf in which one star shows the
-  ``long'' rotation signal, and the other is showing ``transient dipping'' that
-  has also been observed in other young M dwarfs.  The planetary interpretation
-  seems unlikely.
+  PTFO$\,$8-8695b is a candidate hot Jupiter in the 7--10 million year
+  old Orion-OB1a cluster. We inspected data from TESS and Gaia to
+  clarify whether it is actually a planet.  The Gaia data show that
+  PTFO$\,$8-8695 is a photometric binary with respect to members of
+  its kinematic group.  The TESS lightcurve shows that the dominant
+  variability in this system is a sinusoid with a ``long'' period
+  $P_{\rm \ell}=11.96\,$hr, presumably caused by stellar rotation.
+  Also present is a complex signal, previously identified as the
+  planet candidate, that repeats with a ``short'' period $P_{\rm s}=
+  10.74\,$hr.  The two signals beat every 4.48 days.  Although there
+  is a dip in the short-period signal, ground-based photometry from
+  the past decade shows that the orbital phase of the dip seems to
+  have instantaneously jumped, at least once, and perhaps twice.
+  Planets do not ``jump'' in orbital phase.  Given the evidence, we
+  believe that PTFO$\,$8-8695 is a binary M dwarf in which one star
+  shows the long rotation signal, and the other star is showing
+  ``transient dipping'' that has been seen in a few other young
+  weak-lined T Tauri stars.  The origin of these transient dips is
+  still undetermined, but our preferred explanation is eclipses of
+  clouds of gas or dust at the Keplerian co-rotation radius.
 \end{abstract}
 
-%TODO
+\object{PTFO 8-8695}
+\object{PTFO 8-8695b}
+\object{CVSO 30}
+
 \keywords{
 	Exoplanet evolution (491),
-	Open star clusters (1160),
+  Pre-main sequence stars (1290),
 	Stellar ages (1581),
 	Stellar rotation (1629),
-	Variable stars (1761)
+	Variable stars (1761),
+  Low mass stars (2050)
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,8 +118,8 @@ excess H$\alpha$ emission that could be in phase with the planetary
 orbit.  The average velocity width of the excess H$\alpha$ emission is
 87$\,$km$\,$s$^{-1}$, and its equivalent width is 70-80\% that of the
 stellar chromosphere \citep{johnskrull_h_2016}.  The proposed
-explanation is that the outflowing mass from the planet may explain
-this excess emission as well \citep{johnskrull_h_2016}.
+explanation is that outflowing mass from the planet may explain this
+excess emission as well \citep{johnskrull_h_2016}.
 
 There are perhaps a few challenges to the planetary interpretation (if
 these ``features'' are not already seen as such).  They include that
@@ -126,31 +134,46 @@ that the necessary degree of gravity darkening is too great, given the
 spectroscopically observed equatorial velocity
 \citep{howarth_reappraisal_2016}.  Additionally, as the
 gravity-darkened star precessed about its rotation axis, it would need
-to show photometric variability that has not been observed.
-
-While the planetary interpetation has challenges, alternative
+to show photometric variability that has not been observed.  While the
+planetary interpetation clearly faces challenges, alternative
 explanations do as well.  High-latitude accretion hotspots might
-produce the observed H$\alpha$ variability, but \ptfo\ does not have
-an infrared (IR) excess associated with the presence of an inner disk.
-Low-latitude starspots, hot or cold, struggle to produce the necessary
-dip durations.  A circumstellar cloud of dust or gas might be
-entrained in the stellar magnetosphere, but clumps would need to be
-invoked to explain the short-duration flux dips. 
+produce the observed H$\alpha$ variability, and require fine-tuning
+produce dips of the approach duration. Furthermore, \ptfo\ does not
+have an infrared (IR) excess associated with the presence of an inner
+disk \citep[{\it e.g.},][Figure~18]{yu_tests_2015}.  Low-latitude
+starspots, hot or cold, struggle to produce the necessary dip
+durations.
 
-In the following, Section~\ref{sec:observations} presents newly
+Alternatively, between 0.1\% and 1\% of rapidly rotating low-mass
+stars in $\mathcal{O}$(10)$\,$Myr old associations show narrow dips in
+phase with strong stellar rotation signals \citep{rebull_usco_2018}.
+The dips can persist over months, but their depths often vary, and
+sometimes change immediately after stellar flares.  The explanation
+proposed by {\it e.g.}, \citet{stauffer_orbiting_2017} and
+\citet{david_transient_2017} is that a circumstellar cloud of dust or
+gas might be orbiting near the Keplerian co-rotation radius.  For this
+explanation to be viable for \ptfo, a clear determination of the
+stellar rotation period is necessary.  To date, this has not been
+possible
+\citep{van_eyken_ptf_2012,koen_multicolour_2015,raetz_yeti_2016}.
+
+We begin in Section~\ref{sec:observations} by describing newly
 available observations from the Transiting Exoplanet Survey Satellite
 (TESS; \citealt{ricker_transiting_2015}) and Gaia
-\citep{gaia_collaboration_gaia_2018}.  Analyzing the TESS data in
-Section~\ref{sec:tess}, we find two distinct signals.  A long sinusoid
-repeats every 12.0 hours, and is probably stellar rotation.  A short
-``dip + complex modulation'' repeats every 10.7 hours.  Analyzing the
-Gaia data in Section~\ref{sec:gaia}, we show that \ptfo\ is quite
-likely a photometric binary.  In Section~\ref{sec:discussion}, we note
-that the orbital phase of the dip seems to have instantaneously
-changed, perhaps twice.  We argue that PTFO$\,$8-8695 is a binary M
+\citep{gaia_collaboration_gaia_2018}.  The TESS lightcurve shows two
+distinct signals, which we extract and analyze in
+Section~\ref{sec:tess}.  A long-period sinusoid repeats every 12.0
+hours, and is probably stellar rotation.  A short-period ``dip +
+complex modulation'' repeats every 10.7 hours.  Analyzing the Gaia
+data in Section~\ref{sec:gaia}, we show that relative to its kinematic
+group, \ptfo\ is a photometric binary.  We collect and discuss the
+puzzle pieces in Section~\ref{sec:discussion}.  The orbital phase of
+the dip seems to have instantaneously changed over the past decade.
+In addition, a number of other young stars show similar lightcurve
+morphologies.  We therefore argue that PTFO$\,$8-8695 is a binary M
 dwarf in which one star shows a rotation signal, and the other is
-showing ``transient dipping'' that has been observed in other young M
-dwarfs, and is likely caused by eclipses of warm particulate clouds.
+showing ``transient dipping'' that is likely caused by eclipses of
+clouds of material at the Keplerian co-rotation radius.
 Section~\ref{sec:conclusions} summarizes our main points.
 
 
@@ -191,19 +214,6 @@ Section~\ref{sec:conclusions} summarizes our main points.
 		\label{fig:splitsignalii}
 	}
 \end{figure*}
-
-
-%\begin{figure*}[t!]
-%	\begin{center}
-%		\leavevmode
-%		\includegraphics[width=0.9\textwidth]{f6_comp.png}
-%	\end{center}
-%	\vspace{-0.7cm}
-%	\caption{ {\bf foo.}
-%	bar
-%		\label{fig:corner}
-%	}
-%\end{figure*}
 
 \subsection{TESS Observations}
 
@@ -252,18 +262,19 @@ and subsequent processing steps were performed using
 
 \subsection{Gaia Observations}
 
-Between July 25, 2014 and May 23, 2016, Gaia acquired 121 ``good''
-observations of \ptfo, {\it i.e.}, observations that were not strongly
-downweighted in the astrometric solution of the source (CITE).
-%TODO: give an original explanation of how Gaia works
-The Gaia data processing team at XXXINSTITUTION combined the XXX and
-YYY into a global astrometric solution, from which the parallax of 
-\ptfo\ was derived (CITE).
-The star was assigned a Gaia DR2 identifier of 3222255959210123904
-(CITE).
-In addition, measurements of the stellar proper motion between
-observation epochs were made.
-%FIXME sentence is bad
+Between July 25, 2014 and May 23, 2016, Gaia measured about 300
+billion centroid positions of 1{.}6 billion stars
+\citep{gaia_collaboration_gaia_2016,lindegren_gaiasoln_2018,gaia_collaboration_gaia_2018}.
+These CCD observations were used to estimate positions, proper
+motions, and parallax for the brighest 1{.}3 billion stars, including
+\ptfo.  There were 121 ``good'' observations of \ptfo, {\it i.e.},
+observations that were not strongly downweighted in the astrometric
+solution of the source.  The star was assigned a Gaia DR2 identifier
+of 3222255959210123904.  It photometric brightness was measured using
+selected bands ($G$, $Rp$, and $Bp$) of the Gaia Radial Velocity
+Spectrometer \citep{cropper_gaia_2018,evans_gaia_2018}.
+
+%FIXME FROM HERE
 
 One point of note:
 Gaia DR2 measured a significant ``astrometric excess'', at a level of
