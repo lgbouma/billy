@@ -15,6 +15,7 @@ Plots:
     plot_scene
 
     plot_hr
+    plot_astrometric_excess
 
     plot_O_minus_C
 
@@ -814,8 +815,8 @@ def plot_hr(outdir):
     )
 
     ax.legend(loc='best', handletextpad=0.1, fontsize='small')
-    ax.set_ylabel('$G + 5\log_{10}(\omega_{\mathrm{as}}) + 5$', fontsize='large')
-    ax.set_xlabel('$Bp-Rp$', fontsize='large')
+    ax.set_ylabel('G + $5\log_{10}(\omega_{\mathrm{as}}) + 5$', fontsize='large')
+    ax.set_xlabel('Bp - Rp', fontsize='large')
 
     ylim = ax.get_ylim()
     ax.set_ylim((max(ylim),min(ylim)))
@@ -834,6 +835,37 @@ def plot_hr(outdir):
     outpath = os.path.join(outdir, 'hr.png')
     savefig(f, outpath)
 
+
+def plot_astrometric_excess(outdir):
+
+    pklpath = '/Users/luke/Dropbox/proj/billy/results/cluster_membership/nbhd_info_3222255959210123904.pkl'
+    d = pickle.load(open(pklpath, 'rb'))
+    g_df = d[2]
+    chisq_red = g_df.astrometric_chi2_al / (g_df.astrometric_n_obs_al - 5)
+
+    f,ax = plt.subplots(figsize=(4,3))
+
+    ax.scatter(g_df.phot_rp_mean_mag, chisq_red, c='k', alpha=1., zorder=3, s=9,
+               rasterized=True, linewidths=0, label='K+18 members')
+
+    sel = (g_df.source_id.astype(str) == '3222255959210123904')
+
+    ax.plot(
+        g_df[sel].phot_rp_mean_mag,
+        chisq_red[sel],
+        alpha=1, mew=0.5, zorder=8, label='PTFO 8-8695', markerfacecolor='yellow',
+        markersize=12, marker='*', color='black', lw=0
+    )
+
+    ax.set_xlabel('Rp', fontsize='large')
+    ax.set_ylabel('Astrometric Reduced $\chi^2$', fontsize='large')
+    ax.set_xlim([7.5,16.5])
+
+    ax.legend(loc='best', fontsize='small')
+
+    format_ax(ax)
+    outpath = os.path.join(outdir, 'astrometric_excess.png')
+    savefig(f, outpath)
 
 
 def plot_O_minus_C(
