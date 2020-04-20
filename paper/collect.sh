@@ -9,7 +9,8 @@ cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_phasefoldmap.pdf f3.pdf
 
 cp ../results/PTFO_8-8695_results/scene.pdf f4.pdf
 
-cp ../results/cluster_membership/hr.pdf f5.pdf
+cp ../results/cluster_membership/hr.pdf f5a.pdf
+cp ../results/cluster_membership/astrometric_excess.pdf f5b.pdf
 
 cp ../results/ephemeris/O_minus_C.pdf f6.pdf
 

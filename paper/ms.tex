@@ -9,6 +9,7 @@
 \usepackage{graphics,graphicx}
 \usepackage{hyperref}
 \usepackage{natbib}
+\usepackage[caption=false]{subfig} % for subfloat
 
 \renewcommand*{\sectionautorefname}{Section} %for \autoref
 \renewcommand*{\subsectionautorefname}{Section} %for \autoref
@@ -23,6 +24,10 @@
 \accepted{---}
 \submitjournal{AAS journals.}
 \shorttitle{Seeing Double: PTFO$\,$8-8695}
+
+%\objectname{PTFO 8-8695}
+%\objectname{PTFO 8-8695b}
+%\objectname{CVSO 30}
 
 \begin{document}
 
@@ -55,7 +60,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 \begin{abstract}
   PTFO$\,$8-8695b is a candidate hot Jupiter in the 7--10 million year
   old Orion-OB1a cluster. We inspected data from TESS and Gaia to
-  clarify whether it is actually a planet.  The Gaia data show that
+  clarify whether it is truly a planet.  The Gaia data show that
   PTFO$\,$8-8695 is a photometric binary with respect to members of
   its kinematic group.  The TESS lightcurve shows that the dominant
   variability in this system is a sinusoid with a ``long'' period
@@ -68,16 +73,12 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
   have instantaneously jumped, at least once, and perhaps twice.
   Planets do not ``jump'' in orbital phase.  Given the evidence, we
   believe that PTFO$\,$8-8695 is a binary M dwarf in which one star
-  shows the long rotation signal, and the other star is showing
+  shows the long rotation signal, and the other star shows
   ``transient dipping'' that has been seen in a few other young
   weak-lined T Tauri stars.  The origin of these transient dips is
   still undetermined, but our preferred explanation is eclipses of
   clouds of gas or dust at the Keplerian co-rotation radius.
 \end{abstract}
-
-\object{PTFO 8-8695}
-\object{PTFO 8-8695b}
-\object{CVSO 30}
 
 \keywords{
 	Exoplanet evolution (491),
@@ -149,31 +150,31 @@ stars in $\mathcal{O}$(10)$\,$Myr old associations show narrow dips in
 phase with strong stellar rotation signals \citep{rebull_usco_2018}.
 The dips can persist over months, but their depths often vary, and
 sometimes change immediately after stellar flares.  The explanation
-proposed by {\it e.g.}, \citet{stauffer_orbiting_2017} and
+proposed by \citet{stauffer_orbiting_2017} and
 \citet{david_transient_2017} is that a circumstellar cloud of dust or
 gas might be orbiting near the Keplerian co-rotation radius.  For this
 explanation to be viable for \ptfo, a clear determination of the
-stellar rotation period is necessary.  To date, this has not been
+stellar rotation period is necessary.  To date this has not been
 possible
 \citep{van_eyken_ptf_2012,koen_multicolour_2015,raetz_yeti_2016}.
 
 We begin in Section~\ref{sec:observations} by describing newly
-available observations from the Transiting Exoplanet Survey Satellite
-(TESS; \citealt{ricker_transiting_2015}) and Gaia
+available observations from TESS
+\citep{ricker_transiting_2015} and Gaia
 \citep{gaia_collaboration_gaia_2018}.  The TESS lightcurve shows two
 distinct signals, which we extract and analyze in
 Section~\ref{sec:tess}.  A long-period sinusoid repeats every 12.0
-hours, and is probably stellar rotation.  A short-period ``dip +
-complex modulation'' repeats every 10.7 hours.  Analyzing the Gaia
+hours, and is probably stellar rotation.  A short-period dip with an additional
+complex modulation repeats every 10.7 hours.  Analyzing the Gaia
 data in Section~\ref{sec:gaia}, we show that relative to its kinematic
 group, \ptfo\ is a photometric binary.  We collect and discuss the
 puzzle pieces in Section~\ref{sec:discussion}.  The orbital phase of
 the dip seems to have instantaneously changed over the past decade.
-In addition, a number of other young stars show similar lightcurve
-morphologies.  We therefore argue that PTFO$\,$8-8695 is a binary M
-dwarf in which one star shows a rotation signal, and the other is
-showing ``transient dipping'' that is likely caused by eclipses of
-clouds of material at the Keplerian co-rotation radius.
+In addition, a number of other young stars show lightcurve
+morphologies similar to the short-period signal.  We therefore argue that PTFO$\,$8-8695 is a binary M
+dwarf in which one star shows a rotation signal, and the other 
+shows ``transient dipping'' caused by eclipses of
+material at the Keplerian co-rotation radius.
 Section~\ref{sec:conclusions} summarizes our main points.
 
 
@@ -226,7 +227,7 @@ averaged into 2-minute stacks by the onboard computer.  Each
 2048$\times$2048 image from the CCD was also averaged into 30-minute
 stacks, and saved as a ``full frame image'' (FFI).
 
-The 2-minute stacks for \ptfo\ were then reduced to lightcurves by the
+The 2-minute stacks for \ptfo\ were reduced to lightcurves by the
 Science Processing Operations Center (SPOC) at NASA
 Ames~\citep{jenkins_tess_2016}.  Our main analysis used the resulting
 Presearch Data Conditioning (PDC) lightcurve.  The PDC lightcurve
@@ -238,7 +239,7 @@ variability was removed through the methods discussed by
 As an independent check on the shorter cadence SPOC light-curve, we
 separately processed the 30-minute image stacks as part of the Cluster
 Difference Imaging Photometric Survey (CDIPS;
-\citealt{bouma_cluster_2019}).  The CDIPS lightcurve used a circular
+\citealt{bouma_cluster_2019}).  Our CDIPS lightcurve  of choice used a circular
 aperture with radius 1 pixel.
 
 To clean the data, we removed all points with non-zero quality flags
@@ -249,41 +250,49 @@ lightcurves showed a clear discontinuous ``jump'' in the last few days
 of orbit 20, which seemed likely to be an instrumental systematic.  We
 correspondingly masked out times from BJD 2458488.3 until the end of
 the orbit.  The PDC lightcurve initially had 15{,}678 points.  The
-quality cut removed 854 points, masking the orbit edges removed an
-additional 716, and removing the final few days of orbit 20 removed an
+quality-flag cut removed 854 points; masking the orbit edges removed an
+additional 716; removing the final few days of orbit 20 removed an
 additional 1079.  After cleaning, 83\% of the initial flux
 measurements remained.
 
-We normalized these points by dividing out the median flux. We then
-subtracted by unity to simplify subsequent analysis.  Many of these
-and subsequent processing steps were performed using
+We normalized these points by dividing out the median flux. We opted
+to then subtract by unity to simplify subsequent interpretation.  Many
+of these and subsequent processing steps were performed using
 \texttt{astrobase}~\citep{bhatti_astrobase_2018}. 
 
 
 \subsection{Gaia Observations}
 
+\subsubsection{Astrometry of \ptfo}
+
 Between July 25, 2014 and May 23, 2016, Gaia measured about 300
 billion centroid positions of 1{.}6 billion stars
 \citep{gaia_collaboration_gaia_2016,lindegren_gaiasoln_2018,gaia_collaboration_gaia_2018}.
-These CCD observations were used to estimate positions, proper
-motions, and parallax for the brighest 1{.}3 billion stars, including
-\ptfo.  There were 121 ``good'' observations of \ptfo, {\it i.e.},
-observations that were not strongly downweighted in the astrometric
-solution of the source.  The star was assigned a Gaia DR2 identifier
+In the Gaia second data release (DR2), these CCD observations were
+then used to estimate positions, proper motions, and parallax for the
+brighest 1{.}3 billion stars, including \ptfo
+\citep{lindegren_gaiasoln_2018}.  There were 121 ``good'' observations
+of \ptfo, that is observations that were not strongly down-weighted in
+its astrometric solution.  \ptfo\ was assigned a Gaia DR2 identifier
 of 3222255959210123904.  It photometric brightness was measured using
 selected bands ($G$, $Rp$, and $Bp$) of the Gaia Radial Velocity
-Spectrometer \citep{cropper_gaia_2018,evans_gaia_2018}.
+Spectrometer \citep{cropper_gaia_2018,evans_gaia_2018}.  We accessed
+the pipeline parameters for \ptfo\ using the Gaia
+archive\footnote{\url{gea.esac.esa.int/archive/}}.
 
-%FIXME FROM HERE
+The majority of Gaia's derived parameters for \ptfo\ agreed with
+expectation from former studies
+\citep{briceno_cida_2005,van_eyken_ptf_2012}.  One novelty however was
+that Gaia DR2 detected a significant ``astrometric excess'', at a
+level of 10.3$\sigma$.  
+We comment on the significance and interpretation of this
+excess in Section~\ref{sec:gaia}.
 
-One point of note:
-Gaia DR2 measured a significant ``astrometric excess'', at a level of
-10.3$\sigma$.
-This astrometric excess indicates the degree
-to which a single-source model fails to explain the observed astrometric
-measurements (CITE).
 
-\subsection{Cluster Membership}
+\subsubsection{Cluster Membership}
+
+
+
 The Orion molecular cloud complex has numerous subgroups, with ages
 spanning 1 to 15$\,$Myr (CITE).
 \ptfo\ has been known to be a member of the Orion OB1a association
@@ -558,7 +567,7 @@ at least within the resolution of the Gaia-DR2 source catalog.
 However, as we shall see, \ptfo itself could still be a binary.
 
 
-\section{Gaia Analysis \& Photometric Binarity}
+\section{Gaia Analysis}
 \label{sec:gaia}
 
 % \begin{figure*}[t]
@@ -580,22 +589,35 @@ However, as we shall see, \ptfo itself could still be a binary.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.8\textwidth]{f5.pdf}
+		%\includegraphics[width=0.8\textwidth]{f5a.pdf}
+    \subfloat{
+        \includegraphics[width=0.7\textwidth]{f5a}
+    }
+
+	\vspace{-0.7cm}
+    \subfloat{
+        \includegraphics[width=0.7\textwidth]{f5b}
+    }
 	\end{center}
 	\vspace{-0.7cm}
-  \caption{ {\bf Hertzsprung-Russell diagram of \ptfo\ and late-type
+  \caption{ {\bf Evidence for binarity in \ptfo}.
+  {\it Top: Hertzsprung-Russell diagram of \ptfo\ and late-type
   members of 25$\,$Ori-1.}
   Members of the 25$\,$Ori-1 group (black circles) were identified by
   \citet{kounkel_apogee2_2018} through clustering on six-dimensional
-  Gaia-DR2 and APOGEE-2 data.  The reference ``neighborhood'' (gray
-  circles) is the group of at most $10^4$ randomly selected non-member
+  Gaia-DR2 and APOGEE-2 data.  The ``neighborhood'' (gray
+  circles) is non-member
   stars within 5 standard deviations of the mean 25$\,$Ori-1 right
   ascension, declination, and parallax.  It contains members of the
-  full Orion complex with a wider spread of ages, in addition to field
-  interlopers.  $G$ is the Gaia broadband, $Bp$ is Gaia blue, $Rp$ is
-  Gaia red, and $\omega_{\rm as}$ is the parallax in arcseconds.  The
+  Orion complex with its full spread of ages, in addition to field
+  interlopers.  $G$ denotes Gaia broadband magnitudes, $Bp$ Gaia blue, $Rp$
+  Gaia red, and $\omega_{\rm as}$ the parallax in arcseconds.  The
   $x$-axis limits have been set to show only K and M dwarf members, to
   accentuate \ptfo's separation from the single-star sequence.
+  {\it Bottom: Astrometric goodness-of-fit versus $Rp$ magnitude
+  for 25$\,$Ori-1 members}.
+  The single-source astrometric model provides a poor fit, which
+  could be due to stellar variability or binarity.
 	\label{fig:gaia}
 	}
 \end{figure*}
@@ -605,6 +627,7 @@ However, as we shall see, \ptfo itself could still be a binary.
 \citet{lee_evidence_2018}
 % \citet{czesla_xray_2019}
 
+\subsection{Photometric Binarity}
 To assess the cluster membership and potential binarity of \ptfo, we
 needed to identify stars with which it was and was not coeval.  The
 simplest way to do this---clustering based on six-dimensional position
@@ -648,6 +671,46 @@ than the kinematically identical cluster members, or {\it (ii)} \ptfo\
 is a photometric binary.  Given the independent presence of two
 resolved signals, we favor the interpretation that \ptfo\ is a binary
 star system.
+
+
+\subsection{Astrometric Binarity}
+
+As noted in Section~\ref{sec:observations}, the Gaia DR2 solution for
+\ptfo\ shows a 10.3$\sigma$ astrometric excess.  This astrometric
+excess indicates the degree to which a single-source model fails to
+explain the observed astrometric measurements.  Specifically, the
+single-source astrometric model for yielded $\chi^2=325.2$.  There
+are 121 astrometric measurements, and 5 free parameters, and therefore
+116 degrees of freedom. The reduced $\chi^2$ is 2.80.  The
+majority of stars with comparable brightness in Gaia do not show such
+poor goodness-of-fit \citep[][Appendix A]{lindegren_gaiasoln_2018}.
+
+Potential explanations for the poor astrometric fit include photometric
+variability and unresolved stellar binarity \citep[{\it
+e.g.},][]{rizzuto_ZEIT8_2018,belokurov_unresolved_2020}.
+If photometric variability were the cause, we would expect comparably
+faint stars in the same kinematic group of Orion to
+show similar astrometric excesses, as the majority of
+young stars are highly variable.
+
+Using the same 149 members in the 25$\,$Ori-1 subgroup from
+\citet{kounkel_apogee2_2018}, we calculated the reduced $chi^2$ for
+each member.  The lower panel of Figure~\ref{fig:gaia} shows the
+resulting values, as a function of stellar brightness.  \ptfo\ is in
+the upper 90$^{\rm th}$ percentile of stars showing astrometric
+excesses within the 25$\,$Ori-1 group.  Although we will have to wait
+for the full release of the nominal Gaia mission to definitively
+determine whether the astrometric excess is caused by stellar binarity
+or photometric variability, this result suggests that stellar binarity
+is the root cause, because other member stars have identical variability
+characteristics but do not show such a large astrometric excess.
+%FIXME: you might want to color the points by their TESS amplitude, or
+%similar.
+% or even better... just do a CUT on TESS amplitude. Require it to be
+% like 10% or above -- so LARGER amplitudes than PTFO! That's the best
+% test.
+
+
 
 
 \section{Discussion}
