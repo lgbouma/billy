@@ -1008,16 +1008,31 @@ def plot_brethren(outdir):
 
     from transitleastsquares import transitleastsquares
 
-    # get campaign 2 upper sco everest light-curves.
-    # NOTE: 204270520 has a C15 LC, but it's the only one.
+    # IDs to plot
     epic_ids = [
-        "204143627",
-        "204270520",
-        "204321142",
-        # "205046529", # kind of messed up, b/c it's a binary
-        "205483258",
-        '204787516',
+        '204143627',
+        '204270520',
+        '204321142',
+        '246938594', # 'Taurus',
+        '205483258' # RIK-210
     ]
+
+    # see /Users/luke/Dropbox/proj/billy/doc/20200417_list_of_analogs.txt
+    id_dict = {
+        "204143627": 'USco',
+        "204270520": 'USco', # 204270520 has a C15 LC, but it's the only one.
+        "204321142": 'USco',
+        "205046529": 'USco', # kind of messed up, b/c it has two components
+        "205483258": 'USco',
+        '204787516': 'USco',
+        '246938594': 'Taurus',
+        '246969828': 'Taurus',
+        '247794636': 'Taurus',  # does some wild stuff
+        '246676629': 'Taurus',
+        '246682490': 'Taurus',
+        '247343526': 'Taurus'
+    }
+
     lc_dict = {}
 
     k2pkl = os.path.join(outdir, 'k2data.pkl')
@@ -1026,9 +1041,14 @@ def plot_brethren(outdir):
 
             lc_dict[epic_id] = {}
 
-            lcpath = glob(
-                '/Users/luke/Dropbox/proj/billy/data/analogs/hlsp_everest_k2_llc_{}-c02_kepler_v2.0_lc/*fits'.format(epic_id)
-            )
+            if id_dict[epic_id] == 'USco':
+                lcpath = glob(
+                    '/Users/luke/Dropbox/proj/billy/data/analogs/hlsp_everest_k2_llc_{}-c02_kepler_v2.0_lc/*fits'.format(epic_id)
+                )
+            elif id_dict[epic_id] == 'Taurus':
+                lcpath = glob(
+                    '/Users/luke/Dropbox/proj/billy/data/analogs/hlsp_everest_k2_llc_{}-c13_kepler_v2.0_lc/*fits'.format(epic_id)
+                )
             assert len(lcpath)==1
 
             hdul = fits.open(lcpath[0])
@@ -1043,8 +1063,14 @@ def plot_brethren(outdir):
             outpath = os.path.join(outdir, epic_id+'_quicklook_lc.png')
             savefig(fig, outpath, dpi=200, writepdf=0)
 
-            sel = (time > 2065) # & (qual < 20000) # initial part of campaign 2 has some garbage points
-            time, flux = time[sel], flux[sel]
+            if id_dict[epic_id] == 'USco':
+                sel = (time > 2065) # & (qual < 20000) # initial part of campaign 2 has some garbage points
+                time, flux = time[sel], flux[sel]
+            elif id_dict[epic_id] == 'Taurus':
+                sel = (time > 2990) # & (qual < 20000) # initial part of campaign 2 has some garbage points
+                time, flux = time[sel], flux[sel]
+            else:
+                raise NotImplementedError
 
             time, flux, _ = sigclip_magseries(time, flux, None, sigclip=[50,5],
                                               iterative=True, niterations=2,
@@ -1070,15 +1096,21 @@ def plot_brethren(outdir):
             outpath = os.path.join(outdir, epic_id+'_quicklook_lc_flat.png')
             savefig(fig, outpath, dpi=200, writepdf=0)
 
-            sel = (time > 2071) & (time < 2129)
-
-            flux = flatten_lc[sel]
-            time = time[sel]
+            if id_dict[epic_id] == 'USco':
+                sel = (time > 2071) & (time < 2129)
+                flux = flatten_lc[sel]
+                time = time[sel]
+            elif id_dict[epic_id] == 'Taurus':
+                flux = flatten_lc
+                pass
+            else:
+                raise NotImplementedError
 
             plt.close('all')
             fig = plt.figure(figsize=(16,4))
             plt.scatter(time, flux, c='k', s=3)
-            plt.ylim((np.mean(flux)-4*np.std(flux), np.mean(flux)+4*np.std(flux)))
+            plt.ylim((np.nanmean(flux)-4*np.nanstd(flux),
+                      np.nanmean(flux)+4*np.nanstd(flux)))
             outpath = os.path.join(outdir, epic_id+'_quicklook_lc_final.png')
             savefig(fig, outpath, dpi=200, writepdf=0)
 
@@ -1088,7 +1120,7 @@ def plot_brethren(outdir):
             lc_dict[epic_id]['flux'] = flux
 
             # now phase-fold it. save and bin.
-            period_min, period_max = 0.2, 6
+            period_min, period_max = 0.35, 6
             pdm_d = periodbase.stellingwerf_pdm(time, flux, flux*1e-3,
                                                 magsarefluxes=True,
                                                 startp=period_min,
