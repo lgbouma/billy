@@ -800,7 +800,7 @@ recently provided stark evidence for different behavior altogether:
 over a time-span of years, the dip ``splits'' into distinct groups at
 particular repeating phases.  See for instance their Figures~2
 through~4.  Fitting a decade of observations, they provided the
-following linear ephemeris.
+following linear ephemeris, which we did not find any need to update.
 \begin{align}
 t_0\ {\rm BJD}_{\rm TDB} &= 2455543.943 \pm 0.002 \\
 P &= 0.4483993 \pm 0.0000006 d.
@@ -861,36 +861,37 @@ leave this curiosity as observation {\it sans} interpretation.
 
 \subsection{Short period out-of-dip modulation}
 
-%FIXME write it from here!
+Visually, the out-of-dip modulation at the 10.74$\,$hour period
+resembles a slightly asymmetric sinusoid (Figure~\ref{fig:phasefold}).
+Non-zero contributions in both the first and second harmonics are
+detected (Table~2).  The first sine and cosine harmonic both have
+amplitudes of roughly $0.9\pm0.1\%$.  The second sine harmonic has
+amplitude $0.16 \pm 0.07\%$, so is non-zero at a significance of only
+2.3$\sigma$.  The second cosine harmonic has negative amplitude $0.53
+\pm 0.06\%$.  In our sign convention, the fact that it is negative
+means that this component peaks at phase 0.25 and 0.75.
 
+\subsubsection{Planetary interpretation}
 If there were a giant planet transiting \ptfo, it would tidally
-distort the host star, and cause ellipsoidal photometric modulations.
-The amplitude of the ellipsoidal distortion for a $1\,M_{\rm Jup}$
-companion would be about 1400$\,$ppm
-\citep{shporer_astrophysics_2017}.  This is significantly larger than
-the typical ellipsopidal modulation induced by close-in giant planets
-because the host star is puffy, and still on the pre-main-sequence.
-For our estimate, we assumed $R_\star = 1.39 R_\odot$, and $M_\star =
-0.39 M_\odot$ \citep{van_eyken_ptf_2012}. 
+distort the host star, and cause ellipsoidal photometric modulations
+that also peak at quadrature \citep[see][]{shporer_astrophysics_2017}.
+Interpreting the second cosine harmonic as being caused by a planet,
+it would imply a minimum planet mass $M_{\rm p} \sin i$ of
+$3.8\,M_{\rm Jup}$.  For this estimate, we assumed $R_\star = 1.39
+R_\odot$, and $M_\star = 0.39 M_\odot$ \citep{van_eyken_ptf_2012}.
+This ellipsoidal amplitude is larger than the typical
+modulations induced by close-in giant planets because the host star is
+puffy, and still on the pre-main-sequence.
 
-Our preferred model does detect a significant ellipsoidal signal,
-parametrized as the ``$B_1$'' component.  The amplitude of the signal
-is $0.53 \pm 0.06\%$ (see Table~2).  Interpreted as being caused by a
-planet, it would imply a minimum planet mass $M_{\rm p} \sin i$ of
-$3.8\,M_{\rm Jup}$.
+The planetary interpretation however does not readily explain the
+first sine and cosine harmonics.  Interpreting the sine component as
+Doppler beaming would imply a secondary mass greater than the primary
+($0.86\,M_\odot$).  Interpreting the cosine component as reflected or
+emitted light from the planet's surface is nonsensical because the sign is wrong---the
+planet would need to be {\it absorbing} light.
 
+\subsubsection{Similar Lightcurves}
 
-%FIXME but argue against
-
-\subsection{Similar Lightcurves}
-
-Figure~\ref{fig:brethren}
-
-
-
-\section{Physical Interpretation}
-
-%FIXME: the PTFO lightcurve looks so much worse! Why is it less dense??
 \begin{figure*}[hbtp]
 	\begin{center}
 		\leavevmode
@@ -898,19 +899,61 @@ Figure~\ref{fig:brethren}
 	\end{center}
 	\vspace{-0.7cm}
   \caption{ {\bf \ptfo\ and its brethren.}
-    Five transient and persistent flux dip stars, selected based on
-    their visual similarity to the short-period signal in \ptfo, are
-    as follows.
-  	EPIC 204143627, 1.1250d, dips change depth too
-  	EPIC 204321142  Usco flux dip, 0.476d
-  	EPIC 204270520  USco flux dip, 0.512d
-  	% EPIC 205046529B, 1.8358d, indicates dips can be at weird phases too
-  	RIK-210 = EPIC 205483258
- 	EPIC 204787516  USco flux dip or possible? EB, 0.487d
- 	We found these objects through studies by \citet{stauffer_orbiting_2017}, \citet{david_transient_2017}, and \citet{rebull_usco_2018}.
+    Five transient and persistent flux dip stars selected based on
+    their visual similarity to the short-period signal in \ptfo are as
+    shown.  They include EPIC 204143627, EPIC 204321142, EPIC
+    204270520, EPIC 205483258 (RIK-210), and EPIC 204787516.  RIK-210
+    has the longest period of any of these objects.  EPIC 204787516
+    has a less angular dip, and could also be an eclipsing binary.
+    All stars have similar properties as \ptfo, but are in Upper Sco.
+    We found these objects through studies by
+    \citet{stauffer_orbiting_2017}, \citet{david_transient_2017}, and
+    \citet{rebull_usco_2018}.
 		\label{fig:brethren}
 	}
 \end{figure*}
+
+When physical explanations are not immediately clear, taxonomy can be
+a useful exercise.  To our knowledge, of order 10 lightcurves with
+similar morphologies have been seen in surveys of low-mass weak-lined
+T Tauri stars in regions including $\rho$ Oph, Upper Sco, Taurus, and perhaps
+the Pleiades
+\citep{rebull_rotation_2016,david_transient_2017,stauffer_orbiting_2017,stauffer_rotevol_2018,rebull_usco_2018,rebull_rotation_2020}.
+These surveys were performed using K2 \citep{howell_k2_2014}.  We
+downloaded a few of these lightcurves from MAST, opting for the
+EVEREST reductions \citep{luger_everest_2016,luger_update_2018}.  They
+are plotted in Figure~\ref{fig:brethren}
+
+These lightcurves have been classified phenomenologically as
+``persistent flux dips'' or ``transient flux dips'', based on whether
+their depths and durations show variability over the 90-day K2
+campaigns \citep{stauffer_orbiting_2017}.
+This class of objects has the following properties.
+\begin{enumerate}
+  \item Weak-lined T Tauri stars.
+  \item Spectral type typically M2-M5 ({\it e.g.},
+    \citet{rebull_usco_2018}~Figure~20).
+  \item Ages $\lesssim$ 100$\,$Myr.
+  \item Stars typically lack spectroscopic accretion indicators 
+  \item Phased lightcurves show shallow, angular dips, usually
+    superposed on large-amplitude smooth variability (interpreted as
+    stellar rotation).
+  \item Rotation is usually rapid ($P<1\,{\rm day}$).
+  \item Rarely any infrared excess (never any W4 detection; only a few
+    cases with W3 detctions).
+  \item Can show multiple dips per cycle ({\it e.g.}, EPIC 203692610,
+    RIK-210).
+  \item Dip depths, durations, and phasescan vary over timescales of days
+    ({\it e.g.}, EPIC 204143627).
+  \item Dip depths can change after flares ({\it e.g.}, RIK-210.
+  \item Rare ($\lesssim 1\%$ of relevant stars) at a population level
+    \citep{rebull_usco_2018}.
+\end{enumerate}
+The 10.74 hour signal in \ptfo\ meets essentially all of these
+criteria.
+
+
+\section{Physical Interpretation}
 
 Given the evidence, we believe that PTFO$\,$8-8695 is a binary M dwarf
 in which one star shows the ``long'' rotation signal, and the other is
