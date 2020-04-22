@@ -781,6 +781,34 @@ data strongly support this conclusion.
 
 
 \subsection{Short period dip}
+
+\begin{figure}[t]
+	\begin{center}
+		\leavevmode
+		\includegraphics[width=0.5\textwidth]{f6.pdf}
+	\end{center}
+	\vspace{-0.7cm}
+	\caption{
+		{\bf Timing residuals for \ptfob\ from a decade of monitoring.}
+		Black points are times of dips, minus the indicated linear
+		ephemeris.  The $y$-axis is given in units of phase for the
+		short-period signal.  The star shows the binned TESS ephemeris.
+		Dips have been observed by \citet{van_eyken_ptf_2012},
+		\citet{ciardi_followup_2015}, \citet{yu_tests_2015},
+		\citet{raetz_yeti_2016}, \citet{onitsuka_multicolor_2017}, and
+		\citet{tanimoto_evidence_2020}.  Certain dips ({\it e.g.}, the one
+		at phase 0 in mid-2019) are consistent with noise, and were likely
+		reported because something was {\it expected}, rather than
+		convincingly {\it observed}.  Horizontal dashed lines are drawn at
+		$\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$, highlighting either a
+		numerical coincidence or an observational bias.  The orbital phase
+		observed by TESS is consistent with that of
+		\citet{tanimoto_evidence_2020}, and quite different from the
+		original phase.
+		\label{fig:o_minus_c}
+	}
+\end{figure}
+
 The TESS lightcurve shows a dip that lasts about 45 minutes, and seems
 to re-occur every 10.74 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
@@ -831,33 +859,6 @@ every ninth dip.  This is of course not the case, and we therefore
 leave this curiosity as observation {\it sans} interpretation.
 
 
-\begin{figure}[t]
-	\begin{center}
-		\leavevmode
-		\includegraphics[width=0.5\textwidth]{f6.pdf}
-	\end{center}
-	\vspace{-0.7cm}
-	\caption{
-    {\bf Timing residuals for \ptfob\ from a decade of monitoring.}
-    Black points are times of dips, minus the indicated linear
-    ephemeris.  The $y$-axis is given in units of phase for the
-    short-period signal.  The star shows the binned TESS ephemeris.
-    Dips have been observed by \citet{van_eyken_ptf_2012},
-    \citet{ciardi_followup_2015}, \citet{yu_tests_2015},
-    \citet{raetz_yeti_2016}, \citet{onitsuka_multicolor_2017}, and
-    \citet{tanimoto_evidence_2020}.  Certain dips ({\it e.g.}, the one
-    at phase 0 in mid-2019) are consistent with noise, and were likely
-    reported because something was {\it expected}, rather than
-    convincingly {\it observed}.  Horizontal dashed lines are drawn at
-    $\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$, highlighting either a
-    numerical coincidence or an observational bias.  The orbital phase
-    observed by TESS is consistent with that of
-    \citet{tanimoto_evidence_2020}, and quite different from the
-    original phase.
-		\label{fig:o_minus_c}
-	}
-\end{figure}
-
 
 \subsection{Short period out-of-dip modulation}
 
@@ -875,7 +876,7 @@ means that this component peaks at phase 0.25 and 0.75.
 If there were a giant planet transiting \ptfo, it would tidally
 distort the host star, and cause ellipsoidal photometric modulations
 that also peak at quadrature \citep[see][]{shporer_astrophysics_2017}.
-Interpreting the second cosine harmonic as being caused by a planet,
+Interpreting the second cosine harmonic as planet-induced tidal distortion,
 it would imply a minimum planet mass $M_{\rm p} \sin i$ of
 $3.8\,M_{\rm Jup}$.  For this estimate, we assumed $R_\star = 1.39
 R_\odot$, and $M_\star = 0.39 M_\odot$ \citep{van_eyken_ptf_2012}.
@@ -914,7 +915,7 @@ planet would need to be {\it absorbing} light.
 \end{figure*}
 
 When physical explanations are not immediately clear, taxonomy can be
-a useful exercise.  To our knowledge, of order 10 lightcurves with
+a useful exercise.  To our knowledge, of order 10-20 lightcurves with
 similar morphologies have been seen in surveys of low-mass weak-lined
 T Tauri stars in regions including $\rho$ Oph, Upper Sco, Taurus, and perhaps
 the Pleiades
@@ -922,72 +923,116 @@ the Pleiades
 These surveys were performed using K2 \citep{howell_k2_2014}.  We
 downloaded a few of these lightcurves from MAST, opting for the
 EVEREST reductions \citep{luger_everest_2016,luger_update_2018}.  They
-are plotted in Figure~\ref{fig:brethren}
+are plotted in Figure~\ref{fig:brethren}.
 
-These lightcurves have been classified phenomenologically as
+These lightcurves have been phenomenologically classified as
 ``persistent flux dips'' or ``transient flux dips'', based on whether
 their depths and durations show variability over the 90-day K2
 campaigns \citep{stauffer_orbiting_2017}.
-This class of objects has the following properties.
+As \citet{stauffer_orbiting_2017} explain,
+these  objects are morphologically distinct from ``scallop shell' lightcurves,
+and are present in stars at more advanced evolutionary disk stages than
+the ``dipper'' stars \citep{ansdell_young_2016,cody_manyfaceted_2018}.
+The persistent and transient flux dip stars have the following properties.
 \begin{enumerate}
   \item Weak-lined T Tauri stars.
   \item Spectral type typically M2-M5 ({\it e.g.},
-    \citet{rebull_usco_2018}~Figure~20).
+    \citealt{rebull_usco_2018},~Figure~20).
   \item Ages $\lesssim$ 100$\,$Myr.
   \item Stars typically lack spectroscopic accretion indicators 
   \item Phased lightcurves show shallow, angular dips, usually
-    superposed on large-amplitude smooth variability (interpreted as
-    stellar rotation).
-  \item Rotation is usually rapid ($P<1\,{\rm day}$).
+    superposed on large-amplitude smooth variability. The latter
+    is interpreted as stellar rotation.
+  \item Rotation is usually between 0.5 to 2.0 days.
   \item Rarely any infrared excess (never any W4 detection; only a few
     cases with W3 detctions).
   \item Can show multiple dips per cycle ({\it e.g.}, EPIC 203692610,
     RIK-210).
-  \item Dip depths, durations, and phasescan vary over timescales of days
+  \item Dip depths, durations, and phases can vary over just a few cycles
     ({\it e.g.}, EPIC 204143627).
-  \item Dip depths can change after flares ({\it e.g.}, RIK-210.
-  \item Rare ($\lesssim 1\%$ of relevant stars) at a population level
+  \item Dip depths can change after flares.
+  \item Rare at a population level: $\lesssim 1\%$ of relevant stars
     \citep{rebull_usco_2018}.
 \end{enumerate}
 The 10.74 hour signal in \ptfo\ meets essentially all of these
 criteria.
 
+A crucial additional point concerning the transient flux dips is
+that their dip durations seem to scale linearly with
+their periods \citep[][Figure~26]{stauffer_orbiting_2017}.
+In the usual idealized limits, the transit duration of a point source
+across the stellar disk scales as $T_0 \propto R_\star (P/M_\star)^{1/3}$
+\citep{winn_exoplanet_2010}.
+While the $\approx$0.5-day transient flux dip stars have dip
+durations consistent with point sources, at longer periods of
+1 to 5 days, the dip durations become many hours, and far
+too long for a point-source origin.
+
+
+
 
 \section{Physical Interpretation}
 
-Given the evidence, we believe that PTFO$\,$8-8695 is a binary M dwarf
-in which one star shows the ``long'' rotation signal, and the other is
-showing ``transient dipping'' that has also been observed in other
-young M dwarfs. 
+The evidence for binarity in \ptfo\ is as follows.  First, the star is
+photometrically twice as bright as stars of the same color in its
+kinematic group (Figure~\ref{fig:gaia}.  Second, it shows two distinct
+photometric signals.  These two points alone are typically sufficient
+to imply binarity \citep{stauffer_rotevol_2018}.  For the case of
+\ptfo, there is a third line of evidence: the Gaia astrometry shows a
+poor goodness-of-fit to a single-source model.  While this could be
+caused by an additional companion or stellar variability, cluster
+members that are equally if not more variable still show \ptfo\ to be
+an outlier.  Therefore the astrometric excess is a suggestive third
+line of evidence for binarity in \ptfo.  We take these three points
+combined to imply that \ptfo\ is probably a binary.
 
-Many other young M-dwarf photometric binaries have been observed in
-{\it e.g.,} Upper Sco and the Pleiades to show multiple periods
-\citep{rebull_usco_2018,stauffer_rotevol_2018}.  Typically, the
-periods are both rotational modulation.
+% rumination: is the lack of an infrared excess even significant? In
+% USco, we know late-M dwarfs show them. What about Orion? Distance is
+% 4x, at least...
+% Hernandez et al 2007a and 2007b show that there are some infrared
+% excesses seen with Spitzer. But their completeness for fainter M
+% dwarfs may be worse -- they see a disk fraction peaking at M0,
+% instead of later as seen by e.g., Barenfeld+2016.
+Based on the lack of an infrared excess seen by \citet{yu_tests_2015},
+the primordial gas disks seem to be have been depleted around both
+stars, and so the stars are no longer magnetically locked to their
+disks.  This is consistent with the $\approx$half-day periodicities of
+both signals: young disked M dwarfs typically rotate with periods of
+two days or more due to magnetic locking \citep[{\it
+e.g.},][]{rebull_rotation_2020}.  If the two stars are within
+$\approx$50$\,$AU of each other, as required by the NIRC2 adaptive
+optics imaging, then it would also be expected that the stars would
+truncate the outer edges of their respective disks, in a manner seen
+at the population level in exoplanetary systems
+\citep{kraus_impact_2016,moe_impact_2019}.
 
-However, occasionally one or both periods can be ``scallop-shell''
-variability, {\it e.g.}, EPIC 203956650 in $\rho$Oph
-\citep{rebull_usco_2018}.
+The main physical question remaining is clearly what causes the
+transient dipping. We have argued that this is an unsolved problem not
+only for \ptfo\ but also for an emerging class of similar young
+rapidly rotating M-dwarfs.
+
+The explanation offered by \citet{stauffer_orbiting_2017} for this
+variability class is that warm clouds of gas and dust orbit the star
+at the Keplerian corotation radius.
+
+Why???
+
+What are the forces at play?
+
+FIXME
+
+
+Given the evidence for binarity, we believe that PTFO$\,$8-8695 is a
+binary M dwarf in which one star shows the 11.96~hour rotation signal,
+and the other shows a combination of transient dipping and stellar
+rotation, similar to that observed in other young M dwarfs.  The
+combined transient dipping and stellar rotation at the 10.74~hour
+cycle was only detected with the TESS data.
 
 
 
 
-There are 
 
-The gas in the disks is gone (CITE).
-The upper limits on the SED from \citet{yu_tests_2015} imply X, Y, Z.
-The stars are therefore presumably no longer ``magnetically locked''
-to their disks.
-This is consistent with the $\approx$half-day periodicities of both
-signals.
-In the broader context of rapidly rotating young M-dwarfs, ``magnetic
-locking'' causes classical disked T-Tauri stars tend to rotate more
-{\it slowly}, and almost none have periods less than two days
-\citep[{\it e.g.},][]{rebull_rotation_2020}.
-
-The main physical question is what is causing the ``transient
-dipping''. This is an unsolved problem not only for \ptfo\ but also
-for an entire class of young rapidly rotating M-dwarfs
 
 
 
