@@ -1,3 +1,3 @@
 #### billy
 
-fitting routines for variable stars and transiting planets.
+ptfo 8-8695: what it be?
