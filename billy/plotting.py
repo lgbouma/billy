@@ -742,7 +742,7 @@ def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
 
     ax0.text(3.2, 5, 'A', fontsize=16, color='C1', zorder=6, style='italic')
 
-    ax0.set_title('TESS (log)', fontsize='xx-large')
+    ax0.set_title('TESS', fontsize='xx-large')
 
     if showcolorbar:
         cb0 = fig.colorbar(cset0, ax=ax0, extend='neither', fraction=0.046, pad=0.04)
@@ -753,7 +753,7 @@ def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
     cset1 = ax1.imshow(dss, origin='lower', cmap=plt.cm.gray_r)
 
     ax1.grid(ls='--', alpha=0.5)
-    ax1.set_title('DSS2 Red (linear)', fontsize='xx-large')
+    ax1.set_title('DSS2 Red', fontsize='xx-large')
     if showcolorbar:
         cb1 = fig.colorbar(cset1, ax=ax1, extend='neither', fraction=0.046,
                            pad=0.04)
