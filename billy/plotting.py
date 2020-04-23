@@ -27,7 +27,7 @@ Convenience:
 """
 import os, corner, pickle
 from glob import glob
-import numpy as np, matplotlib.pyplot as plt
+import numpy as np, matplotlib.pyplot as plt, pandas as pd
 from datetime import datetime
 from pymc3.backends.tracetab import trace_to_dataframe
 from itertools import product
@@ -853,21 +853,37 @@ def plot_hr(outdir):
 
 def plot_astrometric_excess(outdir):
 
+    varamppath = '/Users/luke/Dropbox/proj/billy/data/25ori-1/var_amps.csv'
+    va_df = pd.read_csv(varamppath)
+
     pklpath = '/Users/luke/Dropbox/proj/billy/results/cluster_membership/nbhd_info_3222255959210123904.pkl'
     d = pickle.load(open(pklpath, 'rb'))
     g_df = d[2]
+
+    g_df = g_df.merge(va_df, on='source_id', how='left')
+
     chisq_red = g_df.astrometric_chi2_al / (g_df.astrometric_n_obs_al - 5)
+
+    ######
 
     f,ax = plt.subplots(figsize=(4,3))
 
-    ax.scatter(g_df.phot_rp_mean_mag, chisq_red, c='k', alpha=1., zorder=3, s=9,
-               rasterized=True, linewidths=0, label='K+18 members')
+    ax.scatter(g_df.phot_rp_mean_mag, chisq_red, c='gray', zorder=3, s=3,
+               marker='s', rasterized=True, linewidths=0, label='All members',
+               alpha=1)
 
-    sel = (g_df.source_id.astype(str) == '3222255959210123904')
+    ptfosel = (g_df.source_id.astype(str) == '3222255959210123904')
+    ptfo_amp = float(g_df[ptfosel].var_amp)
+    sel = (g_df.var_amp > ptfo_amp)
+
+    ax.scatter(g_df[sel].phot_rp_mean_mag, chisq_red[sel], c='k', alpha=1.,
+               zorder=4, s=12,
+               rasterized=True, linewidths=0, marker='s',
+               label='Amplitude > {:.1f}%'.format(ptfo_amp*100))
 
     ax.plot(
-        g_df[sel].phot_rp_mean_mag,
-        chisq_red[sel],
+        g_df[ptfosel].phot_rp_mean_mag,
+        chisq_red[ptfosel],
         alpha=1, mew=0.5, zorder=8, label='PTFO 8-8695', markerfacecolor='yellow',
         markersize=12, marker='*', color='black', lw=0
     )
@@ -875,6 +891,7 @@ def plot_astrometric_excess(outdir):
     ax.set_xlabel('Rp', fontsize='large')
     ax.set_ylabel('Astrometric Reduced $\chi^2$', fontsize='large')
     ax.set_xlim([7.5,16.5])
+    ax.set_ylim([0.3,8.7])
 
     ax.legend(loc='best', fontsize='small')
 
@@ -905,7 +922,7 @@ def plot_O_minus_C(
 
     a0.plot(x[istess], O_m_C[istess], alpha=1, mew=0.5,
             zorder=8, label='binned TESS', markerfacecolor='yellow',
-            markersize=9, marker='*', color='black', lw=0)
+            markersize=15, marker='*', color='black', lw=0)
 
     P_short = 0.44854
     P_long = 0.49914

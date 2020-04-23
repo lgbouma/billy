@@ -508,23 +508,6 @@ domain that there could be a weak long-period signal present.
 \section{Binarity Analysis}
 \label{sec:gaia}
 
-% \begin{figure*}[t]
-% 	\begin{center}
-% 		\leavevmode
-% 		\includegraphics[width=0.9\textwidth]{f6.png}
-% 	\end{center}
-% 	\vspace{-0.7cm}
-% 	\caption{ {\bf Positions, kinematics, and HR diagram of \ptfo.}
-%   Members of the 25$\,$Ori-1 subgroup are shown with black circles,
-%   and were identified by \citet{kounkel_apogee2_2018} through
-%   clustering on Gaia DR2 and APOGEE data.  The ``neighborhood'' (gray
-%   circles) is defined as the group of at most $10^4$ randomly selected
-%   non-member stars within 5 standard deviations of the mean right
-%   ascension, declination, and parallax.
-% 	\label{fig:gaia}
-% 	}
-% \end{figure*}
-
 \subsection{Visual Binarity}
 \label{subsec:blend}
 
@@ -663,8 +646,10 @@ possible binary companions.
     M dwarf members, to accentuate \ptfo's separation from the
     single-star sequence.  {\it Bottom: Astrometric goodness-of-fit
     versus $Rp$ magnitude for 25$\,$Ori-1 members}.  The single-source
-    astrometric model provides a poor fit, which could be due to
-    stellar variability or binarity.
+    astrometric model for \ptfo\ provides a poor fit, which could be due to
+    stellar variability or binarity.  Cluster members that
+    are at least as variable as \ptfo\ show lower astrometric excesses
+    (black squares), suggesting binarity as the root cause.
 		\label{fig:gaia}
 	}
 \end{figure*}
@@ -721,7 +706,7 @@ the single-source astrometric model yielded $\chi^2=325.2$.  There are
 121 astrometric measurements, and 5 free parameters, and therefore 116
 degrees of freedom. The reduced $\chi^2$ is 2.80.  The majority of
 stars with comparable brightness in Gaia do not show such poor
-goodness-of-fit \citep[][Appendix A]{lindegren_gaiasoln_2018}.
+goodness-of-fit \citep[see][Appendix A]{lindegren_gaiasoln_2018}.
 
 Potential explanations for the poor astrometric fit include
 photometric variability and unresolved stellar binarity \citep[{\it
@@ -731,10 +716,17 @@ faint stars in the same kinematic group of Orion to show similar
 astrometric excesses, as the majority of young stars are highly
 variable.
 
-Using the same 149 members in the 25$\,$Ori-1 subgroup from
-\citet{kounkel_apogee2_2018}, we calculated the reduced $\chi^2$ for
-each member.  The lower panel of Figure~\ref{fig:gaia} shows the
-resulting values, as a function of stellar brightness.  \ptfo\ is in
+% NB: CDIPS-I only made 131 light-curves for 25Ori-1, because I wasn't
+% aware of the Kounkel+18 member list at the time.
+Using the same 149 members in the 25$\,$Ori-1 subgroup, we calculated
+the astrometric reduced $\chi^2$ for each member.  We then queried the
+CDIPS lightcurve database at MAST \citep{bouma_cluster_2019} to find
+the subset of stars that were at least as variable as \ptfo.
+We measured the variability amplitude by taking the difference of the
+$95^{\rm th}$ and $5^{\rm th}$ percentiles of the flux.
+This yielded 30 stars of equal or greater variability.
+The lower panel of Figure~\ref{fig:gaia} shows the
+reduced $\chi^2$ as a function of stellar brightness.  \ptfo\ is in
 the upper 90$^{\rm th}$ percentile of stars showing astrometric
 excesses within the 25$\,$Ori-1 group.  Relative to other M-dwarf
 group members with comparable brightnesses and variability
@@ -742,10 +734,9 @@ characteristics, \ptfo\ still stands out as behaving astrometrically
 poorly.  Ultimately, we will have to wait for the full release of the
 nominal Gaia mission to definitively determine whether the astrometric
 excess is caused by stellar binarity or photometric variability.
-Nonetheless this result suggests that stellar binarity is indeed the
-root cause, because other member stars have identical variability
-characteristics but do not show such a large astrometric excess.
-
+Nonetheless the fact that comparably variable stars do not show
+comparably large astrometric excesses suggests that stellar binarity
+is indeed the root cause.
 
 
 \section{Discussion}
@@ -802,7 +793,7 @@ data strongly support this conclusion.
 		convincingly {\it observed}.  Horizontal dashed lines are drawn at
 		$\pm (P_{\rm \ell} - P_{\rm s})/P_{\rm s}$, highlighting either a
 		numerical coincidence or an observational bias.  The orbital phase
-		observed by TESS is consistent with that of
+		observed by TESS (lower-right) is consistent with that of
 		\citet{tanimoto_evidence_2020}, and quite different from the
 		original phase.
 		\label{fig:o_minus_c}
