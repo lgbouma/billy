@@ -37,7 +37,8 @@ from billy.convenience import get_clean_ptfo_data
 from billy.models import linear_model
 
 from astrobase.lcmath import (
-    phase_magseries, phase_bin_magseries, sigclip_magseries
+    phase_magseries, phase_bin_magseries, sigclip_magseries,
+    find_lc_timegroups
 )
 from astrobase import periodbase
 
@@ -152,14 +153,23 @@ def plot_splitsignal_map(m, outpath, part='i'):
     things at rotation frequency
     things at orbital frequency
     """
+    ngroups, groupinds = find_lc_timegroups(m.x_obs, mingap=1.0)
+    assert ngroups == 2
+    if part == 'i':
+        g = groupinds[0]
+    elif part == 'ii':
+        g = groupinds[1]
+    else:
+        raise NotImplementedError
 
     plt.close('all')
     # 8.5x11 is letter paper. x10 allows space for caption.
     fig, axs = plt.subplots(nrows=4, figsize=(8.5, 10), sharex=True)
 
     axs[0].set_ylabel('f', fontsize='x-large')
-    axs[0].plot(m.x_obs, m.y_obs, ".k", ms=4, label="data", zorder=2, rasterized=True)
-    axs[0].plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
+    axs[0].plot(m.x_obs[g], m.y_obs[g], ".k", ms=4, label="data", zorder=2,
+                rasterized=True)
+    axs[0].plot(m.x_obs[g], m.map_estimate['mu_model'][g], lw=0.5, label='MAP',
                 color='C0', alpha=1, zorder=1)
 
     y_tra = m.map_estimate['mu_transit']
@@ -180,21 +190,26 @@ def plot_splitsignal_map(m, outpath, part='i'):
             # axs[0].plot(m.x_obs, y_orb, lw=0.5, label='model '+f,
             #             color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
 
-    #axs[1].set_ylabel('flux-orb (rot)')
-    axs[1].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$', fontsize='x-large')
-    axs[1].plot(m.x_obs, m.y_obs-y_orb, ".k", ms=4, label="data-orb", zorder=2, rasterized=True)
-    axs[1].plot(m.x_obs, m.map_estimate['mu_model']-y_orb, lw=0.5,
+    axs[1].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
+                      fontsize='x-large')
+    axs[1].plot(m.x_obs[g], m.y_obs[g]-y_orb[g], ".k", ms=4, label="data-orb",
+                zorder=2, rasterized=True)
+    axs[1].plot(m.x_obs[g], m.map_estimate['mu_model'][g]-y_orb[g], lw=0.5,
                 label='model-orb', color='C0', alpha=1, zorder=1)
 
-    #axs[2].set_ylabel('flux-rot (orb)')
-    axs[2].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$', fontsize='x-large')
-    axs[2].plot(m.x_obs, m.y_obs-y_rot, ".k", ms=4, label="data-rot", zorder=2, rasterized=True)
-    axs[2].plot(m.x_obs, m.map_estimate['mu_model']-y_rot, lw=0.5,
+    axs[2].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
+                      fontsize='x-large')
+    axs[2].plot(m.x_obs[g], m.y_obs[g]-y_rot[g], ".k", ms=4, label="data-rot",
+                zorder=2, rasterized=True)
+    axs[2].plot(m.x_obs[g], m.map_estimate['mu_model'][g]-y_rot[g], lw=0.5,
                 label='model-rot', color='C0', alpha=1, zorder=1)
 
-    axs[3].set_ylabel('$f - f_{{\mathrm{{s}}}} - f_{{\mathrm{{\ell}}}}$', fontsize='x-large')
-    axs[3].plot(m.x_obs, m.y_obs-m.map_estimate['mu_model'], ".k", ms=4, label="data", zorder=2, rasterized=True)
-    axs[3].plot(m.x_obs, m.map_estimate['mu_model']-m.map_estimate['mu_model'],
+    axs[3].set_ylabel('$f - f_{{\mathrm{{s}}}} - f_{{\mathrm{{\ell}}}}$',
+                      fontsize='x-large')
+    axs[3].plot(m.x_obs[g], m.y_obs[g]-m.map_estimate['mu_model'][g], ".k",
+                ms=4, label="data", zorder=2, rasterized=True)
+    axs[3].plot(m.x_obs[g],
+                m.map_estimate['mu_model'][g]-m.map_estimate['mu_model'][g],
                 lw=0.5, label='model', color='C0', alpha=1, zorder=1)
 
 
