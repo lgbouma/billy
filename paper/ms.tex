@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{natbib}
 \usepackage[caption=false]{subfig} % for subfloat
+\usepackage{enumitem} % for specific spacing of enumerate
 
 \renewcommand*{\sectionautorefname}{Section} %for \autoref
 \renewcommand*{\subsectionautorefname}{Section} %for \autoref
@@ -62,22 +63,22 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
   old Orion-OB1a cluster. We inspected data from TESS and Gaia to
   clarify whether it is truly a planet.  The Gaia data show that
   PTFO$\,$8-8695 is a photometric binary with respect to members of
-  its kinematic group.  The TESS lightcurve shows that the dominant
-  variability in this system is a sinusoid with a long period
-  $P_{\rm \ell}=11.96\,$hr, presumably caused by stellar rotation.
-  Also present is a complex signal, previously identified as the
-  planet candidate, that repeats with a short period $P_{\rm s}=
-  10.74\,$hr.  The two signals beat every 4.48 days.  Although there
-  is a dip in the short-period signal, ground-based photometry from
-  the past decade indicates that the orbital phase of the dip seems to
-  have instantaneously jumped, at least once, and perhaps twice.
-  Planets do not ``jump'' in orbital phase.  Given the available
-  evidence, we believe that PTFO$\,$8-8695 is a binary M dwarf in
-  which one star shows the long rotation signal, and the other star
-  shows ``transient dipping'' that has been seen in a few other young
-  weak-lined T Tauri stars.  The origin of these transient dips is
-  still undetermined, but our preferred explanation is eclipsing
-  clouds of gas or dust at the Keplerian co-rotation radius.
+  its kinematic group, and also suggest that it is an astrometric
+  binary.  The TESS lightcurve shows that the dominant variability in
+  this system is a sinusoid with a long period $P_{\rm
+  \ell}=11.96\,$hr, presumably caused by stellar rotation.  Also
+  present is a combined dip and asymmetric sinusoid, previously
+  identified as the planet candidate, that repeats with a short period
+  $P_{\rm s}= 10.74\,$hr.  The two signals beat every 4.48 days.
+  Although there is a dip in the short-period signal, ground-based
+  photometry from the past decade indicates that the orbital phase of
+  the dip seems to have instantaneously jumped, at least once, and
+  perhaps twice.  Planets do not ``jump'' in orbital phase.  Given the
+  available evidence, we believe that PTFO$\,$8-8695 is a binary M
+  dwarf in which one star shows the long rotation signal, and the
+  other star shows ``transient dipping'' that has been seen in a few
+  other young low-mass stars.  The origin of these transient dips is
+  still undetermined.
 \end{abstract}
 
 \keywords{
@@ -165,18 +166,19 @@ available observations from TESS \citep{ricker_transiting_2015} and
 Gaia \citep{gaia_collaboration_gaia_2018}.  The TESS lightcurve shows
 two distinct signals, which we extract and analyze in
 Section~\ref{sec:tess}.  A long-period sinusoid repeats every 12.0
-hours, and is probably stellar rotation.  A short-period dip with an
-additional complex modulation repeats every 10.7 hours.  Analyzing the
+hours, and is probably stellar rotation.  A short-period dip superposed on an
+asymmetric sinusoid repeats every 10.7 hours.  Analyzing the
 Gaia data in Section~\ref{sec:gaia}, we show that relative to its
-kinematic group, \ptfo\ is a photometric binary.  We collect and
-discuss the puzzle pieces in Section~\ref{sec:discussion}.  The
-orbital phase of the dip seems to have instantaneously changed over
-the past decade.  In addition, a number of other young stars show
-lightcurve morphologies similar to the short-period signal.  We
-therefore argue that PTFO$\,$8-8695 is a binary M dwarf in which one
-star shows a rotation signal, and the other shows ``transient
-dipping'' caused by eclipses of material at the Keplerian co-rotation
-radius.  Section~\ref{sec:conclusions} summarizes our main points.
+kinematic group, \ptfo\ is a photometric binary, and suggest it also an
+astrometric binary.  We collect and discuss the puzzle pieces in
+Section~\ref{sec:discussion}.  The orbital phase of the dip seems to
+have instantaneously changed over the past decade.  In addition, a
+number of other young stars show lightcurve morphologies similar to
+the short-period signal.  We therefore argue that PTFO$\,$8-8695 is a
+binary M dwarf in which one star shows a rotation signal, and the
+other shows ``transient dipping'' potentially caused by eclipses of plasma at
+the Keplerian co-rotation radius.  Section~\ref{sec:conclusions}
+summarizes our main points.
 
 
 \section{The Data}
@@ -282,10 +284,10 @@ the pipeline parameters for \ptfo\ using the Gaia
 archive\footnote{\url{gea.esac.esa.int/archive/}}.
 
 The majority of Gaia's derived parameters for \ptfo\ agreed with
-expectation from former studies
+expectations from former studies
 \citep{briceno_cida_2005,van_eyken_ptf_2012}.  One novelty however was
-that Gaia DR2 detected a significant ``astrometric excess'', at a
-level of 10.3$\sigma$.  We comment on the significance and
+that Gaia DR2 detected a 10.3$\sigma$ ``astrometric excess''.
+We comment on the significance and
 interpretation of this excess in Section~\ref{sec:gaia}.
 
 
@@ -465,7 +467,7 @@ initialized each model to the maximum a posteriori (MAP) solution.  We
 then sampled using \texttt{PyMC3}'s gradient-based No-U-Turn Sampler
 \citep{hoffman_no-u-turn_2014}, and used $\hat{R}$ as our convergence
 diagnostic \citep{gelman_inference_1992}.  We tested our ability to
-successfully recover injected parameters using synthetic data, before
+successfully recover injected parameters using synthetic data before
 fitting the \ptfo\ lightcurves.
 
 
@@ -491,14 +493,14 @@ In every model, the $11.96\,{\rm hr}$ variability is a simple sinusoid
 with peak-to-peak amplitude $\approx$10\%.  The $10.74\,{\rm hr}$
 variability is always more complex.  A dip of depth $\approx$1.2\%,
 fit in our model as a transit, lasts $\approx$0.75 hours.  Superposed
-on the dip is a slightly asymmetric sinusoid with peak-to-peak
+on the dip is an asymmetric sinusoid with peak-to-peak
 amplitude of about 4\%. The asymmetric sinusoid peaks near phase 0.25,
 and reaches minimum brightness between phases -0.5 and -0.25.  The
 flux at phase $\approx -0.33$ shows what could be a discontinuous
 jump, shortly after reaching minimum (Figure~\ref{fig:phasefold}).
 This jump was visible in each of the nine models we considered.
 
-The periodogram of the final residual (Figure~\ref{fig:splitsignal}
+The periodogram of the final residual (Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}
 bottom row) shows a weakly significant, poorly resolved peak at
 $\approx$8 days, consistent with the visual impression in the time
 domain that there could be a weak long-period signal present.
@@ -721,7 +723,7 @@ variable.
 Using the same 149 members in the 25$\,$Ori-1 subgroup, we calculated
 the astrometric reduced $\chi^2$ for each member.  We then queried the
 CDIPS lightcurve database at MAST \citep{bouma_cluster_2019} to find
-the subset of stars that were at least as variable as \ptfo.
+the subset of members that were at least as variable as \ptfo.
 We measured the variability amplitude by taking the difference of the
 $95^{\rm th}$ and $5^{\rm th}$ percentiles of the flux.
 This yielded 30 stars of equal or greater variability.
@@ -883,6 +885,7 @@ emitted light from the planet's surface is nonsensical because the sign is wrong
 planet would need to be {\it absorbing} light.
 
 \subsubsection{Similar Lightcurves}
+\label{subsec:dipstars}
 
 \begin{figure*}[hbtp]
 	\begin{center}
@@ -925,7 +928,7 @@ these  objects are morphologically distinct from ``scallop shell' lightcurves,
 and are present in stars at more advanced evolutionary disk stages than
 the ``dipper'' stars \citep{ansdell_young_2016,cody_manyfaceted_2018}.
 The persistent and transient flux dip stars have the following properties.
-\begin{enumerate}
+\begin{enumerate}[topsep=0.5ex,itemsep=-0.5ex,partopsep=1ex,parsep=1.5ex]
   \item Weak-lined T Tauri stars.
   \item Spectral type typically M2-M5 ({\it e.g.},
     \citealt{rebull_usco_2018},~Figure~20).
@@ -937,8 +940,8 @@ The persistent and transient flux dip stars have the following properties.
   \item Rotation is fast---usually between 0.5 and 2.0 days.
   \item Rarely any infrared excess (never any W4 detection; only a few
     cases with W3 detctions).
-  \item Can show multiple dips per cycle ({\it e.g.}, EPIC 203692610,
-    RIK-210).
+  \item Can show multiple dips per cycle.
+  %({\it e.g.}, EPIC 203692610, RIK-210).
   \item Dip depths, durations, and phases can vary over just a few cycles
     ({\it e.g.}, EPIC 204143627).
   \item Dip depths can change after flares.
@@ -977,21 +980,18 @@ population-level binarity properties relative to other young low-mass
 stars.
 
 
-
-
-
-
-\section{Physical Interpretation}
+\subsection{Physical Interpretation}
+\label{subsec:physical}
 
 The evidence for binarity in \ptfo\ is as follows.  First, the star is
 photometrically twice as bright as stars of the same color in its
-kinematic group (Figure~\ref{fig:gaia}.  Second, it shows two distinct
+kinematic group (Figure~\ref{fig:gaia}).  Second, it shows two distinct
 photometric signals.  These points alone suggest binarity
 \citep{stauffer_rotevol_2018}.  For the case of \ptfo, there is a
 third line of evidence: the Gaia astrometry shows a poor
 goodness-of-fit to a single-source model.  While this could be caused
-by an additional companion or stellar variability, cluster members
-that are equally if not more variable still show \ptfo\ to be an
+by stellar variability, cluster members
+that are at least as variable still show \ptfo\ to be an
 outlier.  Therefore the astrometric excess is a suggestive third line
 of evidence for binarity in \ptfo.  We take these three points
 combined to imply that \ptfo\ is probably a binary.
@@ -1017,21 +1017,19 @@ evolution.
 The main physical question remaining is clearly what causes the
 transient dipping. This is an unsolved problem not only for \ptfo\ but
 also for an emerging class of similar young rapidly rotating M-dwarfs.
-Some possible explanations are highly disfavored, for reasons that
-have been detailed by \citet{david_transient_2017},
+Many possible explanations been detailed by \citet{rebull_rotation_2016}, \citet{david_transient_2017},
 \citet{stauffer_orbiting_2017}, and \citet{zhan_complex_2019}.
-These disfavored explanations include that the dips are caused by
+Their disfavored explanations include that the dips are caused by
 {\it (i)} eclipsing binaries;
 {\it (ii)} ``dipper''-flavor Class-I or Class-II disks;
 {\it (iii)} eclipses of prominences;
 {\it (iv)} high-latitude accretion hotspots;
 {\it (v)} high-latitude starspots;
-and
-{\it (vi)} dust clouds of reasonable composition.
+or
+{\it (vi)} dust clouds of plausible composition.
 We also view the possibility of {\it (vii)} tidally disrupted planetary
 or cometary material to be implausible, given the synchronicity
-between dip and rotation periods, and the stability of signals
-observed in some systems.
+between dip and rotation periods seen across many systems.
 
 The explanations that are not yet ruled out include
 {\it (i)} transiting clumps of gas at the Keplerian corotation radius;
@@ -1041,62 +1039,80 @@ The first and last explanations offer added appeal because they are
 flexible enough to explain not only the transient and persistent-dip
 M-dwarfs, but also the ``scallop shell'' M-dwarfs
 \citep{stauffer_orbiting_2017}.
-Despite this appeal, the possibility of distinct mechanisms 
-explaining these
-distinct variability classes should remain open.
+Despite this appeal, the possibility of distinct mechanisms explaining
+these distinct variability classes remains open.
+
+The evolution of \ptfo\
+over the past decade (Figure~\ref{fig:o_minus_c}) could offer important
+hints.  Specifically, \ptfo's transition between having none, one, and
+multiple dips per cycle seems important.  It strains the ``enshrouded
+protoplanet'' interpretation, because there are no known processes
+that cause a planet's orbital phase to jump.  The dips would then need
+to be caused by material that was somehow disrupted from the planet,
+but somehow remained co-orbital for an extended duration. This seems
+implausible.
 
 
 \section{Conclusions}
 \label{sec:conclusions}
 
-\ptfo\ was previously thought to potentially host a hot Jupiter.
-The TESS lightcurve of \ptfo\ showed a number of new features,
-many of which seem to disfavor the hot Jupiter interpretatation.
-The TESS data showed two key pieces of evidence.
-\begin{enumerate}
-  \item {\it Two periodic signals.} The ``long'' signal is a 10\%
-      peak-to-peak sinusoidal modulation repeating every 11.96 hours.
-      The ``short'' signal is a 4\% peak-to-peak complex modulation
-      repeating every 10.74 hours. It is composed of a dip, plus at
-      least two harmonics. The signals beat, and therefore cannot be
-      an artifact linked to data processing.
-  \item {\it A dip at the wrong orbital phase.} The clearest dip in
-    the ``short'' signal was consistent with recent observations by
-    \citet{tanimoto_evidence_2020}, and differed from the discovery
-    epoch by 5.14 hours.
-\end{enumerate}
+The combination of TESS and Gaia observations have provided new
+clarity in the \ptfo\ system.  Our main results are as follows.
+\begin{itemize}
+  \item {\it The TESS light-curve shows two periodic signals.} The
+    ``long'' signal is a 10\% peak-to-peak sinusoid that repeats every
+    11.96 hours.  The ``short'' signal is a 4\% peak-to-peak ``dip +
+    asymmetric sinusoid'' that repeats every 10.74 hours. The signals
+    beat, and therefore cannot be an artifact linked to data
+    processing.
+    Within the angular resolution of the Gaia source
+    catalog, both signals need to originate from \ptfo.
+  \item {\it The Gaia data imply binarity.} Relative to stars in its
+    kinematic group, \ptfo\ is a photometric binary
+    (Figure~\ref{fig:gaia}, top).  Relative to stars in its group that
+    are at least as photometrically variable, \ptfo\ also shows
+    signs of astrometric binarity (Figure~\ref{fig:gaia}, bottom).
+  \item {\it The orbital phase of the dip has changed since the
+    discovery by \citet{van_eyken_ptf_2012}.} As shown in
+    Figure~\ref{fig:o_minus_c}, the phase seems to have jumped,
+    perhaps twice. This agrees with the recent study by
+    \citet{tanimoto_evidence_2020}.
+  \item {\it All properties of \ptfo\ are consistent with the emerging
+    class of transient and persistent flux dip stars.} Analogous
+    lightcurves are shown in Figure~\ref{fig:brethren}.  Properties of
+    this variability class are enumerated in
+    Section~\ref{subsec:dipstars}.
+\end{itemize}
 
-The physical mechanism responsible for all these features remains a
-matter of speculation.
-With that said, the TESS data support new arguments against the planetary
-interpretation of \ptfo.
-First, if the long signal is caused by starspot modulation, and the
-short signal by a transiting planet, what causes the additional
-complex modulations seen at the short, ``orbital'', period?
-
-Given the available evidence,
-PTFO$\,$8-8695 seems consistent with the
-``transient dipping'' phenomenology observed in many young M dwarfs.
-Though it seems rather unlikely to be a planet, understanding \ptfo\
-and its analogs will help us understand the natal environments 
-of the majority of Earth-sized planets in the Milky Way
+The physical mechanism that explains the transient and persistent flux
+dips is unresolved. Our preferred explanations include
+transiting clumps of gas at the Keplerian corotation radius, and
+occultations of starspots by an optically thick disk \citep[{\it
+e.g.},][]{stauffer_orbiting_2017,david_transient_2017,zhan_complex_2019}.
+The jumping orbital phase disfavors the enticing explanation of an
+enshrouded, transiting protoplanet.  Though \ptfob seems unlikely
+to be a planet, understanding it and its analogs is a worthy
+problem that promises to teach us about the natal environments of the
+majority of habitable-zone Earth-sized planets in the Milky Way
 \citep{dressing_occurrence_2013}.
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \acknowledgements
-% %
-% This paper includes data collected by the TESS mission, which are
-% publicly available from the Mikulski Archive for Space Telescopes
-% (MAST).
-% %
-% Funding for the TESS mission is provided by NASA's Science Mission
-% directorate.
-% %
-% This work made use of NASA's Astrophysics Data System Bibliographic
-% Services.
+\acknowledgements
+%
+%This paper includes data collected by the TESS mission, which are
+%publicly available from the Mikulski Archive for Space Telescopes
+%(MAST).
+%
+%Funding for the TESS mission is provided by NASA's Science Mission
+%directorate.
+%
+\ptfo\ was included on the TESS ``short-cadence'' target list thanks to the
+Guest Investigator programs of S.\ Czesla and C.\ Huang (G011128 and
+G011132 respectively).
+%
 % %
 % Based on observations obtained at the Gemini Observatory, which is
 % operated by the Association of Universities for Research in Astronomy,
@@ -1141,10 +1157,11 @@ of the majority of Earth-sized planets in the Milky Way
 
 \software{
   \texttt{astrobase} \citep{bhatti_astrobase_2018},
-  % \texttt{astroplan} \citep{astroplan2018},
+  %\texttt{astroplan} \citep{astroplan2018},
   \texttt{astropy} \citep{astropy_2018},
   \texttt{astroquery} \citep{astroquery_2018},
-  % \texttt{BATMAN} \citep{kreidberg_batman_2015},
+  %\texttt{BATMAN} \citep{kreidberg_batman_2015},
+  \texttt{cdips-pipeline} \citep{bhatti_cdips-pipeline_2019}
   \texttt{corner} \citep{corner_2016},
   %\texttt{emcee} \citep{foreman-mackey_emcee_2013},
   \texttt{exoplanet} \citep{exoplanet:agol19}
@@ -1157,23 +1174,27 @@ of the majority of Earth-sized planets in the Milky Way
   \texttt{MESA} \citep{paxton_modules_2011,paxton_modules_2013,paxton_modules_2015}
   \texttt{numpy} \citep{walt_numpy_2011}, 
   \texttt{pandas} \citep{mckinney-proc-scipy-2010},
+  \texttt{pyGAM} \citep{serven_pygam_2018_1476122},
   \texttt{PyMC3} \citep{salvatier_2016_PyMC3},
-  \texttt{radvel} \citep{fulton_radvel_2018},
-  % \texttt{scikit-learn} \citep{scikit-learn},
+  %\texttt{radvel} \citep{fulton_radvel_2018},
+  %\texttt{scikit-learn} \citep{scikit-learn},
   \texttt{scipy} \citep{jones_scipy_2001}.
+  \texttt{tesscut} \citep{brasseur_astrocut_2019},
+  \texttt{wotan} \citep{hippke_wotan_2019}.
 }
 
 
-% \facilities{
-% 	{\it Astrometry}:
-% 	Gaia \citep{gaia_collaboration_gaia_2016,gaia_collaboration_gaia_2018}.
-% 	{\it Imaging}:
-% 	Gemini:South~(Zorro; \citealt{scott_nessi_2018}.
-% 	{\it Spectroscopy}:
-% 	Keck:I~(HIRES; \citealt{vogt_hires_1994}),
+\facilities{
+ 	{\it Astrometry}:
+ 	Gaia \citep{gaia_collaboration_gaia_2016,gaia_collaboration_gaia_2018}.
+ 	{\it Imaging}:
+ 	Keck:II~(NIRC2; \url{www2.keck.hawaii.edu/inst/nirc2})
+ 	%Gemini:South~(Zorro; \citealt{scott_nessi_2018}.
+ 	{\it Spectroscopy}:
+ 	Keck:I~(HIRES; \citealt{vogt_hires_1994}),
 % 	Euler1.2m~(CORALIE),
 % 	ESO:3.6m~(HARPS; \citealt{mayor_setting_2003}).
-% 	{\it Photometry}:
+ 	{\it Photometry}:
 % 	CTIO:1.0m (Y4KCam),
 % 	Danish 1.54m Telescope,
 % 	El Sauce:0.356m,
@@ -1183,10 +1204,10 @@ of the majority of Earth-sized planets in the Milky Way
 % 	Max Planck:2.2m	(GROND; \citealt{greiner_grond7-channel_2008})
 % 	NTT,
 % 	SOAR (SOI),
-% 	TESS \citep{ricker_transiting_2015},
+ 	TESS \citep{ricker_transiting_2015}.
 % 	TRAPPIST \citep{jehin_trappist_2011},
 % 	VLT:Antu (FORS2).
-% }
+}
 
 %
 % The following are entries from Table 1 that are not otherwise cited
@@ -1208,10 +1229,10 @@ of the majority of Earth-sized planets in the Milky Way
 % \input{rv_model_posterior_table.tex}
 % \input{pdot_table.tex}
 
-\clearpage
+% \clearpage
 \input{model_comparison_table.tex}
 \input{model_posterior_table.tex}
-\clearpage
+% \clearpage
 
 \bibliographystyle{yahapj}                            
 \bibliography{bibliography} 
