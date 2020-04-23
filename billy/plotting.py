@@ -1045,6 +1045,7 @@ def plot_brethren(outdir):
         '204143627',
         '204270520',
         '204321142',
+        # '246969828', # maybe? also Taurus, double dips
         '246938594', # 'Taurus',
         '205483258' # RIK-210
     ]
