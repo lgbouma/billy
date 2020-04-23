@@ -1,3 +1,65 @@
+@article{hippke_wotan_2019,
+    title = {Wotan: {Comprehensive} time-series de-trending in {Python}},
+    shorttitle = {Wotan},
+    url = {http://arxiv.org/abs/1906.00966},
+    abstract = {The detection of transiting exoplanets in time-series 
+    photometry requires the removal or modeling of instrumental and stellar 
+    noise. While instrumental systematics can be reduced using methods such as 
+    pixel level decorrelation, removing stellar trends while preserving 
+    transit signals proves challenging. Due to vast archives of light curves 
+    from recent transit surveys, there is a strong need for accurate automatic 
+    detrending, without human intervention. A large variety of detrending 
+    algorithms are in active use, but their comparative performance for 
+    transit discovery is unexplored. We benchmark all commonly used detrending 
+    methods against hundreds of Kepler, K2, and TESS planets, selected to 
+    represent the most difficult cases for systems with small planet-to-star 
+    radius ratios. The full parameter range is explored for each method to 
+    determine the best choices for planet discovery. We conclude that the 
+    ideal method is a time-windowed slider with an iterative robust location 
+    estimator based on Tukey's biweight. This method recovers 99\% and 94\% of 
+    the shallowest Kepler and K2 planets, respectively. We include an 
+    additional analysis for young stars with extreme variability and conclude 
+    they are best treated using a spline-based method with a robust Huber 
+    estimator. All stellar detrending methods explored are available for 
+    public use in wotan, an open-source Python package on "GitHub 
+    https://github.com/hippke/wotan".},
+    urldate = {2019-06-05},
+    journal = {arXiv:1906.00966 [astro-ph]},
+    author = {Hippke, Michael and David, Trevor J. and Mulders, Gijs D. and 
+    Heller, René},
+    month = jun,
+    year = {2019},
+    note = {arXiv: 1906.00966},
+    keywords = {Astrophysics - Earth and Planetary Astrophysics, Astrophysics 
+    - Instrumentation and Methods for Astrophysics}
+}
+
+@article{brasseur_astrocut_2019,
+	title = {Astrocut: {Tools} for creating cutouts of {TESS} images},
+	shorttitle = {Astrocut},
+	url = {https://ui.adsabs.harvard.edu/abs/2019ascl.soft05007B/abstract},
+	abstract = {The Transiting Exoplanet Survey Satellite (TESS) produces Full Frame Images (FFIs) at a half hour cadence and keeps the same pointing for 27 days at a time. Astrocut performs the same cutout across all FFIs that share a common pointing to create a time series of images on a small portion of the sky. The Astrocut package has two parts: the CubeFactory and the CutoutFactory. The CubeFactory class creates a large image cube from a list of FFI files, which allows the cutout operation to be performed efficiently. The CutoutFactory class performs the actual cutout and builds a target pixel file (TPF) that is compatible with TESS pipeline TPFs. Because this software operates on TESS mission-produced FFIs, the resulting TPFs are not background-subtracted. In addition to the Astrocut software itself, the Mikulski Archive for Space Telescopes (MAST) provides a cutout service, TESScut, which runs Astrocut on MAST servers, and allows users to simply request cutouts through a web form or direct HTTP API query.},
+	language = {en},
+	urldate = {2019-06-03},
+	journal = {Astrophysics Source Code Library},
+	author = {Brasseur, C. E. and Phillip, Carlita and Fleming, Scott W. and Mullally, S. E. and White, Richard L.},
+	month = may,
+	year = {2019},
+	pages = {ascl:1905.007}
+}
+
+
+@misc{serven_pygam_2018_1476122,
+    author       = {Daniel Serv\'en and
+    Charlie Brummitt and
+    Hassan Abedi},
+    title        = {dswah/pyGAM: v0.8.0},
+    month        = oct,
+    year         = 2018,
+    doi          = {10.5281/zenodo.1476122},
+    url          = {https://doi.org/10.5281/zenodo.1476122}
+}
+
 
 @article{dressing_occurrence_2013,
 	title = {The {Occurrence} {Rate} of {Small} {Planets} around {Small} {Stars}},
@@ -8,7 +70,7 @@
 	abstract = {We use the optical and near-infrared photometry from the Kepler Input Catalog to provide improved estimates of the stellar characteristics of the smallest stars in the Kepler target list. We find 3897 dwarfs with temperatures below 4000 K, including 64 planet candidate host stars orbited by 95 transiting planet candidates. We refit the transit events in the Kepler light curves for these planet candidates and combine the revised planet/star radius ratios with our improved stellar radii to revise the radii of the planet candidates orbiting the cool target stars. We then compare the number of observed planet candidates to the number of stars around which such planets could have been detected in order to estimate the planet occurrence rate around cool stars. We find that the occurrence rate of 0.5-4 R ⊕ planets with
 orbital periods shorter than 50 days is 0.90{\textasciicircum}\{+0.04\}\_\{-0.03\} planets per star. The occurrence rate of Earth-size (0.5-1.4 R ⊕) planets is constant across the temperature range of our sample at 0.51\_\{-0.05\}{\textasciicircum}\{+0.06\} Earth-size planets per star, but the occurrence of 1.4-4 R ⊕ planets decreases significantly at cooler
 temperatures. Our sample includes two Earth-size planet candidates in the habitable zone, allowing us to estimate that the mean number of Earth-size planets in the habitable zone is 0.15{\textasciicircum}\{+0.13\}\_\{-0.06\} planets per cool star. Our 95\% confidence lower limit on the occurrence rate of Earth-size planets in the habitable zones of cool stars is 0.04 planets per star. With 95\% confidence, the nearest transiting Earth-size planet in the habitable zone of a cool star is within 21 pc. Moreover, the nearest non-transiting planet in the habitable zone is within 5 pc with 95\% confidence.},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Dressing, Courtney D. and Charbonneau, David},
 	month = apr,
 	year = {2013},
@@ -25,7 +87,7 @@ temperatures. Our sample includes two Earth-size planet candidates in the habita
 	doi = {10.3847/1538-4357/ab158c},
 	number = {2},
 	urldate = {2019-08-12},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Zhan, Z. and Günther, M. N. and Rappaport, S. and Oláh, K. and Mann, A. and Levine, A. M. and Winn, J. and Dai, F. and Zhou, G. and Huang, Chelsea X. and Bouma, L. G. and Ireland, M. J. and Ricker, G. and Vanderspek, R. and Latham, D. and Seager, S. and Jenkins, J. and Caldwell, D. A. and Doty, J. P. and Essack, Z. and Furesz, G. and Leidos, M. E. R. and Rowden, P. and Smith, J. C. and Stassun, K. G. and Vezie, M.},
 	month = may,
 	year = {2019},
@@ -62,7 +124,7 @@ broadly consistent with the two expected modes of binary formation
 scales), but the distributions provide some clues as to the epochs at
 which the companions are likely to form.},
 	urldate = {2020-04-22},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Kraus, Adam L. and Ireland, Michael J. and Martinache, Frantz and Hillenbrand, Lynne A.},
 	month = apr,
 	year = {2011},
@@ -82,7 +144,7 @@ traditional high-resolution imaging; we also summarize a complementary snapshot 
 companions. The overall frequency of binary companions
 ({\textasciitilde}35-4+5\% at separations of 6-435 AU) appears to be equivalent to field stars of similar mass, but companions could be more common among lower mass stars than for the field. The companion mass function has statistically significant differences compared to several suggested mass functions for the field, and we suggest an alternate lognormal parameterization of the mass function. Our survey limits encompass the entire brown dwarf mass range, but we only detected a single companion that might be a brown dwarf; this deficit resembles the so-called brown dwarf desert that has been observed by radial velocity planet searches. Finally, our survey's deep detection limits extend into the top of the planetary mass function, reaching 8-12 MJup for half of our sample. We have not identified any planetary companions at high confidence (gtrsim99.5\%), but we have identified four candidate companions at lower confidence (gtrsim97.5\%) that merit additional follow-up to confirm or disprove their existence.},
 	urldate = {2020-04-22},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Kraus, Adam L. and Ireland, Michael J. and Martinache, Frantz and Lloyd, James P.},
 	month = may,
 	year = {2008},
@@ -99,7 +161,7 @@ companions. The overall frequency of binary companions
 	abstract = {Stellar multiplicity is a ubiquitous outcome of the star-formation process. The frequency and main characteristics of multiple systems, and their dependence on primary mass and environment, are powerful tools to probe this process. Although early attempts were fraught with selection biases and limited completeness, instrumentation breakthroughs in the past two decades now enable robust statistical analyses. In this review, we summarize current empirical knowledge of stellar multiplicity for main sequence stars and brown dwarfs, as well as among populations of pre-main-sequence stars and embedded protostars. Among field objects, the multiplicity rate and breadth of the orbital period distribution are steep functions of the primary mass, whereas the mass ratio distribution is essentially flat for most populations other than the lowest mass objects. The time-variation of the frequency of visual companions follows two parallel, constant tracks corresponding to loose and dense stellar populations, although current observations do not yet distinguish whether initial multiplicity properties are universal or dependent on the physical conditions of the parent cloud. Nonetheless, these quantitative trends provide a rich comparison basis for numerical and analytical models of star formation.},
 	number = {1},
 	urldate = {2016-08-07},
-	journal = {Annual Review of Astronomy and Astrophysics},
+	journal = {\araa},
 	author = {Duch\^ene, Gaspard and Kraus, Adam},
 	year = {2013},
 	keywords = {protostars, star formation, main-sequence stars, pre-main-sequence stars},
@@ -115,7 +177,7 @@ companions. The overall frequency of binary companions
 	url = {http://iopscience.iop.org/1538-3881/132/6/2360/205485.web.ps.gz},
 	number = {6},
 	urldate = {2016-06-06},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Henry, Todd J. and Jao, Wei-Chun and Subasavage, John P. and Beaulieu, Thomas D. and Ianna, Philip A. and Costa, Edgardo and Méndez, René A.},
 	year = {2006},
 	pages = {2360},
@@ -133,7 +195,7 @@ identify 336 stars as members of the cluster, using optical and
 near-infrared color-magnitude diagrams. Using the spectral energy distribution slopes in the IRAC spectral range, we place objects into several classes: non-excess stars, stars with optically thick disks (such as classical T Tauri stars), class I (protostellar) candidates, and stars with ``evolved disks'' the last exhibit smaller IRAC excesses than optically thick disk systems. In general, this classification agrees with the location expected in IRAC-MIPS color-color diagrams for these objects. We find that the evolved disk systems are mostly a combination of objects with optically thick but nonflared disks, suggesting grain growth and/or settling, and transition disks, systems in which the inner disk is partially or fully cleared of small dust. In all, we identify seven transition disk candidates and three possible debris disk systems. As in other young stellar populations, the fraction of disks depends on the stellar mass, ranging from {\textasciitilde}10\% for stars in the Herbig Ae/Be mass range ({\textgreater}2 Msolar) to {\textasciitilde}35\% for those in the T Tauri mass range (1-0.1 Msolar). The IRAC infrared excesses found in stellar clusters and associations with and without central high-mass stars are similar, suggesting that external
 photoevaporation is not very important in many clusters. Finally, we find no correlation between the X-ray luminosity and the disk infrared excess, suggesting that the X-rays are not strongly affected by disk accretion.},
 	urldate = {2020-04-22},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Hern\'andez, Jesús and Hartmann, L. and Megeath, T. and Gutermuth, R. and Muzerolle, J. and Calvet, N. and Vivas, A. K. and Briceño, C. and Allen, L. and Stauffer, J. and Young, E. and Fazio, G.},
 	month = jun,
 	year = {2007},
@@ -177,7 +239,7 @@ sufficient to explain the weak disk emission observed in the IRAC bands
 for disk-bearing stars with ages 5 Myr or older; larger degrees of dust
 settling are necessary to explain these objects.},
 	urldate = {2020-04-22},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Hern\'andez, Jesús and Calvet, Nuria and Brice\~no, C. and Hartmann, L. and Vivas, A. K. and Muzerolle, J. and Downes, J. and Allen, L. and Gutermuth, R.},
 	month = dec,
 	year = {2007},
@@ -216,7 +278,7 @@ OB1b. This last object could be explained as a intermediate stage
 between HAeBe and true debris systems or as a massive debris disk
 produced by a collision between two large objects ({\textgreater}1000 km).},
 	urldate = {2020-04-22},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Hern\'andez, Jesús and Brice\~no, César and Calvet, Nuria and Hartmann, Lee and Muzerolle, James and Quintero, Amilkar},
 	month = nov,
 	year = {2006},
@@ -258,7 +320,7 @@ large amount of dust during the transition from runaway to oligarchic
 growth (reaching sizes of {\textasciitilde}500 km) and then dust production peaks at
 10-30 Myr, when objects reach their maximum size ({\textgreater}=1000 km).},
 	urldate = {2020-04-22},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Hern\'andez, Jesús and Calvet, Nuria and Hartmann, L. and Muzerolle, J. and Gutermuth, R. and Stauffer, J.},
 	month = dec,
 	year = {2009},
@@ -300,7 +362,7 @@ close to face-on disks. These observations support the idea that YSO
 time-domain properties are dependent on several factors, including
 accretion rate and view angle.},
 	urldate = {2020-04-21},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Cody, Ann Marie and Hillenbrand, Lynne A.},
 	month = aug,
 	year = {2018},
@@ -323,7 +385,7 @@ determine stellar properties and identify accretion signatures; adaptive optics 
 protoplanetary disks extending to within ∼10 stellar radii in most cases; however, the sub-millimeter observations imply disk masses that are an order of magnitude below those of typical protoplanetary disks. We find a positive correlation between dip depth and WISE-2 (Wide-field Infrared Survey Explorer-2) excess, which we interpret as evidence that the dipper phenomenon is related to occulting structures in the inner disk, although this is difficult to reconcile with the weakly accreting aperiodic dippers. We consider three mechanisms to explain the dipper phenomenon: inner disk warps near the co-rotation radius related to accretion; vortices at the inner disk edge produced by the Rossby Wave Instability; and clumps of circumstellar material related to
 planetesimal formation.},
 	urldate = {2020-04-21},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Ansdell, M. and Gaidos, E. and Rappaport, S. A. and Jacobs, T. L. and LaCourse, D. M. and Jek, K. J. and Mann, A. W. and Wyatt, M. C. and Kennedy, G. and Williams, J. P. and Boyajian, T. S.},
 	month = jan,
 	year = {2016},
@@ -342,7 +404,7 @@ planetesimal formation.},
 	language = {en},
 	number = {938},
 	urldate = {2016-08-21},
-	journal = {Publications of the Astronomical Society of the Pacific},
+	journal = {\pasp},
 	author = {Howell, Steve B. and Sobeck, Charlie and Haas, Michael and Still, Martin and Barclay, Thomas and Mullally, Fergal and {John Troeltzsch} and Aigrain, Suzanne and Bryson, Stephen T. and Caldwell, Doug and Chaplin, William J. and Cochran, William D. and Huber, Daniel and Marcy, Geoffrey W. and Miglio, Andrea and Najita, Joan R. and Smith, Marcie and Twicken, J. D. and Fortney, Jonathan J.},
 	year = {2014},
 	pages = {398},
@@ -380,7 +442,7 @@ with future campaigns. EVEREST 2.0 is open source and is coded in a
 framework that can be adapted to other photometric surveys, including
 Kepler and the upcoming TESS mission.},
 	urldate = {2020-04-21},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Luger, Rodrigo and Kruse, Ethan and Foreman-Mackey, Daniel and Agol, Eric and Saunders, Nicholas},
 	month = sep,
 	year = {2018},
@@ -399,7 +461,7 @@ Kepler and the upcoming TESS mission.},
 variability. We apply EVEREST to all K2 targets in campaigns 0-7, yielding light curves with precision comparable to that of the original Kepler mission for stars brighter than \{K\}p≈ 13, and
 within a factor of two of the Kepler precision for fainter targets. We perform cross-validation and transit injection and recovery tests to validate the pipeline, and compare our light curves to the other de-trended light curves available for download at the MAST High Level Science Products archive. We find that EVEREST achieves the highest average precision of any of these pipelines for unsaturated K2 stars. The improved precision of these light curves will aid in exoplanet detection and characterization, investigations of stellar variability, asteroseismology, and other photometric studies. The EVEREST pipeline can also easily be applied to future surveys, such as the TESS mission, to correct for instrumental systematics and enable the detection of low signal-to-noise transiting exoplanets. The EVEREST light curves and the source code used to generate them are freely available online.},
 	urldate = {2020-04-21},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Luger, Rodrigo and Agol, Eric and Kruse, Ethan and Barnes, Rory and Becker, Andrew and Foreman-Mackey, Daniel and Deming, Drake},
 	month = oct,
 	year = {2016},
@@ -452,7 +514,7 @@ YSOs whose uniform selection function will provide a robust sample for
 comparative analyses of the stellar populations and properties across
 all sub-regions of Orion.},
 	urldate = {2020-04-20},
-	journal = {The Astrophysical Journal Supplement Series},
+	journal = {\apjs},
 	author = {Cottle, J.'Neil and Covey, Kevin R. and Suárez, Genaro and Román-Zúñiga, Carlos and Schlafly, Edward and Downes, Juan Jose and Ybarra, Jason E. and Hernandez, Jesus and Stassun, Keivan and Stringfellow, Guy S. and Getman, Konstantin and Feigelson, Eric and Borissova, Jura and Kim, J. Serena and Roman-Lopes, A. and Da Rio, Nicola and De Lee, Nathan and Frinchaboy, Peter M. and Kounkel, Marina and Majewski, Steven R. and Mennickent, Ronald E. and Nidever, David L. and Nitschelm, Christian and Pan, Kaike and Shetrone, Matthew and Zasowski, Gail and Chambers, Ken and Magnier, Eugene and Valenti, Jeff},
 	month = jun,
 	year = {2018},
@@ -473,7 +535,7 @@ design—hardware, field placement, target selection,
 operations—and gives an overview of these aspects as well as the data reduction, analysis, and products. An index is also given to the complement of technical papers that describe various critical survey components in detail. Finally, we discuss the achieved survey
 performance and illustrate the variety of potential uses of the data products by way of a number of science demonstrations, which span from time series analysis of stellar spectral variations and radial velocity variations from stellar companions, to spatial maps of kinematics, metallicity, and abundance patterns across the Galaxy and as a function of age, to new views of the interstellar medium, the chemistry of star clusters, and the discovery of rare stellar species. As part of SDSS-III Data Release 12 and later releases, all of the APOGEE data products are publicly available.},
 	urldate = {2020-04-20},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Majewski, Steven R. and Schiavon, Ricardo P. and Frinchaboy, Peter M. and Allende Prieto, Carlos and Barkhouser, Robert and Bizyaev, Dmitry and Blank, Basil and Brunner, Sophia and Burton, Adam and Carrera, Ricardo and Chojnowski, S. Drew and Cunha, Kátia and Epstein, Courtney and Fitzgerald, Greg and García Pérez, Ana E. and Hearty, Fred R. and Henderson, Chuck and Holtzman, Jon A. and Johnson, Jennifer A. and Lam, Charles R. and Lawler, James E. and Maseman, Paul and Mészáros, Szabolcs and Nelson, Matthew and Nguyen, Duy Coung and Nidever, David L. and Pinsonneault, Marc and Shetrone, Matthew and Smee, Stephen and Smith, Verne V. and Stolberg, Todd and Skrutskie, Michael F. and Walker, Eric and Wilson, John C. and Zasowski, Gail and Anders, Friedrich and Basu, Sarbani and Beland, Stephane and Blanton, Michael R. and Bovy, Jo and Brownstein, Joel R. and Carlberg, Joleen and Chaplin, William and Chiappini, Cristina and Eisenstein, Daniel J. and Elsworth, Yvonne and Feuillet, Diane and Fleming, Scott W. and Galbraith-Frew, Jessica and García, Rafael A. and García-Hernández, D. Aníbal and Gillespie, Bruce A. and Girardi, Léo and Gunn, James E. and Hasselquist, Sten and Hayden, Michael R. and Hekker, Saskia and Ivans, Inese and Kinemuchi, Karen and Klaene, Mark and Mahadevan, Suvrath and Mathur, Savita and Mosser, Benoît and Muna, Demitri and Munn, Jeffrey A. and Nichol, Robert C. and O'Connell, Robert W. and Parejko, John K. and Robin, A. C. and Rocha-Pinto, Helio and Schultheis, Matthias and Serenelli, Aldo M. and Shane, Neville and Silva Aguirre, Victor and Sobeck, Jennifer S. and Thompson, Benjamin and Troup, Nicholas W. and Weinberg, David H. and Zamora, Olga},
 	month = sep,
 	year = {2017},
@@ -513,7 +575,7 @@ In keeping with previous SDSS policy, SDSS-IV provides regularly
 scheduled public data releases; the first one, Data Release 13, was made
 available in 2016 July.},
 	urldate = {2020-04-20},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Blanton, Michael R. and Bershady, Matthew A. and Abolfathi, Bela and Albareti, Franco D. and Allende Prieto, Carlos and Almeida, Andres and Alonso-García, Javier and Anders, Friedrich and Anderson, Scott F. and Andrews, Brett and Aquino-Ortíz, Erik and Aragón-Salamanca, Alfonso and Argudo-Fernández, Maria and Armengaud, Eric and Aubourg, Eric and Avila-Reese, Vladimir and Badenes, Carles and Bailey, Stephen and Barger, Kathleen A. and Barrera-Ballesteros, Jorge and Bartosz, Curtis and Bates, Dominic and Baumgarten, Falk and Bautista, Julian and Beaton, Rachael and Beers, Timothy C. and Belfiore, Francesco and Bender, Chad F. and Berlind, Andreas A. and Bernardi, Mariangela and Beutler, Florian and Bird, Jonathan C. and Bizyaev, Dmitry and Blanc, Guillermo A. and Blomqvist, Michael and Bolton, Adam S. and Boquien, Médéric and Borissova, Jura and van den Bosch, Remco and Bovy, Jo and Brandt, William N. and Brinkmann, Jonathan and Brownstein, Joel R. and Bundy, Kevin and Burgasser, Adam J. and Burtin, Etienne and Busca, Nicolás G. and Cappellari, Michele and Delgado Carigi, Maria Leticia and Carlberg, Joleen K. and Carnero Rosell, Aurelio and Carrera, Ricardo and Chanover, Nancy J. and Cherinka, Brian and Cheung, Edmond and Gómez Maqueo Chew, Yilen and Chiappini, Cristina and Choi, Peter Doohyun and Chojnowski, Drew and Chuang, Chia-Hsun and Chung, Haeun and Cirolini, Rafael Fernando and Clerc, Nicolas and Cohen, Roger E. and Comparat, Johan and da Costa, Luiz and Cousinou, Marie-Claude and Covey, Kevin and Crane, Jeffrey D. and Croft, Rupert A. C. and Cruz-Gonzalez, Irene and Garrido Cuadra, Daniel and Cunha, Katia and Damke, Guillermo J. and Darling, Jeremy and Davies, Roger and Dawson, Kyle and de la Macorra, Axel and Dell'Agli, Flavia and De Lee, Nathan and Delubac, Timothée and Di Mille, Francesco and Diamond-Stanic, Aleks and Cano-Díaz, Mariana and Donor, John and Downes, Juan José and Drory, Niv and du Mas des Bourboux, Hélion and Duckworth, Christopher J. and Dwelly, Tom and Dyer, Jamie and Ebelke, Garrett and Eigenbrot, Arthur D. and Eisenstein, Daniel J. and Emsellem, Eric and Eracleous, Mike and Escoffier, Stephanie and Evans, Michael L. and Fan, Xiaohui and Fernández-Alvar, Emma and Fernandez-Trincado, J. G. and Feuillet, Diane K. and Finoguenov, Alexis and Fleming, Scott W. and Font-Ribera, Andreu and Fredrickson, Alexander and Freischlad, Gordon and Frinchaboy, Peter M. and Fuentes, Carla E. and Galbany, Lluís and Garcia-Dias, R. and García-Hernández, D. A. and Gaulme, Patrick and Geisler, Doug and Gelfand, Joseph D. and Gil-Marín, Héctor and Gillespie, Bruce A. and Goddard, Daniel and Gonzalez-Perez, Violeta and Grabowski, Kathleen and Green, Paul J. and Grier, Catherine J. and Gunn, James E. and Guo, Hong and Guy, Julien and Hagen, Alex and Hahn, ChangHoon and Hall, Matthew and Harding, Paul and Hasselquist, Sten and Hawley, Suzanne L. and Hearty, Fred and Gonzalez Hernández, Jonay I. and Ho, Shirley and Hogg, David W. and Holley-Bockelmann, Kelly and Holtzman, Jon A. and Holzer, Parker H. and Huehnerhoff, Joseph and Hutchinson, Timothy A. and Hwang, Ho Seong and Ibarra-Medel, Héctor J. and da Silva Ilha, Gabriele and Ivans, Inese I. and Ivory, KeShawn and Jackson, Kelly and Jensen, Trey W. and Johnson, Jennifer A. and Jones, Amy and Jönsson, Henrik and Jullo, Eric and Kamble, Vikrant and Kinemuchi, Karen and Kirkby, David and Kitaura, Francisco-Shu and Klaene, Mark and Knapp, Gillian R. and Kneib, Jean-Paul and Kollmeier, Juna A. and Lacerna, Ivan and Lane, Richard R. and Lang, Dustin and Law, David R. and Lazarz, Daniel and Lee, Youngbae and Le Goff, Jean-Marc and Liang, Fu-Heng and Li, Cheng and Li, Hongyu and Lian, Jianhui and Lima, Marcos and Lin, Lihwai and Lin, Yen-Ting and Bertran de Lis, Sara and Liu, Chao and de Icaza Lizaola, Miguel Angel C. and Long, Dan and Lucatello, Sara and Lundgren, Britt and MacDonald, Nicholas K. and Deconto Machado, Alice and MacLeod, Chelsea L. and Mahadevan, Suvrath and Geimba Maia, Marcio Antonio and Maiolino, Roberto and Majewski, Steven R. and Malanushenko, Elena and Malanushenko, Viktor and Manchado, Arturo and Mao, Shude and Maraston, Claudia and Marques-Chaves, Rui and Masseron, Thomas and Masters, Karen L. and McBride, Cameron K. and McDermid, Richard M. and McGrath, Brianne and McGreer, Ian D. and Medina Peña, Nicolás and Melendez, Matthew and Merloni, Andrea and Merrifield, Michael R. and Meszaros, Szabolcs and Meza, Andres and Minchev, Ivan and Minniti, Dante and Miyaji, Takamitsu and More, Surhud and Mulchaey, John and Müller-Sánchez, Francisco and Muna, Demitri and Munoz, Ricardo R. and Myers, Adam D. and Nair, Preethi and Nandra, Kirpal and Correa do Nascimento, Janaina and Negrete, Alenka and Ness, Melissa and Newman, Jeffrey A. and Nichol, Robert C. and Nidever, David L. and Nitschelm, Christian and Ntelis, Pierros and O'Connell, Julia E. and Oelkers, Ryan J. and Oravetz, Audrey and Oravetz, Daniel and Pace, Zach and Padilla, Nelson and Palanque-Delabrouille, Nathalie and Alonso Palicio, Pedro and Pan, Kaike and Parejko, John K. and Parikh, Taniya and Pâris, Isabelle and Park, Changbom and Patten, Alim Y. and Peirani, Sebastien and Pellejero-Ibanez, Marcos and Penny, Samantha and Percival, Will J. and Perez-Fournon, Ismael and Petitjean, Patrick and Pieri, Matthew M. and Pinsonneault, Marc and Pisani, Alice and Poleski, Radosław and Prada, Francisco and Prakash, Abhishek and Queiroz, Anna Bárbara de Andrade and Raddick, M. Jordan and Raichoor, Anand and Barboza Rembold, Sandro and Richstein, Hannah and Riffel, Rogemar A. and Riffel, Rogério and Rix, Hans-Walter and Robin, Annie C. and Rockosi, Constance M. and Rodríguez-Torres, Sergio and Roman-Lopes, A. and Román-Zúñiga, Carlos and Rosado, Margarita and Ross, Ashley J. and Rossi, Graziano and Ruan, John and Ruggeri, Rossana and Rykoff, Eli S. and Salazar-Albornoz, Salvador and Salvato, Mara and Sánchez, Ariel G. and Aguado, D. S. and Sánchez-Gallego, José R. and Santana, Felipe A. and Santiago, Basílio Xavier and Sayres, Conor and Schiavon, Ricardo P. and da Silva Schimoia, Jaderson and Schlafly, Edward F. and Schlegel, David J. and Schneider, Donald P. and Schultheis, Mathias and Schuster, William J. and Schwope, Axel and Seo, Hee-Jong and Shao, Zhengyi and Shen, Shiyin and Shetrone, Matthew and Shull, Michael and Simon, Joshua D. and Skinner, Danielle and Skrutskie, M. F. and Slosar, Anže and Smith, Verne V. and Sobeck, Jennifer S. and Sobreira, Flavia and Somers, Garrett and Souto, Diogo and Stark, David V. and Stassun, Keivan and Stauffer, Fritz and Steinmetz, Matthias and Storchi-Bergmann, Thaisa and Streblyanska, Alina and Stringfellow, Guy S. and Suárez, Genaro and Sun, Jing and Suzuki, Nao and Szigeti, Laszlo and Taghizadeh-Popp, Manuchehr and Tang, Baitian and Tao, Charling and Tayar, Jamie and Tembe, Mita and Teske, Johanna and Thakar, Aniruddha R. and Thomas, Daniel and Thompson, Benjamin A. and Tinker, Jeremy L. and Tissera, Patricia and Tojeiro, Rita and Hernandez Toledo, Hector and de la Torre, Sylvain and Tremonti, Christy and Troup, Nicholas W. and Valenzuela, Octavio and Martinez Valpuesta, Inma and Vargas-González, Jaime and Vargas-Magaña, Mariana and Vazquez, Jose Alberto and Villanova, Sandro and Vivek, M. and Vogt, Nicole and Wake, David and Walterbos, Rene and Wang, Yuting and Weaver, Benjamin Alan and Weijmans, Anne-Marie and Weinberg, David H. and Westfall, Kyle B. and Whelan, David G. and Wild, Vivienne and Wilson, John and Wood-Vasey, W. M. and Wylezalek, Dominika and Xiao, Ting and Yan, Renbin and Yang, Meng and Ybarra, Jason E. and Yèche, Christophe and Zakamska, Nadia and Zamora, Olga and Zarrouk, Pauline and Zasowski, Gail and Zhang, Kai and Zhao, Gong-Bo and Zheng, Zheng and Zheng, Zheng and Zhou, Xu and Zhou, Zhi-Min and Zhu, Guangtun B. and Zoccali, Manuela and Zou, Hu},
 	month = jul,
 	year = {2017},
@@ -532,7 +594,7 @@ available in 2016 July.},
 is the successor to APOGEE and is part of the Sloan Digital Sky Survey IV (SDSS-IV). APOGEE-2 is expanding on APOGEE's goals of addressing critical questions of stellar astrophysics, stellar populations, and Galactic chemodynamical evolution using (1) an enhanced set of target types and (2) a second spectrograph at Las Campanas Observatory in Chile. APOGEE-2 is targeting red giant branch and red clump stars, RR Lyrae, low-mass dwarf stars, young stellar objects, and numerous other Milky Way and Local Group sources across the entire sky from both hemispheres. In this paper, we describe the APOGEE-2 observational design, target selection catalogs and algorithms, and the
 targeting-related documentation included in the SDSS data releases.},
 	urldate = {2020-04-20},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Zasowski, G. and Cohen, R. E. and Chojnowski, S. D. and Santana, F. and Oelkers, R. J. and Andrews, B. and Beaton, R. L. and Bender, C. and Bird, J. C. and Bovy, J. and Carlberg, J. K. and Covey, K. and Cunha, K. and Dell'Agli, F. and Fleming, Scott W. and Frinchaboy, P. M. and García-Hernández, D. A. and Harding, P. and Holtzman, J. and Johnson, J. A. and Kollmeier, J. A. and Majewski, S. R. and Mészáros, Sz. and Munn, J. and Muñoz, R. R. and Ness, M. K. and Nidever, D. L. and Poleski, R. and Román-Zúñiga, C. and Shetrone, M. and Simon, J. D. and Smith, V. V. and Sobeck, J. S. and Stringfellow, G. S. and Szigetiáros, L. and Tayar, J. and Troup, N.},
 	month = nov,
 	year = {2017},
@@ -554,7 +616,7 @@ fiber-fed double spectrographs. Novel features of the telescope include the foll
 excellent image quality and small geometric distortions over a wide wavelength range (3000-10,600 Å) in the imaging mode, and good
 image quality combined with very small lateral and longitudinal color errors in the spectroscopic mode. The unusual requirement of very low distortion is set by the demands of time-delay-and-integrate (TDI) imaging. (2) Very high precision motion to support open-loop TDI observations. (3) A unique wind baffle/enclosure construction to maximize image quality and minimize construction costs. The telescope had first light in 1998 May and began regular survey operations in 2000.},
 	urldate = {2020-04-20},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Gunn, James E. and Siegmund, Walter A. and Mannery, Edward J. and Owen, Russell E. and Hull, Charles L. and Leger, R. French and Carey, Larry N. and Knapp, Gillian R. and York, Donald G. and Boroski, William N. and Kent, Stephen M. and Lupton, Robert H. and Rockosi, Constance M. and Evans, Michael L. and Waddell, Patrick and Anderson, John E. and Annis, James and Barentine, John C. and Bartoszek, Larry M. and Bastian, Steven and Bracker, Stephen B. and Brewington, Howard J. and Briegel, Charles I. and Brinkmann, Jon and Brown, Yorke J. and Carr, Michael A. and Czarapata, Paul C. and Drennan, Craig C. and Dombeck, Thomas and Federwitz, Glenn R. and Gillespie, Bruce A. and Gonzales, Carlos and Hansen, Sten U. and Harvanek, Michael and Hayes, Jeffrey and Jordan, Wendell and Kinney, Ellyne and Klaene, Mark and Kleinman, S. J. and Kron, Richard G. and Kresinski, Jurek and Lee, Glenn and Limmongkol, Siriluk and Lindenmeyer, Carl W. and Long, Daniel C. and Loomis, Craig L. and McGehee, Peregrine M. and Mantsch, Paul M. and Neilsen, Jr., Eric H. and Neswold, Richard M. and Newman, Peter R. and Nitta, Atsuko and Peoples, Jr., John and Pier, Jeffrey R. and Prieto, Peter S. and Prosapio, Angela and Rivetta, Claudio and Schneider, Donald P. and Snedden, Stephanie and Wang, Shu-i.},
 	month = apr,
 	year = {2006},
@@ -579,7 +641,7 @@ and briefly discuss the consequence of mixed age samples for ongoing
 investigations of the formation and evolution of low-mass objects in
 this much-observed region.},
 	urldate = {2020-04-20},
-	journal = {Monthly Notices of the Royal Astronomical Society},
+	journal = {\mnras},
 	author = {Jeffries, R. D. and Maxted, P. F. L. and Oliveira, J. M. and Naylor, Tim},
 	month = sep,
 	year = {2006},
@@ -615,7 +677,7 @@ that found in the Trapezium but roughly twice the ratio found in IC 348,
 leading us to conclude that the substellar IMF in young clusters may be
 dependent on the local star-forming environment.},
 	urldate = {2020-04-20},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Levine, Joanna L. and Steinhauer, Aaron and Elston, Richard J. and Lada, Elizabeth A.},
 	month = aug,
 	year = {2006},
@@ -646,7 +708,7 @@ pre-main-sequence stars in the solar vicinity are in OB associations. These find
 	abstract = {We present results of our large-scale, optical, multi-epoch photometric survey across ̃180 square degrees in the Orion OB1 association, complemented with extensive follow-up spectroscopy. Our focus is mapping and characterizing the off-cloud, low-mass, pre-main-sequence (PMS) populations. We report 2062 K- and M-type confirmed T Tauri members; 59\% are located in the OB1a subassociation, 27\% in the OB1b subassociation, and the remaining 14\% in the A and B molecular clouds. We characterize two new clusterings of T Tauri stars, the HD 35762 and HR 1833 groups, both located in OB1a not far from the 25 Ori cluster. We also identify two stellar overdensities in OB1b, containing 231 PMS stars, and find that the OB1b region is composed of two populations at different distances, possibly due to the OB1a subassociation overlapping with the front of OB1b. A ̃2 deg wide halo of young stars surrounds the Orion Nebula Cluster, corresponding in part to the low-mass populations of NGC 1977 and NGC 1980. We use the strength of Hα in emission, combined with the IR excess and optical variability, to define a new type of T Tauri star, the C/W class, stars we propose may be nearing the end of their accretion phase, in an evolutionary state between classical and weak-lined T Tauri stars. The evolution of the ensemble-wide equivalent width of Li I λ6707 indicates a Li depletion timescale of ̃8.5 Myr. Disk accretion declines with an e-folding timescale of ̃2 Myr, consistent with previous studies. Based on observations obtained at the Llano del Hato National Astronomical Observatory of Venezuela, operated by CIDA for the Ministerio del Poder Popular para la Educación Universitaria, Ciencia, Tecnología, the Fred Lawrence Whipple Observatory of the Smithsonian Institution, the WIYN 3.5 m telescope, the 6.5 m Magellan Telescopes at Las Campanas Observatory, and the Southern Astrophysical Research (SOAR) telescope.},
 	language = {en},
 	urldate = {2019-11-03},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Brice\~no, César and Calvet, Nuria and Hernández, Jesús and Vivas, A. Katherina and Mateu, Cecilia and Downes, Juan José and Loerincs, Jaqueline and Pérez-Blanco, Alice and Berlind, Perry and Espaillat, Catherine and Allen, Lori and Hartmann, Lee and Mateo, Mario and Bailey, John I.},
 	month = feb,
 	year = {2019},
@@ -697,7 +759,7 @@ Ministerio de Ciencia y Tecnología the MMT Observatory, a joint
 facility of the Smithsonian Institution and the University of Arizona; and the Fred Lawrence Whipple Observatory of the Smithsonian
 Institution.},
 	urldate = {2020-04-14},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Brice\~no, César and Hartmann, Lee and Hernández, Jesús and Calvet, Nuria and Vivas, A. Katherina and Furesz, Gabor and Szentgyorgyi, Andrew},
 	month = jun,
 	year = {2007},
@@ -754,7 +816,7 @@ Observatory is a joint facility of the University of Wisconsin-Madison,
 Indiana University, Yale University, and the National Optical Astronomy
 Observatory (NOAO).},
 	urldate = {2020-04-14},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Brice\~no, Cesar and Calvet, Nuria and Hernández, J. and Vivas, A. K. and Hartmann, Lee and Downes, J. J. and Berlind, Perry},
 	month = feb,
 	year = {2005},
@@ -770,7 +832,7 @@ Observatory (NOAO).},
 	doi = {10.1051/0004-6361/201832756},
 	abstract = {Aims: We describe the photometric content of the second data release of the Gaia project (Gaia DR2) and its validation along with the quality of the data. Methods: The validation was mainly carried out using an internal analysis of the photometry. External comparisons were also made, but were limited by the precision and systematics that may be present in the external catalogues used. Results: In addition to the photometric quality assessment, we present the best estimates of the three photometric passbands. Various colour-colour transformations are also derived to enable the users to convert between the Gaia and commonly used passbands. Conclusions: The internal analysis of the data shows that the photometric calibrations can reach a precision as low as 2 mmag on individual CCD measurements. Other tests show that systematic effects are present in the data at the 10 mmag level.},
 	urldate = {2020-04-20},
-	journal = {Astronomy and Astrophysics},
+	journal = {\aap},
 	author = {Evans, D. W. and Riello, M. and De Angeli, F. and Carrasco, J. M. and Montegriffo, P. and Fabricius, C. and Jordi, C. and Palaversa, L. and Diener, C. and Busso, G. and Cacciari, C. and van Leeuwen, F. and Burgess, P. W. and Davidson, M. and Harrison, D. L. and Hodgkin, S. T. and Pancino, E. and Richards, P. J. and Altavilla, G. and Balaguer-Núñez, L. and Barstow, M. A. and Bellazzini, M. and Brown, A. G. A. and Castellani, M. and Cocozza, G. and De Luise, F. and Delgado, A. and Ducourant, C. and Galleti, S. and Gilmore, G. and Giuffrida, G. and Holl, B. and Kewley, A. and Koposov, S. E. and Marinoni, S. and Marrese, P. M. and Osborne, P. J. and Piersimoni, A. and Portell, J. and Pulone, L. and Ragaini, S. and Sanna, N. and Terrett, D. and Walton, N. A. and Wevers, T. and Wyrzykowski, Ł.},
 	month = aug,
 	year = {2018},
@@ -789,7 +851,7 @@ instrument. The main part of the paper is a description of the flight RVS, consi
 predictions, the paper concludes with the post-launch developments and mitigation strategies, together with a summary of the in-flight
 performance at the end of commissioning.},
 	urldate = {2020-04-20},
-	journal = {Astronomy and Astrophysics},
+	journal = {\aap},
 	author = {Cropper, M. and Katz, D. and Sartoretti, P. and Prusti, T. and de Bruijne, J. H. J. and Chassat, F. and Charvet, P. and Boyadjian, J. and Perryman, M. and Sarri, G. and Gare, P. and Erdmann, M. and Munari, U. and Zwitter, T. and Wilkinson, M. and Arenou, F. and Vallenari, A. and Gómez, A. and Panuzzo, P. and Seabroke, G. and Allende Prieto, C. and Benson, K. and Marchal, O. and Huckle, H. and Smith, M. and Dolding, C. and Janßen, K. and Viala, Y. and Blomme, R. and Baker, S. and Boudreault, S. and Crifo, F. and Soubiran, C. and Frémat, Y. and Jasniewicz, G. and Guerrier, A. and Guy, L. P. and Turon, C. and Jean-Antoine-Piccolo, A. and Thévenin, F. and David, M. and Gosset, E. and Damerdji, Y.},
 	month = aug,
 	year = {2018},
@@ -821,7 +883,7 @@ performance at the end of commissioning.},
 	abstract = {We use K2 to continue the exploration of the distribution of rotation periods in Pleiades that we began in Paper I. We have discovered complicated multiperiod behavior in Pleiades stars using these K2 data, and we have grouped them into categories, which are the focal part of this paper. About 24\% of the sample has multiple, real frequencies in the periodogram, sometimes manifesting as obvious beating in the LCs. Those having complex and/or structured periodogram peaks, unresolved multiple periods, and resolved close multiple periods are likely due to spot/spot group evolution and/or latitudinal differential rotation; these largely compose the slowly rotating sequence in P versus (V - K {\textless}SUB{\textgreater}s{\textless}/SUB{\textgreater}){\textless}SUB{\textgreater}0{\textless}/SUB{\textgreater} identified in Paper I. The fast sequence in P versus (V - K {\textless}SUB{\textgreater}s{\textless}/SUB{\textgreater}){\textless}SUB{\textgreater}0{\textless}/SUB{\textgreater} is dominated by single-period stars; these are likely to be rotating as solid bodies. Paper III continues the discussion, speculating about the origin and evolution of the period distribution in the Pleiades.},
 	language = {en},
 	urldate = {2019-11-14},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Rebull, L. M. and Stauffer, J. R. and Bouvier, J. and Cody, A. M. and Hillenbrand, L. A. and Soderblom, D. R. and Valenti, J. and Barrado, D. and Bouy, H. and Ciardi, D. and Pinsonneault, M. and Stassun, K. and Micela, G. and Aigrain, S. and Vrba, F. and Somers, G. and Gillen, E. and Collier Cameron, A.},
 	month = nov,
 	year = {2016},
@@ -838,7 +900,7 @@ performance at the end of commissioning.},
 association. These dimming events are variable in depth, duration, and morphology. High spatial resolution imaging revealed that the star is single and radial velocity monitoring indicated that the dimming events cannot be due to an eclipsing stellar or brown dwarf companion. Archival and follow-up photometry suggest the dimming events are transient in nature. The variable morphology of the dimming events suggests they are not due to a single spherical body. The ingress of each dimming event is always shallower than egress, as one would expect for an orbiting body with a leading tail. The dimming events are periodic and synchronous with the stellar rotation. However, we argue it is unlikely the dimming events could be attributed to anything on the stellar surface based on the observed depths and durations. Variable obscuration by a
 protoplanetary disk is unlikely on the basis that the star is not actively accreting and lacks the infrared excess associated with an inner disk. Rather, we explore the possibilities that the dimming events are due to magnetospheric clouds, a transiting protoplanet surrounded by circumplanetary dust and debris, eccentric orbiting bodies undergoing periodic tidal disruption, or an extended field of dust or debris near the corotation radius.},
 	urldate = {2020-04-18},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {David, Trevor J. and Petigura, Erik A. and Hillenbrand, Lynne A. and Cody, Ann Marie and Collier Cameron, Andrew and Stauffer, John R. and Fulton, B. J. and Isaacson, Howard T. and Howard, Andrew W. and Howell, Steve B. and Everett, Mark E. and Wang, Ji and Benneke, Björn and Hellier, Coel and West, Richard G. and Pollacco, Don and Anderson, David R.},
 	month = feb,
 	year = {2017},
@@ -855,7 +917,7 @@ protoplanetary disk is unlikely on the basis that the star is not actively accre
 	language = {en},
 	number = {5},
 	urldate = {2018-10-23},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Rebull, L. M. and Stauffer, J. R. and Cody, A. M. and Hillenbrand, L. A. and David, T. J. and Pinsonneault, M.},
 	month = may,
 	year = {2018},
@@ -872,7 +934,7 @@ protoplanetary disk is unlikely on the basis that the star is not actively accre
 	language = {en},
 	number = {6},
 	urldate = {2020-04-14},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Stauffer, John and Rebull, Luisa M. and Cody, Ann Marie and Hillenbrand, Lynne A. and Pinsonneault, Marc and Barrado, David and Bouvier, Jerome and David, Trevor},
 	month = nov,
 	year = {2018},
@@ -889,7 +951,7 @@ protoplanetary disk is unlikely on the basis that the star is not actively accre
 	doi = {10.3847/1538-3881/aa5eb9},
 	number = {4},
 	urldate = {2020-04-17},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Stauffer, John and Cameron, Andrew Collier and Jardine, Moira and David, Trevor J. and Rebull, Luisa and Cody, Ann Marie and Hillenbrand, Lynne A. and Barrado, David and Wolk, Scott and Davenport, James and Pinsonneault, Marc},
 	month = mar,
 	year = {2017},
@@ -935,7 +997,7 @@ are also different between these two classes.},
 	abstract = {CVSO 30 is a young, active, weak-line T Tauri star; it possibly hosts the only known planetary system with both a transiting hot-Jupiter and a cold-Jupiter candidate (CVSO 30 b and CVSO 30 c). We analyzed archival ROSAT, Chandra, and XMM-Newton data to study the coronal emission in the system. According to our modeling, CVSO 30 shows a quiescent X-ray luminosity of ≈8 × 10{\textless}SUP{\textgreater}29{\textless}/SUP{\textgreater} erg s{\textless}SUP{\textgreater}-1{\textless}/SUP{\textgreater}. The X-ray absorbing column is consistent with interstellar absorption. XMM-Newton observed a flare, during which a transit of the candidate CVSO 30 b was expected, but no significant transit-induced variation in the X-ray flux is detectable. While the hot-Jupiter candidate CVSO 30 b has continuously been undergoing mass loss powered by the high-energy irradiation, we conclude that its evaporation lifetime is considerably longer than the estimated stellar age of 2.6 Myr.},
 	language = {en},
 	urldate = {2020-04-16},
-	journal = {Astronomy and Astrophysics},
+	journal = {\aap},
 	author = {Czesla, S. and Schneider, P. C. and Salz, M. and Klocová, T. and Schmidt, T. O. B. and Schmitt, J. H. M. M.},
 	month = sep,
 	year = {2019},
@@ -967,7 +1029,7 @@ Our study demonstrates that optical seeing-limited data can help clarify
 the nature of candidate wide separation planet-mass companions in young
 star-forming regions.},
 	urldate = {2020-04-16},
-	journal = {The Astrophysical Journal Letters},
+	journal = {\apjl},
 	author = {Lee, Chien-Hsiu and Chiang, Po-Shih},
 	month = jan,
 	year = {2018},
@@ -996,7 +1058,7 @@ plausible values. An exoplanet transiting a precessing, gravity-darkened
 star may not be the correct explanation of periodic fading events in
 this system.},
 	urldate = {2020-04-16},
-	journal = {Monthly Notices of the Royal Astronomical Society},
+	journal = {\mnras},
 	author = {Howarth, Ian D.},
 	month = apr,
 	year = {2016},
@@ -1048,7 +1110,7 @@ Observatory under programme IDs 090.C-0448(A), 290.C-5018(B),
 092.C-0488(A) and at the Centro Astronómico Hispano-Alemán
 in programme H15-2.2-002.},
 	urldate = {2020-04-16},
-	journal = {Astronomy and Astrophysics},
+	journal = {\aap},
 	author = {Schmidt, T. O. B. and Neuhäuser, R. and Brice\~no, C. and Vogt, N. and Raetz, St. and Seifahrt, A. and Ginski, C. and Mugrauer, M. and Buder, S. and Adam, C. and Hauschildt, P. and Witte, S. and Helling, Ch. and Schmitt, J. H. M. M.},
 	month = sep,
 	year = {2016},
@@ -1081,7 +1143,7 @@ in programme H15-2.2-002.},
 	language = {en},
 	number = {3},
 	urldate = {2019-07-28},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Kounkel, Marina and Covey, Kevin and Suárez, Genaro and Román-Zúñiga, Carlos and Hernandez, Jesus and Stassun, Keivan and Jaehnig, Karl O. and Feigelson, Eric D. and Peña Ramírez, Karla and Roman-Lopes, Alexandre and Da Rio, Nicola and Stringfellow, Guy S. and Kim, J. Serena and Borissova, Jura and Fernández-Trincado, José G. and Burgasser, Adam and García-Hernández, D. A. and Zamora, Olga and Pan, Kaike and Nitschelm, Christian},
 	month = sep,
 	year = {2018},
@@ -1160,7 +1222,7 @@ companions orbiting hot fast-rotating stars out of reach of other detection meth
 	author = {{Kipping}, D.~M.},
 	title = "{Efficient, uninformative sampling of limb darkening coefficients
 	for two-parameter laws}",
-	journal = {mnras},
+	journal = {\mnras},
 	year = 2013,
 	month = nov,
 	volume = 435,
@@ -1176,7 +1238,7 @@ companions orbiting hot fast-rotating stars out of reach of other detection meth
 	author = {{Luger}, R. and {Agol}, E. and {Foreman-Mackey}, D. and {Fleming},
 	D.~P. and {Lustig-Yaeger}, J. and {Deitrick}, R.},
 	title = "{starry: Analytic Occultation Light Curves}",
-	journal = {aj},
+	journal = {\aj},
 	year = 2019,
 	month = feb,
 	volume = 157,
@@ -1271,7 +1333,7 @@ companions orbiting hot fast-rotating stars out of reach of other detection meth
 	the sampling is uneven. An analysis of the statistical significance of
 	signal detections is presented, with examples},
 	urldate = {2019-06-23},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Scargle, J. D.},
 	month = dec,
 	year = {1982},
@@ -1308,7 +1370,7 @@ companions orbiting hot fast-rotating stars out of reach of other detection meth
 	language = {en},
 	number = {1},
 	urldate = {2019-06-23},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {VanderPlas, Jacob T. and Ivezi\'c, Zeljko},
 	month = oct,
 	year = {2015},
@@ -1328,7 +1390,7 @@ companions orbiting hot fast-rotating stars out of reach of other detection meth
 	language = {en},
 	number = {1},
 	urldate = {2020-04-02},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Ciardi, David R. and Eyken, Julian C. van and Barnes, Jason W. and Beichman, Charles A. and Carey, Sean J. and Crockett, Christopher J. and Eastman, Jason and Johns-Krull, Christopher M. and Howell, Steve B. and Kane, Stephen R. and Mclane, Jacob N. and Plavchan, Peter and Prato, L. and Stauffer, John and Belle, Gerard T. van and Braun, Kaspar von},
 	month = aug,
 	year = {2015},
@@ -1346,7 +1408,7 @@ companions orbiting hot fast-rotating stars out of reach of other detection meth
 	doi = {10.1093/mnras/stv906},
 	abstract = {Five consecutive runs of at least five hours, and two shorter runs, of V(RI)C time series photometry of CVSO 30 are presented. No evidence could be seen for planetary transits, previously claimed in the literature for this star. The photometry described in this paper, as well as earlier observations, can be modelled by two non-sinusoidal periodicities of 8 and 10.8 h (frequencies 3 and 2.23 d-1) or their 1 d-1 aliases. The possibility is discussed that star-spots at different latitudes of a differentially rotating star is responsible for the brightness modulations. The steep wavelength dependence of the variability amplitudes is best described by hot star-spots.},
 	urldate = {2020-04-15},
-	journal = {Monthly Notices of the Royal Astronomical Society},
+	journal = {\mnras},
 	author = {Koen, C.},
 	month = jul,
 	year = {2015},
@@ -1398,7 +1460,7 @@ transiting systems are briefly discussed.},
 	language = {en},
 	number = {1},
 	urldate = {2018-12-08},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Barnes, Jason W. and van Eyken, Julian C. and Jackson, Brian K. and Ciardi, David R. and Fortney, Jonathan J.},
 	month = sep,
 	year = {2013},
@@ -1437,7 +1499,7 @@ This limit implies that the planet is orbiting close to, if not inside,
 its Roche limiting orbital radius, so that it may be undergoing active
 mass loss and evaporation.},
 	urldate = {2020-02-21},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {van Eyken, Julian C. and Ciardi, David R. and von Braun, Kaspar and Kane, Stephen R. and Plavchan, Peter and Bender, Chad F. and Brown, Timothy M. and Crepp, Justin R. and Fulton, Benjamin J. and Howard, Andrew W. and Howell, Steve B. and Mahadevan, Suvrath and Marcy, Geoffrey W. and Shporer, Avi and Szkody, Paula and Akeson, Rachel L. and Beichman, Charles A. and Boden, Andrew F. and Gelino, Dawn M. and Hoard, D. W. and Ramírez, Solange V. and Rebull, Luisa M. and Stauffer, John R. and Bloom, Joshua S. and Cenko, S. Bradley and Kasliwal, Mansi M. and Kulkarni, Shrinivas R. and Law, Nicholas M. and Nugent, Peter E. and Ofek, Eran O. and Poznanski, Dovi and Quimby, Robert M. and Walters, Richard and Grillmair, Carl J. and Laher, Russ and Levitan, David B. and Sesar, Branimir and Surace, Jason A.},
 	month = aug,
 	year = {2012},
@@ -1455,7 +1517,7 @@ mass loss and evaporation.},
 	language = {en},
 	number = {1},
 	urldate = {2020-01-06},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Yu, Liang and Winn, Joshua N. and Gillon, Michaël and Albrecht, Simon and Rappaport, Saul and Bieryla, Allyson and Dai, Fei and Delrez, Laetitia and Hillenbrand, Lynne and Holman, Matthew J. and Howard, Andrew W. and Huang, Chelsea X. and Isaacson, Howard and Jehin, Emmanuel and Lendl, Monika and Montet, Benjamin T. and Muirhead, Philip and Sanchis-Ojeda, Roberto and Triaud, Amaury H. M. J.},
 	month = oct,
 	year = {2015},
@@ -1483,7 +1545,7 @@ indicates that the emission comes from an extended volume around the
 planet, likely fed by mass loss from the planet which is expected to be
 overflowing its Roche lobe.},
 	urldate = {2020-03-06},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Johns-Krull, Christopher M. and Prato, Lisa and McLane, Jacob N. and Ciardi, David R. and van Eyken, Julian C. and Chen, Wei and Stauffer, John R. and Beichman, Charles A. and Frazier, Sarah A. and Boden, Andrew F. and Morales-Calderón, Maria and Rebull, Luisa M.},
 	month = oct,
 	year = {2016},
@@ -1519,7 +1581,7 @@ observations with three telescopes. We can confirm that there is a change in the
 discovery paper. The period of the fading event was found to be 1.36 s shorter and 100 times more precise than the previous published value. If CVSO 30 b would be a giant planet on a precessing orbit, which we cannot confirm, yet, the precession period may be shorter than previously thought. But if confirmed as a planet it would be the youngest
 transiting planet ever detected and will provide important constraints on planet formation and migration time-scales.},
 	urldate = {2020-04-02},
-	journal = {Monthly Notices of the Royal Astronomical Society},
+	journal = {\mnras},
 	author = {Raetz, St. and Schmidt, T. O. B. and Czesla, S. and Klocová, T. and Holmes, L. and Errmann, R. and Kitze, M. and Fernández, M. and Sota, A. and Briceño, C. and Hernández, J. and Downes, J. J. and Dimitrov, D. P. and Kjurkchieva, D. and Radeva, V. and Wu, Z.-Y. and Zhou, X. and Takahashi, H. and Henych, T. and Seeliger, M. and Mugrauer, M. and Adam, Ch. and Marka, C. and Schmidt, J. G. and Hohle, M. M. and Ginski, Ch. and Pribulla, T. and Trepl, L. and Moualla, M. and Pawellek, N. and Gelszinnis, J. and Buder, S. and Masda, S. and Maciejewski, G. and Neuhäuser, R.},
 	month = aug,
 	year = {2016},
@@ -1549,7 +1611,7 @@ indicates that the emission comes from an extended volume around the
 planet, likely fed by mass loss from the planet which is expected to be
 overflowing its Roche lobe.},
 	urldate = {2020-03-06},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Johns-Krull, Christopher M. and Prato, Lisa and McLane, Jacob N. and Ciardi, David R. and van Eyken, Julian C. and Chen, Wei and Stauffer, John R. and Beichman, Charles A. and Frazier, Sarah A. and Boden, Andrew F. and Morales-Calderón, Maria and Rebull, Luisa M.},
 	month = oct,
 	year = {2016},
@@ -1647,7 +1709,7 @@ archivePrefix = "ascl",
     thus place constraints on models of brown dwarfs.},
     number = {2},
     urldate = {2020-02-21},
-    journal = {The Astrophysical Journal},
+    journal = {\apj},
     author = {Irwin, Jonathan and Buchhave, Lars and Berta, Zachory K. and 
     Charbonneau, David and Latham, David W. and Burke, Christopher J. and 
     Esquerdo, Gilbert A. and Everett, Mark E. and Holman, Matthew J. and 
@@ -1733,7 +1795,7 @@ control sample at 12\% ± 2\%. Beyond 200 AU, stellar MRs are
 comparable between planet host stars and the control sample. We discuss
 the implications of the results on gas giant planet formation and
 evolution.},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Wang, Ji and Fischer, Debra A. and Horch, Elliott P. and Xie, Ji-Wei},
 	month = jun,
 	year = {2015},
@@ -1773,7 +1835,7 @@ in multiple-star systems occur 4.5 ± 3.2, 2.6 ± 1.0, and
 present at a distance of 10, 100, and 1000 AU, respectively. This
 conclusion applies only to circumstellar planets; the planet occurrence
 rate for circumbinary planets requires further investigation.},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Wang, Ji and Fischer, Debra A. and Xie, Ji-Wei and Ciardi, David R.},
 	month = aug,
 	year = {2014},
@@ -1792,7 +1854,7 @@ rate for circumbinary planets requires further investigation.},
 	language = {en},
 	number = {1},
 	urldate = {2018-07-02},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Matson, Rachel A. and Howell, Steve B. and Horch, Elliott P. and Everett, Mark E.},
 	year = {2018},
 	pages = {31}
@@ -1808,7 +1870,7 @@ rate for circumbinary planets requires further investigation.},
 exclusively host giant planets, however, suggesting that orbital migration caused by perturbations from the stellar companion may lead to planet–planet scattering and suppress the population of small
 planets in wide binaries. Both trends are also apparent in the M dwarf planet candidate hosts.},
 	urldate = {2020-02-20},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Ziegler, Carl and Tokovinin, Andrei and Briceño, César and Mang, James and Law, Nicholas and Mann, Andrew W.},
 	month = jan,
 	year = {2020},
@@ -1871,7 +1933,7 @@ between 1 and 5 au, implying that the enhanced companion occurrence is
 likely correlated with environments where gas giants can form
 efficiently.},
 	urldate = {2020-02-20},
-	journal = {The Astrophysical Journal},
+	journal = {\apj},
 	author = {Ngo, Henry and Knutson, Heather A. and Hinkley, Sasha and Bryan, Marta and Crepp, Justin R. and Batygin, Konstantin and Crossfield, Ian and Hansen, Brad and Howard, Andrew W. and Johnson, John A. and Mawet, Dimitri and Morton, Timothy D. and Muirhead, Philip S. and Wang, Ji},
 	month = aug,
 	year = {2016},
@@ -1921,7 +1983,7 @@ efficiently.},
 	language = {en},
 	number = {2},
 	urldate = {2018-12-08},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Masuda, Kento},
 	month = aug,
 	year = {2017},
@@ -2042,7 +2104,7 @@ La Silla Observatory.},
 	language = {en},
 	number = {6},
 	urldate = {2020-02-15},
-	journal = {The Astronomical Journal},
+	journal = {\aj},
 	author = {Yee, Samuel W. and Petigura, Erik A. and Fulton, Benjamin J. and Knutson, Heather A. and Batygin, Konstantin and Bakos, Gáspár Á and Hartman, Joel D. and Hirsch, Lea A. and Howard, Andrew W. and Isaacson, Howard and Kosiarek, Molly R. and Sinukoff, Evan and Weiss, Lauren M.},
 	month = may,
 	year = {2018},
@@ -5982,6 +6044,19 @@ analysis of apsidal motion elements.},
 	annote = {Comment: 4 pages, 2 figures, emulateapj, accepted for publication in ApJl, subroutines available at http://www.pha.jhu.edu/{\textasciitilde}agol},
 	file = {arXiv\:astro-ph/0210099 PDF:/Users/luke/Zotero/storage/895U7XDP/Mandel and Agol - 2002 - Analytic Lightcurves for Planetary Transit Searche.pdf:application/pdf;arXiv.org Snapshot:/Users/luke/Zotero/storage/DV8JJ42V/0210099.html:text/html}
 }
+
+@misc{bhatti_cdips-pipeline_2019,
+  author       = {Waqas Bhatti and
+                  Luke Bouma and
+                  Samuel Yee},
+  title        = {\texttt{cdips-pipeline v0.1.0}},
+  month        = aug,
+  year         = 2019,
+  doi          = {10.5281/zenodo.3370324},
+  url          = {https://doi.org/10.5281/zenodo.3370324},
+  note 		 = {\url{https://doi.org/10.5281/zenodo.3370324}}
+}
+
 
 @misc{bhatti_astrobase_2018,
 	author       = {Waqas Bhatti and
