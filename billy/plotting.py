@@ -861,24 +861,32 @@ def plot_hr(outdir):
     savefig(f, outpath)
 
 
-def plot_astrometric_excess(outdir):
+def plot_astrometric_excess(outdir, ruwe=0):
 
     varamppath = '/Users/luke/Dropbox/proj/billy/data/25ori-1/var_amps.csv'
     va_df = pd.read_csv(varamppath)
 
-    pklpath = '/Users/luke/Dropbox/proj/billy/results/cluster_membership/nbhd_info_3222255959210123904.pkl'
-    d = pickle.load(open(pklpath, 'rb'))
-    g_df = d[2]
+    if not ruwe:
+        pklpath = '/Users/luke/Dropbox/proj/billy/results/cluster_membership/nbhd_info_3222255959210123904.pkl'
+        d = pickle.load(open(pklpath, 'rb'))
+        g_df = d[2]
+    else:
+        csvpath = '/Users/luke/Dropbox/proj/billy/results/cluster_membership/25ori-1_group_ruwe.csv'
+        g_df = pd.read_csv(csvpath)
 
     g_df = g_df.merge(va_df, on='source_id', how='left')
 
     chisq_red = g_df.astrometric_chi2_al / (g_df.astrometric_n_obs_al - 5)
+    if not ruwe:
+        yval = chisq_red
+    else:
+        yval = np.array(g_df.ruwe)
 
     ######
 
     f,ax = plt.subplots(figsize=(4,3))
 
-    ax.scatter(g_df.phot_rp_mean_mag, chisq_red, c='gray', zorder=3, s=3,
+    ax.scatter(g_df.phot_rp_mean_mag, yval, c='gray', zorder=3, s=3,
                marker='s', rasterized=True, linewidths=0, label='All members',
                alpha=1)
 
@@ -886,27 +894,39 @@ def plot_astrometric_excess(outdir):
     ptfo_amp = float(g_df[ptfosel].var_amp)
     sel = (g_df.var_amp > ptfo_amp)
 
-    ax.scatter(g_df[sel].phot_rp_mean_mag, chisq_red[sel], c='k', alpha=1.,
+    ax.scatter(g_df[sel].phot_rp_mean_mag, yval[sel], c='k', alpha=1.,
                zorder=4, s=12,
                rasterized=True, linewidths=0, marker='s',
                label='Amplitude > {:.1f}%'.format(ptfo_amp*100))
 
     ax.plot(
         g_df[ptfosel].phot_rp_mean_mag,
-        chisq_red[ptfosel],
+        yval[ptfosel],
         alpha=1, mew=0.5, zorder=8, label='PTFO 8-8695', markerfacecolor='yellow',
         markersize=12, marker='*', color='black', lw=0
     )
 
     ax.set_xlabel('Rp', fontsize='large')
-    ax.set_ylabel('Astrometric Reduced $\chi^2$', fontsize='large')
+    if not ruwe:
+        ax.set_ylabel('Astrometric Reduced $\chi^2$', fontsize='large')
+        ax.set_ylim([0.3,8.7])
+    else:
+        ax.set_ylabel('Renormalized Unit Weight Error', fontsize='large')
+        ax.set_ylim([0.7,1.8])
+        print('WRN! ylimits omit')
+        print( g_df[yval>2].source_id )
+        # NOTE: this ylimit omits one variable member, 
+        #  Gaia DR2 3222267297922229248 = CVSO 35
+        # which has an IR excess and 10 micron silicate emission (Macuo+2018)
     ax.set_xlim([7.5,16.5])
-    ax.set_ylim([0.3,8.7])
 
     ax.legend(loc='best', fontsize='small')
 
     format_ax(ax)
-    outpath = os.path.join(outdir, 'astrometric_excess.png')
+    if not ruwe:
+        outpath = os.path.join(outdir, 'astrometric_excess.png')
+    else:
+        outpath = os.path.join(outdir, 'astrometric_excess_ruwe.png')
     savefig(f, outpath)
 
 
