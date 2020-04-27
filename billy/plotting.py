@@ -166,7 +166,8 @@ def plot_splitsignal_map(m, outpath, part='i'):
     # 8.5x11 is letter paper. x10 allows space for caption.
     fig, axs = plt.subplots(nrows=4, figsize=(8.5, 10), sharex=True)
 
-    axs[0].set_ylabel('f', fontsize='x-large')
+    axs[0].set_ylabel('Raw flux', fontsize='x-large')
+    # axs[0].set_ylabel('f', fontsize='x-large')
     axs[0].plot(m.x_obs[g], m.y_obs[g], ".k", ms=4, label="data", zorder=2,
                 rasterized=True)
     axs[0].plot(m.x_obs[g], m.map_estimate['mu_model'][g], lw=0.5, label='MAP',
@@ -190,22 +191,28 @@ def plot_splitsignal_map(m, outpath, part='i'):
             # axs[0].plot(m.x_obs, y_orb, lw=0.5, label='model '+f,
             #             color='C{}'.format(ix+1), alpha=1, zorder=ix+3)
 
-    axs[1].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
+    axs[1].set_ylabel('Longer period',
                       fontsize='x-large')
+    # axs[1].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
+    #                   fontsize='x-large')
     axs[1].plot(m.x_obs[g], m.y_obs[g]-y_orb[g], ".k", ms=4, label="data-orb",
                 zorder=2, rasterized=True)
     axs[1].plot(m.x_obs[g], m.map_estimate['mu_model'][g]-y_orb[g], lw=0.5,
                 label='model-orb', color='C0', alpha=1, zorder=1)
 
-    axs[2].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
+    axs[2].set_ylabel('Shorter period',
                       fontsize='x-large')
+    # axs[2].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
+    #                   fontsize='x-large')
     axs[2].plot(m.x_obs[g], m.y_obs[g]-y_rot[g], ".k", ms=4, label="data-rot",
                 zorder=2, rasterized=True)
     axs[2].plot(m.x_obs[g], m.map_estimate['mu_model'][g]-y_rot[g], lw=0.5,
                 label='model-rot', color='C0', alpha=1, zorder=1)
 
-    axs[3].set_ylabel('$f - f_{{\mathrm{{s}}}} - f_{{\mathrm{{\ell}}}}$',
+    axs[3].set_ylabel('Residual',
                       fontsize='x-large')
+    # axs[3].set_ylabel('$f - f_{{\mathrm{{s}}}} - f_{{\mathrm{{\ell}}}}$',
+    #                   fontsize='x-large')
     axs[3].plot(m.x_obs[g], m.y_obs[g]-m.map_estimate['mu_model'][g], ".k",
                 ms=4, label="data", zorder=2, rasterized=True)
     axs[3].plot(m.x_obs[g],
@@ -362,8 +369,9 @@ def plot_phasefold_map(m, d, outpath):
 
     axs[0].text(0.98, 0.98, txt0, ha='right', va='top',
                 transform=axs[0].transAxes, bbox=props, zorder=3)
-    axs[0].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
-                      fontsize='large')
+    #axs[0].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
+    #                  fontsize='large')
+    axs[0].set_ylabel('Longer period', fontsize='large')
 
     axs[1].scatter(orb_d['phase'], orb_d['mags'], color='gray', s=2, alpha=0.8,
                    zorder=4, linewidths=0, rasterized=True)
@@ -388,8 +396,10 @@ def plot_phasefold_map(m, d, outpath):
     axs[1].text(0.98, 0.98, txt1, ha='right', va='top',
                 transform=axs[1].transAxes, bbox=props, zorder=3)
 
-    axs[1].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
+    axs[1].set_ylabel('Shorter period',
                       fontsize='large')
+    #axs[1].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
+    #                  fontsize='large')
 
     axs[1].set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
     axs[1].set_yticks([-0.04, -0.02, 0, 0.02, 0.04])
