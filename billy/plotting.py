@@ -284,7 +284,7 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
         if not k == 'y_resid':
             power = ls.power(frequency)
         else:
-            _period_min, _period_max, _N_freqs = 1, 20, int(2e4)
+            _period_min, _period_max, _N_freqs = 0.3, 20, int(4e4)
             _frequency = np.linspace(1/_period_max, 1/_period_min, _N_freqs)
             _period = 1/_frequency
             power = ls.power(_frequency)

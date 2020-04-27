@@ -175,7 +175,8 @@ def initialize_ptfo_prior_d(x_obs, modelcomponents):
     t0_orb = 2458468.63809577 - 2457000 - 1468.2  # non-zero means phase offset.
 
     P_rot = 0.49845 # +/- 1e-3
-    t0_rot = 0.14 # np.nanmin(x_obs) + 0.1 # initial guess
+    t0_rot = 0.14
+    # t0_rot = 0.14 + 0.49845/8 # 0.14 # np.nanmin(x_obs) + 0.1 # initial guess
 
     prior_d = OrderedDict()
 

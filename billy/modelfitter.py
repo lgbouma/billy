@@ -45,9 +45,9 @@ class ModelParser:
 
 class ModelFitter(ModelParser):
     """
-    Given a modelid of the form "transit_NsincosPorb_NsincosProt", and observed
-    x and y values (typically time and flux), construct and fit the model. In
-    other words, run the inference.
+    Given a modelid of the form "transit_NsincosPorb_NsincosProt", and
+    observed x and y values (typically time and flux), construct and
+    fit the model. In other words, run the inference.
 
     The model implemented is of the form
 
@@ -58,8 +58,8 @@ class ModelFitter(ModelParser):
     σ^2).
     """
 
-    def __init__(self, modelid, x_obs, y_obs, y_err, prior_d,
-                 mstar=1, rstar=1, N_samples=1000, N_cores=16, N_chains=4,
+    def __init__(self, modelid, x_obs, y_obs, y_err, prior_d, mstar=1,
+                 rstar=1, N_samples=1000, N_cores=16, N_chains=3,
                  plotdir=None, pklpath=None, overwrite=1):
 
         self.N_samples = N_samples
@@ -330,8 +330,9 @@ class ModelFitter(ModelParser):
 
             # sample from the posterior defined by this model.
             trace = pm.sample(
-                tune=self.N_samples, draws=self.N_samples, start=map_estimate,
-                cores=self.N_cores, chains=self.N_chains,
+                tune=self.N_samples, draws=self.N_samples,
+                start=map_estimate, cores=self.N_cores,
+                chains=self.N_chains,
                 step=xo.get_dense_nuts_step(target_accept=0.9),
             )
 
