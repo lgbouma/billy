@@ -914,7 +914,14 @@ def plot_astrometric_excess(outdir, ruwe=0):
         ax.set_ylabel('Renormalized Unit Weight Error', fontsize='large')
         ax.set_ylim([0.7,1.8])
         print('WRN! ylimits omit')
-        print( g_df[yval>2].source_id )
+        print( g_df[(yval>1.2) & (g_df.var_amp > 0.097)].source_id )
+        print(42*'-')
+        print(yval[ptfosel])
+        _df = pd.DataFrame({'ruwe':yval})
+        print(_df.describe())
+        for p in np.arange(75, 100, 2.5):
+           print('{}: {}'.format(p, float(_df.quantile(q=p/100))))
+
         # NOTE: this ylimit omits one variable member, 
         #  Gaia DR2 3222267297922229248 = CVSO 35
         # which has an IR excess and 10 micron silicate emission (Macuo+2018)
