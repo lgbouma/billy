@@ -26,7 +26,7 @@ def main(modelid):
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
-                           '20200427_v2')
+                           '20200428_v0')
 
     ##########
 
@@ -61,7 +61,7 @@ def main(modelid):
 
         if sampleplot:
             outpath = join(PLOTDIR, '{}_{}_sampleplot.png'.format(REALID, modelid))
-            bp.plot_sampleplot(m, outpath, N_samples=100)
+            bp.plot_sampleplot(m, outpath, N_samples=10)
 
         if splitsignalplot:
             do_post = 0

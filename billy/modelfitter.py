@@ -59,7 +59,7 @@ class ModelFitter(ModelParser):
     """
 
     def __init__(self, modelid, x_obs, y_obs, y_err, prior_d, mstar=1,
-                 rstar=1, N_samples=1000, N_cores=16, N_chains=4,
+                 rstar=1, N_samples=2000, N_cores=16, N_chains=4,
                  plotdir=None, pklpath=None, overwrite=1):
 
         self.N_samples = N_samples
@@ -136,7 +136,7 @@ class ModelFitter(ModelParser):
                     )
 
                     r = pm.Normal(
-                        "r", mu=prior_d['r'], sd=0.03*prior_d['r'],
+                        "r", mu=prior_d['r'], sd=0.10*prior_d['r'],
                         testval=prior_d['r']
                     )
                     # r = pm.Uniform(

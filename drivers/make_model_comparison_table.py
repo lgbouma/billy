@@ -2,8 +2,11 @@ import pickle, os
 import numpy as np, pandas as pd
 from glob import glob
 
+run_id = '20200428_v0'
+
 pklpaths = glob(
-    '/Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200413_v0/*bicdict*'
+    '/Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/{}/*bicdict*'
+    .format(run_id)
 )
 ds = []
 for p in pklpaths:
@@ -23,6 +26,7 @@ df['redchisq'] = np.round(df.redchisq, 3)
 df['BIC'] = np.round(df.BIC, 1)
 df['D_BIC'] = np.round(df.D_BIC, 1)
 
-outpath = '../results/PTFO_8-8695_results/20200413_v0/bic_table_data.tex'
+outpath = '../results/PTFO_8-8695_results/{}/bic_table_data.tex'.format(run_id)
+
 df.to_latex(outpath, index=False)
 print('wrote {}'.format(outpath))
