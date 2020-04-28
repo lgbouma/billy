@@ -15,6 +15,8 @@ from billy import __path__
 
 def main(modelid):
 
+    make_threadsafe = 0
+
     traceplot = 0
     sampleplot = 1
     cornerplot = 1
@@ -24,9 +26,13 @@ def main(modelid):
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
-                           '20200413_v0')
+                           '20200427_v2')
 
     ##########
+
+    print(42*'#')
+    print(modelid)
+    print(42*'#')
 
     if not os.path.exists(PLOTDIR):
         os.mkdir(PLOTDIR)
@@ -45,44 +51,48 @@ def main(modelid):
 
     print(pm.summary(m.trace, varnames=list(prior_d.keys())))
 
-    if traceplot:
-        outpath = join(PLOTDIR, '{}_{}_traceplot.png'.format(REALID, modelid))
-        bp.plot_traceplot(m, outpath)
+    if make_threadsafe:
+        pass
 
-    if sampleplot:
-        outpath = join(PLOTDIR, '{}_{}_sampleplot.png'.format(REALID, modelid))
-        bp.plot_sampleplot(m, outpath, N_samples=100)
+    else:
+        if traceplot:
+            outpath = join(PLOTDIR, '{}_{}_traceplot.png'.format(REALID, modelid))
+            bp.plot_traceplot(m, outpath)
 
-    if splitsignalplot:
-        do_post = 0
-        do_map = 1
-        if do_post:
-            outpath = join(PLOTDIR, '{}_{}_splitsignalpost.png'.format(REALID, modelid))
-            ydict = bp.plot_splitsignal_post(m, outpath)
-            outpath = join(PLOTDIR, '{}_{}_phasefoldpost.png'.format(REALID, modelid))
-            bp.plot_phasefold_post(m, ydict, outpath)
-        if do_map:
-            outpath = join(PLOTDIR, '{}_{}_splitsignalmap_i.png'.format(REALID, modelid))
-            ydict = bp.plot_splitsignal_map(m, outpath, part='i')
-            outpath = join(PLOTDIR, '{}_{}_splitsignalmap_ii.png'.format(REALID, modelid))
-            ydict = bp.plot_splitsignal_map(m, outpath, part='ii')
-            outpath = join(PLOTDIR, '{}_{}_splitsignalmap_periodogram.png'.format(REALID, modelid))
-            if not os.path.exists(outpath) or m.OVERWRITE:
-                bp.plot_splitsignal_map_periodogram(ydict, outpath)
-            outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
-            bp.plot_phasefold_map(m, ydict, outpath)
-            get_bic(m, ydict, PLOTDIR)
+        if sampleplot:
+            outpath = join(PLOTDIR, '{}_{}_sampleplot.png'.format(REALID, modelid))
+            bp.plot_sampleplot(m, outpath, N_samples=100)
 
-    if cornerplot:
-        prior_d.pop('omegaorb', None) # not sampled; only used in data generation
-        prior_d.pop('phiorb', None) # not sampled; only used in data generation
-        outpath = join(PLOTDIR, '{}_{}_cornerplot.png'.format(REALID, modelid))
-        bp.plot_cornerplot(prior_d, m, outpath)
+        if splitsignalplot:
+            do_post = 0
+            do_map = 1
+            if do_post:
+                outpath = join(PLOTDIR, '{}_{}_splitsignalpost.png'.format(REALID, modelid))
+                ydict = bp.plot_splitsignal_post(m, outpath)
+                outpath = join(PLOTDIR, '{}_{}_phasefoldpost.png'.format(REALID, modelid))
+                bp.plot_phasefold_post(m, ydict, outpath)
+            if do_map:
+                outpath = join(PLOTDIR, '{}_{}_splitsignalmap_i.png'.format(REALID, modelid))
+                ydict = bp.plot_splitsignal_map(m, outpath, part='i')
+                outpath = join(PLOTDIR, '{}_{}_splitsignalmap_ii.png'.format(REALID, modelid))
+                ydict = bp.plot_splitsignal_map(m, outpath, part='ii')
+                outpath = join(PLOTDIR, '{}_{}_splitsignalmap_periodogram.png'.format(REALID, modelid))
+                if not os.path.exists(outpath) or m.OVERWRITE:
+                    bp.plot_splitsignal_map_periodogram(ydict, outpath)
+                outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
+                bp.plot_phasefold_map(m, ydict, outpath)
+                get_bic(m, ydict, PLOTDIR)
+
+        if cornerplot:
+            prior_d.pop('omegaorb', None) # not sampled; only used in data generation
+            prior_d.pop('phiorb', None) # not sampled; only used in data generation
+            outpath = join(PLOTDIR, '{}_{}_cornerplot.png'.format(REALID, modelid))
+            bp.plot_cornerplot(prior_d, m, outpath)
 
 
 if __name__ == "__main__":
 
-    DEBUG = 1
+    DEBUG = 0
 
     if DEBUG:
         main('transit_2sincosPorb_2sincosProt')

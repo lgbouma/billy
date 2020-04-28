@@ -59,7 +59,7 @@ class ModelFitter(ModelParser):
     """
 
     def __init__(self, modelid, x_obs, y_obs, y_err, prior_d, mstar=1,
-                 rstar=1, N_samples=1000, N_cores=16, N_chains=3,
+                 rstar=1, N_samples=1000, N_cores=16, N_chains=4,
                  plotdir=None, pklpath=None, overwrite=1):
 
         self.N_samples = N_samples
@@ -76,7 +76,7 @@ class ModelFitter(ModelParser):
 
         self.initialize_model(modelid)
         self.verify_inputdata()
-        self.run_inference(prior_d, pklpath)
+        self.run_inference(prior_d, pklpath, make_threadsafe=True)
 
 
     def verify_inputdata(self):
@@ -85,7 +85,7 @@ class ModelFitter(ModelParser):
         assert isinstance(self.y_obs, np.ndarray)
 
 
-    def run_inference(self, prior_d, pklpath):
+    def run_inference(self, prior_d, pklpath, make_threadsafe=True):
 
         # if the model has already been run, pull the result from the
         # pickle. otherwise, run it.
@@ -322,11 +322,19 @@ class ModelFitter(ModelParser):
             # make sure that our initialization looks ok.
             self.y_MAP = map_estimate['mu_model'].flatten()
 
-            if self.PLOTDIR is None:
-                raise NotImplementedError
-            outpath = os.path.join(self.PLOTDIR,
-                                   'test_{}_MAP.png'.format(self.modelid))
-            plot_MAP_data(self.x_obs, self.y_obs, self.y_MAP, outpath)
+            if make_threadsafe:
+                pass
+            else:
+                # as described in
+                # https://github.com/matplotlib/matplotlib/issues/15410
+                # matplotlib is not threadsafe. so do not make plots before
+                # sampling, because some child processes tries to close a
+                # cached file, and crashes the sampler.
+                if self.PLOTDIR is None:
+                    raise NotImplementedError
+                outpath = os.path.join(self.PLOTDIR,
+                                       'test_{}_MAP.png'.format(self.modelid))
+                plot_MAP_data(self.x_obs, self.y_obs, self.y_MAP, outpath)
 
             # sample from the posterior defined by this model.
             trace = pm.sample(
