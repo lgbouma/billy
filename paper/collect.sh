@@ -1,6 +1,6 @@
 # Usage: copy in figures for the paper
 
-pdir=../results/PTFO_8-8695_results/20200413_v0/
+pdir=../results/PTFO_8-8695_results/20200428_v0/
 
 cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_splitsignalmap_i.pdf f1.pdf
 cp ${pdir}PTFO_8-8695_transit_2sincosPorb_2sincosProt_splitsignalmap_ii.pdf f2.pdf

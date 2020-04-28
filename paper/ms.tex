@@ -481,7 +481,7 @@ complex.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.99\textwidth]{f3.pdf}
+		\includegraphics[width=0.93\textwidth]{f3.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Phase-folded longer and shorter-period signals.}
@@ -601,9 +601,11 @@ $N_{\rm s}$ and $N_{\rm \ell}$ ranging from one to three.  To select
 our preferred model, we used the Bayesian information criterion
 (Table~1).  The model with the lowest BIC had two modes at the shorter
 10.74$\,$hr period, and two modes at the longer 11.96$\,$hr period.
-The next-best model had an additional harmonic at the longer period
-($N_{\rm \ell}=3$), but was otherwise identical.  All nine models have
-reduced $\chi^2$ values ranging between 1.37 and 1.51, which suggests
+Two other models had BIC values that provided comparable evidence
+\citep{burnham_multimodel_2016}: one with ($N_{\rm s}=3$, $N_{\rm
+\ell}=3$), and the other with ($N_{\rm s}=3$, $N_{\rm \ell}=2$).
+All nine models have
+reduced $\chi^2$ values ranging between 1.25 and 1.68, which suggests
 a plausible though imperfect agreement between the data and the model
 to within the formal uncertainties.  Table~2 gives the best-fitting
 parameters for the preferred model, which has the lowest BIC value.
@@ -622,7 +624,10 @@ reaches minimum brightness between phases $-0.5$ and $-0.25$.  Between
 phases $-0.5$ and $0.0$ there appears to be complex shorter-timescale
 variability, including an abrupt jump at phase $\approx -0.33$, and
 ending with a ``dip'' of depth $\approx$1.2\%, lasting $\approx$0.75
-hours.  
+hours.  The fact that the higher-order models lead to roughly
+comparable BIC values suggests that these sharper features may indeed
+be real, but that there is only weak statistical support for their
+existence.
 
 The periodogram of the final residual (Figures~\ref{fig:splitsignal}
 and~\ref{fig:splitsignalii} bottom row) shows a barely significant and
@@ -1256,13 +1261,13 @@ binary.
 
 Minor differences in our approaches are that \citet{koen_2020}
 interprets the ``out of dip'' signal to potentially show multiple
-dips, while our BIC-based model comparison did not indicate the need
-for additional harmonics after fitting for the largest dip and two
-harmonics at the shorter period (Table~1). Our analysis emphasized the
-agreement between the TESS dip ephemeris and that from
-\citet{tanimoto_evidence_2020}.  \citet{koen_2020} however made a
-clearer case for testing the binarity hypothesis using interferometric
-imaging and high-precision radial velocities.
+dips, while our BIC-based model comparison did not indicate that
+including additional harmonics past the second order was strictly
+necessary (Table~1). Our analysis emphasized the agreement between the
+TESS dip ephemeris and that from \citet{tanimoto_evidence_2020}.
+\citet{koen_2020} however made a clearer case for testing the binarity
+hypothesis using interferometric imaging and high-precision radial
+velocities.
 \\
 \\
 %
@@ -1275,13 +1280,14 @@ imaging and high-precision radial velocities.
 %
 The authors thank D.~Fabrycky for helpful tidal evolution calculations
 that were eventually omitted, and A.~Vanderburg for the suggestion to
-consider RUWE.
+look into RUWE.
 %
-We thank the Heising-Simons Foundation for their generous support of this work.
+We also thank the Heising-Simons Foundation for
+their generous support of this work.
 %
-\ptfo\ was included on the TESS ``short-cadence'' target list thanks to the
-Guest Investigator programs of S.\ Czesla and C.\ Huang (G011128 and
-G011132 respectively).
+\ptfo\ was included on the TESS ``short-cadence'' target list thanks
+to the Guest Investigator programs of S.\ Czesla and C.\ Huang
+(G011128 and G011132 respectively).
 %
 The Digitized Sky Survey was produced at the Space Telescope Science
 Institute under U.S. Government grant NAG W-2166.
