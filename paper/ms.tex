@@ -78,7 +78,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 % see https://spacebook.mit.edu/pages/viewpage.action?pageId=24543276
 %-------------------------------------
 %
-%PENDING
+%CONFIRMED
 \author{G. R. Ricker} % grr@space.mit.edu
 \affiliation{Department of Physics and Kavli Institute for Astrophysics
 and Space Research, Massachusetts Institute of Technology, Cambridge, MA
@@ -90,7 +90,7 @@ and Space Research, Massachusetts Institute of Technology, Cambridge, MA
 and Space Research, Massachusetts Institute of Technology, Cambridge, MA
 02139, USA}
 %
-%PENDING
+%CONFIRMED
 \author[0000-0001-9911-7388]{D. W.~Latham} % dlatham@cfa.harvard.edu
 \affiliation{Center for Astrophysics \textbar \ Harvard \&
 Smithsonian, 60 Garden St, Cambridge, MA 02138, USA}
@@ -181,8 +181,8 @@ Technology, Cambridge, MA 02139, USA}
   its kinematic group, and independently suggest that it is an
   astrometric binary.  The TESS lightcurve shows two different
   photometric periods. The variability is dominated by a sinusoidal
-  signal with a period of 11.96$\,$hr, presumably caused by stellar
-  rotation.  Also present is a 10.74-day signal consisting of a
+  signal with a period of 11.98$\,$hr, presumably caused by stellar
+  rotation.  Also present is a 10.76-day signal consisting of a
   not-quite sinusoid interrupted by hour-long dips, the type of signal
   previously intepreted as planetary transits.  The phase of the dips
   is nearly 180$^\circ$ away from the phase of the originally reported
@@ -394,7 +394,7 @@ brighest 1{.}3 billion stars, including \ptfo\
 \citep{lindegren_gaiasoln_2018}.  For \ptfo, there were 121 ``good''
 observations, {\it i.e.}, observations that were not strongly
 down-weighted in the astrometric solution.  \ptfo\ was assigned the
-Gaia DR2 identifier 3222255959210123904.  It photometric brightness
+Gaia DR2 identifier 3222255959210123904.  Its photometric brightness
 was measured using selected bands ($G$, $Rp$, and $Bp$) of the Gaia
 Radial Velocity Spectrometer
 \citep{cropper_gaia_2018,evans_gaia_2018}.  We accessed the pipeline
@@ -504,7 +504,7 @@ generalized Lomb-Scargle periodograms using \texttt{astrobase}
 \citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
 The two tallest peaks occur at 0.448\,days and 0.499\,days.  We will
 refer to these two periods as the ``shorter period'' $P_{\rm s}$ and
-the ``longer period'' $P_{\rm ell}$.  The peak at $P_{\rm \ell}$ is
+the ``longer period'' $P_{\rm \ell}$.  The peak at $P_{\rm \ell}$ is
 the taller of the two peaks.  Lower-power harmonics of both signals
 are also present.
 
@@ -535,7 +535,7 @@ with the results of our more complicated analysis, described below.
 \subsection{Lightcurve Model}
 
 We fitted a model to the lightcurve consisting of a linear combination
-of Fourier modes with periods $P_{\rm s}$ and $P_{\rm ell}$, as well
+of Fourier modes with periods $P_{\rm s}$ and $P_{\rm \ell}$, as well
 as a number of harmonics chosen as described below. To try accounting
 for the dips, we also added an analytic transit model with period
 $P_{\rm s}$.  Symbolically, the total flux $f$ is given as
@@ -574,7 +574,7 @@ darkening parameters, the planet's orbital period (set equal to
 $P_{\rm s}$) the time of a particular transit, and the mean flux.
 There would be $2N_{\rm s}=4$ additional Fourier amplitudes at the
 shorter period, plus $2N_{\rm \ell}=2$ Fourier amplitudes at the
-longer period, and well as $P_\ell$ itself and the relative phase
+longer period, as well as $P_\ell$ itself and the relative phase
 $\phi_\ell$.  The total number of parameters is 14.
 
 We implemented and fitted the models using \texttt{PyMC3}, which is
@@ -600,7 +600,7 @@ We considered nine models, with the number of modes per frequency
 $N_{\rm s}$ and $N_{\rm \ell}$ ranging from one to three.  To select
 our preferred model, we used the Bayesian information criterion
 (Table~1).  The model with the lowest BIC had two modes at the shorter
-10.74$\,$hr period, and two modes at the longer 11.96$\,$hr period.
+10.76$\,$hr period, and two modes at the longer 11.98$\,$hr period.
 Two other models had BIC values that provided comparable evidence
 \citep{burnham_multimodel_2016}: one with ($N_{\rm s}=3$, $N_{\rm
 \ell}=3$), and the other with ($N_{\rm s}=3$, $N_{\rm \ell}=2$).
@@ -615,8 +615,8 @@ signal into its respective components (Figures~\ref{fig:splitsignal}
 and~\ref{fig:splitsignalii}).  We also examined the phase-folded
 signals (Figure~\ref{fig:phasefold}).  
 
-In every model, the $11.96\,{\rm hr}$ variability is a simple sinusoid
-with peak-to-peak amplitude $\approx$10\%.  The $10.74\,{\rm hr}$
+In every model, the $11.98\,{\rm hr}$ variability is a simple sinusoid
+with peak-to-peak amplitude $\approx$10\%.  The $10.76\,{\rm hr}$
 variability is always more complex.  The overall impression is of a
 distorted sinusoidal function, with a peak-to-peak amplitude of about
 4\%.  The asymmetric sinusoid rises to a maximum near phase 0.25, and
@@ -658,7 +658,7 @@ the shorter- and longer-period signals.
     and 2.25 pixels used in our blend analysis. To the northwest of
     \ptfo\ and between the blue and orange circles is ``Star A'', the
     only star bright and close enough to be contributing to the signal
-    attributed to \ptfo\. However, the pixel-level TESS data showed
+    attributed to \ptfo. However, the pixel-level TESS data showed
     that any such contamination is negligible (see
     Section~\ref{subsec:blend}).
 		\label{fig:scene}
@@ -889,7 +889,7 @@ cause.
 
 \subsection{Longer-Period Signal}
 
-The standard interpretation for 11.96$\,$hour nearly sinusoidal
+The standard interpretation for 11.98$\,$hour nearly sinusoidal
 modulations of a pre-main-sequence M dwarf is stellar rotation.  This
 is the dominant signal in the system with 10\% amplitude, and there is
 no evidence to suggest that this signal has any other origin.
@@ -944,7 +944,7 @@ data strongly support this conclusion.
 \end{figure}
 
 The TESS lightcurve shows a dip that lasts about 45 minutes, and seems
-to recur every 10.74 hours
+to recur every 10.76 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
 The dip duration is roughly the same as that observed by previous
 investigators \citep{van_eyken_ptf_2012,yu_tests_2015}.  The 1.2\%
@@ -998,7 +998,7 @@ leave this curiosity as observation {\it sans} interpretation.
 
 \subsection{Short Period Out-of-Dip Modulation}
 
-Visually, the out-of-dip modulation at the 10.74$\,$hour period
+Visually, the out-of-dip modulation at the 10.76$\,$hour period
 resembles a slightly asymmetric sinusoid (Figure~\ref{fig:phasefold}).
 Non-zero contributions in both the first and second harmonics are
 detected (Table~2).  The first sine and cosine harmonic both have
@@ -1096,7 +1096,7 @@ following things in common:
   \item They are rare at a population level: $\lesssim 1\%$ of relevant stars
     \citep{rebull_usco_2018}.
 \end{enumerate}
-The 10.74 hour signal in \ptfo\ meets all of these criteria.  This is
+The 10.76 hour signal in \ptfo\ meets all of these criteria.  This is
 the first connection of \ptfo\ with this class of objects because the
 TESS lightcurve was needed to resolve the different rotation signals.
 
@@ -1163,7 +1163,7 @@ evolution.
 The main physical question is what causes the transient dips. This is
 an unsolved problem not only for \ptfo\ but also for an emerging class
 of similar young rapidly rotating M-dwarfs.  Many possible
-explanations been detailed by \citet{rebull_rotation_2016},
+explanations have been detailed by \citet{rebull_rotation_2016},
 \citet{david_transient_2017}, \citet{stauffer_orbiting_2017}, and
 \citet{zhan_complex_2019}.  Their disfavored explanations include that
 the dips are caused by
@@ -1207,8 +1207,8 @@ the \ptfo\ system.  Our main results are as follows.
 \begin{itemize}
   \item {\it The TESS light-curve shows two periodic signals.} The
     ``long'' signal is a 10\% peak-to-peak sinusoid that repeats every
-    11.96 hours.  The ``short'' signal is a 4\% peak-to-peak ``dip +
-    asymmetric sinusoid'' that repeats every 10.74 hours. The signals
+    11.98 hours.  The ``short'' signal is a 4\% peak-to-peak ``dip +
+    asymmetric sinusoid'' that repeats every 10.76 hours. The signals
     beat, and therefore cannot be an artifact linked to data
     processing.  Within the angular resolution of the Gaia source
     catalog, both signals need to originate from \ptfo.
