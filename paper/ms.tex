@@ -121,7 +121,7 @@ Massachusetts Institute of Technology, Cambridge, MA 02139, USA}
 %     Joel Villaseñor (jsvilla@space.mit.edu)
 %     Tom Barclay (barclay.astro@gmail.com)
 
-%PENDING
+%CONFIRMED
 \author[0000-0001-7139-2724]{T. Barclay} % barclay.astro@gmail.com
 \affiliation{NASA Goddard Space Flight Center, 8800 Greenbelt Road,
 Greenbelt, MD 20771, USA}
@@ -163,7 +163,7 @@ Smithsonian, 60 Garden St, Cambridge, MA 02138, USA}
 Astrophysics and Space Research, Massachusetts Institute of
 Technology, Cambridge, MA 02139, USA}
 
-%PENDING
+%CONFIRMED
 \author[0000-0002-5402-9613]{B. Wohler} % bill.wohler@nasa.gov
 \affiliation{NASA Ames Research Center, Moffett Field, CA 94035, USA}
 \affiliation{SETI Institute, Mountain View, CA 94043, USA}
@@ -182,11 +182,11 @@ Technology, Cambridge, MA 02139, USA}
   astrometric binary.  The TESS lightcurve shows two different
   photometric periods. The variability is dominated by a sinusoidal
   signal with a period of 11.98$\,$hr, presumably caused by stellar
-  rotation.  Also present is a 10.76-day signal consisting of a
+  rotation.  Also present is a 10.76$\,$hr signal consisting of a
   not-quite sinusoid interrupted by hour-long dips, the type of signal
   previously intepreted as planetary transits.  The phase of the dips
   is nearly 180$^\circ$ away from the phase of the originally reported
-  dips, which, as noted previously, makes them difficult to explain as
+  dips. As noted previously, this makes them difficult to explain as
   planetary transits.  Instead, we believe that PTFO$\,$8-8695 is a
   pair of young and rapidly rotating M dwarfs, one of which shows the
   same ``transient-dipper'' behavior that been seen in at least 5
@@ -587,11 +587,12 @@ To speed up the fitting process, we averaged the 2-minute lightcurve
 to 10-minute samples.  We correspondingly scaled the uncertainties in
 the flux measurements by a factor of $\sqrt{5}$.  Before sampling, we
 initialized each model with the parameters of the maximum a posteriori
-(MAP) model.  We then sampled using \texttt{PyMC3}'s gradient-based
-No-U-Turn Sampler \citep{hoffman_no-u-turn_2014}, and used $\hat{R}$
-as our convergence diagnostic \citep{gelman_inference_1992}.  We
-tested our ability to successfully recover injected parameters using
-synthetic data before fitting the \ptfo\ lightcurves.
+(MAP) model.  We then assumed a Gaussian likelihood, and sampled using
+\texttt{PyMC3}'s gradient-based No-U-Turn Sampler
+\citep{hoffman_no-u-turn_2014}, and used $\hat{R}$ as our convergence
+diagnostic \citep{gelman_inference_1992}.  We tested our ability to
+successfully recover injected parameters using synthetic data before
+fitting the \ptfo\ lightcurves.
 
 
 \subsection{Fitting Results}
@@ -722,8 +723,9 @@ with separations wider than $\approx$1'' (349~AU) and within $\Delta G
 \approx 3$ magnitudes of \ptfo\ would have likely been detected
 through this approach. 
 
-\citet{van_eyken_ptf_2012} obtained stronger constraints on possible
-stellar companions based on high-resolution imaging with the NIRC2
+Stronger constraints on possible
+stellar companions were obtained by
+\citet{van_eyken_ptf_2012} through high-resolution imaging with the NIRC2
 camera on Keck II.  They reported 3-$\sigma$ $H$-band magnitude
 difference limits of 4.3, 6.4, and 8.9 at angular separations of 0.25,
 0.5, and 1.0 arcseconds (87, 175, and 349~AU).  They also detected a
@@ -734,18 +736,6 @@ to be a potential planetary-mass object \citep{schmidt_direct_2016}.
 Subsequent analysis of its colors showed that it is a background star
 \citep{lee_evidence_2018}.} cannot be the source of our signals.
 
-While long-baseline radial velocity (RV) measurements could provide
-complementary lower limits on companion masses and separations, the
-available RV data for \ptfo\ have large uncertainties due to the
-faintness of the star.  The RV dataset with the longest timespan in
-the literature appears to be the 5 Keck/HIRES measurements acquired
-over 10 days in April 2011 by \citet{van_eyken_ptf_2012}.  The
-root-mean-squared RV over that 10 day span was $1.6\,{\rm km}\,{\rm
-s}^{-1}$, consistent with the measurement precision.  Although
-\citet{yu_tests_2015} acquired 22 further Keck/HIRES spectra on one
-night in December 2013, those points were not reduced to velocities.
-Further Keck/HIRES measurements of this target could confirm or refute
-the existence of possible binary companions.
 
 \subsection{Photometric Binarity}
 
@@ -884,12 +874,34 @@ that comparably variable stars do not show comparably large
 astrometric excesses suggests that stellar binarity is indeed the root
 cause.
 
+\subsection{Radial Velocity Binarity}
+
+Long-baseline radial velocity (RV) measurements could also reveal
+the presence of multiple stars in this system.
+Unfortunately,
+the available RV data for \ptfo\ is rather sparse, presumably due to the
+stellar faintness and equatorial velocity.
+The RV dataset with the longest baseline we could find
+in the literature was the 5 Keck/HIRES measurements acquired
+over 10 days in April 2011 by \citet{van_eyken_ptf_2012}.  The
+root-mean-squared RV over that 10 day span was $1.6\,{\rm km}\,{\rm
+	s}^{-1}$, consistent with the measurement precision. 
+Although \citet{van_eyken_ptf_2012} tried a CCF-based RV reduction
+technique, they eventually found that manually selecting
+absorption lines and measuring line centroids was more effective.
+While
+\citet{yu_tests_2015} acquired 22 further Keck/HIRES spectra over one
+night in December 2013, those points were not reduced to velocities, and
+it is not clear whether the appropriate calibration data exist.
+Further Keck/HIRES measurements of \ptfo, if appropriately calibrated,
+could potentially confirm or refute the presence of binary companions.
+
 \section{Discussion}
 \label{sec:discussion}
 
 \subsection{Longer-Period Signal}
 
-The standard interpretation for 11.98$\,$hour nearly sinusoidal
+The standard interpretation for 11.98$\,$hr nearly sinusoidal
 modulations of a pre-main-sequence M dwarf is stellar rotation.  This
 is the dominant signal in the system with 10\% amplitude, and there is
 no evidence to suggest that this signal has any other origin.
@@ -998,7 +1010,7 @@ leave this curiosity as observation {\it sans} interpretation.
 
 \subsection{Short Period Out-of-Dip Modulation}
 
-Visually, the out-of-dip modulation at the 10.76$\,$hour period
+Visually, the out-of-dip modulation at the 10.76$\,$hr period
 resembles a slightly asymmetric sinusoid (Figure~\ref{fig:phasefold}).
 Non-zero contributions in both the first and second harmonics are
 detected (Table~2).  The first sine and cosine harmonic both have
@@ -1082,7 +1094,12 @@ following things in common:
   \item They are weak-lined T Tauri stars.
   \item The spectral type is M2 to M5 ({\it e.g.},
     \citealt{rebull_usco_2018},~Figure~20).
-  \item The age is $\lesssim$ 100$\,$Myr.
+  \item The age is typically\footnote{
+    At present, the oldest observed ``scallops'' are in the Pleaides
+    \citep{rebull_rotation_2016}. One of these, EPIC 211013604, might
+    meet the ``persistent dip'' classification.  If so, it is also the
+    oldest known.
+    } $\lesssim$ 100$\,$Myr.
   \item The lightcurves show shallow, angular dips, usually superposed
     on large-amplitude smooth variability. The latter is interpreted
     as stellar rotation.
@@ -1096,7 +1113,7 @@ following things in common:
   \item They are rare at a population level: $\lesssim 1\%$ of relevant stars
     \citep{rebull_usco_2018}.
 \end{enumerate}
-The 10.76 hour signal in \ptfo\ meets all of these criteria.  This is
+The 10.76$\,$hr signal in \ptfo\ meets all of these criteria.  This is
 the first connection of \ptfo\ with this class of objects because the
 TESS lightcurve was needed to resolve the different rotation signals.
 
@@ -1182,7 +1199,8 @@ systems.
 The explanations that are not yet ruled out include {\it (i)}
 transiting clumps of gas at the Keplerian corotation radius; {\it
 (ii)} transits of enshrouded protoplanets; {\it (iii)} occultations of
-starspots by an optically thick disk.  The first and last explanations
+starspots by an optically thick disk.  
+The first and last explanations
 have added appeal because they are flexible enough to explain not only
 the transient and persistent-dip M-dwarfs, but also the ``scallop
 shell'' M-dwarfs \citep{stauffer_orbiting_2017}.  Despite this appeal,
