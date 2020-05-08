@@ -103,10 +103,10 @@ def plot_test_data(x_obs, y_obs, y_mod, modelid, outdir):
     savefig(fig, outpath, writepdf=0, dpi=300)
 
 
-def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
+def plot_MAP_data(x_obs, y_obs, y_MAP, outpath, ms=4):
     plt.close('all')
     plt.figure(figsize=(14, 4))
-    plt.plot(x_obs, y_obs, ".k", ms=4, label="data")
+    plt.plot(x_obs, y_obs, ".k", ms=ms, label="data")
     plt.plot(x_obs, y_MAP, lw=1)
     plt.ylabel("relative flux")
     plt.xlabel("time [days]")
@@ -115,14 +115,15 @@ def plot_MAP_data(x_obs, y_obs, y_MAP, outpath):
     savefig(fig, outpath, writepdf=0, dpi=300)
 
 
-def plot_sampleplot(m, outpath, N_samples=100):
+def plot_sampleplot(m, outpath, N_samples=100, ms=4, malpha=1):
 
     if os.path.exists(outpath) and not m.OVERWRITE:
         return
 
     plt.close('all')
     fig, ax = plt.subplots(figsize=(14, 4))
-    ax.plot(m.x_obs, m.y_obs, ".k", ms=4, label="data", zorder=N_samples+1)
+    ax.plot(m.x_obs, m.y_obs, ".k", ms=ms, label="data", zorder=N_samples+1,
+            alpha=malpha)
     ax.plot(m.x_obs, m.map_estimate['mu_model'], lw=0.5, label='MAP',
             zorder=N_samples+2, color='C1', alpha=1)
 

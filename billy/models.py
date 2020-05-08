@@ -64,5 +64,3 @@ def quadratic_model(params, x, x_occ=None):
         return (t0 + period*x + half_dP_dE*x**2,
                 t0 + period/2 + period*x_occ + half_dP_dE*x_occ**2
                )
-
-
