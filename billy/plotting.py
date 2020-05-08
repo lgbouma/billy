@@ -828,7 +828,7 @@ def plot_hr(outdir):
         group_df_dr2['phot_bp_mean_mag']-group_df_dr2['phot_rp_mean_mag'],
         yval,
         c='k', alpha=1., zorder=3, s=9, rasterized=True, linewidths=0,
-        label='K+18 members'
+        label='Members'
     )
 
     target_yval = np.array([target_df['phot_g_mean_mag'] +
