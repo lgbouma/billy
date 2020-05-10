@@ -14,8 +14,8 @@
   \colhead{Prior} & 
   \colhead{Mean} & 
   \colhead{Std{.} Dev.} &
-  \colhead{3\%} &
-  \colhead{97\%}
+  \colhead{3$^{\rm rd}$ Pct.} &
+  \colhead{97$^{\rm th}$ Pct.}
 }
 % /Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200428_v0/posterior_table_clean_transit_2sincosPorb_2sincosProt.tex
 \startdata
@@ -39,6 +39,9 @@
  $B_{\mathrm{\ell},1}$ &                             $\mathcal{U}(-0.02; 0.02)$ & -0.00222 & 0.000539 & -0.00309 & -0.001201 \\
 \enddata
 \tablenotetext{}{
+  Note that $R_{\rm p}/R_\star$ is post-correction for the dilution by
+  Star A and other neighboring stars, according to the PDCSAP lightcurve's \texttt{CROWDSAP} value
+  in the optimal aperture of 0{.}73.
   (1) To convert mean TESS mid-transit time to ${\rm BJD}_{\rm TDB}$, add 2458468.2.
   (2) Quadratic limb-darkening prior from \citet{exoplanet:kipping13}, implemented by \citet{exoplanet:exoplanet}.
 }
