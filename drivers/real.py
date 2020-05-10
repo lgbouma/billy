@@ -92,7 +92,7 @@ def main(modelid):
 
 if __name__ == "__main__":
 
-    DEBUG = 0
+    DEBUG = 1
 
     if DEBUG:
         main('transit_2sincosPorb_2sincosProt')

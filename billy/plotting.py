@@ -254,8 +254,8 @@ def plot_splitsignal_map(m, outpath, part='i'):
         'y_rot': m.y_obs-y_orb,
         'y_resid': m.y_obs-m.map_estimate['mu_model'],
         'y_mod_tra': y_tra,
-        'y_mod_rot': y_orb,
-        'y_mod_orb': y_rot,
+        'y_mod_rot': y_rot,
+        'y_mod_orb': y_orb,
         'y_mod': m.map_estimate['mu_model'],
         'y_err': m.y_err
     }
@@ -348,11 +348,18 @@ def plot_phasefold_map(m, d, outpath):
     orb_bd = phase_bin_magseries(
         orb_d['phase'], orb_d['mags'], binsize=0.01
     )
+    morb_d = phase_magseries(
+        d['x_obs'], d['y_mod_orb'], P_orb, t0_orb, wrap=True, sort=True
+    )
+
     rot_d = phase_magseries(
         d['x_obs'], d['y_rot'], P_rot, t0_rot, wrap=True, sort=True
     )
     rot_bd = phase_bin_magseries(
         rot_d['phase'], rot_d['mags'], binsize=0.01
+    )
+    mrot_d = phase_magseries(
+        d['x_obs'], d['y_mod_rot'], P_rot, t0_rot, wrap=True, sort=True
     )
 
     # make tha plot
@@ -363,6 +370,8 @@ def plot_phasefold_map(m, d, outpath):
                    zorder=4, linewidths=0, rasterized=True)
     axs[0].scatter(rot_bd['binnedphases'], rot_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
+    axs[0].plot(mrot_d['phase'], mrot_d['mags'], lw=0.5, color='C0', alpha=1,
+                zorder=3)
 
     txt0 = '$P_{{\mathrm{{\ell}}}}$ = {:.5f}$\,$d'.format(P_rot)
     props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
@@ -378,6 +387,8 @@ def plot_phasefold_map(m, d, outpath):
                    zorder=4, linewidths=0, rasterized=True)
     axs[1].scatter(orb_bd['binnedphases'], orb_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
+    axs[1].plot(morb_d['phase'], morb_d['mags'], lw=0.5, color='C0', alpha=1,
+                zorder=3)
 
     out_d = {
         'orb_d': orb_d,
@@ -499,8 +510,8 @@ def plot_splitsignal_post(m, outpath):
         'y_orb': m.y_obs-y_rot,
         'y_rot': m.y_obs-y_orb,
         'y_mod_tra': y_tra,
-        'y_mod_rot': y_orb,
-        'y_mod_orb': y_rot
+        'y_mod_orb': y_orb,
+        'y_mod_rot': y_rot
     }
     return ydict
 
