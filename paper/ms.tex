@@ -99,7 +99,7 @@ Massachusetts Institute of Technology, Cambridge, MA 02139, USA}
 \affiliation{Department of Aeronautics and Astronautics, MIT, 77
 Massachusetts Avenue, Cambridge, MA 02139, USA}
 %
-%PENDING yy
+%CONFIRMED
 \author[0000-0002-4715-9460]{J. M.~Jenkins} % jon.jenkins@nasa.gov
 \affiliation{NASA Ames Research Center, Moffett Field, CA 94035, USA}
 %
@@ -147,7 +147,7 @@ Circle, Baltimore, MD 21250, USA}
 \affiliation{Center for Astrophysics \textbar \ Harvard \&
 Smithsonian, 60 Garden St, Cambridge, MA 02138, USA}
 
-%PENDING y
+%CONFIRMED
 \author[0000-0003-4724-745X]{M. E. Rose} %  mark.rose@nasa.gov
 \affiliation{NASA Ames Research Center, Moffett Field, CA 94035, USA}
 
@@ -178,7 +178,7 @@ Technology, Cambridge, MA 02139, USA}
   (TESS) and the ESA Gaia mission.  The Gaia data show that
   PTFO$\,$8-8695 is a photometric binary with respect to members of
   its kinematic group, and independently suggest that it is an
-  astrometric binary.  The TESS lightcurve shows two different
+  astrometric binary.  The TESS light curve shows two different
   photometric periods. The variability is dominated by a sinusoidal
   signal with a period of 11.98$\,$hr, presumably caused by stellar
   rotation.  Also present is a 10.76$\,$hr signal consisting of a
@@ -282,7 +282,7 @@ stellar rotation period has been somewhat ambiguous
 
 We begin in Section~\ref{sec:observations} by describing newly
 available observations from TESS \citep{ricker_transiting_2015} and
-Gaia \citep{gaia_collaboration_gaia_2018}.  The TESS lightcurve shows
+Gaia \citep{gaia_collaboration_gaia_2018}.  The TESS light curve shows
 two different periodic signals, which we analyze in
 Section~\ref{sec:tess}.  The Gaia data, analyzed in
 Section~\ref{sec:gaia}, show that \ptfo\ is a photometric binary, and
@@ -303,14 +303,14 @@ by \citet{koen_2020} in postscript.
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{
-    {\bf TESS lightcurve of \ptfo\ (Sector 6, Orbit 19).} {\it Top}:
-    The ``raw'' (\texttt{PDCSAP} mean-subtracted) relative flux.
+    {\bf TESS light curve of \ptfo\ (Sector 6, Orbit 19).} {\it Top}:
+    The original (\texttt{PDCSAP} mean-subtracted) relative flux.
     The beat period of 4.48 days is visible by eye.  The blue curve is
     a model including 2 harmonics at the longer period $P_{\rm \ell}$,
     plus 2 harmonics and a transit at the shorter period $P_{\rm s}$.
-    {\it Upper middle}: Longer-period signal, equal to the raw signal
+    {\it Upper middle}: Longer-period signal, equal to the original signal
     minus the shorter-period signal.  {\it Lower middle}:
-    Shorter-period signal, equal to the raw signal minus the
+    Shorter-period signal, equal to the original signal minus the
     longer-period signal.  {\it Bottom}: residual relative flux.  The
     data are binned from 2 to 10 minute cadence as a convenience for
     plotting and fitting.
@@ -324,7 +324,7 @@ by \citet{koen_2020} in postscript.
 		\includegraphics[width=1\textwidth]{f2.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-  \caption{ {\bf TESS lightcurve of \ptfo\ (Sector 6, Orbit 20).} Same
+  \caption{ {\bf TESS light curve of \ptfo\ (Sector 6, Orbit 20).} Same
   format as Figure~\ref{fig:splitsignal}.
   \label{fig:splitsignalii}
 	}
@@ -332,7 +332,7 @@ by \citet{koen_2020} in postscript.
 
 \subsection{TESS Observations}
 
-\ptfo\ [also known as CVSO\,30; \citealt{briceno_cida_2005}] was
+\ptfo\ (also known as CVSO\,30; \citealt{briceno_cida_2005}) was
 observed by TESS with Camera 1, CCD 1, from December 15, 2018 until
 January 6, 2019, during the sixth sector of science operations
 \citep{ricker_transiting_2015}.  The star was designated
@@ -343,21 +343,21 @@ stacks by the onboard computer.  Each 2048$\times$2048 image from the
 CCD was also averaged into 30-minute stacks, and saved as a ``full
 frame image'' (FFI).
 
-The 2-minute stacks for \ptfo\ were reduced to lightcurves by the
+The 2-minute stacks for \ptfo\ were reduced to light curves by the
 Science Processing Operations Center (SPOC) at NASA
 Ames~\citep{jenkins_tess_2016}.  We mainly used the Presearch Data
-Conditioning (PDC) lightcurve.  The PDC lightcurve aperture used
+Conditioning (PDC) light curve.  The PDC light curve aperture used
 pixels chosen to maximize the SNR of the total flux of the target
-\citep{smith_finding_2016}.  Non-astrophysical variability
+\citep{bryson_2020_target_aperture}.  Non-astrophysical variability
 was removed by fitting out trends common to many stars
 \citep{smith_kepler_2012,stumpe_multiscale_2014}.
 % \citep{smith_kepler_PDC_2017}
 % \citep{smith_kepler_apertures_2017}
 
-As an independent check on the 2-minute SPOC lightcurve, we examined
-the lightcurve based upon 30-minute image stacks which was produced as
+As an independent check on the 2-minute SPOC light curve, we examined
+the light curve based upon 30-minute image stacks which was produced as
 part of the Cluster Difference Imaging Photometric Survey (CDIPS;
-\citealt{bouma_cluster_2019}).  Our CDIPS lightcurve of choice used a
+\citealt{bouma_cluster_2019}).  Our CDIPS light curve of choice used a
 circular aperture with radius 1 pixel.
 
 To clean the data, we removed all points with non-zero quality flags,
@@ -365,17 +365,17 @@ which indicate known problems \citep[{\it
 e.g.},][]{tess_data_product_description_2018}.  We also masked out the
 data from the first and last 6 hours of each orbit, since there are
 often systematic red noise in the photometry during those times.  Both
-the CDIPS and PDC lightcurves showed a clear discontinuous jump in the
+the CDIPS and PDC light curves showed a clear discontinuous jump in the
 last few days of orbit 20, which seemed likely to be an instrumental
 systematic effect.  We correspondingly masked out the data with
 timestamps ranging from BJD\,2458488.3 until the end of the orbit.
-The PDC lightcurve initially had 15{,}678 points.  The quality-flag
+The PDC light curve initially had 15{,}678 points.  The quality-flag
 cut removed 854 points; masking the orbit edges removed an additional
 716 points; and removing the data from the final few days of orbit 20
 removed an additional 1079 points.  After cleaning, 83\% of the
 initial flux measurements remained.
 
-We normalized the lightcurve by dividing out the median flux, and then
+We normalized the light curve by dividing out the median flux, and then
 opted to subtract 1{.}0 to set the median value to zero, which
 simplified subsequent interpretation.  Many of these and subsequent
 processing steps were performed using
@@ -501,7 +501,7 @@ complex.
 
 \subsection{Inspection}
 
-Our initial inspection of the TESS lightcurve, in both its 2-minute
+Our initial inspection of the TESS light curve, in both its 2-minute
 PDCSAP and 30-minute FFI forms, showed a strong sinusoidal beat signal
 (Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}, top
 panel). As a precursor to more detailed analysis, we calculated
@@ -520,7 +520,7 @@ are also present.
 % 2A2 = 0.08
 % -> A2 = 0.04
 
-The peak-to-peak lightcurve amplitude at maximum, when the two signals
+The peak-to-peak light curve amplitude at maximum, when the two signals
 interfere constructively, is about 14\%.  During the times of
 destructive interference, the peak-to-peak amplitude is about 6\%.
 Assuming the signals are mainly sinusoidal, simple algebra tells us
@@ -537,9 +537,9 @@ about an hour.  These initial impressions turned out to be consistent
 with the results of our more complicated analysis, described below.
 
 
-\subsection{Lightcurve Model}
+\subsection{Light Curve Model}
 
-We fitted a model to the lightcurve consisting of a linear combination
+We fitted a model to the light curve consisting of a linear combination
 of Fourier modes with periods $P_{\rm s}$ and $P_{\rm \ell}$, as well
 as a number of harmonics chosen as described below. To try accounting
 for the dips, we also added an analytic transit model with period
@@ -588,7 +588,7 @@ built on \texttt{theano}
 we used the default math operators.  For the exoplanet transit, we
 used the model and derivatives implemented in the \texttt{exoplanet}
 code \citep{exoplanet:exoplanet}.  Our priors are listed in Table~2.
-To speed up the fitting process, we averaged the 2-minute lightcurve
+To speed up the fitting process, we averaged the 2-minute light curve
 to 10-minute samples.  We correspondingly scaled the uncertainties in
 the flux measurements by a factor of $\sqrt{5}$.  Before sampling, we
 initialized each model with the parameters of the maximum a posteriori
@@ -597,7 +597,7 @@ initialized each model with the parameters of the maximum a posteriori
 \citep{hoffman_no-u-turn_2014}, and used $\hat{R}$ as our convergence
 diagnostic \citep{gelman_inference_1992}.  We tested our ability to
 successfully recover injected parameters using synthetic data before
-fitting the \ptfo\ lightcurves.
+fitting the \ptfo\ light curves.
 
 
 \subsection{Fitting Results}
@@ -616,10 +616,10 @@ a plausible though imperfect agreement between the data and the model
 to within the formal uncertainties.  Table~2 gives the best-fitting
 parameters for the preferred model, which has the lowest BIC value.
 
-To explore where each model succeeded and failed, we split the raw
-signal into its respective components (Figures~\ref{fig:splitsignal}
-and~\ref{fig:splitsignalii}).  We also examined the phase-folded
-signals (Figure~\ref{fig:phasefold}).  
+To explore where each model succeeded and failed, we split the
+original signal into its respective components
+(Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}).  We also
+examined the phase-folded signals (Figure~\ref{fig:phasefold}).  
 
 In every model, the $11.98\,{\rm hr}$ variability is a simple sinusoid
 with peak-to-peak amplitude $\approx$10\%.  The $10.76\,{\rm hr}$
@@ -676,8 +676,8 @@ interpretations, we needed to consider whether light from neighboring
 stars could have contributed to the photometric signal we are
 attributing to \ptfo. The scene is shown in Figure~\ref{fig:scene}.
 In the upper panels, the pixels used to measure the background level
-in the SPOC lightcurve are indicated with `\texttt{X}' hatching, and
-the pixels used in the final lightcurve aperture are shown with
+in the SPOC light curve are indicated with `\texttt{X}' hatching, and
+the pixels used in the final light curve aperture are shown with
 `\texttt{/}' hatching.
 
 The target star, \ptfo\ (TIC 264461976), has a $T$-band magnitude of
@@ -697,19 +697,19 @@ longer-period signal with period $P_{\rm \ell}$ originated from \ptfo,
 or from Star A. We took two approaches to investigate the source of
 the long-period signal.
 
-First, we examined the CDIPS FFI lightcurves of the target, which are
-available on MAST \citep{bouma_cluster_2019}. Three lightcurves are
+First, we examined the CDIPS FFI light curves of the target, which are
+available on MAST \citep{bouma_cluster_2019}. Three light curves are
 available, based on photometric apertures with a radius of 1, 1.5, or
 2.5 pixels. The maximal peak-to-peak beat amplitude was the same to
 within a percent, regardless of the size of the photometric aperture
-that was used to create the lightcurve.  If Star A were the source of
+that was used to create the light curve.  If Star A were the source of
 the long-period variability, we would expect the peak variability
 amplitude to be smallest in the 1 pixel aperture, based on the
 separation of the sources (Figure~\ref{fig:scene}, bottom).  From this
 test alone, it seems unlikely that Star A is the source of the
 long-period signal.
 
-Second, we examined the 2-minute lightcurve of each individual pixel
+Second, we examined the 2-minute light curve of each individual pixel
 in the scene, using the interactive tools implemented in
 \texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
 source of the long-period variability, we would expect the pixels
@@ -841,11 +841,11 @@ faint stars in the same kinematic group of Orion to show similar
 astrometric excesses, as the majority of young stars are highly
 variable.
 
-% NB: CDIPS-I only made 131 light-curves for 25Ori-1, because I wasn't
+% NB: CDIPS-I only made 131 light curves for 25Ori-1, because I wasn't
 % aware of the Kounkel+18 member list at the time.
 Using the same 149 members in the 25$\,$Ori-1 subgroup, we calculated
 the astrometric reduced $\chi^2$ for each member.  We then queried the
-CDIPS lightcurve database at MAST \citep{bouma_cluster_2019} to find
+CDIPS light curve database at MAST \citep{bouma_cluster_2019} to find
 the subset of members that were at least as variable as \ptfo.  We
 measured the variability amplitude by taking the difference between
 the $95^{\rm th}$ and $5^{\rm th}$ percentiles of the flux
@@ -867,7 +867,7 @@ GAIA-C3-TN-LU-LL-124-01,
 results.  \ptfo\ has a RUWE of 1{.}22, which corresponds to the
 93$^{\rm rd}$ percentile of 25$\,$Ori-1 members.  Two of thirty stars
 with variability amplitudes greater than 9.7\% showed higher RUWE.
-One was CVSO~35, which has a TESS light-curve that varies by 2
+One was CVSO~35, which has a TESS light curve that varies by 2
 magnitudes, and shows a strong IR excess and a 10$\mu$m silicate emission
 feature \citep{mauco_herschel_2018}.  The other is GAIA DR2
 3222210363837122048.
@@ -961,7 +961,7 @@ data strongly support this conclusion.
 	}
 \end{figure}
 
-The TESS lightcurve shows a dip that lasts about 45 minutes, and seems
+The TESS light curve shows a dip that lasts about 45 minutes, and seems
 to recur every 10.76 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
 The dip duration is roughly the same as that observed by previous
@@ -998,7 +998,7 @@ numerically coincident with phase $(P_{\rm \ell} - P_{\rm s}) / P_{\rm
 s}$.  The observation of multiple dips per cycle in 2015 was seen
 independently by both \citet{yu_tests_2015} and
 \citet{tanimoto_evidence_2020}.  It therefore seems credible.
-Inspecting the \citet{tanimoto_evidence_2020} lightcurves, the claim
+Inspecting the \citet{tanimoto_evidence_2020} light curves, the claim
 of multiple dips per cycle in December 2018 at phase 0 and $-0{.}47$
 seems less plausible---the phase $\text{-}0{.}47$ dips are strongly
 detected, while the suggested phase 0 dip is not clearly present in
@@ -1045,7 +1045,7 @@ Doppler beaming would imply a secondary mass greater than the primary
 emitted light from the planet's surface is nonsensical because the
 sign is wrong---the planet would need to be {\it absorbing} light.
 
-\subsubsection{Similar Lightcurves}
+\subsubsection{Similar Light Curves}
 \label{subsec:dipstars}
 
 \begin{figure*}[hbtp]
@@ -1076,21 +1076,21 @@ sign is wrong---the planet would need to be {\it absorbing} light.
 
 When physical explanations are not forthcoming, taxonomy is a useful
 exercise.  By searching the literature, we have found about a dozen
-lightcurves with similar morphologies to \ptfo, drawn from surveys of
+light curves with similar morphologies to \ptfo, drawn from surveys of
 low-mass weak-lined T Tauri stars in regions including $\rho$ Oph,
 Upper~Sco, Taurus, and perhaps the Pleiades
 \citep{rebull_rotation_2016,david_transient_2017,stauffer_orbiting_2017,stauffer_rotevol_2018,rebull_usco_2018,rebull_rotation_2020}.
 These surveys were performed using K2 \citep{howell_k2_2014}.  We
-downloaded some of these lightcurves from MAST, opting for the EVEREST
+downloaded some of these light curves from MAST, opting for the EVEREST
 reductions \citep{luger_everest_2016,luger_update_2018}.  They are
 plotted in Figure~\ref{fig:brethren}.
 
-These lightcurves have been phenomenologically classified as
+These light curves have been phenomenologically classified as
 ``persistent flux dips'' or ``transient flux dips'', based on whether
 their depths and durations show variability over the 90-day K2
 campaigns \citep{stauffer_orbiting_2017}.  In the terminology of
 \citet{stauffer_orbiting_2017}, these objects are morphologically
-distinct from ``scallop shell'' lightcurves, and are present in stars
+distinct from ``scallop shell'' light curves, and are present in stars
 at more advanced evolutionary disk stages than the ``dipper'' stars
 \citep{ansdell_young_2016,cody_manyfaceted_2018}.  The persistent and
 transient flux dip stars all show angular dips that are cannot be
@@ -1106,7 +1106,7 @@ following things in common:
     meet the ``persistent dip'' classification.  If so, it is also the
     oldest known.
     } $\lesssim$ 100$\,$Myr.
-  \item The lightcurves show shallow, angular dips, usually superposed
+  \item The light curves show shallow, angular dips, usually superposed
     on large-amplitude smooth variability. The latter is interpreted
     as stellar rotation.
   \item The rotation is rapid---usually between 0.5 and 2.0 days.
@@ -1121,7 +1121,7 @@ following things in common:
 \end{enumerate}
 The 10.76$\,$hr signal in \ptfo\ meets all of these criteria.  This is
 the first connection of \ptfo\ with this class of objects because the
-TESS lightcurve was needed to resolve the different rotation signals.
+TESS light curve was needed to resolve the different rotation signals.
 
 There are two crucial additional points concerning the transient flux
 dips.  First, the dip durations seem to scale linearly with the
@@ -1229,7 +1229,7 @@ implausible.
 The combination of TESS and Gaia data has clarified a few things about
 the \ptfo\ system.  Our main results are as follows.
 \begin{itemize}
-  \item {\it The TESS light-curve shows two periodic signals.} The
+  \item {\it The TESS light curve shows two periodic signals.} The
     ``long'' signal is a 10\% peak-to-peak sinusoid that repeats every
     11.98 hours.  The ``short'' signal is a 4\% peak-to-peak ``dip +
     asymmetric sinusoid'' that repeats every 10.76 hours. The signals
@@ -1248,7 +1248,7 @@ the \ptfo\ system.  Our main results are as follows.
     \citet{tanimoto_evidence_2020}.
   \item {\it All properties of \ptfo\ are consistent with the emerging
     class of transient and persistent flux dip stars.} Analogous
-    lightcurves are shown in Figure~\ref{fig:brethren}.  Properties of
+    light curves are shown in Figure~\ref{fig:brethren}.  Properties of
     this variability class are enumerated in
     Section~\ref{subsec:dipstars}.
 \end{itemize}
@@ -1274,10 +1274,10 @@ When this manuscript was at an advanced stage, we learned of the
 complementary work by \citet{koen_2020}, which was in press at the
 {\it Monthly Notices} before submission of our manuscript.  Our
 studies independently reached the key conclusions that the TESS
-lightcurve shows two periodic signals, and that the properties of
+light curve shows two periodic signals, and that the properties of
 \ptfo\ are consistent with the emerging class of transient and
 persistent flux dip stars.  \citet{koen_2020} reached these
-conclusions by modeling the TESS lightcurve as a truncated sum of
+conclusions by modeling the TESS light curve as a truncated sum of
 Fourier terms, and concluded that the two signals are most simply
 interpreted as coming from two stars.  Our analysis of the Gaia data
 provide independent support for the conclusion that \ptfo\ is a
@@ -1311,6 +1311,8 @@ their generous support of this work.
 \ptfo\ was included on the TESS ``short-cadence'' target list thanks
 to the Guest Investigator programs of S.\ Czesla and C.\ Huang
 (G011128 and G011132 respectively).
+%
+Resources supporting this work were provided by the NASA High-End Computing (HEC) Program through the NASA Advanced Supercomputing (NAS) Division at Ames Research Center for the production of the SPOC data products.
 %
 The Digitized Sky Survey was produced at the Space Telescope Science
 Institute under U.S. Government grant NAG W-2166.
@@ -1365,24 +1367,25 @@ the Oschin Schmidt Telescope on Palomar Mountain.
   \texttt{astropy} \citep{astropy_2018},
   \texttt{astroquery} \citep{astroquery_2018},
   %\texttt{BATMAN} \citep{kreidberg_batman_2015},
-  \texttt{cdips-pipeline} \citep{bhatti_cdips-pipeline_2019}
+  \texttt{cdips-pipeline} \citep{bhatti_cdips-pipeline_2019},
   \texttt{corner} \citep{corner_2016},
   %\texttt{emcee} \citep{foreman-mackey_emcee_2013},
-  \texttt{exoplanet} \citep{exoplanet:agol19}
+  \texttt{exoplanet} \citep{exoplanet:agol19},
   \texttt{exoplanet} \citep{exoplanet:exoplanet}, and its
   dependencies \citep{exoplanet:agol19, exoplanet:kipping13, exoplanet:luger18,
-  	exoplanet:theano}.
+  	exoplanet:theano},
   \texttt{IPython} \citep{perez_2007},
 	\texttt{lightkurve} \citep{lightkurve_2018},
   \texttt{matplotlib} \citep{hunter_matplotlib_2007}, 
-  \texttt{MESA} \citep{paxton_modules_2011,paxton_modules_2013,paxton_modules_2015}
+  \texttt{MESA} \citep{paxton_modules_2011,paxton_modules_2013,paxton_modules_2015},
   \texttt{numpy} \citep{walt_numpy_2011}, 
   \texttt{pandas} \citep{mckinney-proc-scipy-2010},
   \texttt{pyGAM} \citep{serven_pygam_2018_1476122},
   \texttt{PyMC3} \citep{salvatier_2016_PyMC3},
   %\texttt{radvel} \citep{fulton_radvel_2018},
   %\texttt{scikit-learn} \citep{scikit-learn},
-  \texttt{scipy} \citep{jones_scipy_2001}.
+  \texttt{scipy} \citep{jones_scipy_2001},
+  \texttt{SPOC R4.0} \citep{jenkins_tess_2016},
   \texttt{tesscut} \citep{brasseur_astrocut_2019},
   \texttt{wotan} \citep{hippke_wotan_2019}.
 }

@@ -167,7 +167,7 @@ def plot_splitsignal_map(m, outpath, part='i'):
     # 8.5x11 is letter paper. x10 allows space for caption.
     fig, axs = plt.subplots(nrows=4, figsize=(8.5, 10), sharex=True)
 
-    axs[0].set_ylabel('Raw flux', fontsize='x-large')
+    axs[0].set_ylabel('Original flux', fontsize='x-large')
     # axs[0].set_ylabel('f', fontsize='x-large')
     axs[0].plot(m.x_obs[g], m.y_obs[g], ".k", ms=4, label="data", zorder=2,
                 rasterized=True)
