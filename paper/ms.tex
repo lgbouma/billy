@@ -138,9 +138,9 @@ Smithsonian, 60 Garden St, Cambridge, MA 02138, USA}
 01821, USA}
 
 % PENDING yy
-\author{D. Louie} % danalouie@astro.umd.edu
-\affiliation{University of Maryland, Baltimore County, 1000 Hilltop
-Circle, Baltimore, MD 21250, USA}
+\author[0000-0002-2457-272X]{D.~R.~Louie} % danalouie@astro.umd.edu
+\affiliation{Department of Astronomy, University of Maryland, College
+Park, MD 20742, USA}
 
 %CONFIRMED
 \author[0000-0002-8964-8377]{S. N. Quinn} % squinn@cfa.harvard.edu
@@ -635,11 +635,10 @@ comparable BIC values suggests that these sharper features may indeed
 be real, but that there is only weak statistical support for their
 existence.
 
-The periodogram of the final residual (Figures~\ref{fig:splitsignal}
-and~\ref{fig:splitsignalii} bottom row) shows a barely significant and
+The periodogram of the final residual shows a barely significant and
 poorly-resolved peak at $\approx$8 days, consistent with the visual
-impression of some slower trends in the residuals after subtracting
-the shorter- and longer-period signals.
+impression of some slower trends in the bottom rows of
+Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}.
 
 \section{Tests for Binarity}
 \label{sec:gaia}
@@ -981,13 +980,15 @@ for instance their Figures~2 through~4.  Fitting a decade of
 observations, they provided the following linear ephemeris, which we
 did not find any need to update.
 \begin{align}
-t_0\ {\rm BJD}_{\rm TDB} &= 2455543.943 \pm 0.002 \\
-P &= 0.4483993 \pm 0.0000006 d.
+t_0\ {\rm BJD}_{\rm TDB} &= 2455543.943 \pm 0.002 \nonumber \\
+P &= 0.4483993 \pm 0.0000006\,{\rm d}.
+\label{eq:ephem}
 \end{align}
 
-Figure~\ref{fig:o_minus_c} shows the phase of the dip we detected in
-the TESS data, relative to their ephemeris.  It agrees with the
-independent December 2018 measurements by
+Figure~\ref{fig:o_minus_c} shows the observed mid-transit times of
+dips minus the times predicted from Equation~\ref{eq:ephem}.  The
+phase of the dip we detected in the TESS data (yellow star) agrees
+with the independent December 2018 measurements by
 \citet{tanimoto_evidence_2020}: either the dip abruptly shifted phase
 over the past decade or, more likely, there are multiple dips that
 have come and gone at different phases.
