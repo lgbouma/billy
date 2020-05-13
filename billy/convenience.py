@@ -6,6 +6,12 @@ from astropy.io import fits
 from astrobase.lcmath import time_bin_magseries_with_errs
 from cdips.lcproc.mask_orbit_edges import mask_orbit_start_and_end
 
+MSTAR_VANEYKEN = 0.39 # 0.34 or 0.39, from Briceno+2005 Baraffe/Siess
+MSTAR_STDEV = 0.25
+RSTAR_VANEYKEN = 1.23 # 1.39 (Brinceno+05) or 1.07 (Table 3 van Eyken+12)
+RSTAR_STDEV = 0.40
+
+
 def chisq(y_mod, y_obs, y_err):
     return np.sum( (y_mod - y_obs )**2 / y_err**2 )
 
@@ -33,7 +39,8 @@ def get_bic(m, ydict, outdir):
     k_tra = 7
     k_Porb = 2*_N # amplitudes
     k_Prot = 2*_M + 2 # amplitudes, plus period and phase
-    k = k_tra + k_Porb + k_Prot
+    k_stparam = 2
+    k = k_tra + k_Porb + k_Prot + k_stparam
 
     n = len(y_obs)
     BIC = bic( χ2, k, n )
@@ -189,6 +196,8 @@ def initialize_ptfo_prior_d(x_obs, modelcomponents):
             prior_d['b'] = 0.5  # initialize for broad prior
             prior_d['u'] = [0.30,0.35] # 0.39Msun, 1.39Rsun -> logg=3.74. Teff 3500K -> Claret18
             prior_d['mean'] = 0
+            prior_d['m_star'] = MSTAR_VANEYKEN
+            prior_d['r_star'] = RSTAR_VANEYKEN
 
         if 'sincos' in modelcomponent:
 

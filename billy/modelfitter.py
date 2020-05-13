@@ -2,6 +2,7 @@ import numpy as np, matplotlib.pyplot as plt, pandas as pd, pymc3 as pm
 import pickle, os
 from copy import deepcopy
 from collections import OrderedDict
+from astropy import units as units, constants as const
 
 import exoplanet as xo
 
@@ -9,6 +10,10 @@ from billy import __path__
 from billy.models import sin_model, cos_model, transit_model
 from billy.plotting import plot_test_data, savefig, plot_MAP_data
 from billy.convenience import flatten as bflatten
+
+from billy.convenience import (
+    MSTAR_VANEYKEN, MSTAR_STDEV, RSTAR_VANEYKEN, RSTAR_STDEV
+)
 
 RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
 
@@ -58,8 +63,8 @@ class ModelFitter(ModelParser):
     σ^2).
     """
 
-    def __init__(self, modelid, x_obs, y_obs, y_err, prior_d, mstar=1,
-                 rstar=1, N_samples=2000, N_cores=16, N_chains=4,
+    def __init__(self, modelid, x_obs, y_obs, y_err, prior_d,
+                 N_samples=2000, N_cores=16, N_chains=4,
                  plotdir=None, pklpath=None, overwrite=1):
 
         self.N_samples = N_samples
@@ -70,8 +75,6 @@ class ModelFitter(ModelParser):
         self.x_obs = x_obs
         self.y_obs = y_obs
         self.y_err = y_err
-        self.mstar = mstar
-        self.rstar = rstar
         self.t_exp = np.nanmedian(np.diff(x_obs))
 
         self.initialize_model(modelid)
@@ -107,6 +110,12 @@ class ModelFitter(ModelParser):
             for modelcomponent in self.modelcomponents:
 
                 if 'transit' in modelcomponent:
+
+                    BoundedNormal = pm.Bound(pm.Normal, lower=0, upper=3)
+                    m_star = BoundedNormal("m_star", mu=MSTAR_VANEYKEN,
+                                           sd=MSTAR_STDEV)
+                    r_star = BoundedNormal("r_star", mu=RSTAR_VANEYKEN,
+                                           sd=RSTAR_STDEV)
 
                     # mean = pm.Normal(
                     #     "mean", mu=prior_d['mean'], sd=0.02, testval=prior_d['mean']
@@ -150,7 +159,7 @@ class ModelFitter(ModelParser):
 
                     orbit = xo.orbits.KeplerianOrbit(
                         period=period, t0=t0, b=b,
-                        mstar=self.mstar, rstar=self.rstar
+                        mstar=m_star, rstar=r_star
                     )
                     light_curve = (
                         mean +
@@ -158,6 +167,37 @@ class ModelFitter(ModelParser):
                             orbit=orbit, r=r, t=self.x_obs, texp=self.t_exp
                         )
                     )
+
+                    #
+                    # derived quantities
+                    #
+                    # stellar density in cgs
+                    rhostar = pm.Deterministic(
+                        "rhostar",
+                        (
+                        (m_star/((4*np.pi/3)*r_star**3)) *
+                        (1*units.Msun / ((1*units.Rsun)**3)).cgs.value
+                        )
+                    )
+
+                    # planet radius in jupiter radii
+                    r_planet = pm.Deterministic(
+                        "r_planet", (r*r_star)*( 1*units.Rsun/(1*units.Rjup) ).cgs.value
+                    )
+
+                    #
+                    # eq 30 of winn+2010, ignoring planet density.
+                    #
+                    a_Rs = pm.Deterministic(
+                        "a_Rs",
+                        (rhostar * period**2)**(1/3)
+                        *
+                        (( (1*units.gram/(1*units.cm)**3) * (1*units.day**2)
+                          * const.G / (3*np.pi)
+                        )**(1/3)).cgs.value
+                    )
+
+
 
                 if 'sincos' in modelcomponent:
                     if 'Porb' in modelcomponent:
