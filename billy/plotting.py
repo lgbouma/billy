@@ -1256,7 +1256,7 @@ def plot_brethren(outdir):
 
     lc_dict = pickle.load(open(k2pkl, 'rb'))
 
-    pklpath = '/Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200413_v0/PTFO_8-8695_transit_2sincosPorb_2sincosProt_phasefoldmap_points.pkl'
+    pklpath = '/Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200513_v0/PTFO_8-8695_transit_3sincosPorb_2sincosProt_phasefoldmap_points.pkl'
     ptfo_d = pickle.load(open(pklpath, 'rb'))
 
     ##########
