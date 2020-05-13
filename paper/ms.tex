@@ -195,11 +195,11 @@ Technology, Cambridge, MA 02139, USA}
 We wish \ptfob\ were a planet. It would be quite exceptional. It would
 be the youngest known hot Jupiter \citep{van_eyken_ptf_2012}, orbiting
 a T Tauri star in the Orion-OB1a cluster.  It would have the shortest
-orbital period of any hot Jupiter.  With such a short
-period, it would probably be filling its Roche lobe, and actively
-losing mass to its host star.  Not only that, but the rapidly-rotating
-host star is probably oblate enough to torque the planet's orbit into
-and out of the transiting configuration on a time scale of years
+orbital period of any hot Jupiter.  With such a short period, it would
+probably be filling its Roche lobe, and actively losing mass to its
+host star.  Not only that, but the rapidly-rotating host star is
+probably oblate enough to torque the planet's orbit into and out of
+the transiting configuration on a time scale of years
 \citep{barnes_measurement_2013,ciardi_followup_2015,kamiaka_revisiting_2015}. 
 
 Another first would be the direct detection of H$\alpha$ emission from
@@ -289,12 +289,12 @@ by \citet{koen_2020} in postscript.
 	\vspace{-0.7cm}
 	\caption{
     {\bf TESS light curve of \ptfo\ (Sector 6, Orbit 19).} {\it Top}:
-    The original (\texttt{PDCSAP} mean-subtracted) relative flux.
-    The beat period of 4.48 days is visible by eye.  The blue curve is
-    a model including 2 harmonics at the longer period $P_{\rm \ell}$,
+    The original (\texttt{PDCSAP} mean-subtracted) relative flux.  The
+    beat period of 4.48 days is visible by eye.  The blue curve is a
+    model including 2 harmonics at the longer period $P_{\rm \ell}$,
     plus 3 harmonics and a transit at the shorter period $P_{\rm s}$.
-    {\it Upper middle}: Longer-period signal, equal to the original signal
-    minus the shorter-period signal.  {\it Lower middle}:
+    {\it Upper middle}: Longer-period signal, equal to the original
+    signal minus the shorter-period signal.  {\it Lower middle}:
     Shorter-period signal, equal to the original signal minus the
     longer-period signal.  {\it Bottom}: residual relative flux.  The
     data are binned from 2 to 10 minute cadence as a convenience for
@@ -309,8 +309,8 @@ by \citet{koen_2020} in postscript.
 		\includegraphics[width=1\textwidth]{f2.pdf}
 	\end{center}
 	\vspace{-0.7cm}
-  \caption{ {\bf TESS light curve of \ptfo\ (Sector 6, Orbit 20).} Same
-  format as Figure~\ref{fig:splitsignal}.
+  \caption{ {\bf TESS light curve of \ptfo\ (Sector 6, Orbit 20).}
+  Same format as Figure~\ref{fig:splitsignal}.
   \label{fig:splitsignalii}
 	}
 \end{figure*}
@@ -331,17 +331,15 @@ frame image'' (FFI).
 The 2-minute stacks for \ptfo\ were reduced to light curves by the
 Science Processing Operations Center (SPOC) at NASA
 Ames~\citep{jenkins_tess_2016}.  We mainly used the Presearch Data
-Conditioning (PDC) light curve.  The PDC light curve aperture used
-pixels chosen to maximize the SNR of the total flux of the target
-\citep{bryson_2020_target_aperture}.  Non-astrophysical variability
-was removed by fitting out trends common to many stars
-\citep{smith_kepler_2012,stumpe_multiscale_2014}.
-% \citep{smith_kepler_PDC_2017}
-% \citep{smith_kepler_apertures_2017}
+Conditioning Simple Aperture Photometry (PDCSAP) light curve.  The PDC
+light curve aperture used pixels chosen to maximize the SNR of the
+total flux of the target \citep{bryson_2020_target_aperture}.
+Non-astrophysical variability was removed by fitting out trends common
+to many stars \citep{smith_kepler_2012,stumpe_multiscale_2014}.
 
 As an independent check on the 2-minute SPOC light curve, we examined
-the light curve based upon 30-minute image stacks which was produced as
-part of the Cluster Difference Imaging Photometric Survey (CDIPS;
+the light curve based upon 30-minute image stacks which was produced
+as part of the Cluster Difference Imaging Photometric Survey (CDIPS;
 \citealt{bouma_cluster_2019}).  Our CDIPS light curve of choice used a
 circular aperture with radius 1 pixel.
 
@@ -350,18 +348,18 @@ which indicate known problems \citep[{\it
 e.g.},][]{tess_data_product_description_2018}.  We also masked out the
 data from the first and last 6 hours of each orbit, since there are
 often systematic red noise in the photometry during those times.  Both
-the CDIPS and PDC light curves showed a clear discontinuous jump in the
-last few days of orbit 20, which seemed likely to be an instrumental
-systematic effect.  We correspondingly masked out the data with
-timestamps ranging from BJD\,2458488.3 until the end of the orbit.
-The PDC light curve initially had 15{,}678 points.  The quality-flag
-cut removed 854 points; masking the orbit edges removed an additional
-716 points; and removing the data from the final few days of orbit 20
-removed an additional 1079 points.  After cleaning, 83\% of the
-initial flux measurements remained.
+the CDIPS and PDC light curves showed a clear discontinuous jump in
+the last few days of orbit 20, which seemed likely to be an
+instrumental systematic effect.  We correspondingly masked out the
+data with timestamps ranging from BJD\,2458488.3 until the end of the
+orbit.  The PDC light curve initially had 15{,}678 points.  The
+quality-flag cut removed 854 points; masking the orbit edges removed
+an additional 716 points; and removing the data from the final few
+days of orbit 20 removed an additional 1079 points.  After cleaning,
+83\% of the initial flux measurements remained.
 
-We normalized the light curve by dividing out the median flux, and then
-opted to subtract 1{.}0 to set the median value to zero, which
+We normalized the light curve by dividing out the median flux, and
+then opted to subtract 1{.}0 to set the median value to zero, which
 simplified subsequent interpretation.  Many of these and subsequent
 processing steps were performed using
 \texttt{astrobase}~\citep{bhatti_astrobase_2018}. 
@@ -474,10 +472,9 @@ complex.
     Figure~\ref{fig:splitsignal}.  {\it Bottom}: Relative flux at the
     shorter period. The reference phase is set to the dip.  Gray
     points are the 10 minute cadence \texttt{PDCSAP} flux.  Black
-    points are binned to 100 points per period.
-    The model (blue line)
-    includes 2 harmonics at the longer period,
-    plus 3 harmonics and a transit at the shorter period.
+    points are binned to 100 points per period.  The model (blue line)
+    includes 2 harmonics at the longer period, plus 3 harmonics and a
+    transit at the shorter period.
 		\label{fig:phasefold}
 	}
 \end{figure*}
@@ -503,8 +500,8 @@ harmonics of both signals are also present.
 % 2A2 = 0.08
 % -> A2 = 0.04
 
-The peak-to-peak light curve amplitude at maximum, when the two signals
-interfere constructively, is about 14\%.  During the times of
+The peak-to-peak light curve amplitude at maximum, when the two
+signals interfere constructively, is about 14\%.  During the times of
 destructive interference, the peak-to-peak amplitude is about 6\%.
 Assuming the signals are mainly sinusoidal, simple algebra tells us
 that the peak-to-peak amplitudes should be about 10\% for the
@@ -592,10 +589,8 @@ $N_{\rm s}$ and $N_{\rm \ell}$ ranging from one to three.  To select
 our preferred model, we used the Bayesian information criterion
 (Table~1).  The model with the lowest BIC had three modes at the
 shorter 10.76$\,$hr period, and two modes at the longer 11.98$\,$hr
-period.
-The other models had BIC values that implied significantly less
-support \citep{burnham_multimodel_2016}.
-All nine models have
+period.  The other models had BIC values that implied significantly
+less support \citep{burnham_multimodel_2016}.  All nine models have
 reduced $\chi^2$ values ranging between 1.21 and 1.68, which suggests
 a plausible though imperfect agreement between the data and the model
 to within the formal uncertainties.  Table~2 gives the best-fitting
@@ -606,20 +601,20 @@ original signal into its respective components
 (Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}).  We also
 examined the phase-folded signals (Figure~\ref{fig:phasefold}).  
 
-In every model, the 11.98$\,$hr variability is a simple sinusoid
-with peak-to-peak amplitude $\approx$10\%.  The 10.76$\,$hr
-variability is always more complex.  The overall impression is of a
-distorted sinusoidal function, with a peak-to-peak amplitude of about
-4\%.  The asymmetric sinusoid rises to a maximum near phase 0.25, and
-reaches minimum brightness between phases $-0.5$ and $-0.25$.  Between
-phases $-0.5$ and $0.0$ there appears to be complex shorter-timescale
+In every model, the 11.98$\,$hr variability is a simple sinusoid with
+peak-to-peak amplitude $\approx$10\%.  The 10.76$\,$hr variability is
+always more complex.  The overall impression is of a distorted
+sinusoidal function, with a peak-to-peak amplitude of about 4\%.  The
+asymmetric sinusoid rises to a maximum near phase 0.25, and reaches
+minimum brightness between phases $-0.5$ and $-0.25$.  Between phases
+$-0.5$ and $0.0$ there appears to be complex shorter-timescale
 variability, ending with a ``dip'' of depth $\approx$1.2\%, lasting
 $\approx$0.75 hours.  The fact that our preferred model has three
 rather than two ``short period'' harmonics is linked to the degree of
 curvature required between phases $-0.5$ and $-0.05$: the analogous
-$(N_{\rm \ell},N_{\rm s})=(2,2)$ model prefers a longer transit duration,
-but does not fit the out-of-transit curvature as well, particularly
-immediately before ingress.
+$(N_{\rm \ell},N_{\rm s})=(2,2)$ model prefers a longer transit
+duration, but does not fit the out-of-transit curvature as well,
+particularly immediately before ingress.
 
 The periodogram of the final residual shows a barely significant and
 poorly-resolved peak at $\approx$8 days, consistent with the visual
@@ -713,10 +708,9 @@ with separations wider than $\approx$1'' (349~AU) and within $\Delta G
 \approx 3$ magnitudes of \ptfo\ would have likely been detected
 through this approach. 
 
-Stronger constraints on possible
-stellar companions were obtained by
-\citet{van_eyken_ptf_2012} through high-resolution imaging with the NIRC2
-camera on Keck II.  They reported 3-$\sigma$ $H$-band magnitude
+Stronger constraints on possible stellar companions were obtained by
+\citet{van_eyken_ptf_2012} through high-resolution imaging with the
+NIRC2 camera on Keck II.  They reported 3-$\sigma$ $H$-band magnitude
 difference limits of 4.3, 6.4, and 8.9 at angular separations of 0.25,
 0.5, and 1.0 arcseconds (87, 175, and 349~AU).  They also detected a
 point source, not present in Gaia DR2, 7.0 magnitudes fainter than the
@@ -765,7 +759,7 @@ Subsequent analysis of its colors showed that it is a background star
 \end{figure*}
 
 
-We also used the Gaia data to see if the observed luminosity of \ptfo\ 
+We also used the Gaia data to see if the observed luminosity of \ptfo\
 is too bright to be a single star, i.e., if it is a ``photometric
 binary.'' To assemble a set of stars coeval with \ptfo, we used the
 25$\,$Ori-1 members identified by \citet{kounkel_apogee2_2018}, and
@@ -853,8 +847,8 @@ results.  \ptfo\ has a RUWE of 1{.}22, which corresponds to the
 93$^{\rm rd}$ percentile of 25$\,$Ori-1 members.  Two of thirty stars
 with variability amplitudes greater than 9.7\% showed higher RUWE.
 One was CVSO~35, which has a TESS light curve that varies by 2
-magnitudes, and shows a strong IR excess and a 10$\mu$m silicate emission
-feature \citep{mauco_herschel_2018}.  The other is GAIA DR2
+magnitudes, and shows a strong IR excess and a 10$\mu$m silicate
+emission feature \citep{mauco_herschel_2018}.  The other is GAIA DR2
 3222210363837122048.
 
 We will have to wait for the full release of the nominal Gaia mission
@@ -866,26 +860,24 @@ cause.
 
 \subsection{Radial Velocity Binarity}
 
-Long-baseline radial velocity (RV) measurements could also reveal
-the presence of multiple stars in this system.
-Unfortunately,
-the available RV data for \ptfo\ is rather sparse, presumably due to the
-stellar faintness and equatorial velocity.
-The RV datasets with the longest baselines we could find
-in the literature were those reported by \citet{van_eyken_ptf_2012}.
-These included 5 Keck/HIRES measurements acquired
-over 10 days in April 2011, and 4 HET/HRS measurements acquired over
-10 days in February 2011.  The root-mean-squared RV over each 10 day
-span was $\approx$$2\,{\rm km}\,{\rm s}^{-1}$, consistent with the
-measurement precision.  Although \citet{van_eyken_ptf_2012} tried a
-CCF-based RV reduction technique, they eventually found that manually
-selecting absorption lines and measuring line centroids was more
-effective.  While \citet{yu_tests_2015} acquired 22 further Keck/HIRES
-spectra over one night in December 2013, those points were not reduced
-to velocities, and it is not clear whether the appropriate calibration
-data exist.  Further Keck/HIRES measurements of \ptfo, if
-appropriately calibrated, could potentially confirm or refute the
-presence of binary companions.
+Long-baseline radial velocity (RV) measurements could also reveal the
+presence of multiple stars in this system.  Unfortunately, the
+available RV data for \ptfo\ is rather sparse, presumably due to the
+stellar faintness and equatorial velocity.  The RV datasets with the
+longest baselines we could find in the literature were those reported
+by \citet{van_eyken_ptf_2012}.  These included 5 Keck/HIRES
+measurements acquired over 10 days in April 2011, and 4 HET/HRS
+measurements acquired over 10 days in February 2011.  The
+root-mean-squared RV over each 10 day span was $\approx$$2\,{\rm
+km}\,{\rm s}^{-1}$, consistent with the measurement precision.
+Although \citet{van_eyken_ptf_2012} tried a CCF-based RV reduction
+technique, they eventually found that manually selecting absorption
+lines and measuring line centroids was more effective.  While
+\citet{yu_tests_2015} acquired 22 further Keck/HIRES spectra over one
+night in December 2013, those points were not reduced to velocities,
+and it is not clear whether the appropriate calibration data exist.
+Further Keck/HIRES measurements of \ptfo, if appropriately calibrated,
+could potentially confirm or refute the presence of binary companions.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -946,8 +938,8 @@ data strongly support this conclusion.
 	}
 \end{figure}
 
-The TESS light curve shows a dip that lasts about 45 minutes, and seems
-to recur every 10.76 hours
+The TESS light curve shows a dip that lasts about 45 minutes, and
+seems to recur every 10.76 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
 The dip duration is roughly the same as that observed by previous
 investigators \citep{van_eyken_ptf_2012,yu_tests_2015}.  The 1.2\%
@@ -1009,9 +1001,9 @@ Non-zero contributions in both the first and second harmonics are
 detected (Table~2).  The first sine and cosine harmonic both have
 amplitudes of roughly $0.90\pm0.04\%$.  The second sine harmonic has
 amplitude $0.16 \pm 0.04\%$, so is non-zero at a significance of
-$\approx$4$\sigma$.  The second cosine harmonic has negative amplitude $0.55
-\pm 0.03\%$.  In our sign convention, the fact that it is negative
-means that this component peaks at phase 0.25 and 0.75.
+$\approx$4$\sigma$.  The second cosine harmonic has negative amplitude
+$0.55 \pm 0.03\%$.  In our sign convention, the fact that it is
+negative means that this component peaks at phase 0.25 and 0.75.
 
 \subsubsection{Ellipsoidal Variability?}
 If there were a giant planet transiting \ptfo, it would tidally
@@ -1026,11 +1018,12 @@ induced by close-in giant planets because the host star is puffy, and
 still on the pre-main-sequence.
 
 The planetary interpretation however does not readily explain the
-large first sine and cosine harmonics.  Interpreting the sine component as
-Doppler beaming would imply a secondary mass greater than the primary
-($0.86\,M_\odot$).  Interpreting the cosine component as reflected or
-emitted light from the planet's surface is nonsensical because the
-sign is wrong---the planet would need to be {\it absorbing} light.
+large first sine and cosine harmonics.  Interpreting the sine
+component as Doppler beaming would imply a secondary mass greater than
+the primary ($0.86\,M_\odot$).  Interpreting the cosine component as
+reflected or emitted light from the planet's surface is nonsensical
+because the sign is wrong---the planet would need to be {\it
+absorbing} light.
 
 \subsubsection{Similar Light Curves}
 \label{subsec:dipstars}
@@ -1043,17 +1036,11 @@ sign is wrong---the planet would need to be {\it absorbing} light.
 	\vspace{-0.7cm}
   \caption{ {\bf \ptfo\ and its brethren.}
     Five transient and persistent flux dip stars selected based on
-    their visual similarity to the short-period signal in \ptfo\ are as
-    shown.
-    They include
-    EPIC 204143627,
-    EPIC 204270520,
-    EPIC 204321142,
-    EPIC 246938594,
-    and
-    EPIC 205483258 (RIK-210).
-    RIK-210 has the longest period of any of these objects.  All the
-    analogs displayed are either in Taurus or Upper~Sco, and meet the
+    their visual similarity to the short-period signal in \ptfo\ are
+    as shown.  They include EPIC 204143627, EPIC 204270520, EPIC
+    204321142, EPIC 246938594, and EPIC 205483258 (RIK-210).  RIK-210
+    has the longest period of any of these objects.  All the analogs
+    displayed are either in Taurus or Upper~Sco, and meet the
     characteristics of Section~\ref{subsec:dipstars}.  We found these
     objects through studies by \citet{stauffer_orbiting_2017},
     \citet{david_transient_2017}, and \citet{rebull_usco_2018}.
@@ -1068,9 +1055,9 @@ low-mass weak-lined T Tauri stars in regions including $\rho$ Oph,
 Upper~Sco, Taurus, and perhaps the Pleiades
 \citep{rebull_rotation_2016,david_transient_2017,stauffer_orbiting_2017,stauffer_rotevol_2018,rebull_usco_2018,rebull_rotation_2020}.
 These surveys were performed using K2 \citep{howell_k2_2014}.  We
-downloaded some of these light curves from MAST, opting for the EVEREST
-reductions \citep{luger_everest_2016,luger_update_2018}.  They are
-plotted in Figure~\ref{fig:brethren}.
+downloaded some of these light curves from MAST, opting for the
+EVEREST reductions \citep{luger_everest_2016,luger_update_2018}.  They
+are plotted in Figure~\ref{fig:brethren}.
 
 These light curves have been phenomenologically classified as
 ``persistent flux dips'' or ``transient flux dips'', based on whether
@@ -1192,8 +1179,7 @@ systems.
 The explanations that are not yet ruled out include {\it (i)}
 transiting clumps of gas at the Keplerian corotation radius; {\it
 (ii)} transits of enshrouded protoplanets; {\it (iii)} occultations of
-starspots by an optically thick disk.  
-The first and last explanations
+starspots by an optically thick disk.  The first and last explanations
 have added appeal because they are flexible enough to explain not only
 the transient and persistent-dip M-dwarfs, but also the ``scallop
 shell'' M-dwarfs \citep{stauffer_orbiting_2017}.  Despite this appeal,
