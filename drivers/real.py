@@ -26,7 +26,7 @@ def main(modelid):
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
-                           '20200428_v0')
+                           '20200513_v0')
 
     ##########
 
@@ -92,7 +92,7 @@ def main(modelid):
 
 if __name__ == "__main__":
 
-    DEBUG = 1
+    DEBUG = 0
 
     if DEBUG:
         main('transit_2sincosPorb_2sincosProt')
