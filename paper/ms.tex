@@ -63,7 +63,7 @@ University, 4 Ivy Lane, Princeton, NJ 08540, USA}
 Astrophysics and Space Research, Massachusetts Institute of
 Technology, Cambridge, MA 02139, USA}
 %
-%PENDING yy
+%CONFIRMED
 \author[0000-0001-6763-6562]{R. Vanderspek} % roland@space.mit.edu
 \affiliation{Department of Physics and Kavli Institute for
 Astrophysics and Space Research, Massachusetts Institute of
@@ -195,7 +195,7 @@ Technology, Cambridge, MA 02139, USA}
 We wish \ptfob\ were a planet. It would be quite exceptional. It would
 be the youngest known hot Jupiter \citep{van_eyken_ptf_2012}, orbiting
 a T Tauri star in the Orion-OB1a cluster.  It would have the shortest
-orbital period (10.7 hours) of any hot Jupiter.  With such a short
+orbital period of any hot Jupiter.  With such a short
 period, it would probably be filling its Roche lobe, and actively
 losing mass to its host star.  Not only that, but the rapidly-rotating
 host star is probably oblate enough to torque the planet's orbit into
@@ -242,7 +242,7 @@ Additionally, as the gravity-darkened star precessed about its
 rotation axis, it would show photometric variability that has not been
 observed.
 
-While the planetary interpetation clearly faces challenges, there is
+While the planetary interpretation clearly faces challenges, there is
 no completely satisfactory alternate explanation.  High-latitude
 accretion hotspots might produce the observed H$\alpha$ variability,
 but require fine-tuning to produce dips of the appropriate duration.
@@ -270,7 +270,7 @@ available observations from TESS \citep{ricker_transiting_2015} and
 Gaia \citep{gaia_collaboration_gaia_2018}.  The TESS light curve shows
 two different periodic signals, which we analyze in
 Section~\ref{sec:tess}.  The Gaia data, analyzed in
-Section~\ref{sec:gaia}, show that \ptfo\ is a photometric binary, and
+Section~\ref{sec:gaia}, show that \ptfo\ is a photometric binary and
 suggest it is also an astrometric binary.  We discuss the pieces of
 the puzzle in Section~\ref{sec:discussion}, and summarize the
 situation in Section~\ref{sec:conclusions}.  We comment on the study
@@ -490,11 +490,11 @@ PDCSAP and 30-minute FFI forms, showed a strong sinusoidal beat signal
 panel). As a precursor to more detailed analysis, we calculated
 generalized Lomb-Scargle periodograms using \texttt{astrobase}
 \citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
-The two tallest peaks occur at 0.448\,days and 0.499\,days.  We will
-refer to these two periods as the ``shorter period'' $P_{\rm s}$ and
-the ``longer period'' $P_{\rm \ell}$.  The peak at $P_{\rm \ell}$ is
-the taller of the two peaks.  Lower-power harmonics of both signals
-are also present.
+The two tallest peaks occur at 0.448\,d (10.76$\,$hr) and 0.499\,d
+(11.98$\,$hr).  We will refer to these two periods as the ``shorter
+period'' $P_{\rm s}$ and the ``longer period'' $P_{\rm \ell}$.  The
+peak at $P_{\rm \ell}$ is the taller of the two peaks.  Lower-power
+harmonics of both signals are also present.
 
 % 0.14 = A1+A2
 % 0.06 = A1-A2
@@ -576,9 +576,9 @@ code \citep{exoplanet:exoplanet}.  Our priors are listed in Table~2.
 To speed up the fitting process, we averaged the 2-minute light curve
 to 10-minute samples.  We correspondingly scaled the uncertainties in
 the flux measurements by a factor of $\sqrt{5}$.  Before sampling, we
-initialized each model with the parameters of the maximum a posteriori
-(MAP) model.  We then assumed a Gaussian likelihood, and sampled using
-\texttt{PyMC3}'s gradient-based No-U-Turn Sampler
+initialized each model with the parameters of the maximum {\it a
+posteriori} (MAP) model.  We then assumed a Gaussian likelihood, and
+sampled using \texttt{PyMC3}'s gradient-based No-U-Turn Sampler
 \citep{hoffman_no-u-turn_2014}, and used $\hat{R}$ as our convergence
 diagnostic \citep{gelman_inference_1992}.  We tested our ability to
 successfully recover injected parameters using synthetic data before
@@ -606,8 +606,8 @@ original signal into its respective components
 (Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}).  We also
 examined the phase-folded signals (Figure~\ref{fig:phasefold}).  
 
-In every model, the $11.98\,{\rm hr}$ variability is a simple sinusoid
-with peak-to-peak amplitude $\approx$10\%.  The $10.76\,{\rm hr}$
+In every model, the 11.98$\,$hr variability is a simple sinusoid
+with peak-to-peak amplitude $\approx$10\%.  The 10.76$\,$hr
 variability is always more complex.  The overall impression is of a
 distorted sinusoidal function, with a peak-to-peak amplitude of about
 4\%.  The asymmetric sinusoid rises to a maximum near phase 0.25, and
@@ -1218,8 +1218,8 @@ the \ptfo\ system.  Our main results are as follows.
 \begin{itemize}
   \item {\it The TESS light curve shows two periodic signals.} The
     ``long'' signal is a 10\% peak-to-peak sinusoid that repeats every
-    11.98 hours.  The ``short'' signal is a 4\% peak-to-peak ``dip +
-    asymmetric sinusoid'' that repeats every 10.76 hours. The signals
+    11.98$\,$hr.  The ``short'' signal is a 4\% peak-to-peak ``dip +
+    asymmetric sinusoid'' that repeats every 10.76$\,$hr. The signals
     beat, and therefore cannot be an artifact linked to data
     processing.  Within the angular resolution of the Gaia source
     catalog, both signals originate from \ptfo.
