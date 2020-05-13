@@ -2,7 +2,7 @@ import pickle, os
 import numpy as np, pandas as pd
 from glob import glob
 
-run_id = '20200428_v0'
+run_id = '20200513_v0'
 
 pklpaths = glob(
     '/Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/{}/*bicdict*'
