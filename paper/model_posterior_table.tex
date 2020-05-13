@@ -1,6 +1,6 @@
 % Table of best fit parameters
 \startlongtable
-\begin{deluxetable*}{llrrrr}
+\begin{deluxetable*}{lllrrrr}
 %
 \tablecaption{ Best-fit model priors and posteriors. }
 \label{tab:posterior}
@@ -11,35 +11,50 @@
 %
 \tablehead{
   \colhead{Param.} & 
+  \colhead{Unit} & 
   \colhead{Prior} & 
   \colhead{Mean} & 
   \colhead{Std{.} Dev.} &
   \colhead{3$^{\rm rd}$ Pct.} &
   \colhead{97$^{\rm th}$ Pct.}
 }
-% /Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200428_v0/posterior_table_clean_transit_2sincosPorb_2sincosProt.tex
+% /Users/luke/Dropbox/proj/billy/results/PTFO_8-8695_results/20200513_v0/posterior_table_clean_transit_3sincosPorb_2sincosProt.tex
 \startdata
- $P_{\rm s}$ &                                       $\mathcal{N}(0.4485; 0.0010)$ & 0.4484592 & 0.0000448 & 0.4483738 & 0.4485432 \\
- $t_{\rm s}^{(1)}$ &                                 $\mathcal{N}(0.438096; 0.0020)$ & 0.438964 & 0.0011541 & 0.4367218 & 0.4410819 \\
- $R_{\rm p}/R_\star$ &                               $\mathcal{N}(0.1100; 0.0110)$ & 0.11461 & 0.00588 & 0.10407 & 0.12581 \\
- $b$ &                                               $\mathcal{U}(0; 1+R_{\mathrm{p}}/R_\star)$ & 0.8103 & 0.0430 & 0.7279 & 0.8831 \\
- $u_1$ &                                             (2) & 0.634 & 0.463 & 0. & 1.492 \\
- $u_2$ &                                             (2) & 0.033 & 0.404 & -0.736 & 0.779 \\
- Mean &                                              $\mathcal{U}(-0.01; 0.01)$ & -0.000924 & 0.000195 & -0.001275 & -0.000539 \\
- $\omega_{\rm s}$ &                                  $2\pi/P_{\mathrm{s}}$ & 14.01061 & 0.00140 & 14.00798 & 14.01327 \\
- $A_{\mathrm{s},0}$ &                                $\mathcal{U}(-0.02; 0.02)$ & 0.009025 & 0.000383 & 0.008243 & 0.009695 \\
- $B_{\mathrm{s},0}$ &                                $\mathcal{U}(-0.02; 0.02)$ & 0.009843 & 0.000383 & 0.009152 & 0.010563 \\
- $A_{\mathrm{s},1}$ &                                $\mathcal{U}(-0.02; 0.02)$ & 0.001571 & 0.000337 & 0.000951 & 0.002223 \\
- $B_{\mathrm{s},1}$ &                                $\mathcal{U}(-0.02; 0.02)$ & -0.005324 & 0.000282 & -0.005866 & -0.004791 \\
- $\phi_{\rm \ell}$ &                                 $\mathcal{U}(1.3721; 2.1575)$ & 1.75981 & 0.20755 & 1.40468 & 2.07790 \\
- $\omega_{\rm \ell}$ &                               $\mathcal{N}(12.6054; 0.1261)$ & 12.588617 & 0.000907 & 12.586906 & 12.590249 \\
- $A_{\mathrm{\ell},0}$ &                             $\mathcal{U}(-0.06; 0.06)$ & 0.038302 & 0.004652 & 0.030051 & 0.044614 \\
- $B_{\mathrm{\ell},0}$ &                             $\mathcal{U}(-0.06; 0.06)$ & 0.021721 & 0.008029 & 0.008567 & 0.034349 \\
- $A_{\mathrm{\ell},1}$ &                             $\mathcal{U}(-0.02; 0.02)$ & 0.002271 & 0.000535 & 0.001288 & 0.003178 \\
- $B_{\mathrm{\ell},1}$ &                             $\mathcal{U}(-0.02; 0.02)$ & -0.00222 & 0.000539 & -0.00309 & -0.001201 \\
+{\it Sampled} & & & & & & \\
+\hline
+$P_{\rm s}$ & d & $\mathcal{N}(0.4485; 0.0010)$ & 0.4484613 & 0.0000460 & 0.4483731 & 0.4485416 \\
+$t_{\rm s}^{(1)}$ & d & $\mathcal{N}(0.438096; 0.0020)$ & 0.4388368 & 0.0011286 & 0.4367929 & 0.4410297 \\
+$R_{\rm p}/R_\star$ & -- & $\mathcal{N}(0.1100; 0.0110)$ & 0.11171 & 0.00679 & 0.09950 & 0.12437 \\
+$b$ & -- & $\mathcal{U}(0; 1+R_{\mathrm{p}}/R_\star)$ & 0.8205 & 0.0523 & 0.7188 & 0.9071 \\
+$u_1$ & -- & (2) & 0.693 & 0.501 & 0. & 1.638 \\
+$u_2$ & -- & (2) & -0.01 & 0.429 & -0.804 & 0.806 \\
+Mean & -- & $\mathcal{U}(-0.01; 0.01)$ & -0.001019 & 0.000185 & -0.001365 & -0.000669 \\
+$R_\star$ & $R_\odot$ & $\mathcal{T}(1.23; 0.40)$ & 1.20 & 0.40 & 0.44 & 1.90 \\
+$M_\star$ & $M_\odot$ & $\mathcal{T}(0.39; 0.25)$ & 0.42 & 0.22 & 0. & 0.78 \\
+$A_{\mathrm{s},0}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & 0.009083 & 0.000371 & 0.008396 & 0.009763 \\
+$B_{\mathrm{s},0}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & 0.009696 & 0.000391 & 0.008914 & 0.010352 \\
+$A_{\mathrm{s},1}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & 0.001646 & 0.000351 & 0.000990 & 0.002297 \\
+$B_{\mathrm{s},1}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & -0.005456 & 0.000307 & -0.005998 & -0.004861 \\
+$A_{\mathrm{s},2}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & 0.000177 & 0.000252 & -0.000295 & 0.000655 \\
+$B_{\mathrm{s},2}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & -0.000581 & 0.000271 & -0.001110 & -0.0001 \\
+$\phi_{\rm \ell}$ & rad & $\mathcal{U}(1.3721; 2.1575)$ & 1.80542 & 0.20468 & 1.47712 & 2.09634 \\
+$\omega_{\rm \ell}$ & rad$\ $d$^{-1}$ & $\mathcal{N}(12.6054; 0.1261)$ & 12.588753 & 0.000972 & 12.586968 & 12.590517 \\
+$A_{\mathrm{\ell},0}$ & -- & $\mathcal{U}(-0.06; 0.06)$ & 0.03929 & 0.004331 & 0.031501 & 0.045035 \\
+$B_{\mathrm{\ell},0}$ & -- & $\mathcal{U}(-0.06; 0.06)$ & 0.019891 & 0.008161 & 0.0071 & 0.032232 \\
+$A_{\mathrm{\ell},1}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & 0.002189 & 0.000516 & 0.001203 & 0.003021 \\
+$B_{\mathrm{\ell},1}$ & -- & $\mathcal{U}(-0.02; 0.02)$ & -0.002311 & 0.000496 & -0.003063 & -0.001364 \\
+\hline
+{\it Derived} & & & & & & \\
+\hline
+$\omega_{\rm s}$ & rad$\ $d$^{-1}$ & -- & 14.01054 & 0.00144 & 14.00803 & 14.01330 \\
+$R_{\rm p}$ & $R_{\mathrm{Jup}}$ & -- & 1.30 & 0.44 & 0.53 & 2.16 \\
+$a/R_\star$ & -- & -- & 1.81 & 3.17 & 0.35 & 3.29 \\
 \enddata
 \tablenotetext{}{
-  Note that $R_{\rm p}/R_\star$ is post-correction for the dilution by
+$\mathcal{U}$ denotes a uniform distribution,
+$\mathcal{N}$ a normal distribution, and
+$\mathcal{T}$ a truncated normal bounded between zero and an upper limit much larger than the mean.
+  Note that $R_{\rm p}/R_\star$ has been corrected for the dilution by
   Star A and other neighboring stars, according to the PDCSAP lightcurve's \texttt{CROWDSAP} value
   in the optimal aperture of 0{.}73.
   (1) To convert mean TESS mid-transit time to ${\rm BJD}_{\rm TDB}$, add 2458468.2.
