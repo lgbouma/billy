@@ -292,7 +292,7 @@ by \citet{koen_2020} in postscript.
     The original (\texttt{PDCSAP} mean-subtracted) relative flux.
     The beat period of 4.48 days is visible by eye.  The blue curve is
     a model including 2 harmonics at the longer period $P_{\rm \ell}$,
-    plus 2 harmonics and a transit at the shorter period $P_{\rm s}$.
+    plus 3 harmonics and a transit at the shorter period $P_{\rm s}$.
     {\it Upper middle}: Longer-period signal, equal to the original signal
     minus the shorter-period signal.  {\it Lower middle}:
     Shorter-period signal, equal to the original signal minus the
@@ -466,7 +466,7 @@ complex.
 \begin{figure*}[t]
 	\begin{center}
 		\leavevmode
-		\includegraphics[width=0.93\textwidth]{f3.pdf}
+		\includegraphics[width=1\textwidth]{f3.pdf}
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Phase-folded longer and shorter-period signals.}
@@ -477,7 +477,7 @@ complex.
     points are binned to 100 points per period.
     The model (blue line)
     includes 2 harmonics at the longer period,
-    plus 2 harmonics and a transit at the shorter period.
+    plus 3 harmonics and a transit at the shorter period.
 		\label{fig:phasefold}
 	}
 \end{figure*}
@@ -559,11 +559,13 @@ and cosine at the longer period.  In this case, the free parameters
 would be as follows.  The transit model parameters are the impact
 parameter, the planet-to-star radius ratio, two quadratic limb
 darkening parameters, the planet's orbital period (set equal to
-$P_{\rm s}$) the time of a particular transit, and the mean flux.
-There would be $2N_{\rm s}=4$ additional Fourier amplitudes at the
-shorter period, plus $2N_{\rm \ell}=2$ Fourier amplitudes at the
-longer period, as well as $P_\ell$ itself and the relative phase
-$\phi_\ell$.  The total number of parameters is 14.
+$P_{\rm s}$) the time of a particular transit, and the mean flux.  We
+also independently sampled the stellar radius and mass, implicitly
+defining the stellar density.  Additionally, there would be $2N_{\rm
+s}=4$ additional Fourier amplitudes at the shorter period, plus
+$2N_{\rm \ell}=2$ Fourier amplitudes at the longer period, as well as
+$P_\ell$ itself and the relative phase $\phi_\ell$.  The total number
+of parameters would be 17.
 
 We implemented and fitted the models using \texttt{PyMC3}, which is
 built on \texttt{theano}
@@ -588,13 +590,13 @@ fitting the \ptfo\ light curves.
 We considered nine models, with the number of modes per frequency
 $N_{\rm s}$ and $N_{\rm \ell}$ ranging from one to three.  To select
 our preferred model, we used the Bayesian information criterion
-(Table~1).  The model with the lowest BIC had two modes at the shorter
-10.76$\,$hr period, and two modes at the longer 11.98$\,$hr period.
-Two other models had BIC values that provided comparable evidence
-\citep{burnham_multimodel_2016}: one with ($N_{\rm s}=3$, $N_{\rm
-\ell}=3$), and the other with ($N_{\rm s}=3$, $N_{\rm \ell}=2$).
+(Table~1).  The model with the lowest BIC had three modes at the
+shorter 10.76$\,$hr period, and two modes at the longer 11.98$\,$hr
+period.
+The other models had BIC values that implied significantly less
+support \citep{burnham_multimodel_2016}.
 All nine models have
-reduced $\chi^2$ values ranging between 1.25 and 1.68, which suggests
+reduced $\chi^2$ values ranging between 1.21 and 1.68, which suggests
 a plausible though imperfect agreement between the data and the model
 to within the formal uncertainties.  Table~2 gives the best-fitting
 parameters for the preferred model, which has the lowest BIC value.
@@ -611,12 +613,13 @@ distorted sinusoidal function, with a peak-to-peak amplitude of about
 4\%.  The asymmetric sinusoid rises to a maximum near phase 0.25, and
 reaches minimum brightness between phases $-0.5$ and $-0.25$.  Between
 phases $-0.5$ and $0.0$ there appears to be complex shorter-timescale
-variability, including an abrupt jump at phase $\approx -0.33$, and
-ending with a ``dip'' of depth $\approx$1.2\%, lasting $\approx$0.75
-hours.  The fact that the higher-order models lead to roughly
-comparable BIC values suggests that these sharper features may indeed
-be real, but that there is only weak statistical support for their
-existence.
+variability, ending with a ``dip'' of depth $\approx$1.2\%, lasting
+$\approx$0.75 hours.  The fact that our preferred model has three
+rather than two ``short period'' harmonics is linked to the degree of
+curvature required between phases $-0.5$ and $-0.05$: the analogous
+$(N_{\rm \ell},N_{\rm s})=(2,2)$ model prefers a longer transit duration,
+but does not fit the out-of-transit curvature as well, particularly
+immediately before ingress.
 
 The periodogram of the final residual shows a barely significant and
 poorly-resolved peak at $\approx$8 days, consistent with the visual
@@ -1004,10 +1007,10 @@ Visually, the out-of-dip modulation at the 10.76$\,$hr period
 resembles a slightly asymmetric sinusoid (Figure~\ref{fig:phasefold}).
 Non-zero contributions in both the first and second harmonics are
 detected (Table~2).  The first sine and cosine harmonic both have
-amplitudes of roughly $0.9\pm0.1\%$.  The second sine harmonic has
-amplitude $0.16 \pm 0.07\%$, so is non-zero at a significance of only
-2.3$\sigma$.  The second cosine harmonic has negative amplitude $0.53
-\pm 0.06\%$.  In our sign convention, the fact that it is negative
+amplitudes of roughly $0.90\pm0.04\%$.  The second sine harmonic has
+amplitude $0.16 \pm 0.04\%$, so is non-zero at a significance of
+$\approx$4$\sigma$.  The second cosine harmonic has negative amplitude $0.55
+\pm 0.03\%$.  In our sign convention, the fact that it is negative
 means that this component peaks at phase 0.25 and 0.75.
 
 \subsubsection{Ellipsoidal Variability?}
@@ -1023,7 +1026,7 @@ induced by close-in giant planets because the host star is puffy, and
 still on the pre-main-sequence.
 
 The planetary interpretation however does not readily explain the
-first sine and cosine harmonics.  Interpreting the sine component as
+large first sine and cosine harmonics.  Interpreting the sine component as
 Doppler beaming would imply a secondary mass greater than the primary
 ($0.86\,M_\odot$).  Interpreting the cosine component as reflected or
 emitted light from the planet's surface is nonsensical because the
@@ -1219,7 +1222,7 @@ the \ptfo\ system.  Our main results are as follows.
     asymmetric sinusoid'' that repeats every 10.76 hours. The signals
     beat, and therefore cannot be an artifact linked to data
     processing.  Within the angular resolution of the Gaia source
-    catalog, both signals need to originate from \ptfo.
+    catalog, both signals originate from \ptfo.
   \item {\it The Gaia data imply binarity.} Relative to stars in its
     kinematic group, \ptfo\ is a photometric binary
     (Figure~\ref{fig:gaia}, top).  Relative to stars in its group that
@@ -1240,13 +1243,13 @@ the \ptfo\ system.  Our main results are as follows.
 The physical mechanism that explains the transient and persistent flux
 dips is unresolved. Our preferred explanations include transiting
 clumps of gas at the Keplerian corotation radius, and occultations of
-starspots by an optically thick disk \citep[{\it
+starspots by a tenuous gas disk \citep[{\it
 e.g.},][]{stauffer_orbiting_2017,david_transient_2017,zhan_complex_2019}.
 The jumping orbital phase disfavors the explanation of an enshrouded,
 transiting protoplanet.  Though \ptfob\ may not be a planet, as we and
 others had hoped, understanding \ptfo\ and its analogs is a worthy
-problem that might even teach us about the natal environments of the
-majority of habitable-zone Earth-sized planets in the Milky Way
+problem.  It might even teach us about the birth environments of the
+majority of habitable-zone Earth-sized planets
 \citep{dressing_occurrence_2013}.
 
 
@@ -1265,17 +1268,8 @@ conclusions by modeling the TESS light curve as a truncated sum of
 Fourier terms, and concluded that the two signals are most simply
 interpreted as coming from two stars.  Our analysis of the Gaia data
 provide independent support for the conclusion that \ptfo\ is a
-binary.
-
-Minor differences in our approaches are that \citet{koen_2020}
-interprets the ``out of dip'' signal to potentially show multiple
-dips, while our BIC-based model comparison did not indicate that
-including additional harmonics past the second order was strictly
-necessary (Table~1). Our analysis emphasized the agreement between the
+binary, and emphasized the agreement between the
 TESS dip ephemeris and that from \citet{tanimoto_evidence_2020}.
-\citet{koen_2020} however made a clearer case for testing the binarity
-hypothesis using interferometric imaging and high-precision radial
-velocities.
 \\
 \\
 %
