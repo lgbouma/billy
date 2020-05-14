@@ -156,14 +156,15 @@ Technology, Cambridge, MA 02139, USA}
 \begin{abstract}
   PTFO$\,$8-8695 (CVSO\,30) is a star in the 7--10 million year old
   Orion-OB1a cluster that shows brightness dips that resemble
-  planetary transits.  While strong evidence against the planet
-  hypothesis has already been provided, the possibility remains
+  planetary transits.  Although strong evidence against the planet
+  hypothesis has been presented, the possibility remains
   debated in the literature.  To obtain further clues, we inspected
   data from the NASA {\it Transiting Exoplanet Survey Satellite}
-  (TESS) and the ESA Gaia mission.  The Gaia data show that
-  PTFO$\,$8-8695 is a photometric binary with respect to members of
-  its kinematic group, and independently suggest that it is an
-  astrometric binary.  The TESS light curve shows two different
+  (TESS) and the ESA Gaia mission.  The Gaia data suggest that
+  PTFO$\,$8-8695 is a binary: the photometric data show
+  it to be overluminous with respect to members of
+  its kinematic group, and the astrometric data are inconsistent
+  with a single star.  The TESS light curve shows two different
   photometric periods. The variability is dominated by a sinusoidal
   signal with a period of 11.98$\,$hr, presumably caused by stellar
   rotation.  Also present is a 10.76$\,$hr signal consisting of a
@@ -173,7 +174,7 @@ Technology, Cambridge, MA 02139, USA}
   dips. As noted previously, this makes them difficult to explain as
   planetary transits.  Instead, we believe that PTFO$\,$8-8695 is a
   pair of young and rapidly rotating M dwarfs, one of which shows the
-  same ``transient-dipper'' behavior that been seen in at least 5
+  same ``transient-dipper'' behavior that has been seen in at least 5
   other cases.  The origin of these transient dips is still unknown
   but likely involves circumstellar material.
 \end{abstract}
@@ -246,14 +247,15 @@ While the planetary interpretation clearly faces challenges, there is
 no completely satisfactory alternate explanation.  High-latitude
 accretion hotspots might produce the observed H$\alpha$ variability,
 but require fine-tuning to produce dips of the appropriate duration.
-Furthermore, \ptfo\ does not have an infrared (IR) excess associated
-with the presence of dust at the inner edge of a primordial disk
+Transits by dust clumps or other dusty features are questionable
+because \ptfo\ does not have a detectable infrared (IR) excess associated
+with the presence of warm dust
 \citep[{\it e.g.},][Figure~18]{yu_tests_2015}.  Low-latitude
-starspots, hot or cold, struggle to produce photometric features as
+starspots, hot or cold, would struggle to produce photometric features as
 short as some of the observed dips.
 
 A relevant fact is that between 0.1\% and 1\% of rapidly rotating
-low-mass stars in $\mathcal{O}$(10)$\,$Myr old associations show
+low-mass stars in $\mathcal{O}$\,(10)$\,$Myr old associations show
 short-duration dips as part of their overall periodic variability
 \citep{rebull_usco_2018}.  The dips can persist over months, but their
 depths often vary, and sometimes change immediately after stellar
@@ -270,12 +272,12 @@ available observations from TESS \citep{ricker_transiting_2015} and
 Gaia \citep{gaia_collaboration_gaia_2018}.  The TESS light curve shows
 two different periodic signals, which we analyze in
 Section~\ref{sec:tess}.  The Gaia data, analyzed in
-Section~\ref{sec:gaia}, show that \ptfo\ is a photometric binary and
-suggest it is also an astrometric binary.  We discuss the pieces of
+Section~\ref{sec:gaia}, show that \ptfo\ is too bright to be a single star and
+also suggest it is an astrometric binary.  We discuss the pieces of
 the puzzle in Section~\ref{sec:discussion}, and summarize the
-situation in Section~\ref{sec:conclusions}.  We comment on the study
-by \citet{koen_2020} in postscript.
-
+situation in Section~\ref{sec:conclusions}.  In a postscript, we
+comment on a recent study by \citet{koen_2020} which reached similar
+conclusions.
 
 
 \section{The Data}
@@ -289,7 +291,7 @@ by \citet{koen_2020} in postscript.
 	\vspace{-0.7cm}
 	\caption{
     {\bf TESS light curve of \ptfo\ (Sector 6, Orbit 19).} {\it Top}:
-    The original (\texttt{PDCSAP} mean-subtracted) relative flux.  The
+    The original (\texttt{PDCSAP} median-subtracted) relative flux.  The
     beat period of 4.48 days is visible by eye.  The blue curve is a
     model including 2 harmonics at the longer period $P_{\rm \ell}$,
     plus 3 harmonics and a transit at the shorter period $P_{\rm s}$.
@@ -297,7 +299,7 @@ by \citet{koen_2020} in postscript.
     signal minus the shorter-period signal.  {\it Lower middle}:
     Shorter-period signal, equal to the original signal minus the
     longer-period signal.  {\it Bottom}: residual relative flux.  The
-    data are binned from 2 to 10 minute cadence as a convenience for
+    data are binned from 2 to 10 minute cadence for convenience in
     plotting and fitting.
 		\label{fig:splitsignal}
 	}
@@ -320,7 +322,7 @@ by \citet{koen_2020} in postscript.
 \ptfo\ (also known as CVSO\,30; \citealt{briceno_cida_2005}) was
 observed by TESS with Camera 1, CCD 1, from December 15, 2018 until
 January 6, 2019, during the sixth sector of science operations
-\citep{ricker_transiting_2015}.  The star was designated
+\citep{ricker_transiting_2015}.  The star is designated
 TIC\,264461976 in the TESS Input Catalog
 \citep{stassun_TIC_2018,stassun_TIC8_2019}.  The pixel data for an
 $11\times11$ array surrounding \ptfo\ were averaged into 2-minute
@@ -329,10 +331,10 @@ CCD was also averaged into 30-minute stacks, and saved as a ``full
 frame image'' (FFI).
 
 The 2-minute stacks for \ptfo\ were reduced to light curves by the
-Science Processing Operations Center (SPOC) at NASA
-Ames~\citep{jenkins_tess_2016}.  We mainly used the Presearch Data
+Science Processing Operations Center (SPOC) at the NASA
+Ames Research Center~\citep{jenkins_tess_2016}.  We mainly used the Presearch Data
 Conditioning Simple Aperture Photometry (PDCSAP) light curve.  The PDC
-light curve aperture used pixels chosen to maximize the SNR of the
+light curve is based on pixels chosen to maximize the SNR of the
 total flux of the target \citep{bryson_2020_target_aperture}.
 Non-astrophysical variability was removed by fitting out trends common
 to many stars \citep{smith_kepler_2012,stumpe_multiscale_2014}.
@@ -347,15 +349,15 @@ To clean the data, we removed all points with non-zero quality flags,
 which indicate known problems \citep[{\it
 e.g.},][]{tess_data_product_description_2018}.  We also masked out the
 data from the first and last 6 hours of each orbit, since there are
-often systematic red noise in the photometry during those times.  Both
-the CDIPS and PDC light curves showed a clear discontinuous jump in
+often systematic effects in the photometry during those times.  Both
+the CDIPS and PDC light curves showed a discontinuous jump in
 the last few days of orbit 20, which seemed likely to be an
-instrumental systematic effect.  We correspondingly masked out the
+instrumental systematic effect, and led us to mask out the
 data with timestamps ranging from BJD\,2458488.3 until the end of the
 orbit.  The PDC light curve initially had 15{,}678 points.  The
 quality-flag cut removed 854 points; masking the orbit edges removed
 an additional 716 points; and removing the data from the final few
-days of orbit 20 removed an additional 1079 points.  After cleaning,
+days of orbit 20 removed an additional 1{,}079 points.  After cleaning,
 83\% of the initial flux measurements remained.
 
 We normalized the light curve by dividing out the median flux, and
@@ -372,21 +374,21 @@ processing steps were performed using
 Between July 25, 2014 and May 23, 2016, Gaia measured about 300
 billion centroid positions of 1{.}6 billion stars
 \citep{gaia_collaboration_gaia_2016,lindegren_gaiasoln_2018,gaia_collaboration_gaia_2018}.
-In the Gaia second data release (DR2), these CCD observations were
+For the Gaia second data release (DR2), these CCD observations were
 used to determine positions, proper motions, and parallaxes of the
-brighest 1{.}3 billion stars, including \ptfo\
+brighest 1{.}3 billion stars
 \citep{lindegren_gaiasoln_2018}.  For \ptfo, there were 121 ``good''
 observations, {\it i.e.}, observations that were not strongly
 down-weighted in the astrometric solution.  \ptfo\ was assigned the
-Gaia DR2 identifier 3222255959210123904.  Its photometric brightness
+Gaia DR2 identifier 3222255959210123904.  Its brightness
 was measured using selected bands ($G$, $Rp$, and $Bp$) of the Gaia
 Radial Velocity Spectrometer
 \citep{cropper_gaia_2018,evans_gaia_2018}.  We accessed the pipeline
 parameters for \ptfo\ using the Gaia
 archive\footnote{\url{gea.esac.esa.int/archive/}}.
 
-The majority of Gaia's derived parameters for \ptfo\ agreed with
-expectations from former studies
+The majority of Gaia's derived parameters for \ptfo\ agree with
+expectations based on previous studies
 \citep{briceno_cida_2005,van_eyken_ptf_2012}.  The main novelty is
 that Gaia DR2 reported a 10.3$\sigma$ ``astrometric excess'',
 indicating that the residuals to the best-fitting astrometric model
@@ -403,14 +405,14 @@ young stars in the Orion complex.  Stellar populations in giant
 molecular cloud complexes are not monolithic; substructured groups are
 the norm \citep{briceno_lowmassOB_2007}.  The Orion molecular cloud
 complex in particular has numerous subgroups, with ages ranging from
-0.5 to 15$\,$Myr. For an incomplete sampling, see for instance
+0.5 to 15$\,$Myr. See, for instance,
 \citet{briceno_cida_2005,jeffries_kinematic_2006,briceno_25_2007,kounkel_apogee2_2018}
 and \citet{briceno_cidaII_2019}.
 
-\ptfo\ was initially identified as a member of the Orion$\,$OB1a
-sub-association and designated CVSO\,30 by \citet{briceno_cida_2005}
-through combined photometry and spectroscopy.  Later work by
-\citet{briceno_25_2007} clarified that \ptfo\ was in a kinematically
+\ptfo\ was initially designated CVSO\,30 and identified as a member of the Orion$\,$OB1a
+sub-association by \citet{briceno_cida_2005},
+based on photometry and spectroscopy.  Later work by
+\citet{briceno_25_2007} clarified that \ptfo\ is in a kinematically
 distinct subgroup of Orion~OB1a, named the ``25$\,$Ori'' group after
 its brightest member. They reported that the 25$\,$Ori group has an
 isochrone age of 7--10$\,$Myr, and a smaller fraction of stars with
@@ -434,10 +436,11 @@ member of the following hierarchical subgroups:
   \subset {\rm Orion\ OB1a}
   \subset {\rm Orion\ D},
 \end{equation}
-where `$\subset$' means ``is a proper subset of''.  25$\,$Ori-1 is the
+where `$\subset$' means `is a proper subset of'.  25$\,$Ori-1 is the
 largest subgroup of 25$\,$Ori, with 149 identified members.  Based on
 the color-magnitude diagram (CMD), the mean age was found to be
 6.9$\,$Myr, while the HR diagram led to an estimated age of 8.5$\,$Myr
+% JNW: What is the difference between HR and CMD?
 \citep[see][Section 2.3]{kounkel_apogee2_2018}.
 \citet{kounkel_apogee2_2018} identified seven other smaller groups in
 the Orion complex near the Be star 25$\,$Ori. These groups received
@@ -445,8 +448,8 @@ higher numbers, {\it e.g.}, 25$\,$Ori-2 (${\rm Age}_{\rm CMD}
 =15.1\,$Myr; ${\rm Age}_{\rm CMD} =12.9\,$Myr; see also
 \citealt{briceno_cidaII_2019}).
 
-These details concerning the group membership for one object are
-cumbersome to those accustomed to the simple distinction between
+These details concerning the group membership for one object may
+seem excessive to those accustomed to the simple distinction between
 ``young cluster members'' and ``old field stars''.  Although all
 members of the Orion complex are indeed young relative to the field,
 these details are essential for assessing the photometric evidence for
@@ -468,10 +471,9 @@ complex.
 	\end{center}
 	\vspace{-0.7cm}
 	\caption{ {\bf Phase-folded longer and shorter-period signals.}
-    {\it Top}: Relative flux at the longer period, as in
-    Figure~\ref{fig:splitsignal}.  {\it Bottom}: Relative flux at the
-    shorter period. The reference phase is set to the dip.  Gray
-    points are the 10 minute cadence \texttt{PDCSAP} flux.  Black
+    {\it Top}: The longer-period signal.  {\it Bottom}: The
+    shorter-period signal. The phase is defined such that the dip occurs at zero phase.  Gray
+    points are the \texttt{PDCSAP} data binned to 10-minute cadence.  Black
     points are binned to 100 points per period.  The model (blue line)
     includes 2 harmonics at the longer period, plus 3 harmonics and a
     transit at the shorter period.
@@ -487,10 +489,9 @@ PDCSAP and 30-minute FFI forms, showed a strong sinusoidal beat signal
 panel). As a precursor to more detailed analysis, we calculated
 generalized Lomb-Scargle periodograms using \texttt{astrobase}
 \citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
-The two tallest peaks occur at 0.448\,d (10.76$\,$hr) and 0.499\,d
-(11.98$\,$hr).  We will refer to these two periods as the ``shorter
-period'' $P_{\rm s}$ and the ``longer period'' $P_{\rm \ell}$.  The
-peak at $P_{\rm \ell}$ is the taller of the two peaks.  Lower-power
+The tallest peak occurs at 0.499\,d (11.98$\,$hr) and a second strong
+peak occurs at 0.448\,d (10.76$\,$hr). We will refer to these two periods as the ``longer
+period'' $P_{\rm \ell}$ and the ``shorter period'' $P_{\rm s}$.  Lower-power
 harmonics of both signals are also present.
 
 % 0.14 = A1+A2
@@ -500,18 +501,17 @@ harmonics of both signals are also present.
 % 2A2 = 0.08
 % -> A2 = 0.04
 
-The peak-to-peak light curve amplitude at maximum, when the two
+The peak-to-peak maximum amplitude of the light curve, when the two
 signals interfere constructively, is about 14\%.  During the times of
 destructive interference, the peak-to-peak amplitude is about 6\%.
 Assuming the signals are mainly sinusoidal, simple algebra tells us
 that the peak-to-peak amplitudes should be about 10\% for the
 longer-period signal, and 4\% for the shorter-period signal.  To view
 the phase-folded light curves of the longer-period signal, we
-subtracted the best-fitting sinusoid at the shorter period; the
+subtracted the best-fitting sinusoid with a period equal to $P_{\rm s}$. The
 resulting light curve appears smooth and nearly sinusoidal.  But after
-subtracting the best-fitting sinusoid at the longer period, visual
-inspection of the phase-folded light curve of the shorter-period
-signal revealed substructure resembling the ``dips'' seen in previous
+subtracting the best-fitting sinusoid with a period equal to $P_{\ell}$, visual
+inspection of the phase-folded light curve revealed substructure resembling the ``dips'' seen in previous
 observations. In particular, there was a $\approx$1\% dip lasting
 about an hour.  These initial impressions turned out to be consistent
 with the results of our more complicated analysis, described below.
@@ -550,19 +550,20 @@ in the model, we considered a number of different choices for $N_{\rm
 s}$ and $N_{\rm \ell}$, and used the Bayesian information criterion to
 select the final model (Table~1).
 
-As an example, one possible model consists of a transit, $N_{\rm s}=2$
-sines and cosines at the shorter period, plus $N_{\rm \ell}=1$ sine
-and cosine at the longer period.  In this case, the free parameters
-would be as follows.  The transit model parameters are the impact
+The free parameters are as follows.  The transit model parameters are the impact
 parameter, the planet-to-star radius ratio, two quadratic limb
 darkening parameters, the planet's orbital period (set equal to
 $P_{\rm s}$) the time of a particular transit, and the mean flux.  We
-also independently sampled the stellar radius and mass, implicitly
-defining the stellar density.  Additionally, there would be $2N_{\rm
+sampled the stellar radius and mass from prior probability distributions, implicitly
+defining the stellar density which (together with the orbital period) sets the transit timescale. 
+There are also the parameters defining the Fourier modes.
+As an example, one possible model consists of a transit, $N_{\rm s}=2$
+sines and cosines at the shorter period, plus $N_{\rm \ell}=1$ sine
+and cosine at the longer period.  There are $2N_{\rm
 s}=4$ additional Fourier amplitudes at the shorter period, plus
 $2N_{\rm \ell}=2$ Fourier amplitudes at the longer period, as well as
 $P_\ell$ itself and the relative phase $\phi_\ell$.  The total number
-of parameters would be 17.
+of parameters is 17 for this case.
 
 We implemented and fitted the models using \texttt{PyMC3}, which is
 built on \texttt{theano}
@@ -571,7 +572,7 @@ we used the default math operators.  For the exoplanet transit, we
 used the model and derivatives implemented in the \texttt{exoplanet}
 code \citep{exoplanet:exoplanet}.  Our priors are listed in Table~2.
 To speed up the fitting process, we averaged the 2-minute light curve
-to 10-minute samples.  We correspondingly scaled the uncertainties in
+into 10-minute samples.  We correspondingly scaled down the uncertainties in
 the flux measurements by a factor of $\sqrt{5}$.  Before sampling, we
 initialized each model with the parameters of the maximum {\it a
 posteriori} (MAP) model.  We then assumed a Gaussian likelihood, and
@@ -585,7 +586,7 @@ fitting the \ptfo\ light curves.
 \subsection{Fitting Results}
 
 We considered nine models, with the number of modes per frequency
-$N_{\rm s}$ and $N_{\rm \ell}$ ranging from one to three.  To select
+($N_{\rm s}$ and $N_{\rm \ell}$) ranging from one to three.  To select
 our preferred model, we used the Bayesian information criterion
 (Table~1).  The model with the lowest BIC had three modes at the
 shorter 10.76$\,$hr period, and two modes at the longer 11.98$\,$hr
@@ -616,7 +617,7 @@ $(N_{\rm \ell},N_{\rm s})=(2,2)$ model prefers a longer transit
 duration, but does not fit the out-of-transit curvature as well,
 particularly immediately before ingress.
 
-The periodogram of the final residual shows a barely significant and
+The periodogram of the residuals between the data and the preferred model shows a barely significant and
 poorly-resolved peak at $\approx$8 days, consistent with the visual
 impression of some slower trends in the bottom rows of
 Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}.
@@ -651,7 +652,7 @@ Figures~\ref{fig:splitsignal} and~\ref{fig:splitsignalii}.
 	}
 \end{figure}
 
-The TESS pixels are $\approx21$'' per side. Before making any
+The portion of the sky subtended by each TESS pixel is about 21'' on a side. Before making any
 interpretations, we needed to consider whether light from neighboring
 stars could have contributed to the photometric signal we are
 attributing to \ptfo. The scene is shown in Figure~\ref{fig:scene}.
@@ -664,11 +665,11 @@ The target star, \ptfo\ (TIC 264461976), has a $T$-band magnitude of
 14.0, and its position is shown with a star.  The other (unlabeled)
 star inside the target aperture, TIC 264461979, has $T=16.8$ and so
 cannot contribute more than about 10\% to the total signal.  The only
-neighbor that is sufficiently close and bright that its light might
-contaminate the target star is TIC 264461980, with $T=14.8$, which we
-dub ``Star A''.  Star A is 23.6'' northwest of the target, and based
-on the magnitude difference could contribute flux variations as large
-as 48\% the flux of our target star, \ptfo.  
+other known star that is sufficiently close and bright that its light might
+contaminate the signal from the target star is TIC 264461980, with $T=14.8$.
+This star, we we dub ``Star A'', is 23.6'' northwest of the target. Based
+on the magnitude difference, Star A could contribute flux variations as large
+as 48\% of the flux of the target star.
 
 The variability of \ptfo\ with a period consistent with $P_{\rm s}$
 had already been observed based on images with arcsecond resolution.
@@ -694,10 +695,10 @@ in the scene, using the interactive tools implemented in
 \texttt{lightkurve} \citep{lightkurve_2018}.  If Star A were the
 source of the long-period variability, we would expect the pixels
 nearest to Star A to show a sinusoidal signal with amplitude exceeding
-$10\%$.  The data do not show this pattern.  The pixel directly below
-Star A does not clearly show any sinusoidal variability; the
-peak-to-peak variability in that pixel is $\lesssim 8\%$.  In
-contrast, the south-easternmost pixel within the \ptfo\ aperture (the
+$10\%$.  The data do not show this pattern.  The data from the pixel directly below
+Star A does not show any sinusoidal variability; the
+peak-to-peak variability seen in that pixel is $\lesssim 8\%$.  In
+contrast, the southeastern-most pixel within the \ptfo\ aperture (the
 pixel furthest from Star A that was used in the optimal aperture)
 shows the longer-period sinusoidal variability signal with an
 amplitude of 14\%.  We conclude that within the resolution of the Gaia
@@ -710,15 +711,15 @@ through this approach.
 
 Stronger constraints on possible stellar companions were obtained by
 \citet{van_eyken_ptf_2012} through high-resolution imaging with the
-NIRC2 camera on Keck II.  They reported 3-$\sigma$ $H$-band magnitude
+NIRC2 camera on the Keck II 10m telescope.  They reported 3-$\sigma$ $H$-band magnitude
 difference limits of 4.3, 6.4, and 8.9 at angular separations of 0.25,
 0.5, and 1.0 arcseconds (87, 175, and 349~AU).  They also detected a
-point source, not present in Gaia DR2, 7.0 magnitudes fainter than the
-target, and 1.8$''$ to the north-east.  Due to the brightness
-difference, this point source\footnote{This point source was claimed
+point source 7.0 magnitudes fainter than the
+target, and 1.8$''$ to the north-east (which is not included in the Gaia DR2 catalog). Due to its relative
+faintness, this object cannot be the source of the shorter and longer-period TESS signals.\footnote{This point source was claimed
 to be a potential planetary-mass object \citep{schmidt_direct_2016}.
 Subsequent analysis of its colors showed that it is a background star
-\citep{lee_evidence_2018}.} cannot be the source of our signals.
+\citep{lee_evidence_2018}.} 
 
 
 \subsection{Photometric Binarity}
@@ -738,38 +739,38 @@ Subsequent analysis of its colors showed that it is a background star
 	\vspace{-0.7cm}
 	\caption{ {\bf Evidence for binarity in \ptfo}.
     {\it Top:} Hertzsprung-Russell diagram of \ptfo\ and late-type
-    members of 25$\,$Ori-1. Members of the 25$\,$Ori-1 group (black
-    circles) were identified by \citet{kounkel_apogee2_2018}.  The
-    gray circles are stars in the ``neighborhood'', i.e., non-member
-    stars within 5 standard deviations of the mean 25$\,$Ori-1 right
-    ascension, declination, and parallax.  It contains members of the
+    members of 25$\,$Ori-1. Black circles are members of the 25$\,$Ori-1 group
+    identified by \citet{kounkel_apogee2_2018}.  
+    Gray circles are stars in the ``neighborhood'', i.e., non-member
+    stars for which the right
+    ascension, declination, and parallax are within 5 standard deviations of the mean values for 25$\,$Ori-1.
+    The neighborhood contains members of the
     Orion complex with its full spread of ages, in addition to field
-    interlopers.  $G$ denotes Gaia broadband magnitudes, $Bp$ Gaia
+    interlopers.  $G$ denotes the Gaia broadband magnitude, $Bp$ Gaia
     blue, $Rp$ Gaia red, and $\omega_{\rm as}$ the parallax in
-    arcseconds.  The $x$-axis limits are set to show only K and M
-    dwarfs, to accentuate \ptfo's separation from the single-star
+    arcseconds.  The $x$-axis limits are chosen to display only the K and M
+    dwarfs, accentuating \ptfo's separation from the single-star
     sequence.  {\it Bottom:} Astrometric goodness-of-fit versus $Rp$
     magnitude for 25$\,$Ori-1 members.  The single-source astrometric
-    model for \ptfo\ provides a poor fit, which could be due to
-    stellar variability or binarity.  Cluster members that are at
+    model for \ptfo\ provides a poor fit to the data, which could be due to
+    either stellar variability or binarity.  But since cluster members that are at
     least as variable as \ptfo\ show lower astrometric excesses (black
-    squares), suggesting binarity as the root cause.
+    squares), binarity is the likely reason.
 		\label{fig:gaia}
 	}
 \end{figure*}
 
 
 We also used the Gaia data to see if the observed luminosity of \ptfo\
-is too bright to be a single star, i.e., if it is a ``photometric
+is too high to be from a single star, i.e., if the object is a ``photometric
 binary.'' To assemble a set of stars coeval with \ptfo, we used the
 25$\,$Ori-1 members identified by \citet{kounkel_apogee2_2018}, and
 discussed in Section~\ref{subsec:hierarchical}.
-
 To define a set of non-member stars that nonetheless are subject to
 similar selection criteria, we defined the reference ``neighborhood''
 as the group of at most $10^4$ randomly selected non-member stars
-within 5 standard deviations of the mean 25$\,$Ori-1 right ascension,
-declination, and parallax.  We queried Gaia DR2 for these stars using
+within 5 standard deviations of the mean values of the right ascension,
+declination, and parallax of 25$\,$Ori-1.  We queried Gaia DR2 for these stars using
 \texttt{astroquery} \citep{astroquery_2018}.  This yielded 1{,}819
 neighbors.  While some of these stars may indeed be members of the
 Orion complex, or even of 25$\,$Ori-1, enforcing this cut on positions
@@ -780,15 +781,15 @@ We examined the resulting five-dimensional distribution of right
 ascension, declination, proper motion in both directions, and
 parallax.  The first point we noted was that 25$\,$Ori-1 is a clearly
 defined over-density in each dimension: the cluster was confirmed to
-exist, and to be distinct from the neighborhood. \ptfo\ was also
-within the cluster in each of these projected dimensions.
+exist, and to be distinct from the neighborhood.  The second point we noted is that \ptfo\ belongs
+to the cluster, based on its properties in each of these dimensions.
 
 Figure~\ref{fig:gaia} shows the HR diagram we constructed from the
 data.  The diagram shows that \ptfo\ is $\approx$0.75 magnitudes
 brighter than the average 25$\,$Ori-1 star of the same color.  In
 other words, it is about twice as bright as expected for a single star
 in the cluster.  It also seems to be part of a ``photometric binary''
-track that runs parallel to the main track.
+track that runs above and parallel to the main track.
 
 The implication is that either {\it (i)} \ptfo\ is notably younger
 than the kinematically identical 25$\,$Ori-1 members, or {\it (ii)}
@@ -800,7 +801,7 @@ probable.
 
 \subsection{Astrometric Binarity}
 
-A separate possible line of evidence for binarity is the Gaia DR2
+A separate line of evidence for binarity is the Gaia DR2
 astrometry.  As noted in Section~\ref{sec:observations}, the Gaia DR2
 astrometric solution for \ptfo\ shows a 10.3$\sigma$ ``astrometric
 excess'', a parameter that quantifies the degree to which a
@@ -815,9 +816,9 @@ A]{lindegren_gaiasoln_2018}.
 Potential explanations for the poor astrometric fit include
 photometric variability and unresolved stellar binarity \citep[{\it
 e.g.},][]{rizzuto_ZEIT8_2018,belokurov_unresolved_2020}.  If
-photometric variability were the cause, we would expect comparably
-faint stars in the same kinematic group of Orion to show similar
-astrometric excesses, as the majority of young stars are highly
+photometric variability were the cause, we would expect stars of similar
+brightness in the same kinematic group of Orion to show similar
+astrometric excesses, because the majority of young stars are highly
 variable.
 
 % NB: CDIPS-I only made 131 light curves for 25Ori-1, because I wasn't
@@ -851,8 +852,8 @@ magnitudes, and shows a strong IR excess and a 10$\mu$m silicate
 emission feature \citep{mauco_herschel_2018}.  The other is GAIA DR2
 3222210363837122048.
 
-We will have to wait for the full release of the nominal Gaia mission
-to determine definitively whether the astrometric excess is caused by
+We will have to wait for the next data release of the Gaia mission
+for a more definitive determination of whether the astrometric excess is caused by
 stellar binarity or photometric variability.  Nonetheless the fact
 that comparably variable stars do not show comparably large
 astrometric excesses suggests that stellar binarity is indeed the root
@@ -860,23 +861,23 @@ cause.
 
 \subsection{Radial Velocity Binarity}
 
-Long-baseline radial velocity (RV) measurements could also reveal the
+Radial velocity (RV) measurements over sufficiently long timescales could also reveal the
 presence of multiple stars in this system.  Unfortunately, the
-available RV data for \ptfo\ is rather sparse, presumably due to the
-stellar faintness and equatorial velocity.  The RV datasets with the
-longest baselines we could find in the literature were those reported
+available RV data for \ptfo\ is sparse, presumably due to the difficulties
+of performing RV observations of such a faint and rapidly rotating
+star.  The RV datasets with the
+longest time baselines we could find in the literature were those reported
 by \citet{van_eyken_ptf_2012}.  These included 5 Keck/HIRES
 measurements acquired over 10 days in April 2011, and 4 HET/HRS
 measurements acquired over 10 days in February 2011.  The
-root-mean-squared RV over each 10 day span was $\approx$$2\,{\rm
+root-mean-squared RV over each 10-day span was $\approx$$2\,{\rm
 km}\,{\rm s}^{-1}$, consistent with the measurement precision.
 Although \citet{van_eyken_ptf_2012} tried a CCF-based RV reduction
 technique, they eventually found that manually selecting absorption
 lines and measuring line centroids was more effective.  While
 \citet{yu_tests_2015} acquired 22 further Keck/HIRES spectra over one
-night in December 2013, those points were not reduced to velocities,
-and it is not clear whether the appropriate calibration data exist.
-Further Keck/HIRES measurements of \ptfo, if appropriately calibrated,
+night in December 2013, those points were not reduced to velocities
+Further radial-velocity observations
 could potentially confirm or refute the presence of binary companions.
 
 \section{Discussion}
@@ -891,20 +892,20 @@ no evidence to suggest that this signal has any other origin.
 
 In their report on the discovery of the unusual photometric
 variability, \citet{van_eyken_ptf_2012} saw an alias of the
-longer-period signal ({\it e.g.}, their Figure~7), and identified it
-as a periodogram peak at $0.9985 \pm 0.0061\,$days. They ascribed it
+longer-period signal ({\it e.g.}, their Figure~7), in the form of a
+peak in the periodogram at $0.9985 \pm 0.0061\,$days. They ascribed it
 to their observing cadence, because of its close correspondence to the
 sidereal day.  Our pixel-level analysis showed that the signal is
 specific to only pixels near \ptfo, and no other pixels.  We therefore
 conclude that the signal is not an artifact of systematic errors.
 
 We are not the first to reach the conclusion that the long period
-sinusoidal modulation is astrophysical.  A study by
+sinusoidal modulation is astrophysical. 
 \citet{koen_multicolour_2015} identified the same modes and aliases as
-\citet{van_eyken_ptf_2012}, but argued that the signal was
-astrophysical (however they were still unsure of the exact period).
+\citet{van_eyken_ptf_2012}, and argued that the signal was
+astrophysical, even if the exact period was still unclear.
 Using photometry from the YETI global telescope network,
-\citet{raetz_yeti_2016} eventually came to the conclusion that the
+\citet{raetz_yeti_2016} came to the conclusion that the
 $0.50\,{\rm d}$ signal was indeed from stellar rotation.  The TESS
 data strongly support this conclusion.
 
@@ -930,8 +931,8 @@ data strongly support this conclusion.
     at phase 0 in mid-2019) are consistent with noise, and were likely
     reported because dips were expected, rather than convincingly
     observed.  Horizontal dashed lines are drawn at $\pm (P_{\rm \ell}
-    - P_{\rm s})/P_{\rm s}$, highlighting either a numerical
-    coincidence or an observational bias.  The orbital phase observed
+    - P_{\rm s})/P_{\rm s}$, highlighting a possible numerical
+    coincidence.  The orbital phase observed
     by TESS (lower-right) is consistent with that of
     \citet{tanimoto_evidence_2020}.
 		\label{fig:o_minus_c}
@@ -939,7 +940,7 @@ data strongly support this conclusion.
 \end{figure}
 
 The TESS light curve shows a dip that lasts about 45 minutes, and
-seems to recur every 10.76 hours
+recurs every 10.76 hours
 (Figures~\ref{fig:splitsignal},~\ref{fig:splitsignalii},~\ref{fig:phasefold}).
 The dip duration is roughly the same as that observed by previous
 investigators \citep{van_eyken_ptf_2012,yu_tests_2015}.  The 1.2\%
@@ -949,23 +950,22 @@ to have evolved over time between being not present at all, to a
 maximum of $\approx$5\% \citep[{\it
 e.g.},][]{koen_multicolour_2015,yu_tests_2015,tanimoto_evidence_2020}.
 
-One particularly interesting feature of the dip is its epoch.  The
-dips do not occur with strict periodicity \citep{yu_tests_2015}.  In
+An interesting feature of the sequence of dips is that the phase of the dips has been observed to change with time \citep{yu_tests_2015}.  In
 fact, \citet{tanimoto_evidence_2020} provided stark evidence for
-different behavior altogether: over a time-span of years, the dip
-``split'' into distinct groups at particular repeating phases.  See
-for instance their Figures~2 through~4.  Fitting a decade of
-observations, they provided the following linear ephemeris, which we
-did not find any need to update.
+different behavior altogether: over a timespan of years, the dip
+``split'' into distinct groups at particular phases.  See,
+for instance, their Figures~2 through~4.  Fitting a decade of
+observations, they provided the following constant-period ephemeris, which we
+did not find any need to update:
 \begin{align}
 t_0\ {\rm BJD}_{\rm TDB} &= 2455543.943 \pm 0.002 \nonumber \\
 P &= 0.4483993 \pm 0.0000006\,{\rm d}.
 \label{eq:ephem}
 \end{align}
 
-Figure~\ref{fig:o_minus_c} shows the observed mid-transit times of
-dips minus the times predicted from Equation~\ref{eq:ephem}.  The
-phase of the dip we detected in the TESS data (yellow star) agrees
+Figure~\ref{fig:o_minus_c} shows the differences bewteen the observed ``mid-transit'' times of
+the dips and the times calculated using Equation~\ref{eq:ephem}.  The
+phase of the dips seen by TESS (yellow star) agrees
 with the independent December 2018 measurements by
 \citet{tanimoto_evidence_2020}: either the dip abruptly shifted phase
 over the past decade or, more likely, there are multiple dips that
@@ -973,42 +973,47 @@ have come and gone at different phases.
 
 Figure~\ref{fig:o_minus_c} shows two additional strange features: {\it
 (i)}  multiple dips per cycle, and {\it (ii)} a set of dips
-numerically coincident with phase $(P_{\rm \ell} - P_{\rm s}) / P_{\rm
+at a phase that is numerically coincident with $(P_{\rm \ell} - P_{\rm s}) / P_{\rm
 s}$.  The observation of multiple dips per cycle in 2015 was seen
 independently by both \citet{yu_tests_2015} and
 \citet{tanimoto_evidence_2020}.  It therefore seems credible.
 Inspecting the \citet{tanimoto_evidence_2020} light curves, the claim
 of multiple dips per cycle in December 2018 at phase 0 and $-0{.}47$
-seems less plausible---the phase $\text{-}0{.}47$ dips are strongly
-detected, while the suggested phase 0 dip is not clearly present in
-the data.
+seems less plausible. The dips at phase $\text{-}0{.}47$ are strongly
+detected, while the suggested dip at phase 0 is not clearly deteceted.
 
 We are not sure what to make of the numerical coincidence.  The ratio
 of long to short periods is roughly 10:9.  It is not clear that this
-would obviously translate into an observational bias unless by some
-fluke three season's worth of observations managed to only observe
+would obviously translate into an observational bias unless, by some
+fluke, three season's worth of observations managed to only observe
 every ninth dip.  This is of course not the case, and we therefore
 leave this curiosity as observation {\it sans} interpretation.
 % JNW: This seems like an important clue. I don't have the mental
 % energy to ponder it now, but it deserves pondering.
+% JNW: Could this mean that both stars are dippers? A change in period
+% is degenerate with a change in period, over a short interval, right?
+% so maybe one set of dips belongs to one star, the other set to the 2nd star?
+% Features with a different period would appear to lie along a line
+% of constant slope in this diagram...what would the slope be, in this case,
+% if the feature period were P_long?
 
-
-\subsection{Short Period Out-of-Dip Modulation}
+\subsection{Short Period Modulation Outside of Dips}
 
 Visually, the out-of-dip modulation at the 10.76$\,$hr period
 resembles a slightly asymmetric sinusoid (Figure~\ref{fig:phasefold}).
-Non-zero contributions in both the first and second harmonics are
-detected (Table~2).  The first sine and cosine harmonic both have
+The best model has non-zero amplitudes for both the first and second harmonics (Table~2).
+The first sine and cosine harmonic both have
 amplitudes of roughly $0.90\pm0.04\%$.  The second sine harmonic has
 amplitude $0.16 \pm 0.04\%$, so is non-zero at a significance of
-$\approx$4$\sigma$.  The second cosine harmonic has negative amplitude
-$0.55 \pm 0.03\%$.  In our sign convention, the fact that it is
-negative means that this component peaks at phase 0.25 and 0.75.
+$\approx$4$\sigma$.  The second cosine harmonic has an amplitude of
+$-0.55 \pm 0.03\%$.  In our sign convention, the fact that it is
+negative means that this component peaks at phase 0.25 and 0.75,
+i.e., the quadratures of the orbit.
 
 \subsubsection{Ellipsoidal Variability?}
 If there were a giant planet transiting \ptfo, it would tidally
 distort the host star, and cause ellipsoidal photometric modulations
-that also peak at quadrature \citep[see][]{shporer_astrophysics_2017}.
+that peak at the quadratures \citep[see][]{shporer_astrophysics_2017}.
 Interpreting the second cosine harmonic as planet-induced tidal
 distortion, it would imply a minimum planet mass $M_{\rm p} \sin i$ of
 $3.8\,M_{\rm Jup}$.  For this estimate, we assumed $R_\star = 1.39
@@ -1035,21 +1040,20 @@ absorbing} light.
 	\end{center}
 	\vspace{-0.7cm}
   \caption{ {\bf \ptfo\ and its brethren.}
-    Five transient and persistent flux dip stars selected based on
-    their visual similarity to the short-period signal in \ptfo\ are
-    as shown.  They include EPIC 204143627, EPIC 204270520, EPIC
+    Shown are the light cuerves of five transient and persistent flux dip stars, selected based on
+    their similarity to the short-period signal of \ptfo.  The stars are EPIC 204143627, EPIC 204270520, EPIC
     204321142, EPIC 246938594, and EPIC 205483258 (RIK-210).  RIK-210
     has the longest period of any of these objects.  All the analogs
     displayed are either in Taurus or Upper~Sco, and meet the
-    characteristics of Section~\ref{subsec:dipstars}.  We found these
-    objects through studies by \citet{stauffer_orbiting_2017},
+    characteristics of Section~\ref{subsec:dipstars}.  These objects
+    were originally reported by \citet{stauffer_orbiting_2017},
     \citet{david_transient_2017}, and \citet{rebull_usco_2018}.
 		\label{fig:brethren}
 	}
 \end{figure*}
 
-When physical explanations are not forthcoming, taxonomy is a useful
-exercise.  By searching the literature, we have found about a dozen
+When physical explanations are not forthcoming, we often resort to taxonomy.
+By searching the literature, we have found about a dozen
 light curves with similar morphologies to \ptfo, drawn from surveys of
 low-mass weak-lined T Tauri stars in regions including $\rho$ Oph,
 Upper~Sco, Taurus, and perhaps the Pleiades
@@ -1074,41 +1078,43 @@ following things in common:
   \item They are weak-lined T Tauri stars.
   \item The spectral type is M2 to M5 ({\it e.g.},
     \citealt{rebull_usco_2018},~Figure~20).
-  \item The age is typically\footnote{
+  \item The age is typically $\lesssim$ 100$\,$Myr.\footnote{
     At present, the oldest observed ``scallops'' are in the Pleaides
     \citep{rebull_rotation_2016}. One of these, EPIC 211013604, might
     meet the ``persistent dip'' classification.  If so, it is also the
-    oldest known.
-    } $\lesssim$ 100$\,$Myr.
+    oldest known.} 
   \item The light curves show shallow, angular dips, usually superposed
     on large-amplitude smooth variability. The latter is interpreted
     as stellar rotation.
-  \item The rotation is rapid---usually between 0.5 and 2.0 days.
-  \item There is rarely any detectable infrared excess in WISE data
+  \item The rotation is rapid, with a period that is usually between 0.5 and 2.0 days.
+  \item There is rarely any infrared excess that is detectable in the WISE data
   (never any W4 detection; only a few W3 detections).
+  % JNW: Spell out acronym and give reference?
   \item They sometimes show multiple dips per cycle.
   \item The dip depths, durations, and phases can vary over just a few
     cycles ({\it e.g.}, EPIC 204143627).
   \item The dip depths can change after flares.
-  \item They are rare at a population level: $\lesssim 1\%$ of relevant stars
-    \citep{rebull_usco_2018}.
+  \item They are rare at a population level, with an occurrence rate of $\lesssim 1\%$ of
+  the relevant stars \citep{rebull_usco_2018}.
+% JNW: what is 'relevant stars'? Can this be replaced by 'young M2-M5 stars'?
 \end{enumerate}
 The 10.76$\,$hr signal in \ptfo\ meets all of these criteria.  This is
 the first connection of \ptfo\ with this class of objects because the
 TESS light curve was needed to resolve the different rotation signals.
+% JNW: Despite the preceding sentence, I don't understand why this connection was impossible before TESS.
 
 There are two crucial additional points concerning the transient flux
 dips.  First, the dip durations seem to scale linearly with the
 photometric periods \citep[][Figure~26]{stauffer_orbiting_2017}.  In
-the usual idealized limits, the transit duration $T$ of a point source
+contrast, the transit duration $T$ of a small obstructing object
 across the stellar disk scales as $T \propto R_\star
 (P/M_\star)^{1/3}$ \citep{winn_exoplanet_2010}.  While the shortest
 period $\approx$0.5-day transient flux dip stars have dip durations
 consistent with point sources, at longer periods of 1 to 5 days the
-dip durations become many hours, far too long to be caused by
+dip durations become many hours, which is too long to be caused by
 planetary transits.
 
-Second, between 40-50\% of the transient flux dip stars discovered in
+Second, approximately 40-50\% of the transient flux dip stars discovered in
 $\rho$~Oph and Upper~Sco show two Lomb-Scargle periods, and so are
 apparently binaries \citep[][Table~1]{stauffer_orbiting_2017}.  This
 is higher than the main-sequence companion fraction of ${\rm
@@ -1116,17 +1122,17 @@ CF}_{0.1\text{-}0.5\,M_\odot}^{\rm MS} = 33 \pm 5\%$
 \citep{henry_solar_2006,duchene_stellar_2013,winters_solar_2019}.
 Low-mass pre-main-sequence stars however have been shown to companion
 fractions up to twice as high in dispersed clusters such as Upper~Sco
-and Taurus \citep{kraus_mapping_2008,kraus_mapping_2011}.  A detailed
-high-resolution imaging survey would be necessary to determine whether
-the transient flux dip stars truly have any distinct population-level
+and Taurus \citep{kraus_mapping_2008,kraus_mapping_2011}.  A 
+high-resolution imaging survey would be interesting, to determine whether
+the transient flux dip stars truly have distinct population-level
 binarity properties relative to other young low-mass stars.
 
 
 \subsection{Physical Interpretation}
 \label{subsec:physical}
 
-The evidence for binarity in \ptfo\ is as follows.  First, the star is
-photometrically twice as bright as stars of the same color in its
+The evidence for binarity in \ptfo\ is as follows.  First, the star is 
+twice as bright as stars of the same color in its
 kinematic group (Figure~\ref{fig:gaia}).  Second, it shows two
 distinct photometric signals.  These points alone suggest binarity
 \citep{stauffer_rotevol_2018}.  For the case of \ptfo, there is a
@@ -1144,7 +1150,11 @@ the primordial gas disks seem to be have been depleted\footnote{A
 potential confounding factor is completeness. Is Spitzer sensitive to
 infrared excesses at the distance of Orion? The series of studies by
 \cite{hernandez_spitzer_2006,hernandez_spitzer_ob1_2007,hernandez_spitzer_sig_2007,hernandez_spitzer_2009}
-show that it is.} around both stars in \ptfo. The stars are therefore
+show that it is.}
+% JNW: I don't understand why we can be so definitive...
+% an infrared excess is not either 'present' or 'absent'. The upper limit in Jy
+% corresponds to a constraint on the mass/radius/etc of any dusty disk.
+around both stars in \ptfo. The stars are therefore
 no longer magnetically locked to their disks.  This is consistent with
 the $\approx$half-day periodicities of both rotation signals: young
 disked M dwarfs typically rotate with periods of two days or more due
@@ -1156,17 +1166,19 @@ disks, in a manner seen at the population level in exoplanetary
 systems \citep{kraus_impact_2016,moe_impact_2019}.  This hard outer
 boundary condition could propagate to the inner disk and affect its
 evolution.
+% JNW: I don't understand the last sentence.
 
-The main physical question is what causes the transient dips. This is
-an unsolved problem not only for \ptfo\ but also for an emerging class
-of similar young rapidly rotating M-dwarfs.  Many possible
-explanations have been detailed by \citet{rebull_rotation_2016},
+The key question is what causes the transient dips. This is
+an unsolved problem not only for \ptfo\ but also for the emerging class
+of similar young and rapidly rotating M-dwarfs.  Many possible
+explanations were discussed by \citet{rebull_rotation_2016},
 \citet{david_transient_2017}, \citet{stauffer_orbiting_2017}, and
-\citet{zhan_complex_2019}.  Their disfavored explanations include that
+\citet{zhan_complex_2019}.  Among the {\it disfavored} explanations are that
 the dips are caused by
 {\it (i)} eclipsing binaries;
 {\it (ii)} ``dipper''-flavor Class-I or Class-II disks;
 {\it (iii)} eclipses of prominences;
+% JNW: why is this one ruled out? Sounds similar to the accretion-hotspot hypothesis.
 {\it (iv)} high-latitude accretion hotspots;
 {\it (v)} high-latitude starspots;
 or
@@ -1175,6 +1187,7 @@ We also view the possibility of {\it (vii)} tidally disrupted
 planetary or cometary material to be implausible, given the
 synchronicity between dip and rotation periods seen across many
 systems.
+% JNW Could the material get magnetically locked at the corotation radius?
 
 The explanations that are not yet ruled out include {\it (i)}
 transiting clumps of gas at the Keplerian corotation radius; {\it
@@ -1243,11 +1256,11 @@ majority of habitable-zone Earth-sized planets
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \acknowledgements
-When this manuscript was at an advanced stage, we learned of the
-complementary work by \citet{koen_2020}, which was in press at the
+When this manuscript was at an advanced stage, we received notice of a
+paper by \citet{koen_2020} that was in press at the
 {\it Monthly Notices} before submission of our manuscript.  Our
-studies independently reached the key conclusions that the TESS
-light curve shows two periodic signals, and that the properties of
+studies independently reached the same conclusions: the TESS
+light curve shows two periodic signals, and the properties of
 \ptfo\ are consistent with the emerging class of transient and
 persistent flux dip stars.  \citet{koen_2020} reached these
 conclusions by modeling the TESS light curve as a truncated sum of
