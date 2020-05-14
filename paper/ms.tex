@@ -847,7 +847,9 @@ results.  \ptfo\ has a RUWE of 1{.}22, which corresponds to the
 93$^{\rm rd}$ percentile of 25$\,$Ori-1 members.  Two of thirty stars
 with variability amplitudes greater than 9.7\% showed higher RUWE.
 One was CVSO~35, which has a TESS light curve that varies by 2
-magnitudes, and shows a strong IR excess and a 10$\mu$m silicate
+magnitudes.
+CVSO~35 also shows a strong Wide-field Infrared Survey Exoplorer
+(WISE, \citealt{wright_WISE_2010}) IR excess as well as a 10$\mu$m silicate
 emission feature \citep{mauco_herschel_2018}.  The other is GAIA DR2
 3222210363837122048.
 
@@ -995,6 +997,12 @@ leave this curiosity as observation {\it sans} interpretation.
 % Features with a different period would appear to lie along a line
 % of constant slope in this diagram...what would the slope be, in this case,
 % if the feature period were P_long?
+% LGB: Seems unlikely, because we're seeing a something with constant
+% 10.74 hour periodicity, but the phase is offset by 1/9th.
+% If both stars were dippers, we would be seeing a 11.98 hour
+% periodicity instead.
+
+
 
 \subsection{Short Period Modulation Outside of Dips}
 
@@ -1089,19 +1097,17 @@ following things in common:
   \item The rotation is rapid, with a period that is usually between 0.5 and 2.0 days.
   \item There is rarely any infrared excess that is detectable in the WISE data
   (never any W4 detection; only a few W3 detections).
-  % JNW: Spell out acronym and give reference?
   \item They sometimes show multiple dips per cycle.
   \item The dip depths, durations, and phases can vary over just a few
     cycles ({\it e.g.}, EPIC 204143627).
   \item The dip depths can change after flares.
   \item They are rare at a population level, with an occurrence rate of $\lesssim 1\%$ of
-  the relevant stars \citep{rebull_usco_2018}.
-% JNW: what is 'relevant stars'? Can this be replaced by 'young M2-M5 stars'?
+  young M2-M5 stars \citep{rebull_usco_2018}.
 \end{enumerate}
 The 10.76$\,$hr signal in \ptfo\ meets all of these criteria.  This is
-the first connection of \ptfo\ with this class of objects because the
-TESS light curve was needed to resolve the different rotation signals.
-% JNW: Despite the preceding sentence, I don't understand why this connection was impossible before TESS.
+the first connection of \ptfo\ with this class of objects, 
+likely because the TESS data enabled us to put the dips in 
+the context of the asymmetric out-of-dip modulation.
 
 There are two crucial additional points concerning the transient flux
 dips.  First, the dip durations seem to scale linearly with the
@@ -1154,27 +1160,24 @@ show that it is.}
 % JNW: I don't understand why we can be so definitive...
 % an infrared excess is not either 'present' or 'absent'. The upper limit in Jy
 % corresponds to a constraint on the mass/radius/etc of any dusty disk.
-around both stars in \ptfo. The stars are therefore
-no longer magnetically locked to their disks.  This is consistent with
-the $\approx$half-day periodicities of both rotation signals: young
-disked M dwarfs typically rotate with periods of two days or more due
-to magnetic locking \citep[{\it e.g.},][]{rebull_rotation_2020}.  If
-the two stars are within $\approx$50$\,$AU of each other, as required
-by the NIRC2 adaptive optics imaging, then it would also be expected
-that the stars would truncate the outer edges of their respective
+around both stars in \ptfo. The stars are therefore no longer
+magnetically locked to their disks.  This is consistent with the
+$\approx$half-day periodicities of both rotation signals: young disked
+M dwarfs typically rotate with periods of two days or more due to
+magnetic locking \citep[{\it e.g.},][]{rebull_rotation_2020}.  If the
+two stars are within $\approx$50$\,$AU of each other, as required by
+the NIRC2 adaptive optics imaging, then it would also be expected that
+the stars would have truncated the outer edges of their respective
 disks, in a manner seen at the population level in exoplanetary
-systems \citep{kraus_impact_2016,moe_impact_2019}.  This hard outer
-boundary condition could propagate to the inner disk and affect its
-evolution.
-% JNW: I don't understand the last sentence.
+systems \citep{kraus_impact_2016,moe_impact_2019}.
 
-The key question is what causes the transient dips. This is
-an unsolved problem not only for \ptfo\ but also for the emerging class
-of similar young and rapidly rotating M-dwarfs.  Many possible
+The key remaining question is what causes the transient dips. This is
+an unsolved problem not only for \ptfo\ but also for the emerging
+class of similar young and rapidly rotating M-dwarfs.  Many possible
 explanations were discussed by \citet{rebull_rotation_2016},
 \citet{david_transient_2017}, \citet{stauffer_orbiting_2017}, and
-\citet{zhan_complex_2019}.  Among the {\it disfavored} explanations are that
-the dips are caused by
+\citet{zhan_complex_2019}.  Among the {\it disfavored} explanations
+are that the dips are caused by
 {\it (i)} eclipsing binaries;
 {\it (ii)} ``dipper''-flavor Class-I or Class-II disks;
 {\it (iii)} eclipses of prominences;
