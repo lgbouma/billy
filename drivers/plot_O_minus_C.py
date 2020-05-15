@@ -13,7 +13,8 @@ PERIOD = 0.448399
 
 def get_data(
     datacsv='../data/WASP-18b_transits_and_TESS_times_O-C_vs_epoch_selected.csv',
-    is_occultation=False
+    is_occultation=False,
+    plongphasing=False
     ):
 
     df = pd.read_csv(datacsv, sep=';')
@@ -29,14 +30,20 @@ def get_data(
 
     y, sigma_y, refs = y[sel], sigma_y[sel], refs[sel]
 
-    x, _ = get_epochs_given_midtimes_and_period(
-        y, PERIOD, t0_fixed=EPOCH, verbose=True
-    )
+    if not plongphasing:
+        x, _ = get_epochs_given_midtimes_and_period(
+            y, PERIOD, t0_fixed=EPOCH, verbose=True
+        )
+    else:
+        x, _ = get_epochs_given_midtimes_and_period(
+            y, 0.4991110, t0_fixed=EPOCH, verbose=True
+        )
 
     return x, y, sigma_y, refs
 
 
-def main(xlim=None, ylim=None, include_all_points=False, ylim1=None):
+def main(xlim=None, ylim=None, include_all_points=False, ylim1=None,
+         plongphasing=0):
 
     homedir = os.path.expanduser('~')
     basedir = os.path.join(homedir, 'Dropbox/proj/billy/')
@@ -46,22 +53,27 @@ def main(xlim=None, ylim=None, include_all_points=False, ylim1=None):
     occpath = 'foo.csv'
 
     print('getting data from {:s}'.format(transitpath))
-    x, y, sigma_y, refs = get_data(datacsv=transitpath)
+    x, y, sigma_y, refs = get_data(datacsv=transitpath,
+                                   plongphasing=plongphasing)
     print('getting data from {:s}'.format(occpath))
 
     if os.path.exists(occpath):
         raise NotImplementedError
 
     linear_params = nparr([EPOCH,  PERIOD])
+    if plongphasing:
+        linear_params = nparr([EPOCH, 0.4991110])
 
     savpath = '../results/ephemeris/O_minus_C.png'
+    if plongphasing:
+        savpath = '../results/ephemeris/O_minus_C_plongphasing.png'
 
     onlytransits = True
     bp.plot_O_minus_C(
         x, y, sigma_y, linear_params, refs, savpath=savpath,
         xlabel='Cycle number', ylabel=None, xlim=xlim, ylim=ylim,
         include_all_points=include_all_points, ylim1=ylim1,
-        onlytransits=onlytransits)
+        onlytransits=onlytransits, plongphasing=plongphasing)
 
     if onlytransits:
         print('made the O-C plot with only transits')
@@ -74,3 +86,9 @@ if __name__=="__main__":
     xlim = [-2000, 7800]
     ylim1 = None #FIXME [-5,4.2]
     main(xlim=xlim, ylim=ylim, ylim1=ylim1)
+
+    # with P_long phasing, to see
+    ylim = None
+    xlim = None
+    ylim1 = None
+    main(xlim=xlim, ylim=ylim, ylim1=ylim1, plongphasing=1)

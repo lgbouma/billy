@@ -952,7 +952,8 @@ def plot_astrometric_excess(outdir, ruwe=0):
 def plot_O_minus_C(
     x, y, sigma_y, theta_linear, refs, savpath=None, xlabel='Epoch',
     ylabel='Deviation from constant period [min]', xlim=None, ylim=None,
-    ylim1=None, include_all_points=False, onlytransits=False):
+    ylim1=None, include_all_points=False, onlytransits=False,
+    plongphasing=False):
 
     xfit = np.linspace(10*np.min(x), 10*np.max(x), 10000)
 
@@ -976,14 +977,19 @@ def plot_O_minus_C(
     P_short = 0.44854
     P_long = 0.49914
     phase_diff = np.abs(P_long - P_short) / P_short
-    a0.hlines(
-        phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
-        linestyles='--', zorder=-2, linewidths=0.5
-    )
-    a0.hlines(
-        -phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
-        linestyles='--', zorder=-2, linewidths=0.5
-    )
+    if isinstance(xlim, tuple):
+        pass
+    else:
+        xlim = a0.get_xlim()
+    if not plongphasing:
+        a0.hlines(
+            phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
+            linestyles='--', zorder=-2, linewidths=0.5
+        )
+        a0.hlines(
+            -phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
+            linestyles='--', zorder=-2, linewidths=0.5
+        )
     a0.hlines(
         0, min(xlim), max(xlim), colors='gray', alpha=0.5,
         linestyles='-', zorder=-2, linewidths=0.5
@@ -992,12 +998,20 @@ def plot_O_minus_C(
 
     props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
                  linewidth=0)
-    txt = (
-        '$t_{{\mathrm{{s}}}}$ = {:.6f}\n$P_{{\mathrm{{s}}}}$ = {:.6f}$\,$d'.
-        format(theta_linear[0], theta_linear[1])
-    )
-    a0.text(0.03, 0.03, txt, ha='left', va='bottom', transform=a0.transAxes,
-            bbox=props, zorder=3)
+    if not plongphasing:
+        txt = (
+            '$t_{{\mathrm{{s}}}}$ = {:.6f}\n$P_{{\mathrm{{s}}}}$ = {:.6f}$\,$d'.
+            format(theta_linear[0], theta_linear[1])
+        )
+        a0.text(0.03, 0.03, txt, ha='left', va='bottom', transform=a0.transAxes,
+                bbox=props, zorder=3)
+    else:
+        txt = (
+            '$t_0$ = {:.6f}\n$P_{{\mathrm{{l}}}}$ = {:.6f}$\,$d'.
+            format(theta_linear[0], theta_linear[1])
+        )
+        a0.text(0.03, 0.03, txt, ha='left', va='bottom', transform=a0.transAxes,
+                bbox=props, zorder=3)
 
 
     # # transit axis
@@ -1078,7 +1092,10 @@ def plot_O_minus_C(
     a_top.get_xaxis().set_tick_params(which='both', direction='in')
 
     fig.text(0.5,0, xlabel, ha='center', fontsize='large')
-    fig.text(-0.02,0.5, '"Dip" obs. - calc. [$P_\mathrm{{s}}$]', va='center', rotation=90, fontsize='large')
+    if not plongphasing:
+        fig.text(-0.02,0.5, '"Dip" obs. - calc. [$P_\mathrm{{s}}$]', va='center', rotation=90, fontsize='large')
+    else:
+        fig.text(-0.02,0.5, '"Dip" obs. - calc. [$P_\mathrm{{\ell}}$]', va='center', rotation=90, fontsize='large')
 
     fig.tight_layout(h_pad=0, w_pad=0)
 
