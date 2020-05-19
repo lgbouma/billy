@@ -1,6 +1,5 @@
 import numpy as np, matplotlib.pyplot as plt, pandas as pd, pymc3 as pm
 import pickle, os
-from copy import deepcopy
 from collections import OrderedDict
 from astropy import units as units, constants as const
 
