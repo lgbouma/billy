@@ -7,3 +7,4 @@ PLOTDIR = os.path.join(RESULTSDIR, 'cluster_membership')
 
 bp.plot_astrometric_excess(PLOTDIR, ruwe=0)
 bp.plot_astrometric_excess(PLOTDIR, ruwe=1)
+bp.plot_astrometric_excess(PLOTDIR, ruwe=1, talklabels=1)

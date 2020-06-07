@@ -852,8 +852,10 @@ def plot_hr(outdir):
     )
 
     ax.legend(loc='best', handletextpad=0.1, fontsize='small')
-    ax.set_ylabel('G + $5\log_{10}(\omega_{\mathrm{as}}) + 5$', fontsize='large')
-    ax.set_xlabel('Bp - Rp', fontsize='large')
+    # ax.set_ylabel('G + $5\log_{10}(\omega_{\mathrm{as}}) + 5$', fontsize='large')
+    # ax.set_xlabel('Bp - Rp', fontsize='large')
+    ax.set_ylabel('Absolute G [mag]', fontsize='large')
+    ax.set_xlabel('Bp - Rp [mag]', fontsize='large')
 
     ylim = ax.get_ylim()
     ax.set_ylim((max(ylim),min(ylim)))
@@ -873,7 +875,7 @@ def plot_hr(outdir):
     savefig(f, outpath)
 
 
-def plot_astrometric_excess(outdir, ruwe=0):
+def plot_astrometric_excess(outdir, ruwe=0, talklabels=0):
 
     varamppath = '/Users/luke/Dropbox/proj/billy/data/25ori-1/var_amps.csv'
     va_df = pd.read_csv(varamppath)
@@ -918,12 +920,15 @@ def plot_astrometric_excess(outdir, ruwe=0):
         markersize=12, marker='*', color='black', lw=0
     )
 
-    ax.set_xlabel('Rp', fontsize='large')
+    ax.set_xlabel('Rp [mag]', fontsize='large')
     if not ruwe:
         ax.set_ylabel('Astrometric Reduced $\chi^2$', fontsize='large')
         ax.set_ylim([0.3,8.7])
     else:
-        ax.set_ylabel('Renormalized Unit Weight Error', fontsize='large')
+        ax.set_ylabel('RUWE', fontsize='large')
+        if talklabels:
+            ax.set_ylabel('Astrometric $\chi^2_{\mathrm{red}}$ (RUWE)',
+                          fontsize='large')
         ax.set_ylim([0.7,1.8])
         print('WRN! ylimits omit')
         print( g_df[(yval>1.2) & (g_df.var_amp > 0.097)].source_id )
@@ -946,6 +951,8 @@ def plot_astrometric_excess(outdir, ruwe=0):
         outpath = os.path.join(outdir, 'astrometric_excess.png')
     else:
         outpath = os.path.join(outdir, 'astrometric_excess_ruwe.png')
+        if talklabels:
+            outpath = os.path.join(outdir, 'astrometric_excess_ruwe_talklabels.png')
     savefig(f, outpath)
 
 
@@ -953,7 +960,7 @@ def plot_O_minus_C(
     x, y, sigma_y, theta_linear, refs, savpath=None, xlabel='Epoch',
     ylabel='Deviation from constant period [min]', xlim=None, ylim=None,
     ylim1=None, include_all_points=False, onlytransits=False,
-    plongphasing=False):
+    plongphasing=False, nodash=False):
 
     xfit = np.linspace(10*np.min(x), 10*np.max(x), 10000)
 
@@ -982,14 +989,15 @@ def plot_O_minus_C(
     else:
         xlim = a0.get_xlim()
     if not plongphasing:
-        a0.hlines(
-            phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
-            linestyles='--', zorder=-2, linewidths=0.5
-        )
-        a0.hlines(
-            -phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
-            linestyles='--', zorder=-2, linewidths=0.5
-        )
+        if not nodash:
+            a0.hlines(
+                phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
+                linestyles='--', zorder=-2, linewidths=0.5
+            )
+            a0.hlines(
+                -phase_diff, min(xlim), max(xlim), colors='gray', alpha=0.5,
+                linestyles='--', zorder=-2, linewidths=0.5
+            )
     a0.hlines(
         0, min(xlim), max(xlim), colors='gray', alpha=0.5,
         linestyles='-', zorder=-2, linewidths=0.5
@@ -1102,7 +1110,7 @@ def plot_O_minus_C(
     savefig(fig, savpath, dpi=350)
 
 
-def plot_brethren(outdir):
+def plot_brethren(outdir, twobythree=0):
 
     from transitleastsquares import transitleastsquares
 
@@ -1280,7 +1288,10 @@ def plot_brethren(outdir):
 
     plt.close('all')
 
-    fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(8.5, 10), sharex=True)
+    if not twobythree:
+        fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(8.5, 10), sharex=True)
+    else:
+        fig, axs = plt.subplots(nrows=2, ncols=3, figsize=(12, 8), sharex=True)
 
     axs = axs.flatten()
 
@@ -1331,4 +1342,6 @@ def plot_brethren(outdir):
     fig.tight_layout(h_pad=0, w_pad=0)
 
     outpath = os.path.join(outdir, 'brethren.png')
+    if twobythree:
+        outpath = os.path.join(outdir, 'brethren_twobythree.png')
     savefig(fig, outpath)
