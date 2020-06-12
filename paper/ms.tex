@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt,twocolumn,tighten]{aastex62}
-%\documentclass[12pt,twocolumn,tighten,trackchanges]{aastex62}
+%\documentclass[12pt,twocolumn,tighten]{aastex62}
+\documentclass[12pt,twocolumn,tighten,trackchanges]{aastex62}
 \usepackage{amsmath,amstext,amssymb}
 \usepackage[T1]{fontenc}
 \usepackage{apjfonts}
@@ -192,17 +192,18 @@ Technology, Cambridge, MA 02139, USA}
 \section{Introduction}
 
 We wish \ptfob\ were a planet. It would be quite exceptional. It would
-be the youngest known hot Jupiter \citep{van_eyken_ptf_2012}, orbiting
+be the youngest known \added{transiting} hot Jupiter \citep{van_eyken_ptf_2012}, orbiting
 a T Tauri star in the Orion-OB1a cluster.  It would have the shortest
 orbital period of any hot Jupiter.  With such a short period, it would
 probably be filling its Roche lobe, and actively losing mass to its
 host star.  Not only that, but the rapidly-rotating host star is
-probably oblate enough to torque the planet's orbit into and out of
-the transiting configuration on a timescale of years
+probably oblate enough to \replaced{torque the planet's orbit into and out of
+the transiting configuration}{cause the planet's orbit to precess into and out of the 
+transiting configuration} on a timescale of years
 \citep{barnes_measurement_2013,ciardi_followup_2015,kamiaka_revisiting_2015}. 
 
 Another first would be the direct detection of H$\alpha$ emission from
-the planet itself \citep{johnskrull_h_2016}.  In addition to the
+\replaced{the planet itself}{a close-in planet} \citep{johnskrull_h_2016}.  In addition to the
 chromospheric H$\alpha$ emisson, it seems that there is an additional
 H$\alpha$ emission with radial velocity variations in phase with the
 planetary orbit.  The average velocity width of the excess H$\alpha$
@@ -251,7 +252,7 @@ dust clumps or other dusty features are questionable because \ptfo\
 does not have a detectable infrared (IR) excess associated with the
 presence of warm dust \citep[{\it e.g.},][Figure~18]{yu_tests_2015}.
 In addition, the sublimation times for dust grains of plausible
-composition are quite short \citep{zhan_complex_2019}. 
+composition \replaced{are}{could be} quite short \citep{zhan_complex_2019}. 
 
 A relevant fact is that between 0.1\% and 1\% of rapidly rotating
 low-mass stars in $\mathcal{O}$(10)$\,$Myr old associations show
@@ -260,8 +261,9 @@ short-duration dips as part of their overall periodic variability
 depths often vary, and sometimes change immediately after stellar
 flares.  The explanation proposed by \citet{stauffer_orbiting_2017}
 and \citet{david_transient_2017} to explain this novel class of
-variable stars is that a circumstellar cloud of gas is orbiting near
-the co-rotation radius.  To this point, though, it has not been clear
+variable stars is that a \replaced{circumstellar cloud of gas is orbiting near
+the co-rotation radius}{clumpy torus of dust and gas orbits near the
+Keplerian co-rotation radius}.  To this point, though, it has not been clear
 if this explanation applies to \ptfo, because the determination of the
 stellar rotation period has been somewhat ambiguous
 \citep{van_eyken_ptf_2012,koen_multicolour_2015,raetz_yeti_2016}.
@@ -443,11 +445,12 @@ identified seven smaller groups in the Orion complex near the Be star
 25$\,$Ori-2 (${\rm Age} =12.9\pm2.8\,$Myr; see also
 \citealt{briceno_cidaII_2019}).
 
-These details concerning the group membership for one object may seem
+\replaced{These details concerning the group membership for one object may seem
 excessive to those accustomed to the simple distinction between
 ``young cluster members'' and ``old field stars''.  Although all
-members of the Orion complex are indeed young relative to the field,
-these details are essential for assessing the photometric evidence for
+members of the Orion complex are indeed young relative to the field,}
+{While all members of the Orion complex are young relative to the field,}
+these \replaced{details}{considerations} are essential for assessing \deleted{the} photometric evidence for
 the binarity of \ptfo, because of the degeneracy between stellar
 luminosity and age for pre-main-sequence stars.  Having a clean sample
 of reference stars that are tightly associated with \ptfo\ --- both
@@ -485,8 +488,8 @@ PDCSAP and 30-minute FFI forms, showed a strong sinusoidal beat signal
 panel). As a precursor to more detailed analysis, we calculated
 generalized Lomb-Scargle periodograms using \texttt{astrobase}
 \citep{lomb_1976,scargle_studies_1982,vanderplas_periodograms_2015,bhatti_astrobase_2018}.
-The tallest peak occurs at 0.499\,d (11.98$\,$hr) and a second strong
-peak occurs at 0.448\,d (10.76$\,$hr). We will refer to these two
+The tallest peak occurs at \replaced{0.499\,d (11.98$\,$hr)}{11.98$\,$hr} and a second strong
+peak occurs at \replaced{0.448\,d (10.76$\,$hr)}{10.76$\,$hr}. We will refer to these two
 periods as the ``longer period'' $P_{\rm \ell}$ and the ``shorter
 period'' $P_{\rm s}$.  Lower-power harmonics of both signals are also
 present.
@@ -745,7 +748,8 @@ analysis of its colors showed that it is a background star
     red, and $\omega_{\rm as}$ the parallax in arcseconds.  The
     $x$-axis limits are chosen to display only the K and M dwarfs,
     accentuating \ptfo's separation from the single-star sequence.
-    {\it Bottom:} Astrometric goodness-of-fit versus $Rp$ magnitude
+    {\it Bottom:} Renormalized astrometric
+    unit weight error (RUWE) versus $Rp$ magnitude
     for 25$\,$Ori-1 members.  The single-source astrometric model for
     \ptfo\ provides a poor fit to the data, which could be due to
     either stellar variability or binarity.  But since cluster members
@@ -798,6 +802,9 @@ probable.
 
 \subsection{Astrometric Binarity}
 
+\explain{All paragraphs in this section have been heavily
+	reworded to emphasize RUWE over $\chi_{\rm red}^2$, as requested by the
+	referee.}
 A separate line of evidence for binarity is the Gaia DR2 astrometry.
 As noted in Section~\ref{sec:observations}, the Gaia DR2 astrometric
 solution for \ptfo\ shows a 10.3$\sigma$ ``astrometric excess'', a
@@ -805,47 +812,53 @@ parameter that quantifies the degree to which a single-star model
 fails to fit the astrometric measurements.  Specifically, the
 single-source astrometric model yielded $\chi^2=325.2$.  There are 121
 astrometric measurements, and 5 free parameters, and therefore 116
-degrees of freedom. The reduced $\chi^2$ is 2.80.  The majority of
+degrees of freedom. The reduced $\chi^2$ is 2.80.  While the majority of
 stars with comparable brightness in Gaia do not show such poor
-goodness-of-fit \citep[see][Appendix A]{lindegren_gaiasoln_2018}.
+goodness-of-fit\added{, many M dwarfs do, because of a color-dependent
+term in the mission's PSF model} \citep[see][Appendix A]{lindegren_gaiasoln_2018}.
+The reduced $\chi^2$ has been
+``renormalized'' to account for this, yielding a modified
+statistic called the renormalized unit weight error
+(RUWE\footnote{ See the Gaia DPAC technical note
+	GAIA-C3-TN-LU-LL-124-01,
+	\url{http://www.rssd.esa.int/doc_fetch.php?id=3757412}, accessed
+	2020-04-27. }).
 
-Potential explanations for the poor astrometric fit include
-photometric variability and unresolved stellar binarity \citep[{\it
-e.g.},][]{rizzuto_ZEIT8_2018,belokurov_unresolved_2020}.  If
-photometric variability were the cause, we would expect stars of
-similar brightness in the same kinematic group of Orion to show
-similar astrometric excesses, because the majority of young stars are
-highly variable.
-
-Using the same 149 members in the 25$\,$Ori-1 subgroup, we calculated
-the astrometric reduced $\chi^2$ for each member.  We then queried the
+We acquired the RUWE for each of the
+149 members in 25$\,$Ori-1 identified by
+identified by \citet{kounkel_apogee2_2018}.
+We then queried the
 CDIPS light curve database at MAST \citep{bouma_cluster_2019} to find
 the subset of members that were at least as variable as \ptfo.  We
 measured the variability amplitude by taking the difference between
 the $95^{\rm th}$ and $5^{\rm th}$ percentiles of the flux
 measurements.  This yielded 30 stars of equal or greater variability.
-The lower panel of Figure~\ref{fig:gaia} shows the reduced $\chi^2$ as
-a function of stellar brightness.  \ptfo\ is in the upper 90$^{\rm
-th}$ percentile of stars showing astrometric excesses within the
-25$\,$Ori-1 group.  Relative to other M-dwarf group members with
-comparable brightnesses and variability characteristics, \ptfo\ still
-stands out by virtue of its failure to conform to a single-star
-astrometric model. This supports the interpretation that \ptfo\ is a
-binary star.
-
-Performing the same analysis using the renormalized unit weight error
-(RUWE\footnote{ See the Gaia DPAC technical note
-GAIA-C3-TN-LU-LL-124-01,
-\url{http://www.rssd.esa.int/doc_fetch.php?id=3757412}, accessed
-2020-04-27. }) rather than the reduced $\chi^2$ yielded similar
-results.  \ptfo\ has a RUWE of 1{.}22, which corresponds to the
-93$^{\rm rd}$ percentile of 25$\,$Ori-1 members.  Two of thirty stars
+The lower panel of Figure~\ref{fig:gaia} shows the RUWE of
+these stars as
+a function of stellar brightness.  \ptfo\ is at the 93$^{\rm
+	rd}$ percentile of equally-variable stars within the
+25$\,$Ori-1 group.  
+Two of the thirty stars
 with variability amplitudes greater than 9.7\% showed higher RUWE.
 One was CVSO~35, which has a TESS light curve that varies by 2
 magnitudes.  CVSO~35 also shows a strong Wide-field Infrared Survey
 Exoplorer (WISE, \citealt{wright_WISE_2010}) IR excess as well as a
 10$\mu$m silicate emission feature \citep{mauco_herschel_2018}.  The
-other is GAIA DR2 3222210363837122048.
+other star was GAIA DR2 3222210363837122048.
+
+Potential explanations for an elevated RUWE include
+photometric variability and unresolved stellar binarity \citep[{\it
+e.g.},][]{rizzuto_ZEIT8_2018,belokurov_unresolved_2020}.  
+If photometric variability were the root cause, we would expect stars with
+similar brightness and color in the same kinematic group of Orion to show
+similar astrometric excesses, because the majority of young stars are
+highly variable.
+However
+relative to other M-dwarf group members with
+comparable brightnesses and variability characteristics, \ptfo\ still
+stands out by virtue of its failure to conform to a single-star
+astrometric model. This supports the interpretation that \ptfo\ is a
+binary star.
 
 We will have to wait for the next data release of the Gaia mission for
 a more definitive determination of whether the astrometric excess is
@@ -871,7 +884,7 @@ tried a CCF-based RV reduction technique, they eventually found that
 manually selecting absorption lines and measuring line centroids was
 more effective.  While \citet{yu_tests_2015} acquired 22 further
 Keck/HIRES spectra over one night in December 2013, those points were
-not reduced to velocities. Further radial-velocity observations could
+not reduced to velocities\added{.} Further radial-velocity observations could
 potentially confirm or refute the presence of binary companions.
 
 \section{Discussion}
@@ -887,7 +900,7 @@ no evidence to suggest that this signal has any other origin.
 In their report on the discovery of the unusual photometric
 variability, \citet{van_eyken_ptf_2012} saw an alias of the
 longer-period signal ({\it e.g.}, their Figure~7), in the form of a
-peak in the periodogram at $0.9985 \pm 0.0061\,$days. They ascribed it
+peak in the periodogram at \replaced{$0.9985 \pm 0.0061\,$days}{$23.96\pm0.15\,$hr}. They ascribed it
 to their observing cadence, because of its close correspondence to the
 sidereal day.  Our pixel-level analysis showed that the signal is
 specific to only pixels near \ptfo, and no other pixels.  We therefore
@@ -899,7 +912,7 @@ identified the same modes and aliases as \citet{van_eyken_ptf_2012},
 and argued that the signal was astrophysical, even if the exact period
 was still unclear.  Using photometry from the YETI global telescope
 network, \citet{raetz_yeti_2016} came to the conclusion that the
-$0.50\,{\rm d}$ signal was indeed from stellar rotation.  The TESS
+\replaced{$0.50\,{\rm d}$}{11.98$\,$hr} signal was indeed from stellar rotation.  The TESS
 data strongly support this conclusion.
 
 
@@ -1039,17 +1052,24 @@ absorbing} light.
 	}
 \end{figure*}
 
+\explain{Note: Citations to Parks et al 2014 and Stauffer et al 2015 were
+	added to the paragraph below}
 When physical explanations are not forthcoming, we often resort to
-taxonomy.  By searching the literature, we have found about a dozen
-light curves with similar morphologies to \ptfo, drawn from surveys of
-low-mass weak-lined T Tauri stars in regions including $\rho$ Oph,
-Upper~Sco, Taurus, and perhaps the Pleiades
-\citep{rebull_rotation_2016,david_transient_2017,stauffer_orbiting_2017,stauffer_rotevol_2018,rebull_usco_2018,rebull_rotation_2020}.
-These surveys were performed using K2 \citep{howell_k2_2014}.  We
-downloaded some of these light curves from MAST, opting for the
-EVEREST reductions \citep{luger_everest_2016,luger_update_2018}.  They
-are plotted in Figure~\ref{fig:brethren}.
+taxonomy.  
+By searching the literature, we found about a dozen light curves with
+similar morphologies to \ptfo, drawn from surveys of low-mass
+weak-lined T Tauri stars in regions including $\rho$ Oph, Upper~Sco,
+Taurus, and perhaps the Pleiades
+\citep{parks_periodic_2014,rebull_rotation_2016,david_transient_2017,stauffer_orbiting_2017,stauffer_rotevol_2018,rebull_usco_2018,rebull_rotation_2020}.
+The clearest matches came from K2 \citep{howell_k2_2014}, but a few
+analogs were potentially also found using 2MASS (YLW 1C and YLW 10C;
+\citealt{parks_periodic_2014}) and CoRoT
+(\citealt{stauffer_csi_2015}).  We downloaded a subset of the K2 light
+curves from MAST, opting for the EVEREST reductions
+\citep{luger_everest_2016,luger_update_2018}.  They are plotted in
+Figure~\ref{fig:brethren}.
 
+\explain{Note: added citation to Bodman et al 2017 in this paragraph.}
 These light curves have been phenomenologically classified as
 ``persistent flux dips'' or ``transient flux dips'', based on whether
 their depths and durations show variability over the 90-day K2
@@ -1057,7 +1077,7 @@ campaigns \citep{stauffer_orbiting_2017}.  In the terminology of
 \citet{stauffer_orbiting_2017}, these objects are morphologically
 distinct from ``scallop shell'' light curves, and are present in stars
 at more advanced evolutionary disk stages than the ``dipper'' stars
-\citep{ansdell_young_2016,cody_manyfaceted_2018}.  The persistent and
+\citep{ansdell_young_2016,bodman_dippers_2017,cody_manyfaceted_2018}.  The persistent and
 transient flux dip stars all show angular dips that are cannot be
 explained as the effects of starspots.  These stars typically have the
 following things in common:
@@ -1065,13 +1085,16 @@ following things in common:
   \item They are weak-lined T Tauri stars.
   \item The spectral type is M2 to M5 ({\it e.g.},
     \citealt{rebull_usco_2018},~Figure~20).
-  \item The age is typically $\lesssim$ 100$\,$Myr.\footnote{ At
+  \item \replaced{The age is typically $\lesssim$ 100$\,$Myr.}{The
+    ages typically range between 5 and 100$\,$Myr.}\footnote{ At
     present, the oldest observed ``scallops'' are in the Pleaides
     \citep{rebull_rotation_2016}. One of these, EPIC 211013604, might
-    meet the ``persistent dip'' classification.  If so, it is also the
-    oldest known.} 
-  \item The light curves show shallow, angular dips, usually
-    superposed on large-amplitude smooth variability. The latter is
+    meet the ``persistent dip'' classification.  If so, it is \deleted{also} the
+    oldest known. \added{The lower limit comes from the lack of detectable
+   WISE infrared excesses.}} 
+  \item The light curves show shallow, angular dips, \deleted{usually}
+    superposed on large-amplitude smooth variability \added{at or near
+    1:1 synchronicity}. The \replaced{latter}{smooth variability} is
     interpreted as stellar rotation.
   \item The rotation is rapid, with a period that is usually between
     0.5 and 2.0 days.
@@ -1082,7 +1105,8 @@ following things in common:
     cycles ({\it e.g.}, EPIC 204143627).
   \item The dip depths can change after flares.
   \item They are rare at a population level, with an occurrence rate
-    of $\lesssim 1\%$ of young M2-M5 stars \citep{rebull_usco_2018}.
+  \replaced{of $\lesssim 1\%$}{between 0.1--1\%}
+   of young M2-M5 stars \citep{rebull_usco_2018}.
 \end{enumerate}
 The 10.76$\,$hr signal in \ptfo\ meets all of these criteria.  This is
 the first connection of \ptfo\ with this class of objects, likely
@@ -1134,9 +1158,9 @@ leads to the conclusion that \ptfo\ is a nearly equal-mass binary
 consisting of two rapidly rotating stars.
 
 Based on the lack of an infrared excess seen by \citet{yu_tests_2015},
-the primordial gas disks of both stars in \ptfo\ seem to be have been
-depleted.  This is consistent with the $8.5\pm1.2\,{\rm Myr}$ age of
-the 25$\,$Ori-1 group, and the rapid rate at which stars show lose
+the primordial \deleted{gas} disks of both stars in \ptfo\ seem to be have been
+depleted \added{of hot dust within the inner $\sim$1$\,$AU}.  This is consistent with the $8.5\pm1.2\,{\rm Myr}$ age of
+the 25$\,$Ori-1 group, and the rapid rate at which stars \deleted{show} lose
 their disks between 1 and 10$\,$Myr \citep[{\it
 e.g.},][]{hernandez_spitzer_ob1_2007}.  The stars are therefore
 presumably no longer magnetically locked to their disks.  This is also
@@ -1163,31 +1187,61 @@ are that the dips are caused by
 {\it (iv)} high-latitude accretion hotspots;
 {\it (v)} high-latitude starspots;
 or
-{\it (vi)} dust clouds of plausible composition.
+{\it (vi)} dust clouds of \replaced{plausible composition}{particular compositions \citep[][Figure~10]{zhan_complex_2019}}.
 We also view the possibility of {\it (vii)} tidally disrupted
 planetary or cometary material to be implausible, given the
 synchronicity between dip and rotation periods seen across many
 systems.
 
 The explanations that are not yet ruled out include {\it (i)}
-transiting clumps of gas at the Keplerian corotation radius; {\it
+transiting clumps of \added{dust or }gas at the Keplerian co-rotation radius; {\it
 (ii)} transits of enshrouded protoplanets; {\it (iii)} occultations of
 starspots by an optically thick disk.  The first and last explanations
 have added appeal because they are flexible enough to explain not only
 the transient and persistent-dip M-dwarfs, but also the ``scallop
-shell'' M-dwarfs \citep{stauffer_orbiting_2017}.  Despite this appeal,
+shell'' M-dwarfs \citep{stauffer_orbiting_2017}.  \replaced{Despite this appeal,
 the possibility of distinct mechanisms explaining these distinct
-variability classes remains open.
+variability classes remains open.}{
+The model of starspot occultations by an optically thick disk \citep{zhan_complex_2019}
+is a qualitative inverse of the torus of circumstellar material:
+the difference is whether to place the ``blobs'' that
+provide the needed brightness contrast on the
+surface of the star, or at the co-rotation radius.
+}
 
-The evolution of \ptfo\ over the past decade
-(Figure~\ref{fig:o_minus_c}) could offer important hints.
-Specifically, \ptfo's transition between having none, one, and
-multiple dips per cycle seems important.  It strains the ``enshrouded
+\replaced{The evolution of \ptfo\ over}{Observations of \ptfo\ from} the past decade
+could offer important hints.
+\deleted{Specifically, }\ptfo's transition between having none, one, and
+multiple dips per cycle seems important \added{(Figure~\ref{fig:o_minus_c})}.  It strains the ``enshrouded
 protoplanet'' interpretation, because there are no known processes
-that cause a planet's orbital phase to jump.  The dips would then need
+that cause a planet's orbital phase to jump.  \deleted{The dips would then need
 to be caused by material that was somehow disrupted from the planet,
 but somehow remained co-orbital for an extended duration. This seems
-implausible.
+implausible.}
+\added{
+The H$\alpha$
+excess observed by \citet{johnskrull_h_2016} also seems like an
+important piece of evidence.
+The model with circumstellar optically thick hydrogen
+gas near the co-rotation radius easily explains this excess,
+while the starspot occultation model does not.
+}
+
+\added{Out of the available explanations, we therefore consider the
+idea of a clumpy torus of optically thick dust or gas near the co-rotation radius
+to be most plausible.
+There is theoretical support for
+the idea that accretion disks subject to strong magnetic
+fields could enter stalled states and become trapped near co-rotation
+\citep{dangelo_accretion_2012}.
+The concept of an ``evaporating dust wall'' within which all
+dust evaporates \citep{millan-gabet_circumstellar_2007,dullemond_inner_2010}
+will likely be an important first-order consideration in
+physical models of this scenario.
+The additional question of whether the opacity in fact comes from dust 
+or partially-ionized gas ({\it e.g.}, via gas continuum, atomic lines, or perhaps
+TiO molecular opacity) remains a topic for future exploration.
+}
 
 \section{Conclusions}
 \label{sec:conclusions}
@@ -1219,15 +1273,16 @@ the \ptfo\ system.  Our main results are as follows.
     Section~\ref{subsec:dipstars}.
 \end{itemize}
 
+\explain{Updated this paragraph to remove spot occultations by a disk as
+a ``preferred explanation''.}
 The physical mechanism that explains the transient and persistent flux
-dips is unresolved. Our preferred explanations include transiting
-clumps of gas at the Keplerian corotation radius, and occultations of
-starspots by a tenuous gas disk \citep[{\it
-e.g.},][]{stauffer_orbiting_2017,david_transient_2017,zhan_complex_2019}.
-The jumping orbital phase disfavors the explanation of an enshrouded,
-transiting protoplanet.  Though \ptfob\ may not be a planet, as we and
-others had hoped, understanding \ptfo\ and its analogs is a worthy
-problem.  It might even teach us about the birth environments of the
+dips is unresolved. Our preferred explanation is that a clumpy torus of dust or gas is near the Keplerian co-rotation radius, and periodically occults the star.
+The \added{chromaticity, out-of-eclipse variability, and} jumping orbital phase \replaced{disfavored}{of \ptfo\ all disfavor} the explanation of an enshrouded,
+transiting protoplanet.  Though \ptfo\ may not be a planet,\deleted{ as we and
+others had hoped,} understanding it and its analogs is a worthy
+problem\replaced{.}\added{that seems likely to provide insight into how gas
+and dust disperse from young protostellar disks.} \replaced{It might even}{Understanding
+this process would, in turn,} teach us about the birth environments of the
 majority of habitable-zone Earth-sized planets
 \citep{dressing_occurrence_2013}.
 

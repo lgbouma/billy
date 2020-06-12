@@ -1,0 +1,12 @@
+From Trevor David
+
+" One thing I noticed was you mentioned in the pair of papers from Stauffer and myself in 2017 that we invoked circumstellar gas - but I think we decided that gas alone could not provide the required opacities so we hypothesized there may be some dust or a mix of gas and dust. I also have some follow up ground-based photometry on RIK-210 that is suggestive that the dip depth depends on wavelength (as you'd expect from dust) but it doesn't prove it conclusively because the multi-band observations weren't quite simultaneous. If you were interested in writing those up I'd be happy to send you what I have. It may not be the most interesting project. I started writing it up as a research note but never finished. 
+
+Luke - one more thing about the PTFO paper. I realized that the high velocity shoulder seen in Halpha in the Johns-Krull paper is actually seen for some of the scallops or flux-dip stars in John Stauffer's sample. I'm not sure he published the most dramatic examples -- I think because there were a couple of stars he wasn't sure belonged to the class. Anyways - it contributes to the totally consistent picture that PTFO is a scallop / flux-dip star / whatever you want to call it. You could e-mail John about the Halpha profiles. Some of them also appeared to show the Halpha shoulders moving around from epoch-to-epoch just like Johns-Krull. Unsure of where the emission is coming from exactly. 
+
+And I responded:
+
+* On PTFO: Noted re: mix of gas+dust, rather than gas alone. I'll update the relevant discussion during revisions to make that point clear.
+
+* Interesting wrt the Halpha profiles... For PTFO, the Johns-Krull result seems to be an important suggestion that there is high velocity hydrogen. One worry (perhaps unfounded) is that the binarity is somehow affecting the interpretation. If this is generic to the scallop/transit dip variables, that'd be good to know! I'll write John and see what he thinks.
+
