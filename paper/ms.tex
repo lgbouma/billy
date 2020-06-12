@@ -192,7 +192,9 @@ Technology, Cambridge, MA 02139, USA}
 \section{Introduction}
 
 We wish \ptfob\ were a planet. It would be quite exceptional. It would
-be the youngest known \added{transiting} hot Jupiter \citep{van_eyken_ptf_2012}, orbiting
+be the youngest known \added{transiting\footnote{Two younger hot
+Jupiters have been reported around V830 Tau and TAP 26
+\citep{donati_hot_2016,donati_hot_2017,yu_hot_2017}.}} hot Jupiter \citep{van_eyken_ptf_2012}, orbiting
 a T Tauri star in the Orion-OB1a cluster.  It would have the shortest
 orbital period of any hot Jupiter.  With such a short period, it would
 probably be filling its Roche lobe, and actively losing mass to its
@@ -841,8 +843,8 @@ a function of stellar brightness.  \ptfo\ is at the 93$^{\rm
 Two of the thirty stars
 with variability amplitudes greater than 9.7\% showed higher RUWE.
 One was CVSO~35, which has a TESS light curve that varies by 2
-magnitudes.  CVSO~35 also shows a strong Wide-field Infrared Survey
-Exoplorer (WISE, \citealt{wright_WISE_2010}) IR excess as well as a
+magnitudes, and shows both a strong Wide-field Infrared Survey
+Exoplorer (WISE, \citealt{wright_WISE_2010}) IR excess and also a
 10$\mu$m silicate emission feature \citep{mauco_herschel_2018}.  The
 other star was GAIA DR2 3222210363837122048.
 
@@ -1126,18 +1128,28 @@ planetary transits.
 
 Second, approximately 40-50\% of the transient flux dip stars
 discovered in $\rho$~Oph and Upper~Sco show two Lomb-Scargle periods,
-and so are apparently binaries
+and so \replaced{are apparently}{could be} binaries
 \citep[][Table~1]{stauffer_orbiting_2017}.  This is higher than the
 main-sequence companion fraction of ${\rm
-CF}_{0.1\text{-}0.5\,M_\odot}^{\rm MS} = 33 \pm 5\%$
+CF}_{0.1\text{-}0.5\,M_\odot}^{\rm MS} = 33 \pm 5\%$\added{, and so it
+could be an indication that the transient flux dip phenomenon is
+linked to stellar binarity}
 \citep{henry_solar_2006,duchene_stellar_2013,winters_solar_2019}.
-Low-mass pre-main-sequence stars however have been shown to companion
-fractions up to twice as high in dispersed clusters such as Upper~Sco
-and Taurus \citep{kraus_mapping_2008,kraus_mapping_2011}.  A
-high-resolution imaging survey would be interesting, to determine
-whether the transient flux dip stars truly have distinct
-population-level binarity properties relative to other young low-mass
-stars.
+\added{This fraction might be even more significant given the
+	selection bias against high
+mass ratio binaries, in which
+the second star would be too faint to detect a second period.}
+
+\added{However, the association between transient flux dips and binarity is
+not iron-clad.  Firstly, multiple photometric periods do not necessarily
+imply binarity. For instance, circumstellar material could exist
+around single stars inside, at, or wide of co-rotation.  Additionally, } low-mass pre-main-sequence stars
+\deleted{however} have been shown to \added{have} companion fractions
+up to twice as high in dispersed clusters such as Upper~Sco and Taurus
+\citep{kraus_mapping_2008,kraus_mapping_2011}.  A high-resolution
+imaging survey would be interesting, to determine whether the
+transient flux dip stars truly have distinct population-level binarity
+properties relative to other young low-mass stars.
 
 
 \subsection{Physical Interpretation}
@@ -1193,24 +1205,30 @@ planetary or cometary material to be implausible, given the
 synchronicity between dip and rotation periods seen across many
 systems.
 
-The explanations that are not yet ruled out include {\it (i)}
+The explanations that \replaced{are not yet}{have not yet been} ruled out include {\it (i)}
 transiting clumps of \added{dust or }gas at the Keplerian co-rotation radius; {\it
 (ii)} transits of enshrouded protoplanets; {\it (iii)} occultations of
-starspots by an optically thick disk.  The first and last explanations
+\replaced{starspots}{hot and cold spots on the stellar surface} by an optically thick disk.  The first and last explanations
 have added appeal because they are flexible enough to explain not only
 the transient and persistent-dip M-dwarfs, but also the ``scallop
 shell'' M-dwarfs \citep{stauffer_orbiting_2017}.  \replaced{Despite this appeal,
 the possibility of distinct mechanisms explaining these distinct
 variability classes remains open.}{
-The model of starspot occultations by an optically thick disk \citep{zhan_complex_2019}
-is a qualitative inverse of the torus of circumstellar material:
-the difference is whether to place the ``blobs'' that
-provide the needed brightness contrast on the
-surface of the star, or at the co-rotation radius.
+The model of hot and coldspot occultations by an optically thick disk
+\citep{zhan_complex_2019} is a qualitative inverse of the torus of
+circumstellar material: the difference is whether to place the
+``blobs'' that provide the needed brightness contrast on the surface
+of the star, or at the co-rotation radius.  In the spot occultation
+model, the observing geometry would require an inner disk to be
+projected into a narrow band across the stellar surface, in order to
+produce variations with sufficiently short timescales.  The outer
+disk would need either to not be present, or to be misaligned enough,
+and narrow enough, that it did not fall along the line of sight. These
+combined requirements seem geometrically contrived.
 }
 
 \replaced{The evolution of \ptfo\ over}{Observations of \ptfo\ from} the past decade
-could offer important hints.
+could offer additional hints.
 \deleted{Specifically, }\ptfo's transition between having none, one, and
 multiple dips per cycle seems important \added{(Figure~\ref{fig:o_minus_c})}.  It strains the ``enshrouded
 protoplanet'' interpretation, because there are no known processes
@@ -1223,8 +1241,7 @@ The H$\alpha$
 excess observed by \citet{johnskrull_h_2016} also seems like an
 important piece of evidence.
 The model with circumstellar optically thick hydrogen
-gas near the co-rotation radius easily explains this excess,
-while the starspot occultation model does not.
+gas near the co-rotation radius readily explains this excess.
 }
 
 \added{Out of the available explanations, we therefore consider the

@@ -1,14 +1,12 @@
 Dear Dr. Shafter,
 
-We thank you for organizing the review of our paper, and also
-thank the referee for their helpful comments.  We have
-considered the referee's remarks carefully and revised our
-manuscript accordingly.
+We thank you for organizing the review of our paper, and also thank the referee
+for their helpful comments.  We have considered the referee's remarks carefully
+and revised our manuscript accordingly.
 
-Below, we have reproduced the relevant portions of the
-referee's report, alongside our responses. A list of changes is
-appended to the manuscript using the trackchanges AASTeX
-macros.
+Below, we have reproduced the relevant portions of the referee's report,
+alongside our responses. A list of changes is appended to the manuscript using
+the trackchanges AASTeX macros.
 
 Sincerely,
 
@@ -68,8 +66,8 @@ RESPONSE
 ----------
 
 > Thank you for this correction. We have qualified the relevant sentence as the
-> youngest known *transiting* hot Jupiter. We have opted to not cite the V830
-> Tau or TAP 26 results, which we hope to see confirmed by independent groups.
+> youngest known *transiting* hot Jupiter, and added a footnote to the V830
+> Tau or TAP 26 results.
 
 
 ******************************************
@@ -168,10 +166,9 @@ RESPONSE
 > presenting the TESS data first, and getting into considerations of stellar
 > binarity, both resolved and unresolved, afterwards.
 >
-> The reasons are that i) we wrote the paper primarily because of the TESS
-> data; ii) the multiple signals come from TESS data. From a story-telling
-> perspective, why would we worry about binarity if we didn't already know
-> there were multiple signals?
+> The reason is that the multiple signals come from TESS data processed at the
+> ``default'' level. From a story-telling perspective, why would we worry about
+> binarity if we didn't already know there were multiple photometric signals?
 
 
 ******************************************
@@ -239,10 +236,20 @@ paper, so I will defer to the authors if they want to dig deeper on this.
 
 RESPONSE
 ----------
-> We're not sure whether or not it is a coincidence, but it seemed interesting
-> enough to mention.
+> Indeed, we are not sure whether or not it is a coincidence, but we
+> thought it was interesting enough to mention, even though we did not
+> have an interpretation.
 >
-> ..
+> It seems unlikely in our view that both stars are showing dips.
+> Our interpretation of the two smooth photometric signals is that one
+> star is rotating at 11.98 hr, and the other star is rotating at
+> 10.76 hr.
+>
+> All of the dips occur with a periodicity of 10.76 hr. (If we make
+> Figure 6 but instead phasing by P_long, it yields a mess of points).
+> Therefore all the dips are presumably associated with the star that
+> has that rotation period.
+
 
 ******************************************
 REFEREE COMMENT
@@ -261,7 +268,14 @@ cut.
 
 RESPONSE
 ----------
+> We have updated the text to include this point -- thank you for
+> making it.
 > 
+> We have also updated the text to reflect our hesitation about
+> whether or not the phenomenon is associated with binarity, primarily
+> because multiple photometric periods do not necessarily imply
+> binarity.
+
 
 ******************************************
 REFEREE COMMENT
@@ -276,7 +290,14 @@ to do this if it is not somehow physically attached to the star in some what
 
 RESPONSE
 ----------
-> 
+> We have modified the last paragraphs of Section 5.4 to reflect an
+> updated preference that we came to after submission, for the clumpy
+> torus model over the spot occultation model. The reasons
+> for the preference are given in the text: 1) the spot occultation
+> model seems more geometrically contrived than we initially thought,
+> and 2) the Halpha excess seen by Johns-Krull+16 (and also in
+> unpublished observations by Stauffer of scallop shells) seems likely
+> to require hydrogen in orbit near the corotation radius.
 
 
 ******************************************
@@ -291,3 +312,6 @@ radius, rather than our initial (incomplete) description of "clouds of gas" at
 the same location.
 
 We also modified the labels of the axes in Figure 5a for clarity.
+
+We have also added a few citations that we omitted in the original
+manuscript.
