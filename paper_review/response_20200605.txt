@@ -1,12 +1,13 @@
 Dear Dr. Shafter,
 
-We thank you for organizing the review of our paper, and also thank the referee
-for their helpful comments.  We have considered the referee's remarks carefully
-and revised our manuscript accordingly.
+We thank you for organizing the review of our paper, and also
+thank the referee for their helpful comments.  We have considered
+the referee's remarks carefully and revised our manuscript
+accordingly.
 
-Below, we have reproduced the relevant portions of the referee's report,
-alongside our responses. A list of changes is appended to the manuscript using
-the trackchanges AASTeX macros.
+Below, we have reproduced the relevant portions of the referee's
+report, alongside our responses. A list of changes is appended to
+the manuscript using the trackchanges AASTeX macros.
 
 Sincerely,
 
@@ -15,22 +16,24 @@ Luke Bouma
 ******************************************
 REFEREE COMMENT
 ----------
-Overall: It would help if the authors used hours or days throughout the paper
-in a consistent manner. The period is referred to as 0.5d and 11.98h just a
-couple paragraphs apart (e.g. in Section 5.1). The abstract uses hours, most
-plots use days.
+Overall: It would help if the authors used hours or days
+throughout the paper in a consistent manner. The period is
+referred to as 0.5d and 11.98h just a couple paragraphs apart
+(e.g. in Section 5.1). The abstract uses hours, most plots use
+days.
 
 
 RESPONSE
 ----------
-> Throughout the manuscript, we have shifted the units wherever possible to
-> hours.
+> Throughout the manuscript, we have shifted the units wherever
+> possible to hours.
 >
-> Exceptions include the ephemeris (which is quoted in days), and the periods
-> listed in Figures 3 and 6, which are quoted in days. The former is standard
-> convention. The latter was because we felt it important to list the periods
-> used to generate the figures at a higher precision, and quoting higher
-> precision in units of hours seems atypical in a field in which days are more
+> Exceptions include the ephemeris (which is quoted in days), and
+> the periods listed in Figures 3 and 6, which are quoted in
+> days. The former is standard convention. The latter was because
+> we felt it important to list the periods used to generate the
+> figures at a higher precision, and quoting higher precision in
+> units of hours seems atypical in a field in which days are more
 > typically seen.
 
 
@@ -38,110 +41,121 @@ RESPONSE
 REFEREE COMMENT
 ----------
 
-Introduction: The introduction takes a light/jovial tone, e.g., did they
-actually wish it were a planet, or is it more that they aimed to confirm it and
-found the opposite? I would normally suggest making more formal. However, I
-enjoyed reading it. I'm sorry the authors ruined their own favorite planet.
+Introduction: The introduction takes a light/jovial tone, e.g.,
+did they actually wish it were a planet, or is it more that they
+aimed to confirm it and found the opposite? I would normally
+suggest making more formal. However, I enjoyed reading it. I'm
+sorry the authors ruined their own favorite planet.
 
 
 RESPONSE
 ----------
-> So are we!  Our aim was to clarify what could be happening in the system, and
-> hopefully this contribution is valuable for that.  When a planetary door
-> closes, a window on young star variability opens...
+> So are we!  Our aim was to clarify what could be happening in
+> the system, and hopefully this contribution is valuable for
+> that.  When a planetary door closes, a window on young star
+> variability opens...
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Introduction: I do not think this is youngest hot Jupiter. That should be true
-just for transiting systems, and it was the youngest at discovery, but the two
-RV planets from ESPaDOnS are younger (Donati et al. 2016 and Yu et al. 2017).
-Both are hot Jupiters and in Taurus. I believe the age of Tap 26 is more
-ambiguous due to age spreads (multiple groups?) in Taurus, but the age of V830
-Tau is certainly <3 Myr.
+Introduction: I do not think this is youngest hot Jupiter. That
+should be true just for transiting systems, and it was the
+youngest at discovery, but the two RV planets from ESPaDOnS are
+younger (Donati et al. 2016 and Yu et al. 2017).  Both are hot
+Jupiters and in Taurus. I believe the age of Tap 26 is more
+ambiguous due to age spreads (multiple groups?) in Taurus, but
+the age of V830 Tau is certainly <3 Myr.
 
 RESPONSE
 ----------
 
-> Thank you for this correction. We have qualified the relevant sentence as the
-> youngest known *transiting* hot Jupiter, and added a footnote to the V830
-> Tau or TAP 26 results.
+> Thank you for this correction. We have qualified the relevant
+> sentence as the youngest known *transiting* hot Jupiter, and
+> added a footnote to the V830 Tau or TAP 26 results.
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Introduction: I also think it wasn't the first H-alpha detection. That belongs
-to LkCa15, which was imaged in H-alpha in 2015 (Sallum et al. 2015). Although
-that planet might not exist, so this comment is probably OK. It would still be
-the first close-in planet either way. I'd suggest weakening the statement
-slightly to err on the side of caution.
+Introduction: I also think it wasn't the first H-alpha detection.
+That belongs to LkCa15, which was imaged in H-alpha in 2015
+(Sallum et al. 2015). Although that planet might not exist, so
+this comment is probably OK. It would still be the first close-in
+planet either way. I'd suggest weakening the statement slightly
+to err on the side of caution.
 
 RESPONSE
 ----------
-> We have changed the wording to err on the side of caution, and qualify it as
-> the first direct detection of Hα emission from a close-in planet.
+> We have changed the wording to err on the side of caution, and
+> qualify it as the first direct detection of Hα emission from a
+> close-in planet.
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Introduction: Barnes et al. (2013) claimed that the planet and star precessed
-on a period of 300-600 days, and that this could somewhat fit variable depths
-and missing transits. The Ciardi et al. 2015 paper uses this as their model, in
-addition to gravity darkening as mentioned in the current introduction. I
-suggest mentioning the precession of the planet in the introduction, as many
-papers used the precession model or at least discussed it. The line "...the
-gravity-darkened star precessed..." seems to allude to this, but it's unclear
-from the rest of the text.
+Introduction: Barnes et al. (2013) claimed that the planet and
+star precessed on a period of 300-600 days, and that this could
+somewhat fit variable depths and missing transits. The Ciardi et
+al. 2015 paper uses this as their model, in addition to gravity
+darkening as mentioned in the current introduction. I suggest
+mentioning the precession of the planet in the introduction, as
+many papers used the precession model or at least discussed it.
+The line "...the gravity-darkened star precessed..." seems to
+allude to this, but it's unclear from the rest of the text.
 
 RESPONSE
 ----------
-> We have changed the wording of the last sentence of the first paragraph in
-> the introduction to explicitly use the word "precess", rather than "torque".
+> We have changed the wording of the last sentence of the first
+> paragraph in the introduction to explicitly use the word
+> "precess", rather than "torque".
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Section 2: The first paragraph discusses the full frame images, while the next
-section discusses the 2m data. Why did the authors use the FFIs when they have
-the (higher quality) 2m data?
+Section 2: The first paragraph discusses the full frame images,
+while the next section discusses the 2m data. Why did the authors
+use the FFIs when they have the (higher quality) 2m data?
 
 RESPONSE
 ----------
-> For the essential analysis of the study (i.e., extracting and fitting the
-> long and short signals), we used the 2m SPOC lightcurve.
+> For the essential analysis of the study (i.e., extracting and
+> fitting the long and short signals), we used the 2m SPOC
+> lightcurve.
 >
-> We primarily mention our use of the FFI lightcurves in Section 2 because of
-> the systematic jump mentioned at BJD 2458488.3, which was eventually excluded
-> from further analysis. We wanted to be sure though that this jump was truly
-> an instrumental systematic, and not a software systematic. Checking
-> lightcurves from independent pipelines meets this goal.
+> We primarily mention our use of the FFI lightcurves in Section
+> 2 because of the systematic jump mentioned at BJD 2458488.3,
+> which was eventually excluded from further analysis. We wanted
+> to be sure though that this jump was truly an instrumental
+> systematic, and not a software systematic. Checking lightcurves
+> from independent pipelines meets this goal.
 >
-> A secondary reason to introduce the concept of FFIs in Section 2 is that they
-> are used to measure the variability amplitudes of the other members of 25
-> Ori-1 in Section 4.3.
+> A secondary reason to introduce the concept of FFIs in Section
+> 2 is that they are used to measure the variability amplitudes
+> of the other members of 25 Ori-1 in Section 4.3.
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Section 2.2.2: "These details concerning the group membership for one object
-may seem excessive to those accustomed to the simple distinction between "young
-cluster members" and "old field stars"." I suggest removing this. It's not
-adding anything and sounds like the authors are making assumptions about the
-reader. The membership of this object is essential for an age assessment, and
-can/should be updated given the new Gaia data. Since most of the object class
-in question are at similar ages, this directly relates to the study. If it had
-turned out to be ~100 Myr, we would all be more skeptical (although ~100 Myr
-stars like this are known, they are more rare).
+Section 2.2.2: "These details concerning the group membership for
+one object may seem excessive to those accustomed to the simple
+distinction between "young cluster members" and "old field
+stars"." I suggest removing this. It's not adding anything and
+sounds like the authors are making assumptions about the reader.
+The membership of this object is essential for an age assessment,
+and can/should be updated given the new Gaia data. Since most of
+the object class in question are at similar ages, this directly
+relates to the study. If it had turned out to be ~100 Myr, we
+would all be more skeptical (although ~100 Myr stars like this
+are known, they are more rare).
 
 RESPONSE
 ----------
@@ -152,62 +166,68 @@ RESPONSE
 REFEREE COMMENT
 ----------
 
-Section 3/4: This deals mostly with identification of the second star. However,
-the second star appears to be an assumption of section 3.2. If the periods come
-from two stars that could be separated (e.g., wide binaries), it would have
-been best to do so rather than try to model both by including fs and fl terms.
-So it is odd that the binary search is after the light curve model in the
-paper. It might make more narrative sense to move the light curve model to
-after section 4, since 4 motivates 3.2.
+Section 3/4: This deals mostly with identification of the second
+star. However, the second star appears to be an assumption of
+section 3.2. If the periods come from two stars that could be
+separated (e.g., wide binaries), it would have been best to do so
+rather than try to model both by including fs and fl terms.  So
+it is odd that the binary search is after the light curve model
+in the paper. It might make more narrative sense to move the
+light curve model to after section 4, since 4 motivates 3.2.
 
 RESPONSE
 ----------
-> While we see the referee's point, we prefer the narrative structure of
-> presenting the TESS data first, and getting into considerations of stellar
-> binarity, both resolved and unresolved, afterwards.
+> While we see the referee's point, we prefer the narrative
+> structure of presenting the TESS data first, and getting into
+> considerations of stellar binarity, both resolved and
+> unresolved, afterwards.
 >
-> The reason is that the multiple signals come from TESS data processed at the
-> ``default'' level. From a story-telling perspective, why would we worry about
-> binarity if we didn't already know there were multiple photometric signals?
+> The reason is that the multiple signals come from TESS data
+> processed at the ``default'' level. From a story-telling
+> perspective, why would we worry about binarity if we didn't
+> already know there were multiple photometric signals?
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Section 4.3: My biggest concern with this analysis is reliance on the chi^2
-from Gaia to assess binarity. This is not the suggested path from Gaia, as it
-is subject to a noise model Gaia now knows has issues. For example, nearly 100%
-of mid/late M dwarfs have a high chi^2 (and a large excess astrometric noise),
-but clearly they are not all binaries. This is (partially) because of a
-color-term in the PSF model that was not initially understood. Similarly,
-almost all bright stars have a large RUWE, as do the bluest stars. The authors
-correctly use RUWE, the suggested method, but the RUWE analysis is less
-convincing and clearly the authors are leaning on the chi^2.
+Section 4.3: My biggest concern with this analysis is reliance on
+the chi^2 from Gaia to assess binarity. This is not the suggested
+path from Gaia, as it is subject to a noise model Gaia now knows
+has issues. For example, nearly 100% of mid/late M dwarfs have a
+high chi^2 (and a large excess astrometric noise), but clearly
+they are not all binaries. This is (partially) because of a
+color-term in the PSF model that was not initially understood.
+Similarly, almost all bright stars have a large RUWE, as do the
+bluest stars. The authors correctly use RUWE, the suggested
+method, but the RUWE analysis is less convincing and clearly the
+authors are leaning on the chi^2.
 
-A good reference on this would be Belokurov et al. 2020, which shows what kinds
-of binaries RUWE can and cannot detect. This binary might simply be too tight
-to create an astrometric signal (in which case the RUWE makes sense). The
-typical cutoff for binarity is a RUWE of ~1.4, see Rizzuto et al. 2018, Ziegler
-et al. 2019, Pearce et al. 2020, among many others.  I suggest removing the
-chi^2 analysis. If the authors want to keep it, they need to argue why it is a
-more meaningful metric than RUWE, and attempt to account for color and other
-parameters that impact chi^2.
+A good reference on this would be Belokurov et al. 2020, which
+shows what kinds of binaries RUWE can and cannot detect. This
+binary might simply be too tight to create an astrometric signal
+(in which case the RUWE makes sense). The typical cutoff for
+binarity is a RUWE of ~1.4, see Rizzuto et al. 2018, Ziegler et
+al. 2019, Pearce et al. 2020, among many others.  I suggest
+removing the chi^2 analysis. If the authors want to keep it, they
+need to argue why it is a more meaningful metric than RUWE, and
+attempt to account for color and other parameters that impact
+chi^2.
 
 
 RESPONSE
 ----------
-> We've done as suggested, and replaced this sub-plot with RUWE instead of
-> reduced chi^2. The text in Section 4.3 and captions have been updated
-> accordingly, and chi^2 is now mostly ignored.
+> We've done as suggested, and replaced this sub-plot with RUWE
+> instead of reduced chi^2. The text in Section 4.3 and captions
+> have been updated accordingly, and chi^2 is now mostly ignored.
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Section 4.4:
-Need a period between velocities and Further.
+Section 4.4: Need a period between velocities and Further.
 
 RESPONSE
 ----------
@@ -218,53 +238,58 @@ RESPONSE
 REFEREE COMMENT
 ----------
 
-Section 5.2: That clear offset at (Pl-Ps)/Ps doesn't seem like a coincidence,
-and the paper reads like the authors agree, but couldn't explain it. I'm not
-sure I can help much here, although it is interesting. Could this be that both
-stars are dippers and one turns off while the other turns on by coincidence?
-Spots and hot-spot clusters can shift in phase as the magnetic fields realign,
-which creates a new spot cluster at the same period but a different phase. If
-it is circumstellar material, a tight binary could be shepherding the material,
-but I think the systems would have to be very tight for that, and it could not
-last for such a long time.
+Section 5.2: That clear offset at (Pl-Ps)/Ps doesn't seem like a
+coincidence, and the paper reads like the authors agree, but
+couldn't explain it. I'm not sure I can help much here, although
+it is interesting. Could this be that both stars are dippers and
+one turns off while the other turns on by coincidence?  Spots and
+hot-spot clusters can shift in phase as the magnetic fields
+realign, which creates a new spot cluster at the same period but
+a different phase. If it is circumstellar material, a tight
+binary could be shepherding the material, but I think the systems
+would have to be very tight for that, and it could not last for
+such a long time.
 
-I think this can be assessed statistically; given the scatter in those points,
-the odds of lining up to any given line is small. But without a physical
-explanation this is hard to test. Probably this requires looking at many
-dippers as an ensemble. It is not required for the primary analysis of this
-paper, so I will defer to the authors if they want to dig deeper on this.
+I think this can be assessed statistically; given the scatter in
+those points, the odds of lining up to any given line is small.
+But without a physical explanation this is hard to test. Probably
+this requires looking at many dippers as an ensemble. It is not
+required for the primary analysis of this paper, so I will defer
+to the authors if they want to dig deeper on this.
 
 RESPONSE
 ----------
-> Indeed, we are not sure whether or not it is a coincidence, but we
-> thought it was interesting enough to mention, even though we did not
-> have an interpretation.
+> Indeed, we are not sure whether or not it is a coincidence, but
+> we thought it was interesting enough to mention, even though we
+> do not have an interpretation.
 >
 > It seems unlikely in our view that both stars are showing dips.
-> Our interpretation of the two smooth photometric signals is that one
-> star is rotating at 11.98 hr, and the other star is rotating at
-> 10.76 hr.
+> Our interpretation of the two smooth photometric signals is
+> that one star is rotating at 11.98 hr, and the other star is
+> rotating at 10.76 hr.
 >
-> All of the dips occur with a periodicity of 10.76 hr. (If we make
-> Figure 6 but instead phasing by P_long, it yields a mess of points).
-> Therefore all the dips are presumably associated with the star that
-> has that rotation period.
+> All of the dips occur with a periodicity of 10.76 hr. (If we
+> make Figure 6 but instead phasing by P_long, it yields a mess
+> of points).  Therefore all the dips are presumably associated
+> with the star that has that rotation period.
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Section 5.3.2: The difference between the fraction of transient flux dip stars
-and the binary fraction is more significant than it appears to the authors.
-High mass ratio binaries would not be included, as they are too faint to detect
-the second period. Further, at the distance of Upper Sco (~150pc) and assuming
-Stauffer et al. 2017 would notice/separate two stars wider than a K2 pixel
-(4"), the presence of two periods would not include binaries wider than 600pc.
-Eyeballing the Winters et al. 2019 distribution suggests ~20% of binaries are
-beyond this. Stauffer et al. 2017 also probably checked against existing
-imaging data for obvious binaries down to 1-2", so likely even more are getting
-cut.
+Section 5.3.2: The difference between the fraction of transient
+flux dip stars and the binary fraction is more significant than
+it appears to the authors.  High mass ratio binaries would not be
+included, as they are too faint to detect the second period.
+Further, at the distance of Upper Sco (~150pc) and assuming
+Stauffer et al. 2017 would notice/separate two stars wider than a
+K2 pixel (4"), the presence of two periods would not include
+binaries wider than 600pc.  Eyeballing the Winters et al. 2019
+distribution suggests ~20% of binaries are beyond this. Stauffer
+et al. 2017 also probably checked against existing imaging data
+for obvious binaries down to 1-2", so likely even more are
+getting cut.
 
 RESPONSE
 ----------
@@ -272,46 +297,57 @@ RESPONSE
 > making it.
 > 
 > We have also updated the text to reflect our hesitation about
-> whether or not the phenomenon is associated with binarity, primarily
-> because multiple photometric periods do not necessarily imply
-> binarity.
+> whether or not the phenomenon is associated with binarity,
+> primarily because multiple photometric periods do not
+> necessarily imply binarity.
 
 
 ******************************************
 REFEREE COMMENT
 ----------
 
-Section 5.4: The authors conclude this subsection with a reasonable argument
-that this isn't a protoplanet. Does this same argument not rule out gas/debris
-at the Keplerian coronation radius? What could maintain such clouds for
-years/decades and then have them jump phase but at the same period? It's hard
-to do this if it is not somehow physically attached to the star in some what
-(e.g., spots can do this).
+Section 5.4: The authors conclude this subsection with a
+reasonable argument that this isn't a protoplanet. Does this same
+argument not rule out gas/debris at the Keplerian coronation
+radius? What could maintain such clouds for years/decades and
+then have them jump phase but at the same period? It's hard to do
+this if it is not somehow physically attached to the star in some
+what (e.g., spots can do this).
 
 RESPONSE
 ----------
-> We have modified the last paragraphs of Section 5.4 to reflect an
-> updated preference that we came to after submission, for the clumpy
-> torus model over the spot occultation model. The reasons
-> for the preference are given in the text: 1) the spot occultation
-> model seems more geometrically contrived than we initially thought,
-> and 2) the Halpha excess seen by Johns-Krull+16 (and also in
-> unpublished observations by Stauffer of scallop shells) seems likely
-> to require hydrogen in orbit near the corotation radius.
+> We have modified the last paragraphs of Section 5.4 to reflect
+> an updated preference that we came to after submission, for the
+> clumpy torus model over the spot occultation model. The reasons
+> for the preference are given in the text: 1) the spot
+> occultation model seems more geometrically contrived than we
+> initially thought, and 2) the Halpha excess seen by
+> Johns-Krull+16 (and also in unpublished observations by
+> Stauffer of scallop shells) seems likely to require hydrogen in
+> orbit near the corotation radius.
+>
+> In response to the question of: "why can the shifting phase be
+> explained more easily by dust/gas clumps than the
+> protoplanet?", we now refer D'Angelo and Spruit 2012 (see in
+> particular their Section 1), which discusses the possibility of
+> cyclic accretion, with periods of "stalled" mass accumulation
+> outside the corotation radius alternating with accreting
+> phases.
+
 
 
 ******************************************
 ADDITIONAL CHANGES
 
-A few additional changes are noted in the "List of Changes" appended at the end
-of the manuscript.
+A few additional changes are noted in the "List of Changes"
+appended at the end of the manuscript.
 
-We modified the text throughout to clarify that Stauffer+ 2017 favored the
-explanation of a clumpy torus of gas and dust at the Keplerian co-rotation
-radius, rather than our initial (incomplete) description of "clouds of gas" at
-the same location.
+We modified the text throughout to clarify that Stauffer+ 2017
+favored the explanation of a clumpy torus of gas and dust at the
+Keplerian co-rotation radius, rather than our initial
+(incomplete) description of "clouds of gas" at the same location.
 
 We also modified the labels of the axes in Figure 5a for clarity.
 
-We have also added a few citations that we omitted in the original
-manuscript.
+We have also added a few citations that we omitted in the
+original manuscript.
