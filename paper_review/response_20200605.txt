@@ -1,7 +1,7 @@
 Dear Dr. Shafter,
 
 We thank you for organizing the review of our paper, and also
-thank the referee for their helpful comments.  We have considered
+thank the referee for constructive criticism.  We have considered
 the referee's remarks carefully and revised our manuscript
 accordingly.
 
@@ -33,8 +33,7 @@ RESPONSE
 > days. The former is standard convention. The latter was because
 > we felt it important to list the periods used to generate the
 > figures at a higher precision, and quoting higher precision in
-> units of hours seems atypical in a field in which days are more
-> typically seen.
+> units of hours seems atypical.
 
 
 ******************************************
@@ -73,7 +72,7 @@ RESPONSE
 
 > Thank you for this correction. We have qualified the relevant
 > sentence as the youngest known *transiting* hot Jupiter, and
-> added a footnote to the V830 Tau or TAP 26 results.
+> added a footnote to cite the V830 Tau or TAP 26 results.
 
 
 ******************************************
@@ -89,9 +88,9 @@ to err on the side of caution.
 
 RESPONSE
 ----------
-> We have changed the wording to err on the side of caution, and
-> qualify it as the first direct detection of Hα emission from a
-> close-in planet.
+> We followed the referee's suggestion by stating that PTFO 8-8695
+> would have been the first close-in planet for which Hα emission
+> was detected.
 
 
 ******************************************
@@ -111,7 +110,7 @@ allude to this, but it's unclear from the rest of the text.
 RESPONSE
 ----------
 > We have changed the wording of the last sentence of the first
-> paragraph in the introduction to explicitly use the word
+> paragraph in the introduction to use the word
 > "precess", rather than "torque".
 
 
@@ -129,12 +128,11 @@ RESPONSE
 > fitting the long and short signals), we used the 2m SPOC
 > lightcurve.
 >
-> We primarily mention our use of the FFI lightcurves in Section
-> 2 because of the systematic jump mentioned at BJD 2458488.3,
+> Our discussion of the FFI lightcurves in Section 2 was motivated
+> by the discontinuity in the light curve at BJD 2458488.3,
 > which was eventually excluded from further analysis. We wanted
-> to be sure though that this jump was truly an instrumental
-> systematic, and not a software systematic. Checking lightcurves
-> from independent pipelines meets this goal.
+> to compare the FFI and 2m light ccurves to see whether this jump
+> was an instrumental systematic or a software systematic.
 >
 > A secondary reason to introduce the concept of FFIs in Section
 > 2 is that they are used to measure the variability amplitudes
@@ -148,7 +146,7 @@ REFEREE COMMENT
 Section 2.2.2: "These details concerning the group membership for
 one object may seem excessive to those accustomed to the simple
 distinction between "young cluster members" and "old field
-stars"." I suggest removing this. It's not adding anything and
+stars". I suggest removing this. It's not adding anything and
 sounds like the authors are making assumptions about the reader.
 The membership of this object is essential for an age assessment,
 and can/should be updated given the new Gaia data. Since most of
@@ -159,7 +157,7 @@ are known, they are more rare).
 
 RESPONSE
 ----------
-> We've removed it -- thank you for the suggestion.
+> We appreciate this suggestion and have omitted this sentence.
 
 
 ******************************************
@@ -177,16 +175,13 @@ light curve model to after section 4, since 4 motivates 3.2.
 
 RESPONSE
 ----------
-> While we see the referee's point, we prefer the narrative
-> structure of presenting the TESS data first, and getting into
-> considerations of stellar binarity, both resolved and
-> unresolved, afterwards.
->
-> The reason is that the multiple signals come from TESS data
-> processed at the ``default'' level. From a story-telling
-> perspective, why would we worry about binarity if we didn't
-> already know there were multiple photometric signals?
-
+> We considered re-organizing the paper as the referee suggested,
+> but ultimately decided against it.  We chose to present the
+> TESS data, and show the 2 signals, which raises the possibility
+> of binarity - which is then investigated further with Gaia.
+> The referee suggests showing the Gaia evidence for binarity, and then
+> showing the TESS data with 2 signals. To us, there does not seem
+> to be any advantage to inverting the order.
 
 ******************************************
 REFEREE COMMENT
@@ -218,9 +213,9 @@ chi^2.
 
 RESPONSE
 ----------
-> We've done as suggested, and replaced this sub-plot with RUWE
-> instead of reduced chi^2. The text in Section 4.3 and captions
-> have been updated accordingly, and chi^2 is now mostly ignored.
+> We appreciate this criticism. We've followed the referee's advice
+> and replaced this sub-plot with RUWE instead of reduced chi^2.
+> The text in Section 4.3 and captions have been updated accordingly.
 
 
 ******************************************
@@ -316,8 +311,9 @@ what (e.g., spots can do this).
 
 RESPONSE
 ----------
-> We have modified the last paragraphs of Section 5.4 to reflect
-> an updated preference that we came to after submission, for the
+> This comment caused us to consider more carefully the merits
+> and weaknesses of the two hypotheses we discussed. 
+> We ended up with a stronger preference for
 > clumpy torus model over the spot occultation model. The reasons
 > for the preference are given in the text: 1) the spot
 > occultation model seems more geometrically contrived than we
