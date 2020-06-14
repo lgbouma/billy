@@ -72,7 +72,7 @@ RESPONSE
 
 > Thank you for this correction. We have qualified the relevant
 > sentence as the youngest known *transiting* hot Jupiter, and
-> added a footnote to cite the V830 Tau or TAP 26 results.
+> added a footnote to cite the V830 Tau and TAP 26 results.
 
 
 ******************************************
@@ -131,7 +131,7 @@ RESPONSE
 > Our discussion of the FFI lightcurves in Section 2 was motivated
 > by the discontinuity in the light curve at BJD 2458488.3,
 > which was eventually excluded from further analysis. We wanted
-> to compare the FFI and 2m light ccurves to see whether this jump
+> to compare the FFI and 2m light curves to see whether this jump
 > was an instrumental systematic or a software systematic.
 >
 > A secondary reason to introduce the concept of FFIs in Section
@@ -324,11 +324,11 @@ RESPONSE
 >
 > In response to the question of: "why can the shifting phase be
 > explained more easily by dust/gas clumps than the
-> protoplanet?", we now refer D'Angelo and Spruit 2012 (see in
-> particular their Section 1), which discusses the possibility of
-> cyclic accretion, with periods of "stalled" mass accumulation
-> outside the corotation radius alternating with accreting
-> phases.
+> protoplanet?", we now reference D'Angelo and Spruit 2012 (see
+> in particular their Section 1), which discusses the possibility
+> of cyclic accretion, with periods of "stalled" mass
+> accumulation outside the corotation radius alternating with
+> accreting phases.
 
 
 
