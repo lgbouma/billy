@@ -329,6 +329,12 @@ RESPONSE
 > of cyclic accretion, with periods of "stalled" mass
 > accumulation outside the corotation radius alternating with
 > accreting phases.
+>
+> In addition to these two models, after reflecting, we became
+> persuaded that an accretion hotspot passing behind the star
+> could also produce the needed dips in PTFO 8-8695. Although we
+> do not favor this explanation, we now also discuss it in
+> greater depth in Section 5.4.
 
 
 
