@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\documentclass[12pt,twocolumn,tighten]{aastex62}
-\documentclass[12pt,twocolumn,tighten,trackchanges]{aastex62}
+\documentclass[12pt,twocolumn,tighten]{aastex62}
+%\documentclass[12pt,twocolumn,tighten,trackchanges]{aastex62}
 \usepackage{amsmath,amstext,amssymb}
 \usepackage[T1]{fontenc}
 \usepackage{apjfonts}
@@ -1082,16 +1082,14 @@ are cannot be explained as the effects of starspots.  These stars
 typically have the following things in common:
 \begin{enumerate}[topsep=0.5ex,itemsep=-0.5ex,partopsep=1ex,parsep=1.5ex]
   \item They are weak-lined T Tauri stars\added{ (under the
-    definition of {it e.g.}, \citealt{fang_star_2009})}.
+    definition of {\it e.g.}, \citealt{fang_star_2009})}.
   \item The spectral type is M2 to M5 ({\it e.g.},
     \citealt{rebull_usco_2018},~Figure~20).
-  \item \replaced{The age is typically $\lesssim$ 100$\,$Myr.}{The
-    ages typically range between 5 and 100$\,$Myr.}\footnote{ At
+  \item The age is typically $\lesssim$ 100$\,$Myr.\footnote{ At
     present, the oldest observed ``scallops'' are in the Pleaides
     \citep{rebull_rotation_2016}. One of these, EPIC 211013604, might
     meet the ``persistent dip'' classification.  If so, it is \deleted{also} the
-    oldest known. \added{The lower limit comes from the lack of detectable
-   WISE infrared excesses.}} 
+    oldest known. } 
   \item The light curves show shallow, angular dips, \deleted{usually}
     superposed on large-amplitude smooth variability \added{at or near
     1:1 synchronicity}. The \replaced{latter}{smooth variability} is
@@ -1112,9 +1110,9 @@ The 10.76$\,$hr signal in \ptfo\ meets all of these criteria.
 \replaced{This is the first connection of \ptfo\ with this class of
 objects, likely because the TESS data enabled us to put the dips in
 the context of the asymmetric out-of-dip modulation.} {While this was
-in fact already noted by \citet{stauffer_orbiting_2017}, the
-asymmetric out-of-dip modulation shown by the TESS data puts the
-connection on stronger footing.}
+in fact mentioned by \citet{stauffer_orbiting_2017}, the
+asymmetric out-of-dip modulation shown by the TESS data solidifies the
+connection.}
 
 There are two crucial additional points concerning the transient flux
 dips.  First, the dip durations seem to scale linearly with the
@@ -1144,6 +1142,8 @@ star would be too faint to detect a second period.}
 binarity is not iron-clad.  Firstly, multiple photometric periods do
 not necessarily imply binarity. For instance, circumstellar material
 could exist around single stars inside, at, or wide of co-rotation.
+If it did, it could eclipse with a period different from the stellar
+rotation.
 Additionally, } low-mass pre-main-sequence stars \deleted{however}
 have been shown to \added{have} companion fractions up to twice as
 high in dispersed clusters such as Upper~Sco and Taurus
@@ -1188,6 +1188,8 @@ have truncated the outer edges of their respective disks, in a manner
 seen at the population level in exoplanetary systems
 \citep{kraus_impact_2016,moe_impact_2019}.
 
+\explain{Note :Removed ``high-latitude accretion hotspots'' from the
+list in this paragraph}
 The key question is what causes the transient dips. This is an
 unsolved problem not only for \ptfo\ but also for the emerging class
 of similar young and rapidly rotating M-dwarfs.  Many possible
@@ -1198,23 +1200,58 @@ are that the dips are caused by
 {\it (i)} eclipsing binaries;
 {\it (ii)} ``dipper''-flavor Class-I or Class-II disks;
 {\it (iii)} eclipses of prominences;
-{\it (iv)} high-latitude accretion hotspots;
-{\it (v)} high-latitude starspots;
-or {\it (vi)} dust clouds of \replaced{plausible
+{\it (iv)} high-latitude starspots;
+or {\it (v)} dust clouds of \replaced{plausible
 composition}{particular compositions
 \citep[][Figure~10]{zhan_complex_2019}}.  We also view the possibility
-of {\it (vii)} tidally disrupted planetary or cometary material to be
+of {\it (vi)} tidally disrupted planetary or cometary material to be
 implausible, given the synchronicity between dip and rotation periods
-seen across many systems.
+seen across many systems.  \added{Finally, {\it (vii)} transits of an
+enshrouded protoplanet can be added to the list of disfavored
+explanations, based on the chromaticity, asymmetric phase curve, and
+light-curve changes seen in \ptfo.}
 
-The explanations that \replaced{are not yet}{have not yet been} ruled
-out include {\it (i)} transiting clumps of \added{dust or }gas at the
-Keplerian co-rotation radius; {\it (ii)} transits of enshrouded
-protoplanets; {\it (iii)} occultations of \replaced{starspots}{hot and
-cold spots on the stellar surface} by an optically thick disk.  The
-first and last explanations have added appeal because they are
-flexible enough to explain not only the transient and persistent-dip
-M-dwarfs, but also the ``scallop shell'' M-dwarfs
+\explain{Note: ``High-latitude accretion hotspots'' was moved to this
+paragraph.}
+The explanations that we view as not yet ruled out include {\it A)}
+transiting clumps of \added{dust or }gas at the Keplerian co-rotation
+radius; {\it B)} occultations of \replaced{starspots}{hotspots on the
+stellar surface} by an optically thick disk \citep{zhan_complex_2019};
+and {\it C)} high-latitude accretion hotspots passing behind the star
+\citep{yu_tests_2015}.  \replaced{The evolution of \ptfo\
+over}{Observations of \ptfo\ from} the past decade may offer some
+hints.  \deleted{Specifically, }\ptfo's transition between having
+none, one, and multiple dips per cycle seems important
+\added{(Figure~\ref{fig:o_minus_c})}.  \deleted{The dips would then
+need to be caused by material that was somehow disrupted from the
+planet, but somehow remained co-orbital for an extended duration. This
+seems implausible.} \added{ The H$\alpha$ excess observed by
+\citet{johnskrull_h_2016} also seems like an important piece of
+evidence.  }
+
+\explain{Note: This paragraph is newly added, to support our view of the
+high-latitude accretion hotspot being plausible for \ptfo.}
+The high-latitude accretion hotspot scenario seems qualitatively
+capable of explaining most of the characteristics of \ptfo, including
+the fact that its H$\alpha$ equivalent width of 11.4$\,$\AA\
+\citep{van_eyken_ptf_2012} places it near the ``classical/weak'' T
+Tauri division \citep{briceno_cidaII_2019}, and the fact that its
+excess H$\alpha$ component varies in velocity between $-200$ and
+$+200$ km$\,$s$^{-1}$ \citep{johnskrull_h_2016}.  The lack of a
+NIR-excess could be problematic, but does not eliminate the
+possibility that a tenuous amount of dust or gas remains near the
+star, and is able to accrete onto it.  We view the main problem with
+this explanation to be the likelihood that it explains the population
+of transient flux dips.  RIK-210 in particular has dips too deep
+($\sim$20\%) and too asymmetric to be explained by occultations of a
+hot spot \citep{david_transient_2017}.
+
+\explain{Note: This paragraph has been expanded to clarify the
+possibility of a hotspot being occulted by a disk.}
+Explanations {\it A} and {\it B} (circumstellar material at the
+co-rotation radius, and occultations of spots by a disk) have the
+appeal that they are flexible enough to explain not only the transient
+and persistent-dip stars, but also the ``scallop shells''
 \citep{stauffer_orbiting_2017}.  \replaced{Despite this appeal, the
 possibility of distinct mechanisms explaining these distinct
 variability classes remains open.}{ In the spot occultation scenario
@@ -1228,31 +1265,22 @@ misaligned enough and insufficiently flared, that it did not fall
 along the line of sight.  This geometric requirement seems too
 contrived to occur in even $\lesssim$1\% of young M dwarf systems. }
 
-\replaced{The evolution of \ptfo\ over}{Observations of \ptfo\ from}
-the past decade could offer additional hints.  \deleted{Specifically,
-}\ptfo's transition between having none, one, and multiple dips per
-cycle seems important \added{(Figure~\ref{fig:o_minus_c})}.
-\deleted{The dips would then need to be caused by material that was
-somehow disrupted from the planet, but somehow remained co-orbital for
-an extended duration. This seems implausible.} \added{ The H$\alpha$
-excess observed by \citet{johnskrull_h_2016} also seems like an
-important piece of evidence.  The model with circumstellar optically
-thick hydrogen gas near the co-rotation radius readily explains this
-excess.  }
-
 \added{Out of the available explanations, we therefore consider the
-idea of a clumpy torus of optically thick dust or gas near the
-co-rotation radius to be most plausible.  There is theoretical support
-for the idea that accretion disks subject to strong magnetic fields
-could enter stalled states and become trapped near co-rotation
-\citep{dangelo_accretion_2012}.  The concept of an ``evaporating dust
-rim'' within which all dust evaporates
-\citep{millan-gabet_circumstellar_2007,dullemond_inner_2010} will
-likely also be an important first-order consideration in physical models of
-this scenario.  The additional question of whether the opacity in fact
-comes from dust or partially-ionized gas ({\it e.g.}, via gas
-continuum, atomic lines, or perhaps TiO molecular opacity) also
-remains a topic for future exploration.  }
+clumpy torus of optically thick dust or gas near the co-rotation
+radius to be most plausible.  The partially ionized circumstellar
+hydrogen would readily explain the excess H$\alpha$ emission, and
+changes in the clumping geometry would lead to changes in the observed
+eclipse shapes.  The long-term stability, punctuated by changes in dip
+phases, might be understood as an accretion disk subject to strong
+magnetic fields going through ``stalled'' states in which material is
+trapped near co-rotation \citep{dangelo_accretion_2012}.  Physical
+models of this scenario may need to consider such states, in addition
+to dissociation of the dust population
+\citep{millan-gabet_circumstellar_2007,dullemond_inner_2010}.
+Finally, the question of whether the opacity in fact comes from dust
+or partially-ionized gas ({\it e.g.}, via gas continuum, atomic lines,
+or perhaps TiO molecular opacity) remains an additional issue for
+future exploration.  }
 
 \section{Conclusions}
 \label{sec:conclusions}
