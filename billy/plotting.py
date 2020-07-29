@@ -20,10 +20,6 @@ Plots:
     plot_O_minus_C
 
     plot_brethren
-
-Convenience:
-    savefig
-    format_ax
 """
 import os, corner, pickle
 from glob import glob
@@ -48,6 +44,8 @@ from astropy.io import fits
 from astropy.time import Time
 
 from numpy import array as nparr
+
+from aesthetic.plot import savefig, format_ax
 
 def plot_periodogram(outdir, islinear=True):
 
@@ -605,29 +603,6 @@ def plot_cornerplot(true_d, m, outpath):
                         show_titles=True, title_kwargs={"fontsize": 12},
                         truths=truths, title_fmt='.2g')
     savefig(fig, outpath, writepdf=0, dpi=100)
-
-
-def savefig(fig, figpath, writepdf=True, dpi=450):
-    fig.savefig(figpath, dpi=dpi, bbox_inches='tight')
-    print('{}: made {}'.format(datetime.utcnow().isoformat(), figpath))
-
-    if writepdf:
-        pdffigpath = figpath.replace('.png','.pdf')
-        fig.savefig(pdffigpath, bbox_inches='tight', rasterized=True, dpi=dpi)
-        print('{}: made {}'.format(datetime.utcnow().isoformat(), pdffigpath))
-
-    plt.close('all')
-
-
-def format_ax(ax):
-    ax.yaxis.set_ticks_position('both')
-    ax.xaxis.set_ticks_position('both')
-    ax.get_yaxis().set_tick_params(which='both', direction='in')
-    ax.get_xaxis().set_tick_params(which='both', direction='in')
-    for tick in ax.xaxis.get_major_ticks():
-        tick.label.set_fontsize('small')
-    for tick in ax.yaxis.get_major_ticks():
-        tick.label.set_fontsize('small')
 
 
 def plot_scene(c_obj, img_wcs, img, outpath, Tmag_cutoff=17, showcolorbar=0,
