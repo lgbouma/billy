@@ -933,7 +933,7 @@ def plot_astrometric_excess(outdir, ruwe=0, talklabels=0):
 
 def plot_O_minus_C(
     x, y, sigma_y, theta_linear, refs, savpath=None, xlabel='Epoch',
-    ylabel='Deviation from constant period [min]', xlim=None, ylim=None,
+    ylabel=None, xlim=None, ylim=None,
     ylim1=None, include_all_points=False, onlytransits=False,
     plongphasing=False, nodash=False):
 
@@ -1075,8 +1075,12 @@ def plot_O_minus_C(
     a_top.get_xaxis().set_tick_params(which='both', direction='in')
 
     fig.text(0.5,0, xlabel, ha='center', fontsize='large')
+    if isinstance(ylabel, str):
+        _ylabel = ylabel
+    else:
+        _ylabel = '"Dip" obs. - calc. [$P_\mathrm{{s}}$]'
     if not plongphasing:
-        fig.text(-0.02,0.5, '"Dip" obs. - calc. [$P_\mathrm{{s}}$]', va='center', rotation=90, fontsize='large')
+        fig.text(-0.02,0.5, _ylabel, va='center', rotation=90, fontsize='large')
     else:
         fig.text(-0.02,0.5, '"Dip" obs. - calc. [$P_\mathrm{{\ell}}$]', va='center', rotation=90, fontsize='large')
 

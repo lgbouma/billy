@@ -43,7 +43,7 @@ def get_data(
 
 
 def main(xlim=None, ylim=None, include_all_points=False, ylim1=None,
-         plongphasing=0, nodash=0):
+         plongphasing=0, nodash=0, simplelabel=0):
 
     homedir = os.path.expanduser('~')
     basedir = os.path.join(homedir, 'Dropbox/proj/billy/')
@@ -65,15 +65,19 @@ def main(xlim=None, ylim=None, include_all_points=False, ylim1=None,
         linear_params = nparr([EPOCH, 0.4991110])
 
     savpath = '../results/ephemeris/O_minus_C.png'
+    ylabel = None
     if plongphasing:
         savpath = '../results/ephemeris/O_minus_C_plongphasing.png'
     if nodash:
         savpath = '../results/ephemeris/O_minus_C_nodash.png'
+    if simplelabel:
+        ylabel = 'Dip phase [$P_\mathrm{{s}}$]'
+        savpath = '../results/ephemeris/O_minus_C_nodash_simplelabel.png'
 
     onlytransits = True
     bp.plot_O_minus_C(
         x, y, sigma_y, linear_params, refs, savpath=savpath,
-        xlabel='Cycle number', ylabel=None, xlim=xlim, ylim=ylim,
+        xlabel='Cycle number', ylabel=ylabel, xlim=xlim, ylim=ylim,
         include_all_points=include_all_points, ylim1=ylim1,
         onlytransits=onlytransits, plongphasing=plongphasing, nodash=nodash)
 
@@ -93,7 +97,7 @@ if __name__=="__main__":
     ylim = None #[-5,5]
     xlim = [-2000, 7800]
     ylim1 = None #FIXME [-5,4.2]
-    main(xlim=xlim, ylim=ylim, ylim1=ylim1, nodash=1)
+    main(xlim=xlim, ylim=ylim, ylim1=ylim1, nodash=1, simplelabel=0)
 
     # with P_long phasing, to see
     ylim = None
