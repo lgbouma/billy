@@ -328,7 +328,7 @@ def plot_splitsignal_map_periodogram(ydict, outpath):
     savefig(fig, outpath, writepdf=0, dpi=300)
 
 
-def plot_phasefold_map(m, d, outpath):
+def plot_phasefold_map(m, d, outpath, shrinkratio=0):
 
     if os.path.exists(outpath) and not m.OVERWRITE:
         return
@@ -362,31 +362,40 @@ def plot_phasefold_map(m, d, outpath):
 
     # make tha plot
     plt.close('all')
-    fig, axs = plt.subplots(nrows=2, figsize=(6, 6), sharex=True)
+    if shrinkratio:
+        fig, axs = plt.subplots(nrows=2, figsize=(3,3), sharex=True)
+    else:
+        fig, axs = plt.subplots(nrows=2, figsize=(6,6), sharex=True)
+
+    txtzorder = 3 if not shrinkratio else 10
+    linezorder = 3 if not shrinkratio else 11
 
     axs[0].scatter(rot_d['phase'], rot_d['mags'], color='gray', s=2, alpha=0.8,
                    zorder=4, linewidths=0, rasterized=True)
     axs[0].scatter(rot_bd['binnedphases'], rot_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
     axs[0].plot(mrot_d['phase'], mrot_d['mags'], lw=0.5, color='C0', alpha=1,
-                zorder=3)
+                zorder=linezorder)
 
     txt0 = '$P_{{\mathrm{{\ell}}}}$ = {:.5f}$\,$d'.format(P_rot)
-    props = dict(boxstyle='square', facecolor='white', alpha=0.9, pad=0.15,
+    if shrinkratio:
+        txt0 = '$P_{{\mathrm{{long}}}}$: {:.2f}$\,$hr'.format(24*P_rot)
+    props = dict(boxstyle='square', facecolor='white', alpha=0.95, pad=0.05,
                  linewidth=0)
 
     axs[0].text(0.98, 0.98, txt0, ha='right', va='top',
-                transform=axs[0].transAxes, bbox=props, zorder=3)
+                transform=axs[0].transAxes, bbox=props, zorder=txtzorder)
     #axs[0].set_ylabel('$f_{{\mathrm{{\ell}}}} = f - f_{{\mathrm{{s}}}}$',
     #                  fontsize='large')
-    axs[0].set_ylabel('Longer period', fontsize='large')
+    if not shrinkratio:
+        axs[0].set_ylabel('Longer period', fontsize='large')
 
     axs[1].scatter(orb_d['phase'], orb_d['mags'], color='gray', s=2, alpha=0.8,
                    zorder=4, linewidths=0, rasterized=True)
     axs[1].scatter(orb_bd['binnedphases'], orb_bd['binnedmags'], color='black',
                    s=8, alpha=1, zorder=5, linewidths=0)
     axs[1].plot(morb_d['phase'], morb_d['mags'], lw=0.5, color='C0', alpha=1,
-                zorder=3)
+                zorder=linezorder)
 
     out_d = {
         'orb_d': orb_d,
@@ -403,18 +412,30 @@ def plot_phasefold_map(m, d, outpath):
     print('made {}'.format(pklpath))
 
     txt1 = '$P_{{\mathrm{{s}}}}$ = {:.5f}$\,$d'.format(P_orb)
+    if shrinkratio:
+        txt1 = '$P_{{\mathrm{{short}}}}$: {:.2f}$\,$hr'.format(24*P_orb)
     axs[1].text(0.98, 0.98, txt1, ha='right', va='top',
-                transform=axs[1].transAxes, bbox=props, zorder=3)
+                transform=axs[1].transAxes, bbox=props, zorder=txtzorder)
 
-    axs[1].set_ylabel('Shorter period',
-                      fontsize='large')
+    if not shrinkratio:
+        axs[1].set_ylabel('Shorter period',
+                          fontsize='large')
     #axs[1].set_ylabel('$f_{{\mathrm{{s}}}} = f - f_{{\mathrm{{\ell}}}}$',
     #                  fontsize='large')
 
-    axs[1].set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
-    axs[1].set_yticks([-0.04, -0.02, 0, 0.02, 0.04])
+    if not shrinkratio:
+        axs[1].set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
+    else:
+        axs[1].set_xticks([-1, -0.5, 0, 0.5, 1])
+    if not shrinkratio:
+        axs[1].set_yticks([-0.04, -0.02, 0, 0.02, 0.04])
+    else:
+        axs[1].set_yticks([-0.03, 0, 0.03])
 
     axs[-1].set_xlabel('Phase', fontsize='large')
+    if shrinkratio:
+        fig.text(-0.02,0.5, 'Relative flux', va='center', rotation=90,
+                 fontsize='large')
 
     for a in axs:
         a.grid(which='major', axis='both', linestyle='--', zorder=-3,
@@ -431,7 +452,13 @@ def plot_phasefold_map(m, d, outpath):
         format_ax(a)
     axs[0].set_ylim((-0.075, 0.075))
     axs[1].set_ylim((-0.045, 0.045))
-    fig.tight_layout()
+    if shrinkratio:
+        axs[0].set_ylim((-0.085, 0.085))
+        axs[1].set_ylim((-0.050, 0.050))
+    if not shrinkratio:
+        fig.tight_layout()
+    else:
+        fig.tight_layout(h_pad=0.1)
     savefig(fig, outpath, writepdf=1, dpi=300)
 
 

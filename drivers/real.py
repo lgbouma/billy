@@ -18,15 +18,18 @@ def main(modelid):
     make_threadsafe = 0
 
     traceplot = 0
-    sampleplot = 1
-    cornerplot = 1
+    sampleplot = 0
+    cornerplot = 0
     splitsignalplot = 1 if 'Porb' in modelid and 'Prot' in modelid else 0
 
     OVERWRITE = 1
     REALID = 'PTFO_8-8695'
     RESULTSDIR = os.path.join(os.path.dirname(__path__[0]), 'results')
+    # NOTE: 20200513 used in paper; 20201016 for generating cute money plot
+    #PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
+    #                       '20200513_v0')
     PLOTDIR = os.path.join(RESULTSDIR, '{}_results'.format(REALID),
-                           '20200513_v0')
+                           '20201016_v0')
 
     ##########
 
@@ -81,6 +84,8 @@ def main(modelid):
                     bp.plot_splitsignal_map_periodogram(ydict, outpath)
                 outpath = join(PLOTDIR, '{}_{}_phasefoldmap.png'.format(REALID, modelid))
                 bp.plot_phasefold_map(m, ydict, outpath)
+                outpath = join(PLOTDIR, '{}_{}_phasefoldmap_shrinkratio.png'.format(REALID, modelid))
+                bp.plot_phasefold_map(m, ydict, outpath, shrinkratio=1)
                 get_bic(m, ydict, PLOTDIR)
 
         if cornerplot:
