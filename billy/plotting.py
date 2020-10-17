@@ -363,7 +363,7 @@ def plot_phasefold_map(m, d, outpath, shrinkratio=0):
     # make tha plot
     plt.close('all')
     if shrinkratio:
-        fig, axs = plt.subplots(nrows=2, figsize=(3,3), sharex=True)
+        fig, axs = plt.subplots(nrows=2, figsize=(4,3), sharex=True)
     else:
         fig, axs = plt.subplots(nrows=2, figsize=(6,6), sharex=True)
 
@@ -432,10 +432,11 @@ def plot_phasefold_map(m, d, outpath, shrinkratio=0):
     else:
         axs[1].set_yticks([-0.03, 0, 0.03])
 
-    axs[-1].set_xlabel('Phase', fontsize='large')
-    if shrinkratio:
-        fig.text(-0.02,0.5, 'Relative flux', va='center', rotation=90,
-                 fontsize='large')
+    if not shrinkratio:
+        axs[-1].set_xlabel('Phase', fontsize='large')
+    else:
+        fig.text(-0.02,0.5, 'Relative flux', va='center', rotation=90)
+        axs[-1].set_xlabel('Phase')
 
     for a in axs:
         a.grid(which='major', axis='both', linestyle='--', zorder=-3,
