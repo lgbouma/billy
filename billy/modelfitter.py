@@ -92,7 +92,13 @@ class ModelFitter(ModelParser):
         # if the model has already been run, pull the result from the
         # pickle. otherwise, run it.
         if os.path.exists(pklpath):
-            d = pickle.load(open(pklpath, 'rb'))
+            # avoid theano + pickle error by ignoring compilation error, since
+            # it does not matter in postprocessing
+            import theano
+            theano.config.gcc.cxxflags = "-Wno-c++11-narrowing"
+
+            with open(pklpath, 'rb') as f:
+                d = pickle.load(f)
             self.model = d['model']
             self.trace = d['trace']
             self.map_estimate = d['map_estimate']

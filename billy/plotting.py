@@ -7,11 +7,11 @@ Plots:
     plot_sampleplot
     plot_splitsignal_map
     plot_phasefold_map
+    plot_phasefold_map_singlepanel
     plot_splitsignal_post
     plot_phasefold_post
     plot_traceplot
     plot_cornerplot
-
     plot_scene
 
     plot_hr
@@ -456,6 +456,94 @@ def plot_phasefold_map(m, d, outpath, shrinkratio=0):
     if shrinkratio:
         axs[0].set_ylim((-0.085, 0.085))
         axs[1].set_ylim((-0.050, 0.050))
+    if not shrinkratio:
+        fig.tight_layout()
+    else:
+        fig.tight_layout(h_pad=0.1)
+    savefig(fig, outpath, writepdf=1, dpi=300)
+
+
+def plot_phasefold_map_singlepanel(m, d, outpath, shrinkratio=0):
+
+    if os.path.exists(outpath) and not m.OVERWRITE:
+        return
+
+    # recover periods and epochs.
+    P_rot = 2*np.pi/float(m.map_estimate['omegarot'])
+    t0_rot = float(m.map_estimate['phirot']) * P_rot / (2*np.pi)
+    P_orb = float(m.map_estimate['period'])
+    t0_orb = float(m.map_estimate['t0'])
+
+    # phase and bin them.
+    orb_d = phase_magseries(
+        d['x_obs'], d['y_orb'], P_orb, t0_orb, wrap=True, sort=True
+    )
+    orb_bd = phase_bin_magseries(
+        orb_d['phase'], orb_d['mags'], binsize=0.01
+    )
+    morb_d = phase_magseries(
+        d['x_obs'], d['y_mod_orb'], P_orb, t0_orb, wrap=True, sort=True
+    )
+
+    rot_d = phase_magseries(
+        d['x_obs'], d['y_rot'], P_rot, t0_rot, wrap=True, sort=True
+    )
+    rot_bd = phase_bin_magseries(
+        rot_d['phase'], rot_d['mags'], binsize=0.01
+    )
+    mrot_d = phase_magseries(
+        d['x_obs'], d['y_mod_rot'], P_rot, t0_rot, wrap=True, sort=True
+    )
+
+    # make tha plot
+    plt.close('all')
+    fig, ax = plt.subplots(figsize=(3.5,2))
+
+    txtzorder = 3 if not shrinkratio else 10
+    linezorder = 3 if not shrinkratio else 11
+
+    props = dict(boxstyle='square', facecolor='white', alpha=0.95, pad=0.05,
+                 linewidth=0)
+
+    ax.scatter(orb_d['phase'], orb_d['mags'], color='gray', s=2, alpha=0.8,
+               zorder=4, linewidths=0, rasterized=True)
+    ax.scatter(orb_bd['binnedphases'], orb_bd['binnedmags'], color='black',
+               s=8, alpha=1, zorder=5, linewidths=0)
+    ax.plot(morb_d['phase'], morb_d['mags'], lw=0.5, color='C0', alpha=1,
+            zorder=linezorder)
+
+    txt1 = '$P_{{\mathrm{{s}}}}$ = {:.5f}$\,$d'.format(P_orb)
+    if shrinkratio:
+        txt1 = 'P = {:.2f}$\,$hr'.format(24*P_orb)
+    ax.text(0.98, 0.98, txt1, ha='right', va='top', transform=ax.transAxes,
+            bbox=props, zorder=txtzorder)
+
+    if not shrinkratio:
+        ax.set_ylabel('Shorter period', fontsize='large')
+
+    if not shrinkratio:
+        ax.set_xticks([-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75, 1])
+    else:
+        ax.set_xticks([-1, -0.5, 0, 0.5, 1])
+    if not shrinkratio:
+        ax.set_yticks([-0.04, -0.02, 0, 0.02, 0.04])
+    else:
+        ax.set_yticks([-0.03, 0, 0.03])
+
+    if not shrinkratio:
+        ax.set_xlabel('Phase', fontsize='large')
+    else:
+        ax.set_ylabel('Relative flux')
+        ax.set_xlabel('Phase')
+
+    ax.grid(which='major', axis='both', linestyle='--', zorder=-3, alpha=0.5,
+            color='gray', linewidth=0.5)
+
+    ax.set_xlim((-1, 1))
+    format_ax(ax)
+    ax.set_ylim((-0.045, 0.045))
+    if shrinkratio:
+        ax.set_ylim((-0.050, 0.050))
     if not shrinkratio:
         fig.tight_layout()
     else:
