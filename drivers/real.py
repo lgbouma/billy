@@ -86,6 +86,10 @@ def main(modelid):
                 bp.plot_phasefold_map(m, ydict, outpath)
                 outpath = join(PLOTDIR, '{}_{}_phasefoldmap_shrinkratio.png'.format(REALID, modelid))
                 bp.plot_phasefold_map(m, ydict, outpath, shrinkratio=1)
+                outpath = join(PLOTDIR, f'{REALID}_{modelid}_phasefoldmap_shrinkratio_singlepanel.png')
+                bp.plot_phasefold_map_singlepanel(m, ydict, outpath, shrinkratio=1)
+                outpath = join(PLOTDIR, f'{REALID}_{modelid}_phasefoldmap_shrinkratio_singlepanel_gridoff.png')
+                bp.plot_phasefold_map_singlepanel(m, ydict, outpath, shrinkratio=1, gridoff=1)
                 get_bic(m, ydict, PLOTDIR)
 
         if cornerplot:
@@ -97,10 +101,10 @@ def main(modelid):
 
 if __name__ == "__main__":
 
-    DEBUG = 0
+    DEBUG = 1
 
     if DEBUG:
-        main('transit_2sincosPorb_2sincosProt')
+        main('transit_2sincosPorb_3sincosProt')
 
     else:
         for N, M in product(range(1,4), range(1,4)):

@@ -463,7 +463,7 @@ def plot_phasefold_map(m, d, outpath, shrinkratio=0):
     savefig(fig, outpath, writepdf=1, dpi=300)
 
 
-def plot_phasefold_map_singlepanel(m, d, outpath, shrinkratio=0):
+def plot_phasefold_map_singlepanel(m, d, outpath, shrinkratio=0, gridoff=0):
 
     if os.path.exists(outpath) and not m.OVERWRITE:
         return
@@ -536,8 +536,9 @@ def plot_phasefold_map_singlepanel(m, d, outpath, shrinkratio=0):
         ax.set_ylabel('Relative flux')
         ax.set_xlabel('Phase')
 
-    ax.grid(which='major', axis='both', linestyle='--', zorder=-3, alpha=0.5,
-            color='gray', linewidth=0.5)
+    if not gridoff:
+        ax.grid(which='major', axis='both', linestyle='--', zorder=-3,
+                alpha=0.5, color='gray', linewidth=0.5)
 
     ax.set_xlim((-1, 1))
     format_ax(ax)
